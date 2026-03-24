@@ -8,7 +8,12 @@
 <meta name="apple-mobile-web-app-title" content="72 Chevelle">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0A0F1C">
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIjcyIENoZXZlbGxlIFNTIEJ1aWxkIEd1aWRlIiwgInNob3J0X25hbWUiOiAiNzIgQ2hldmVsbGUiLCAic3RhcnRfdXJsIjogIi4iLCAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwgImJhY2tncm91bmRfY29sb3IiOiAiIzBmMTExNyIsICJ0aGVtZV9jb2xvciI6ICIjMGYxMTE3IiwgImRlc2NyaXB0aW9uIjogIkludGVyYWN0aXZlIGJ1aWxkIGd1aWRlIGZvciAxOTcyIENoZXZlbGxlIFNTIERha290YSBEaWdpdGFsIEhEWCBpbnN0YWxsYXRpb24iLCAiaWNvbnMiOiBbeyJzcmMiOiAiaWNvbi0xODAucG5nIiwgInNpemVzIjogIjE4MHgxODAiLCAidHlwZSI6ICJpbWFnZS9wbmcifV19">
+<meta name="description" content="Interactive build guide for 1972 Chevelle SS Dakota Digital HDX gauge installation — wire tracing, checklists, budget tracking, and offline PWA.">
+<meta property="og:title" content="1972 Chevelle SS - HDX Build Guide">
+<meta property="og:description" content="Interactive PWA with wire tracing, checklists, and Dakota Digital HDX gauge install for a 1972 Chevelle SS.">
+<meta property="og:image" content="icon-512.png">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" href="icon-180.png">
 <title>1972 Chevelle SS - HDX Build Guide</title>
@@ -5677,6 +5682,16 @@ Lay them all out and identify each piece before routing anything.</div>
 </div>
 
 <script>
+// === CONSTANTS ===
+const BUDGET_TARGET = 5000; // Budget gauge shows full at this dollar amount
+
+// === UTILITIES ===
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 // === CHEVELLE STATE MANAGER ===
 const ChevelleState = {
   _key: 'chevelle-hdx-state',
@@ -5947,26 +5962,6 @@ function toggleCheck(li) {
   updateOtherProgress();
 }
 
-function updateOtherProgress() {
-  // Recommission progress
-  const recomChecks = document.querySelectorAll('#sec-recommission .check-box');
-  const recomDone = document.querySelectorAll('#sec-recommission .check-box.checked');
-  const recomPct = recomChecks.length ? Math.round(recomDone.length/recomChecks.length*100) : 0;
-  const rp = document.getElementById('recom-progress');
-  const rpct = document.getElementById('recom-pct');
-  if(rp) rp.style.width = recomPct+'%';
-  if(rpct) rpct.textContent = recomPct;
-
-  // Engine bay progress
-  const engineChecks = document.querySelectorAll('#sec-engine .check-box');
-  const engineDone = document.querySelectorAll('#sec-engine .check-box.checked');
-  const enginePct = engineChecks.length ? Math.round(engineDone.length/engineChecks.length*100) : 0;
-  const ep = document.getElementById('engine-progress');
-  const epct = document.getElementById('engine-pct');
-  if(ep) ep.style.width = enginePct+'%';
-  if(epct) epct.textContent = enginePct;
-}
-
 
 // Phase expand/collapse
 function togglePhase(idx) {
@@ -5985,7 +5980,8 @@ function scrollToPhase(idx) {
 // Substep checking
 function toggleSubstep(el) {
   // Don't toggle if clicking a detail toggle
-  if(event.target.classList.contains('sub-detail') || event.target.closest('.detail-content')) return;
+  var e = event || window.event;
+  if(e && (e.target.classList.contains('sub-detail') || e.target.closest('.detail-content'))) return;
   const check = el.querySelector('.sub-check');
   const text = el.querySelector('.sub-text');
   check.classList.toggle('checked');
@@ -5999,9 +5995,9 @@ function toggleSubstep(el) {
   updateBuildProgress();
 }
 
-// Detail expand
+// Detail expand (delegated handler for .sub-detail toggles)
 document.addEventListener('click', function(e) {
-  if(e.target.style && e.target.style.cursor === 'pointer' && e.target.textContent.startsWith('▸')) {
+  if(e.target.classList.contains('sub-detail')) {
     const detail = e.target.nextElementSibling;
     if(detail && detail.classList.contains('detail-content')) {
       detail.classList.toggle('open');
@@ -6081,22 +6077,22 @@ function updateHomeGauges() {
   setGaugeNeedle('home-needle-speedo', buildPct);
   setTFT('home-tft-speedo', doneSub.length+'/'+allSub.length);
 
-  // Oil = specs/parts received
-  const parts = ChevelleState.get('parts') || {};
-  const totalParts = Object.keys(parts).length || 1;
-  const receivedParts = Object.values(parts).filter(v => v).length;
+  // Oil = specs/parts received (count from DOM, not localStorage keys)
+  const totalParts = document.querySelectorAll('.part-item').length || 1;
+  const receivedParts = document.querySelectorAll('.part-check.checked').length;
   const partsPct = Math.round(receivedParts/totalParts*100);
   setGaugeNeedle('home-needle-oil', partsPct);
-  setTFT('home-tft-oil', receivedParts+' PARTS');
+  setTFT('home-tft-oil', receivedParts+'/'+totalParts);
 
-  // Temp = troubleshoot (static for now)
-  setGaugeNeedle('home-needle-temp', 50);
-  setTFT('home-tft-temp', '10 TIPS');
+  // Temp = troubleshoot reference (count items dynamically)
+  const troubleItems = document.querySelectorAll('.trouble-item').length;
+  setGaugeNeedle('home-needle-temp', 100);
+  setTFT('home-tft-temp', troubleItems+' TIPS');
 
   // Fuel = budget
   const expenses = ChevelleState.getExpenses();
   const totalSpent = expenses.reduce((sum,e) => sum+Number(e.cost||0), 0);
-  setGaugeNeedle('home-needle-fuel', Math.min(100, totalSpent/50));  // scale: $5000 = full
+  setGaugeNeedle('home-needle-fuel', Math.min(100, (totalSpent/BUDGET_TARGET)*100));
   setTFT('home-tft-fuel', '$'+totalSpent.toLocaleString());
 
   // Volts = wiring (completion of recommission + engine)
@@ -6194,7 +6190,8 @@ function doSearch(query) {
   if(!matches.length) { results.innerHTML = '<div class="search-hint">No results found</div>'; return; }
   const sectionLabels = {home:'Home',dash:'Dash & Gauges',wiring:'Wire Tracing',interior:'Interior',install:'Install Steps',hdx:'HDX Setup',recommission:'Recommission',engine:'Engine Bay',specs:'Specs & Parts',troubleshoot:'Troubleshoot',budget:'Budget'};
   results.innerHTML = matches.map((m,i) => {
-    const highlighted = m.text.replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'), '<mark>$1</mark>');
+    const safeText = escapeHtml(m.text);
+    const highlighted = safeText.replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'), '<mark>$1</mark>');
     return '<div class="search-result" onclick="goToSearchResult('+i+')"><div class="search-result-title">'+(sectionLabels[m.section]||m.section)+'</div><div class="search-result-text">'+highlighted.substring(0,150)+'</div></div>';
   }).join('');
   // Store matches for navigation
@@ -6240,6 +6237,7 @@ function addExpense() {
 }
 
 function removeExpense(id) {
+  if(!confirm('Remove this expense?')) return;
   ChevelleState.removeExpense(id);
   renderExpenses();
   updateHomeGauges();
@@ -6253,7 +6251,7 @@ function renderExpenses() {
   const total = expenses.reduce((s,e) => s+Number(e.cost||0), 0);
   if(totalEl) totalEl.textContent = '$'+total.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
   list.innerHTML = expenses.map(e =>
-    '<div class="expense-item"><span class="expense-phase">'+e.phase+'</span><span class="expense-desc">'+e.desc+'</span><span class="expense-cost">$'+Number(e.cost).toFixed(2)+'</span><button class="expense-del" onclick="removeExpense('+e.id+')">&times;</button></div>'
+    '<div class="expense-item"><span class="expense-phase">'+escapeHtml(e.phase)+'</span><span class="expense-desc">'+escapeHtml(e.desc)+'</span><span class="expense-cost">$'+Number(e.cost).toFixed(2)+'</span><button class="expense-del" onclick="removeExpense('+e.id+')">&times;</button></div>'
   ).join('') || '<p style="color:var(--muted);font-size:13px">No expenses recorded yet</p>';
 }
 
