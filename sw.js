@@ -1,4 +1,4 @@
-const CACHE = 'chevelle-hdx-v2';
+const CACHE = 'chevelle-hdx-v3';
 const ASSETS = [
   './',
   './chevelle-hdx-interactive.html',
@@ -7,7 +7,8 @@ const ASSETS = [
   './icon-512.png',
   './manifest.json',
   './dash-reference.jpg',
-  './dash-reference-closeup.jpg'
+  './dash-reference-closeup.jpg',
+  './behind-dash-reference.jpg'
 ];
 
 self.addEventListener('install', e => {
