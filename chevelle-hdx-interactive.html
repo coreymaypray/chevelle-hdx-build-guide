@@ -888,532 +888,1034 @@
 
 <!-- ===== INSTALL GUIDE VIEW ===== -->
 <div id="wiring-guide" class="wiring-view active">
-  <p style="margin-bottom:16px">Organized by <strong>where you are</strong> and <strong>what kit bag you're working with</strong>. Complete each area before moving to the next.</p>
+  <p style="margin-bottom:16px">Install the AAW 510105 kit <strong>bag by bag</strong> in AAW's order: G &rarr; H &rarr; J &rarr; K &rarr; L &rarr; M &rarr; N &rarr; V &rarr; Z. Each bag section shows every wire, every connection, in order.</p>
 
-  <!-- AREA 1: LAYOUT & PREP -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A1</span>
-      <div>
-        <div class="guide-phase-title">Layout &amp; Prep</div>
-        <div class="guide-phase-sub">5 steps &mdash; Garage Floor &mdash; Unbox, identify, label, test continuity</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+<!-- ============================================ -->
+<!-- BAG G — Dash Harness Kit (510524)            -->
+<!-- ============================================ -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">G</span>
+    <div>
+      <div class="guide-phase-title">Dash Harness Kit &mdash; 510524</div>
+      <div class="guide-phase-sub">26 connections &mdash; fuse panel, switches, instrument cluster, console, rear body</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">All AAW bags (G, J, M) &middot; HDX Control Box &middot; HDX Ribbon Cable &middot; HDX Sender Sub-harnesses (3&times;10ft) &middot; AAW 520001 Dim Wire Kit &middot; AAW 500707 Fuse Panel &middot; Multimeter &middot; Masking tape &middot; Marker</div>
-      </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
 
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong>Unbox everything onto a clean surface</strong>
-          <p>Lay out all parts and identify each piece before touching the car:</p>
-          <table class="circuit-specs"><tr><td>AAW Dash Kit</td><td><strong>Bag G</strong> &mdash; main dash harness + fuse panel bracket</td></tr><tr><td>AAW Rear Body Harness</td><td><strong>Bag M</strong> &mdash; fuel sender (tan wire) + tail lights</td></tr><tr><td>AAW Engine Kit</td><td><strong>Bag J</strong> &mdash; engine bay harness + bulkhead connector</td></tr><tr><td>AAW Fuse Panel</td><td><strong>500707</strong> &mdash; 18-fuse inline panel + fuse assortment</td></tr><tr><td>HDX Sender Sub-harnesses</td><td>3 &times; 10ft wires (oil, temp, speed)</td></tr><tr><td>HDX Ribbon Cable</td><td>Control Box to gauge cluster (flat, fragile)</td></tr><tr><td>AAW 520001</td><td>Dim Wire Interface Kit (grey wire for HDX dimmer)</td></tr></table>
-        </div>
-      </div>
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag G (510524 Dash Harness) &bull; 500707 Fuse/Relay/Flasher Kit &bull; 500332 Headlight Switch &bull; 500042 Floor Dimmer Switch</div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong>Match bags to locations</strong>
-          <p><strong>Bag G</strong> = everything behind the dash. <strong>Bag J</strong> = everything in the engine bay. <strong>Bag M</strong> = everything at the rear of the car. The bulkhead connector at the firewall connects Bag G (dash side) to Bag J (engine side).</p>
-        </div>
-      </div>
+    <img src="aaw-diagrams/aaw-fuse-panel-install.png" style="width:100%;border-radius:8px;margin:12px 0" alt="AAW Fuse Panel — 26 numbered connections">
 
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong>Label EVERY connector with masking tape + marker</strong>
-          <p>15-20 connectors total. Write the destination on each: "Headlight Switch," "Wiper Motor," "Radio," "Ignition," "Fuse #7," "Fuse #8," etc. This saves hours of tracing later.</p>
-        </div>
+    <!-- Step 1 — Fuse Panel Install -->
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Fuse Panel Install</strong>
+        <p>Mount the fuse panel at the firewall bulkhead in the stock OEM bulkhead hole on the driver side. The flasher can goes in the bottom-right corner of the panel. Secure with two mounting screws.</p>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">4</div>
-        <div class="guide-step-content">
-          <strong>Test continuity on each circuit with multimeter</strong>
-          <p>Set multimeter to continuity/ohms. Test each labeled wire pair end-to-end: power circuits, ground circuits, lights, turn signals. Fix any open circuits NOW.</p>
-          <div class="warn"><strong>DO THIS BEFORE CONNECTING ANYTHING.</strong> Finding a broken wire after the dash is assembled means tearing it all apart again.</div>
-        </div>
+    <!-- Step 2 — Dimmer Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Floor Dimmer Switch</strong>
+        <p>Connect the four wires to the floor-mounted dimmer switch:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong> (heavy)</td><td>Headlight high beam feed</td></tr>
+          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong> (thin)</td><td>High beam indicator light</td></tr>
+          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Headlight low beam feed</td></tr>
+          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>Headlight power feed from headlight switch</td></tr>
+        </table>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">5</div>
-        <div class="guide-step-content">
-          <strong>Inventory HDX components</strong>
-          <p>Verify you have: Control Box (brain unit), ribbon cable, 3 sender sub-harnesses (oil/temp/speed), and the AAW 520001 Dim Wire Kit (grey wire). If anything is missing, stop and order before proceeding.</p>
-        </div>
+    <!-- Step 3 — Emergency Brake -->
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Emergency Brake Switch</strong>
+        <p>Connect the <strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch. This is a ground circuit that activates the brake warning light in the instrument cluster.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 — Headlight Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Headlight Switch (500332)</strong>
+        <p>Install the headlight switch and connect:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#e33">RED</strong></td><td>12V battery feed (BAT location)</td></tr>
+          <tr><td><strong style="color:#fa0">ORANGE</strong></td><td>Park/tail feed in</td></tr>
+          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Park lamp feed out</td></tr>
+          <tr><td><strong style="color:#999">GRAY</strong></td><td>Dash light rheostat &mdash; feeds instrument lamp dimming</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 5 — Ignition Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>Ignition Switch</strong>
+        <p>Connect the ignition switch wires:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#e33">RED</strong></td><td>12V battery feed</td></tr>
+          <tr><td><strong style="color:#f0a">PINK</strong></td><td>12V ignition feed</td></tr>
+          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>12V accessory feed</td></tr>
+          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>Starter lead to neutral safety switch</td></tr>
+        </table>
+        <div class="note"><strong>NOTE:</strong> Connectors are already plugged in for the stock 1970&ndash;72 ignition switch. No re-pinning required.</div>
+      </div>
+    </div>
+
+    <!-- Step 6 — Turn Signal Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>Turn Signal Switch</strong>
+        <p>Connect the 7-wire connector for the 3-7/8&Prime; 1969&ndash;74 GM steering column:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#e8e8f0">WHITE</strong></td><td>Brake switch feed</td></tr>
+          <tr><td><strong style="color:#228b22">DARK GREEN</strong></td><td>RH tail / turn</td></tr>
+          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>LH tail / turn</td></tr>
+          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>Turn signal flasher</td></tr>
+          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Hazard flasher</td></tr>
+          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>RH front park lamp</td></tr>
+          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>LH front park lamp</td></tr>
+          <tr><td><strong style="color:#888">BLACK</strong></td><td>Horn relay ground</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 7 — Brake Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">7</div>
+      <div class="guide-step-content">
+        <strong>Brake Pedal Switch</strong>
+        <p>Connect the <strong style="color:#e8e8f0">WHITE</strong> wire to the brake pedal switch at the brake pedal arm.</p>
+      </div>
+    </div>
+
+    <!-- Step 8 — Wiper Switch -->
+    <div class="guide-step">
+      <div class="guide-step-num">8</div>
+      <div class="guide-step-content">
+        <strong>Wiper Switch</strong>
+        <p>Connect the wiper switch wires. There is a single connector (1972 only) and a 3-way connector:</p>
+        <table class="circuit-specs">
+          <tr><td colspan="2" style="font-style:italic;opacity:.7">Single connector (72 only)</td></tr>
+          <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground for switch assembly</td></tr>
+          <tr><td colspan="2" style="font-style:italic;opacity:.7">3-way connector</td></tr>
+          <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground &mdash; low speed</td></tr>
+          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Ground &mdash; washer</td></tr>
+          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>Ground &mdash; high speed</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 9 — Instrument Cluster Disconnects -->
+    <div class="guide-step">
+      <div class="guide-step-num">9</div>
+      <div class="guide-step-content">
+        <strong>Instrument Cluster Disconnects</strong>
+        <p>Locate the instrument cluster connectors (F, G, H) on this harness. These connectors mate with <strong>Bag H</strong>.</p>
+        <div class="warn"><strong>WARNING:</strong> Do NOT connect these yet. Install Bag H next and refer to its instructions for proper hookup.</div>
+      </div>
+    </div>
+
+    <!-- Step 10 — Rear Body Connector -->
+    <div class="guide-step">
+      <div class="guide-step-num">10</div>
+      <div class="guide-step-content">
+        <strong>Rear Body Connector</strong>
+        <p>Locate the rear body disconnect on this harness. It mates with <strong>Bag M</strong> (rear body harness).</p>
+        <div class="warn"><strong>WARNING:</strong> Do NOT connect yet. Bag M is installed later during rear lighting.</div>
+      </div>
+    </div>
+
+    <!-- Step 11 — Other Connections -->
+    <div class="guide-step">
+      <div class="guide-step-num">11</div>
+      <div class="guide-step-content">
+        <strong>Remaining Dash Connections</strong>
+        <p>Route and connect the remaining wires behind the dash:</p>
+        <table class="circuit-specs">
+          <tr><td>Horn relay</td><td>Connect horn relay lead</td></tr>
+          <tr><td>Radio</td><td><strong style="color:#f0a">PINK</strong> = ignition feed</td></tr>
+          <tr><td>Cigarette Lighter</td><td><strong style="color:#fa0">ORANGE</strong> = fused power</td></tr>
+          <tr><td>RH Courtesy Lamp</td><td><strong style="color:#fa0">ORANGE</strong> + <strong style="color:#e8e8f0">WHITE</strong></td></tr>
+          <tr><td>Heater Resistor</td><td>Connect to blower resistor assembly</td></tr>
+          <tr><td>Glove Box Light</td><td><strong style="color:#fa0">ORANGE</strong> = fused power</td></tr>
+          <tr><td>Heater Lamp</td><td><strong style="color:#999">GRAY</strong> = dash lamp circuit</td></tr>
+          <tr><td>Heater Switch</td><td><strong style="color:#a0522d">BROWN</strong> = ACCY &bull; <strong style="color:#fc0">YELLOW</strong> / <strong style="color:#87ceeb">LT BLUE</strong> / <strong style="color:#fa0">ORANGE</strong> = resistor taps</td></tr>
+          <tr><td>Console Connection</td><td>Mate with console harness (if equipped)</td></tr>
+          <tr><td>T400 Kickdown</td><td><strong style="color:#f0a">PINK</strong> = ignition feed to kickdown switch</td></tr>
+          <tr><td>Neutral Safety Switch</td><td><strong style="color:#9333ea">PURPLE</strong> in / <strong style="color:#9333ea">PURPLE</strong> out</td></tr>
+          <tr><td>Back-Up Switch</td><td><strong style="color:#f0a">PINK</strong> in &rarr; <strong style="color:#90ee90">LT GREEN</strong> out</td></tr>
+          <tr><td>Speedo Ground</td><td><strong style="color:#888">BLACK</strong>/<strong style="color:#e8e8f0">WHITE</strong> &mdash; NOT connected to main ground #9</td></tr>
+          <tr><td>VSS Extension</td><td>Mates with Bag V (Dakota Digital VSS)</td></tr>
+          <tr><td>Accessory Connector</td><td>6 fused circuits for auxiliary accessories</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 12 — Ground -->
+    <div class="guide-step">
+      <div class="guide-step-num">12</div>
+      <div class="guide-step-content">
+        <strong>Chassis Ground</strong>
+        <p>Attach the <strong style="color:#888">BLACK</strong> ground wire to a clean, bare-metal chassis ground point. Sand paint away if needed and use a star washer for solid contact.</p>
+      </div>
+    </div>
+
+    <div class="warn"><strong>WARNING:</strong> DO NOT reconnect battery yet. Continue to Bag H.</div>
+
+  </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- BAG H — Instrument Cluster Kit (510525)      -->
+<!-- ============================================ -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">H</span>
+    <div>
+      <div class="guide-phase-title">Instrument Cluster Kit &mdash; 510525</div>
+      <div class="guide-phase-sub">Connectors F, G, H &mdash; plugs into Bag G dash harness</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag H (510525 Instrument Cluster) &bull; Terminal Kit 92965220 (if using aftermarket gauges)</div>
+    </div>
+
+    <img src="aaw-diagrams/aaw-bag-h-instrument.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag H — Instrument Cluster Connectors F, G, H">
+
+    <div class="warn"><strong>IMPORTANT:</strong> If using Dakota Digital HDX gauges, you will NOT use the stock circuit board connections. Instead, use the aftermarket gauge instructions on sheet 3. The HDX Control Box replaces the instrument cluster. See the HDX Integration section below for how to connect.</div>
+
+    <!-- Step 1 — Connector F -->
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Connector F &mdash; Main Instrument Signals</strong>
+        <p>Plug Connector F into its mating connector on the Bag G dash harness. Wires carried:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Right Turn Lamp</td></tr>
+          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>Left Turn Lamp</td></tr>
+          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong></td><td>High Beam Lamp</td></tr>
+          <tr><td><strong style="color:#228b22">DARK GREEN</strong></td><td>Temperature Sender</td></tr>
+          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Oil Pressure Sender</td></tr>
+          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Fuel Sender</td></tr>
+          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Brake Warning Lamp</td></tr>
+          <tr><td><strong style="color:#e8e8f0">WHITE</strong> (loose)</td><td>Tachometer &mdash; only if using a tach</td></tr>
+          <tr><td><strong style="color:#a0522d">BROWN</strong> (loose)</td><td>Alternator warning lamp</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 2 — Connector G -->
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Connector G &mdash; Power, Lamps &amp; Ground</strong>
+        <p>Plug Connector G into its mating connector on the Bag G dash harness. Wires carried:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#f0a">PINK</strong></td><td>12V Ignition</td></tr>
+          <tr><td><strong style="color:#999">GRAY</strong></td><td>Instrument Lamps (dimmer circuit)</td></tr>
+          <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground &mdash; attach to back of stock gauge cluster assembly</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 3 — Connector H -->
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Connector H &mdash; Aftermarket Electric Speedometer</strong>
+        <p>This connector is ONLY for an aftermarket electric speedometer. If using a stock cable-driven speedo, do NOT use this connector.</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>VSS Ground</td></tr>
+          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>VSS Signal</td></tr>
+          <tr><td><strong style="color:#9333ea">PURPLE</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>VSS 12V Power</td></tr>
+          <tr><td><strong style="color:#888">BLACK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo Ground</td></tr>
+          <tr><td><strong style="color:#f0a">PINK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo 12V Power (doubles onto same stud as Purple/White)</td></tr>
+        </table>
+        <div class="warn"><strong>WARNING:</strong> Twist the <strong style="color:#fc0">YELLOW</strong> and <strong style="color:#9333ea">PURPLE</strong> wires together for their entire length to prevent electromagnetic interference with the VSS signal.</div>
+      </div>
+    </div>
+
+    <div class="note"><strong>NOTE:</strong> With HDX gauges, Connector H is critical &mdash; it carries the VSS signal for your digital speedometer.</div>
+
+  </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- BAG J — Engine Wiring Kit (510526)           -->
+<!-- ============================================ -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">J</span>
+    <div>
+      <div class="guide-phase-title">Engine Wiring Kit &mdash; 510526</div>
+      <div class="guide-phase-sub">Bulkhead connector + all engine bay connections</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag J (510526 Engine Kit) &bull; Bag Z components (Megafuse, 6ga wire, terminals)</div>
+    </div>
+
+    <img src="aaw-diagrams/aaw-bag-j-engine-wiring.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag J — Engine Bay Wiring">
+
+    <!-- Step 1 — Bulkhead Assembly -->
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Bulkhead Assembly</strong>
+        <p>Temporarily plug the main bulkhead connector from this kit into the mating connector on the dash-side bulkhead (located under the master cylinder). This connector will be unbolted later to install the front light harness (Bag L).</p>
+      </div>
+    </div>
+
+    <!-- Step 2 — 12V Battery -->
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>12V Battery &mdash; <strong style="color:#e33">RED</strong></strong>
+        <p>Route the <strong style="color:#e33">RED</strong> wire to the Megafuse assembly (from Bag Z) and cut to length. Use the ring terminal and shrink tubing from the 510476 kit.</p>
+      </div>
+    </div>
+
+    <!-- Step 3 — Starter Solenoid -->
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Starter Solenoid &mdash; <strong style="color:#9333ea">PURPLE</strong></strong>
+        <p>Route the <strong style="color:#9333ea">PURPLE</strong> wire to the starter solenoid S terminal and cut to length. Install rubber sleeve E and ring terminal D.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 — Oil Pressure Sender -->
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Oil Pressure Sender &mdash; <strong style="color:#4169e1">DARK BLUE</strong></strong>
+        <p>Connect to the oil pressure sending unit. Use terminal P with sleeve L, OR terminal S with connector R, OR terminal C with connector A &mdash; depending on your sender type.</p>
+        <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX SEN-01-5 (3-wire electronic sender), you will use the HDX sender sub-harness instead of this AAW wire. The AAW <strong style="color:#4169e1">DARK BLUE</strong> wire is for STOCK single-wire GM senders only. See the HDX Integration section.</div>
+      </div>
+    </div>
+
+    <!-- Step 5 — Water Temp Sender -->
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>Water Temp Sender &mdash; <strong style="color:#228b22">DARK GREEN</strong></strong>
+        <p>Route to the water temperature sender and cut to length. Install ring terminal P with sleeve L, or terminal C with connector K depending on your application.</p>
+        <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX temp sender, use the HDX sub-harness instead. The AAW <strong style="color:#228b22">DARK GREEN</strong> wire is for stock GM senders only. See the HDX Integration section.</div>
+      </div>
+    </div>
+
+    <!-- Step 6 — Heat/Air -->
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>Heat/Air &mdash; <strong style="color:#fa0">ORANGE</strong></strong>
+        <p>If using aftermarket A/C: this wire is NOT used. If using stock heater only: plug into bulkhead assembly Y, route to heater blower, and terminate with terminal C and connector A.</p>
+      </div>
+    </div>
+
+    <!-- Step 7 — 12V Ignition -->
+    <div class="guide-step">
+      <div class="guide-step-num">7</div>
+      <div class="guide-step-content">
+        <strong>12V Ignition &mdash; <strong style="color:#f0a">PINK</strong></strong>
+        <p>If using HEI or electronic ignition: route to the coil and trim to length. Install terminal C and connector G, then plug into the distributor cap BAT location.</p>
+      </div>
+    </div>
+
+    <!-- Step 8 — Starter Solenoid R -->
+    <div class="guide-step">
+      <div class="guide-step-num">8</div>
+      <div class="guide-step-content">
+        <strong>Starter Solenoid R &mdash; <strong style="color:#fc0">YELLOW</strong></strong>
+        <p>Assembly X &mdash; this is for points ignition with a ballast resistor. If using HEI: connect the <strong style="color:#fc0">YELLOW</strong> wire with terminal C and connector G to the distributor cap BAT location instead.</p>
+      </div>
+    </div>
+
+    <!-- Step 9 — Coil-Tach -->
+    <div class="guide-step">
+      <div class="guide-step-num">9</div>
+      <div class="guide-step-content">
+        <strong>Coil / Tach &mdash; <strong style="color:#e8e8f0">WHITE</strong></strong>
+        <p>Route to the coil or distributor and trim to length.</p>
+        <table class="circuit-specs">
+          <tr><td>HEI</td><td>Terminal B and connector F &rarr; plug into TACH location on negative side of coil</td></tr>
+          <tr><td>Points</td><td>Terminal P &rarr; connect to negative side of coil</td></tr>
+        </table>
+        <div class="warn"><strong>WARNING:</strong> Route this wire at least 6 inches away from spark plug wires to prevent EMI (electromagnetic interference).</div>
+      </div>
+    </div>
+
+    <!-- Step 10 — Electric Choke -->
+    <div class="guide-step">
+      <div class="guide-step-num">10</div>
+      <div class="guide-step-content">
+        <strong>Electric Choke &mdash; <strong style="color:#d2b48c">TAN</strong></strong>
+        <p>Only if using an electric choke. Route to the choke coil and trim to length. If not equipped, leave this wire capped and secured.</p>
+      </div>
+    </div>
+
+    <!-- Step 11 — Alternator Connections -->
+    <div class="guide-step">
+      <div class="guide-step-num">11</div>
+      <div class="guide-step-content">
+        <strong>Alternator Connections</strong>
+        <p>Three wires service the alternator:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#e33">RED</strong> (heavy 6ga, from Bag Z)</td><td>Charge wire &mdash; route from alternator output stud to Megafuse. Install boot E on alternator end.</td></tr>
+          <tr><td><strong style="color:#e33">RED</strong> (small, Assembly W)</td><td>Sense wire &mdash; ring terminal through boot L to alternator battery stud. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
+          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Exciter wire &mdash; route to alternator regulator connector. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 12 — Wiper Motor -->
+    <div class="guide-step">
+      <div class="guide-step-num">12</div>
+      <div class="guide-step-content">
+        <strong>Wiper Motor</strong>
+        <p>Connect the wiper motor wires:</p>
+        <table class="circuit-specs">
+          <tr><td><strong style="color:#888">BLACK</strong></td><td>Low speed &rarr; terminal C, connector H</td></tr>
+          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Washer &rarr; terminal C, connector J</td></tr>
+          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>High speed &rarr; terminal C, connector K</td></tr>
+          <tr><td><strong style="color:#e8e8f0">WHITE</strong></td><td>Wiper feed &rarr; terminal B, connector H (double wire &mdash; route the cutoff to the washer pump with terminal C, connector J)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 13 — T400 Kickdown -->
+    <div class="guide-step">
+      <div class="guide-step-num">13</div>
+      <div class="guide-step-content">
+        <strong>TH400 Kickdown (if equipped)</strong>
+        <p>Route the <strong style="color:#fa0">ORANGE</strong> wire through the firewall grommet T to the transmission kickdown solenoid. The <strong style="color:#f0a">PINK</strong> wire from the Bag G dash harness plugs onto one terminal of the kickdown switch.</p>
+        <div class="note"><strong>NOTE:</strong> If your transmission does not have a kickdown solenoid, cap and secure these wires.</div>
+      </div>
+    </div>
+
+    <!-- Step 14 — Seal & Finish -->
+    <div class="guide-step">
+      <div class="guide-step-num">14</div>
+      <div class="guide-step-content">
+        <strong>Seal the Bulkhead Connector</strong>
+        <p>Apply dielectric grease to the terminal side of the bulkhead connector. Then apply silicone RTV to the terminal cavities for a moisture seal. This prevents corrosion and ensures reliable connections through the firewall.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- BAG K — Console Wiring Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">K</span>
+    <div>
+      <div class="guide-phase-title">Console Wiring Kit &mdash; 510112</div>
+      <div class="guide-phase-sub">Console shifter, NSS, back-up lamps, courtesy lamp extensions</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag K (510112 Console Kit)</div>
+    </div>
+    <p style="background:rgba(250,170,0,0.08);border-left:3px solid #fa0;padding:8px 12px;border-radius:4px;margin:0 0 12px;font-size:0.97em;">
+      Skip this bag if your car does not have a console.
+    </p>
+
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Console Rear Courtesy Lamp Extension</strong>
+        <p>Plugs into mating connector at <strong>location 18</strong> on the Bag G dash harness. Snap lamp socket terminals into the original location at the back of the console and install bulb (not included).</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Manual Transmission</strong>
+        <p>Route the NSS and back-up lamp wires (from Bag G locations <strong>13</strong> and <strong>14</strong>) down to the base of the steering column near the firewall. Trim to length.</p>
+        <ul>
+          <li><strong>NSS:</strong> Connect the two <span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">purple</strong> wires together <em>(1968)</em> &mdash; <strong>OR</strong> crimp terminals <strong>D</strong> into connector <strong>B</strong> and plug into the clutch-operated NSS extension <em>(1969&ndash;72)</em>.</li>
+          <li><strong>Back-up:</strong> Crimp terminals <strong>C</strong> onto the <span style="color:#f0a">&#9632;</span> <strong style="color:#f0a">pink</strong> and <span style="color:#90ee90">&#9632;</span> <strong style="color:#90ee90">light green</strong> wires, plug into connector <strong>A</strong>, then plug onto the column-mounted back-up switch.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Console-Shifted Automatic Transmission</strong>
+        <p>Plug the <span style="color:#999">&#9632;</span> <strong style="color:#999">gray</strong> wire from the shifter light harness into the console courtesy lamp extension. Ground ring terminals to the floor in the stock location. Plug into mating connector at <strong>location 18</strong> on Bag G.</p>
+        <ul>
+          <li><strong>NSS Extension:</strong> Plug the 90&deg; 2-position connector (<span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">purple</strong> wires) onto the NSS connection on the shifter.</li>
+          <li><strong>Back-up Extension:</strong> Plug the 90&deg; single connectors (<span style="color:#f0a">&#9632;</span> <strong style="color:#f0a">pink</strong> and <span style="color:#90ee90">&#9632;</span> <strong style="color:#90ee90">light green</strong>) onto the back-up connections on the shifter.</li>
+        </ul>
+        <p>Route the NSS and back-up wires from Bag G down to the shifter extensions, trim to length, crimp and connect.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- AREA 2: BEHIND THE DASH -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A2</span>
-      <div>
-        <div class="guide-phase-title">Behind the Dash</div>
-        <div class="guide-phase-sub">12 steps &mdash; Driver Seat Area &mdash; Fuse panel, Control Box, all dash connections + bulkhead</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+<!-- BAG L — Front Light Wiring Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">L</span>
+    <div>
+      <div class="guide-phase-title">Front Light Wiring Kit &mdash; 510527</div>
+      <div class="guide-phase-sub">Headlights, turn signals, park lights, side markers, horn, electric fan</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">AAW Bag G (dash harness) &middot; HDX Control Box &middot; HDX Ribbon Cable &middot; AAW 520001 Dim Wire Kit &middot; AAW 500707 Fuse Panel &middot; Drill/screwdriver &middot; Velcro strips or #8 screws &middot; Zip ties &middot; Star washer &middot; Ring terminal</div>
-      </div>
-      <p>This is everything you do from the driver seat area. Every connector you plug in before walking to the engine bay.</p>
-
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong>Mount fuse panel (AAW 500707)</strong>
-          <p>Behind dash, driver side, in an accessible location. 18-fuse panel. Mount with self-tapping screws. Must be reachable without removing the dash &mdash; you'll be checking fuses regularly.</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong>Mount HDX Control Box</strong>
-          <p>Driver side, right of steering column. The box is ~6" &times; 4" &times; 2". Industrial velcro or drill two holes with #8 screws. Mount where: (1) you can reach it for firmware updates, (2) ribbon cable can reach gauge cluster, (3) it won't interfere with column or pedals.</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong style="color:#00b4d8">RIBBON CABLE &mdash; Control Box to Gauge Cluster</strong>
-          <p>Connect BEFORE power wires. Route behind steering column with gentle curves &mdash; NO sharp bends.</p>
-          <table class="circuit-specs"><tr><td>Type</td><td>Flat ribbon, latching connectors both ends</td></tr><tr><td>Min bend radius</td><td>1 inch &mdash; kinking kills the cable</td></tr><tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr></table>
-          <div class="warn"><strong>CONNECT RIBBON BEFORE POWER WIRES.</strong> Leave enough slack to remove gauge cluster later if needed.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">4</div>
-        <div class="guide-step-content">
-          <strong style="color:#e33">CONSTANT 12V &mdash; RED wire</strong>
-          <p>HDX Control Box RED terminal &larr; AAW Fuse Panel, Fuse #8 (CLOCK, 5A, always hot) &larr; Battery+</p>
-          <table class="circuit-specs"><tr><td>Wire</td><td style="color:#e33;font-weight:700">RED, 18 AWG</td></tr><tr><td>Fuse</td><td>#8 CLOCK &mdash; 5A ATO</td></tr><tr><td>Always hot</td><td>YES (even key off)</td></tr></table>
-          <div class="note"><strong>Powers:</strong> Clock, settings memory, Bluetooth. If HDX loses settings after key-off, check this first.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">5</div>
-        <div class="guide-step-content">
-          <strong style="color:#f0a">SWITCHED 12V &mdash; PINK wire</strong>
-          <p>HDX Control Box PINK terminal &larr; AAW Fuse Panel, Fuse #7 (GAUGES, 10A, ignition-hot)</p>
-          <table class="circuit-specs"><tr><td>Wire</td><td style="color:#f0a;font-weight:700">PINK, 18 AWG</td></tr><tr><td>Fuse</td><td>#7 GAUGES &mdash; 10A ATO</td></tr><tr><td>Hot when</td><td>Key ON only</td></tr></table>
-          <div class="warn"><strong>MOST COMMON FAILURE:</strong> If gauges go dark with key ON, check Fuse #7 FIRST.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">6</div>
-        <div class="guide-step-content">
-          <strong style="color:#888">CHASSIS GROUND &mdash; BLACK wire</strong>
-          <p>HDX Control Box BLACK terminal &rarr; DEDICATED firewall bolt &rarr; Star washer &rarr; Bare metal</p>
-          <table class="circuit-specs"><tr><td>Wire</td><td style="font-weight:700">BLACK, 18 AWG</td></tr><tr><td>Stack order</td><td>Bolt &rarr; star washer &rarr; ring terminal &rarr; flat washer &rarr; nut</td></tr><tr><td>Resistance</td><td>&lt; 0.5&ohm; to battery negative</td></tr></table>
-          <div class="warn"><strong>90% OF GAUGE PROBLEMS</strong> are bad grounds. Sand to bare shiny metal. Dedicated bolt only &mdash; do NOT share with radio or blower.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">7</div>
-        <div class="guide-step-content">
-          <strong style="color:#fa0">DIMMER &mdash; ORANGE wire</strong>
-          <p>HDX Control Box ORANGE/Dimmer terminal &larr; AAW 520001 Dim Wire Kit grey wire &larr; Headlight switch rheostat</p>
-          <table class="circuit-specs"><tr><td>Wire</td><td style="color:#fa0;font-weight:700">GREY (AAW) &rarr; ORANGE (HDX)</td></tr><tr><td>Kit</td><td>AAW 520001 Dim Wire Interface</td></tr><tr><td>Controls</td><td>HDX backlight brightness</td></tr></table>
-          <div class="note">If not connected, backlights default to full brightness. Not a failure &mdash; just no dimming control.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">8</div>
-        <div class="guide-step-content">
-          <strong>Connect Bag G dash switch pigtails</strong>
-          <p>Bag G has labeled pigtails for every dash switch. Connect each one:</p>
-          <table class="circuit-specs"><tr><td>Headlight switch</td><td>3-terminal round connector, driver side left of column</td></tr><tr><td>Wiper switch</td><td>Multi-pin at column or dash</td></tr><tr><td>Turn signal</td><td>Multi-pin at column (yellow=Left, white=Right)</td></tr><tr><td>Ignition switch</td><td>Large multi-pin at steering column</td></tr></table>
-          <div class="note">All connectors are keyed &mdash; they only fit one way. If you labeled them in Area 1, this goes fast.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">9</div>
-        <div class="guide-step-content">
-          <strong>Plug HDX sensor input harnesses into Control Box</strong>
-          <p>Each sensor has a labeled connector on the Control Box. Plug them in now &mdash; the other ends will connect to the actual senders in the engine bay (Area 3).</p>
-          <table class="circuit-specs"><tr><td>OIL</td><td>3-wire connector (White=SIG, Red=PWR, Black=GND)</td></tr><tr><td>TEMP</td><td>2-wire connector (signal + block ground)</td></tr><tr><td>SPEED</td><td>3-wire connector (Purple=SIG, Red=PWR, Black=GND)</td></tr><tr><td>TACH</td><td>Single wire (white)</td></tr><tr><td>FUEL</td><td>Single wire from Bag M rear harness (tan)</td></tr></table>
-          <div class="note">Don't worry about calibration yet &mdash; just plug them in. Senders get installed in Area 3, calibration in Area 6.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">10</div>
-        <div class="guide-step-content">
-          <strong>Connect bulkhead connector at firewall</strong>
-          <p>The bulkhead is right there behind the dash at the firewall. Bag G (dash side) plugs into Bag J (engine side). Large multi-pin keyed connector &mdash; aligns one way only.</p>
-          <p>Push firmly until retaining clip snaps. Tug-test. Apply dielectric grease to the exterior. Verify weather seal gasket is intact.</p>
-          <div class="note"><strong>After this step:</strong> Bag J's engine-side connectors are now accessible from under the hood. You'll connect those in Area 3.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">11</div>
-        <div class="guide-step-content">
-          <strong>Install SS dash face with gauge cluster</strong>
-          <p>With all wiring connected behind the dash, position the SS dash face into the support structure.</p>
-          <table class="circuit-specs"><tr><td>Bolts</td><td>#8-32 &times; 1/2" Phillips &times; 6</td></tr><tr><td>Nuts</td><td>#8 speed nuts on backing plate</td></tr><tr><td>Torque</td><td>Hand-tighten all 6 first, then cross-pattern to snug + 1/4 turn</td></tr></table>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">12</div>
-        <div class="guide-step-content">
-          <strong>Install backing plate + SS dash pad</strong>
-          <p>Backing plate covers the rear of the gauge cluster &mdash; prevents light leaks, protects electronics. Secure with included clips.</p>
-          <p>Dash pad uses spring clips:</p>
-          <table class="circuit-specs"><tr><td>Long clips</td><td>2 &times; 2-3/4" &times; 5/8"</td></tr><tr><td>Short clips</td><td>2 &times; 2-3/8" &times; 5/8"</td></tr></table>
-          <p>Align vinyl pad flush all around. Press firmly on each clip until it snaps. Do NOT over-force &mdash; you will break the clips.</p>
-        </div>
-      </div>
-
-      <div class="note" style="border-color:var(--green)"><strong>CHECKPOINT:</strong> Optional quick power test before leaving the dash &mdash; turn key to ON (don't start engine). Gauges should sweep and TFTs should light up. If not, troubleshoot now while you have easy access. Full power-on test is in Area 5.</div>
-    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
   </div>
-
-  <!-- AREA 3: ENGINE BAY -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A3</span>
-      <div>
-        <div class="guide-phase-title">Engine Bay</div>
-        <div class="guide-phase-sub">7 steps &mdash; Under the Hood &mdash; Install senders, connect Bag J, protect wiring</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag L (510527 Front Light Kit)</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">AAW Bag J (engine harness) &middot; HDX Sender Sub-harnesses (oil, temp, speed) &middot; Dakota Digital SEN-01-5 (oil sender) &middot; Temp sender + reducing bushing &middot; Speed sensor adapter &middot; Teflon tape &middot; Heat-resistant loom &middot; High-temp zip ties &middot; Masking tape &middot; Marker</div>
-      </div>
-      <p>The other side of the bulkhead connector is now accessible. Connect everything under the hood.</p>
+    <img src="aaw-diagrams/aaw-bag-j-engine-diagram.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Front Light Kit — snaps into Bag J bulkhead connector">
 
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong style="color:#4169e1">OIL PRESSURE SENDER &mdash; 3-Wire (White/Red/Black)</strong>
-          <p>Engine block, driver side, mid-height &mdash; oil gallery port (where factory sender was)</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>Remove old single-wire GM sender</li>
-            <li>Install Dakota Digital <strong>SEN-01-5</strong> (1/8" NPT). Teflon tape, hand-tight + 1/4 turn</li>
-            <li>Connect: <strong style="color:#e8e8f0">WHITE</strong>=Signal, <strong style="color:#e33">RED</strong>=5V Power, <strong>BLACK</strong>=Ground</li>
-            <li>Connect to AAW Connector F &rarr; HDX Control Box OIL terminal</li>
-          </ol>
-          <div class="warn"><strong>MUST use SEN-01-5</strong> (3-wire). Old GM single-wire sender will NOT work. If oil reads zero &mdash; wrong sender is #1 cause.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong style="color:#228b22">WATER TEMP SENDER &mdash; Dark Green wire</strong>
-          <p>Intake manifold, passenger side &mdash; water jacket port</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>GM port is 3/8" or 1/2" NPT &mdash; install <strong>reducing bushing to 1/8" NPT</strong></li>
-            <li>Install temp sender with Teflon tape</li>
-            <li>Single signal wire to AAW Connector G (dark green)</li>
-            <li>Sender grounds through engine block (no separate ground needed)</li>
-          </ol>
-          <div class="warn"><strong>Missing the bushing?</strong> Sender won't seal. Coolant leak at intake manifold = engine damage. Always verify bushing fit.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong style="color:#e8e8f0">TACHOMETER &mdash; White wire</strong>
-          <p>HEI ignition: <strong>TACH terminal on distributor cap</strong> (NOT BAT terminal). Points: Coil negative (-) terminal.</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>Connect white wire to signal source (HEI TACH or coil negative)</li>
-            <li>Route <strong>6" minimum from spark plug wires!</strong></li>
-            <li>Connect to AAW Connector H &rarr; HDX Control Box TACH terminal</li>
-          </ol>
-          <div class="warn"><strong>EMI WARNING:</strong> Must use spiral-wound (suppression) spark plug wires. Solid-core wires cause erratic tach. Route tach wire away from distributor and plug wires.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">4</div>
-        <div class="guide-step-content">
-          <strong style="color:#9333ea">SPEED SENSOR &mdash; Purple wire</strong>
-          <p>Transmission tailshaft &mdash; where mechanical speedo cable was</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>Remove mechanical speedometer cable from trans tailshaft</li>
-            <li>Install Dakota Digital cable-drive speed sensor adapter</li>
-            <li>Connect 3-wire: Purple=Signal, Red=Power, Black=Ground</li>
-            <li>Connect to AAW VSS connector &rarr; HDX Control Box SPEED terminal</li>
-          </ol>
-          <div class="note"><strong>CALIBRATION REQUIRED</strong> in Area 6 &mdash; speedometer will read wrong until calibrated (GPS method recommended).</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">5</div>
-        <div class="guide-step-content">
-          <strong>Connect Bag J engine harness</strong>
-          <p>Bag J's engine-side connectors are now accessible through the bulkhead. Connect:</p>
-          <table class="circuit-specs"><tr><td>Alternator</td><td>Field wire + charge wire to alternator</td></tr><tr><td>Coil</td><td>Ignition feed to coil positive (+)</td></tr><tr><td>Wiper motor</td><td>4-wire: purple=low, brown=high, yellow=park, lt blue=washer</td></tr></table>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">6</div>
-        <div class="guide-step-content">
-          <strong>Label every wire at both ends</strong>
-          <p>Masking tape + marker on every sender wire at the engine block AND at the connector end. Leave 6-8" slack on engine side for engine movement.</p>
-          <div class="note">If you ever need to disconnect a sender wire for service, labels save hours of tracing.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">7</div>
-        <div class="guide-step-content">
-          <strong style="color:var(--red)">Protect ALL engine-side wiring with heat-resistant loom</strong>
-          <p>Braided loom or high-temp silicone wrap on EVERY wire near exhaust manifolds, engine block, or headers.</p>
-          <div class="warn"><strong>OIL and TEMP sender wires are RIGHT NEXT to hot metal.</strong> Without heat protection, they WILL melt. Use heat-resistant loom rated to 500&deg;F+ minimum. Secure with high-temp zip ties (not standard nylon &mdash; they melt at 185&deg;F).</div>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Bulkhead Assembly</strong>
+        <p>Snap the bulkhead connector from this kit onto the mating connector from <strong>Bag J</strong> (engine kit). After snapping together, bolt the assembly into the dash harness firewall connector. Apply silicone sealant to the back side of the connector after installing terminals.</p>
       </div>
     </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Left / Right Turn Signals</strong>
+        <ul>
+          <li><span style="color:#87ceeb">&#9632;</span> <strong style="color:#87ceeb">Light Blue</strong> = LH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
+          <li><span style="color:#4169e1">&#9632;</span> <strong style="color:#4169e1">Dark Blue</strong> = RH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Park Lights (Both Sides + Side Markers)</strong>
+        <p><span style="color:#a0522d">&#9632;</span> <strong style="color:#a0522d">Brown</strong> wire: Split to the left parking lamp and left side marker (through grommet <strong>Q</strong>). Repeat for the right side.</p>
+        <ul>
+          <li>Use terminal <strong>J</strong> for parking lamp connector <strong>H</strong></li>
+          <li>Use terminal <strong>P</strong> for side marker socket <strong>N</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Side Marker Grounds</strong>
+        <p><span style="color:#888">&#9632;</span> <strong style="color:#888">Black</strong> (smaller gauge with ring terminal): Route through grommet <strong>Q</strong>, terminal <strong>P</strong> into side marker socket <strong>N</strong>. Ground ring terminal to radiator core support. Repeat for both sides.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>Headlight Low Beam &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <p>Route to the driver side headlight, trim to length, double wire with cutoff portion. Terminal <strong>B</strong> into connector <strong>A</strong>. Route the remaining wire to the passenger side, terminal <strong>C</strong> into connector <strong>A</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>Headlight High Beam &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
+        <p>Route to driver side headlight, terminal <strong>B</strong> into connector <strong>A</strong>.</p>
+        <p><em>For 1970:</em> Also make a jumper to the inner headlight, terminal <strong>B</strong> into connector <strong>T</strong>.</p>
+        <p>Route to passenger side, terminal <strong>C</strong> into connector <strong>A</strong> (and <strong>T</strong> for 1970).</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">7</div>
+      <div class="guide-step-content">
+        <strong>Headlight Grounds &mdash; <span style="color:#888">&#9632;</span> Black (heavy gauge)</strong>
+        <p>Ring terminal to radiator core support (driver side). Route to headlight connector, terminal <strong>B</strong> into connector <strong>A</strong>. Route cutoff to inner headlight, terminal <strong>C</strong> into connector <strong>T</strong>. Repeat for the passenger side.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">8</div>
+      <div class="guide-step-content">
+        <strong>Horn &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
+        <p>Route to horns, install terminals <strong>D</strong> &amp; <strong>E</strong>, plug into connectors <strong>L</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">9</div>
+      <div class="guide-step-content">
+        <strong>Electric Fan &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
+        <p style="background:rgba(227,51,51,0.08);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;">
+          <strong>WARNING:</strong> Use this wire as the <strong>TRIGGER</strong> wire for an electric fan relay &mdash; not as direct power.
+        </p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">10</div>
+      <div class="guide-step-content">
+        <strong>Brake Light Switch &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <p>Plug onto the stock brake pressure switch. Route the other end to the front light connector, terminal <strong>M</strong> into the front light connector.</p>
+      </div>
+    </div>
+
+    <p style="background:rgba(0,229,204,0.08);border-left:3px solid #00e5cc;padding:8px 12px;border-radius:4px;margin:12px 0 0;font-size:0.97em;">
+      After all wires are installed, apply silicone sealant to the outside of the main connector around each wire for moisture resistance.
+    </p>
   </div>
+</div>
 
-  <!-- AREA 4: REAR OF CAR -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A4</span>
-      <div>
-        <div class="guide-phase-title">Rear of Car</div>
-        <div class="guide-phase-sub">3 steps &mdash; Trunk &amp; Rear Body &mdash; Fuel sender, tail lights, Bag M</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+<!-- BAG M — Rear Body Wiring Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">M</span>
+    <div>
+      <div class="guide-phase-title">Rear Body Wiring Kit &mdash; 510111</div>
+      <div class="guide-phase-sub">Tail lights, fuel sender, back-up lamps, side markers, courtesy ground</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">AAW Bag M (rear body harness)</div>
-      </div>
-      <p>Bag M is the simplest harness &mdash; only a few connections, all at the back of the car.</p>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag M (510111 Rear Body Kit)</div>
+    </div>
+    <img src="aaw-diagrams/aaw-bag-m-rear-body.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag M — Rear Body Wiring">
 
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong>Route Bag M under carpet along driver-side rocker panel</strong>
-          <p>Bag M runs from behind the dash, under the carpet along the driver-side inner rocker panel, all the way to the rear. Use clips every 12" to secure.</p>
-        </div>
-      </div>
+    <p style="background:rgba(250,170,0,0.08);border-left:3px solid #fa0;padding:8px 12px;border-radius:4px;margin:0 0 12px;font-size:0.97em;">
+      <strong>Before starting:</strong> Install grommets <strong>A</strong> (larger) and <strong>B</strong> (smaller) into the rear quarter panels.
+    </p>
 
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong style="color:#d2b48c">Connect fuel sender tan wire to tank sender</strong>
-          <p>The tan wire in Bag M carries the fuel sender signal from the tank all the way to AAW Fuse #9 (FUEL, 10A) and then to the HDX Control Box FUEL terminal.</p>
-          <div class="note">The fuel sender is the original factory tank unit &mdash; you're just connecting Bag M's tan wire to it. No new sender needed.</div>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Connect Main Harness</strong>
+        <p>Connect the main connector to the mating connector on the <strong>Bag G</strong> dash harness. Route the harness along the door sill threshold to the rear of the car.</p>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong>Connect tail lights, brake lights, license plate light</strong>
-          <p>Bag M has labeled connectors for each rear light. Connect tail lights, brake/stop lights, reverse lights, and the license plate light.</p>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Tail Lamp Pigtails</strong>
+        <p>Two pigtails are provided:</p>
+        <ul>
+          <li><strong>S</strong> (LH) &mdash; with <span style="color:#fc0">&#9632;</span> <strong style="color:#fc0">yellow</strong> wire</li>
+          <li><strong>T</strong> (RH) &mdash; with <span style="color:#228b22">&#9632;</span> <strong style="color:#228b22">dark green</strong> wire</li>
+        </ul>
+        <p>These plug into the <strong>RB</strong> connection.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Third Brake Light &mdash; <span style="color:#87ceeb">&#9632;</span> Light Blue</strong>
+        <p>Connect to the third brake lamp (if equipped).</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Fuel Gauge Sender &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <p>Route through grommet <strong>A</strong> to the fuel tank area, cut to length, terminal <strong>C</strong> into connector <strong>G</strong>.</p>
+        <p>Separate <span style="color:#d2b48c">&#9632;</span> <strong style="color:#d2b48c">tan</strong> wire (with rubber end <strong>R</strong>): Plug the rubber end onto the sending unit on the fuel tank, route through the trunk floor, pull up and plug into connector <strong>G</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>Parking / Tail Lamps &mdash; <span style="color:#a0522d">&#9632;</span> Brown</strong>
+        <p>Split the brown wire to the following connections:</p>
+        <ul>
+          <li>Left side marker &mdash; terminal <strong>L</strong>, socket <strong>M</strong></li>
+          <li>Left tail lamp through grommet <strong>A</strong> &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+          <li>License plate lamp &mdash; terminal <strong>J</strong>, connector <strong>H</strong></li>
+          <li>Right tail lamp &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+          <li>Right side marker through grommet <strong>B</strong> &mdash; terminal <strong>N</strong>, socket <strong>M</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>Grounds &mdash; <span style="color:#888">&#9632;</span> Black</strong>
+        <p>Ring terminal to chassis ground. Route to:</p>
+        <ul>
+          <li>Left side marker &mdash; terminal <strong>L</strong>, socket <strong>M</strong></li>
+          <li>Left tail lamp through grommet <strong>A</strong> &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+          <li>Right tail lamp &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+          <li>Right side marker through grommet <strong>B</strong> &mdash; terminal <strong>N</strong>, socket <strong>M</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">7</div>
+      <div class="guide-step-content">
+        <strong>LH Stop / Tail &mdash; <span style="color:#fc0">&#9632;</span> Yellow</strong>
+        <p>Route through grommet <strong>A</strong> to the LH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">8</div>
+      <div class="guide-step-content">
+        <strong>RH Stop / Tail &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
+        <p>Route through grommet <strong>A</strong> to the RH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">9</div>
+      <div class="guide-step-content">
+        <strong>Back-up Lamps &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
+        <p>Route through grommet <strong>A</strong>, split to:</p>
+        <ul>
+          <li>LH tail lamp connection &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+          <li>RH tail lamp connection &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">10</div>
+      <div class="guide-step-content">
+        <strong>Courtesy Ground &mdash; <span style="color:#e8e8f0">&#9632;</span> White &nbsp;+&nbsp; Courtesy Lamp &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
+        <p>At the driver side kick panel, cut and double each wire with terminal <strong>D</strong> into connector <strong>E</strong> (mates with Bag N courtesy kit).</p>
+        <p><em>If using a dome lamp:</em> Route the loose ends to the front A-pillar at the windshield area, terminal <strong>J</strong> into connector <strong>F</strong>.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- AREA 5: POWER-ON TEST -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A5</span>
-      <div>
-        <div class="guide-phase-title">Power-On Test</div>
-        <div class="guide-phase-sub">7 steps &mdash; Back in Driver Seat &mdash; Reconnect battery, verify all gauges</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+<!-- BAG N — Courtesy Light Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">N</span>
+    <div>
+      <div class="guide-phase-title">Courtesy Light Kit &mdash; 500708</div>
+      <div class="guide-phase-sub">Door jamb switches + underdash courtesy lamps</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">Multimeter &middot; Ignition key &middot; All connections from Areas 1-4 complete</div>
-      </div>
-      <div class="warn"><strong>DO NOT START ENGINE YET.</strong> Key to ON position only.</div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong>Reconnect battery NEGATIVE terminal</strong>
-          <p>Before reconnecting, verify: no tools sitting on engine, no dangling wires near moving parts (fan, belts), no bare wire ends touching metal.</p>
-          <div class="warn">If you see sparks when reconnecting the negative cable, something is shorted. STOP. Disconnect immediately and trace.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong>Key ON &mdash; Gauges should sweep and TFTs light up</strong>
-          <p>All needles should sweep zero &rarr; full &rarr; zero. Both TFT displays show Dakota Digital logo, then default readings (2-3 seconds).</p>
-          <p>If nothing happens: check Fuse #7 (GAUGES), then ground, then constant 12V (Fuse #8).</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong>Verify oil pressure reads zero (engine off = correct)</strong>
-          <p>If it reads something with engine off, sender wiring may be crossed.</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">4</div>
-        <div class="guide-step-content">
-          <strong>Verify temp reads ambient or low</strong>
-          <p>Should show near room temp. If pegged high, sender wire is grounded to block.</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">5</div>
-        <div class="guide-step-content">
-          <strong>Check voltmeter &mdash; should read battery voltage (~12.4V)</strong>
-          <p>If zero, ground or power connection issue.</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">6</div>
-        <div class="guide-step-content">
-          <strong>Test backlight dimmer (rotate headlight switch inner knob)</strong>
-          <p>Brightness should change. If always full bright, dimmer wire not connected (Area 2 Step 7).</p>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">7</div>
-        <div class="guide-step-content">
-          <strong>Enter HDX menu &mdash; set cylinder count to 8</strong>
-          <p>ENGINE SETUP &rarr; CYLINDERS &rarr; <strong>8</strong>. Critical for accurate tach reading on the big block. Do this now so tach is ready for first start.</p>
-          <div class="note">Wrong cylinder count = tach reads double or half. Always verify this before first engine start.</div>
-        </div>
-      </div>
-
-      <div class="note" style="border-color:var(--green)"><strong>ALL GOOD?</strong> Gauges sweep, TFTs show data, voltmeter reads ~12.4V, dimmer works, cylinder count set to 8 &rarr; proceed to remaining interior build phases. Calibration happens in Area 6 after first drive.</div>
-    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
   </div>
-
-  <!-- AREA 6: CALIBRATION -->
-  <div class="guide-phase">
-    <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="guide-phase-num">A6</span>
-      <div>
-        <div class="guide-phase-title">Calibration &amp; Setup</div>
-        <div class="guide-phase-sub">8 steps &mdash; After First Drive &mdash; Bluetooth, color, speedo, fuel, tach, TFT, warnings</div>
-      </div>
-      <span class="guide-phase-arrow">&#9658;</span>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag N (500708 Courtesy Light Kit), #631 bulbs (not included)</div>
     </div>
-    <div class="guide-phase-body">
-      <div class="kit-bag">
-        <div class="kit-bag-title">What You Need</div>
-        <div class="kit-bag-contents">Phone with Dakota Digital app &middot; Full tank of gas (for fuel calibration) &middot; GPS (for speedo calibration) &middot; Straight road for test drive</div>
-      </div>
-      <p>After first start and test drive, pair Bluetooth and calibrate the HDX gauges.</p>
 
-      <div class="guide-step">
-        <div class="guide-step-num">1</div>
-        <div class="guide-step-content">
-          <strong>Download Dakota Digital app</strong>
-          <p>Search "Dakota Digital" in App Store (iOS) or Google Play (Android). Free download.</p>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Plug In Courtesy Light Jumpers</strong>
+        <p>Plug the courtesy light jumpers into their respective connections after the <strong>Bag G</strong> dash harness and <strong>Bag M</strong> rear body harness are installed.</p>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">2</div>
-        <div class="guide-step-content">
-          <strong style="color:#00b4d8">Pair phone via Bluetooth &mdash; "HDX-70C"</strong>
-          <p>Open app &rarr; "Connect to HDX" &rarr; Select <strong>HDX-70C</strong> from device list. If not visible, cycle ignition OFF then ON and retry.</p>
-          <div class="note">Key must be ON for Bluetooth to be active. Bluetooth is powered by the constant 12V (RED wire, Fuse #8).</div>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Right Hand Courtesy</strong>
+        <p>The RH courtesy lamp connection is always part of the <strong>Bag G</strong> dash harness. Plug the RH jumper into the mating connector.</p>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">3</div>
-        <div class="guide-step-content">
-          <strong>BACKLIGHT COLOR</strong>
-          <p>Dakota Digital app or HDX touch buttons &rarr; 30+ color options. Pick your color. Can change anytime.</p>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Left Hand Courtesy (1964&ndash;72 Chevelle)</strong>
+        <p>For Chevelle: The LH connection is built into the <strong>Bag M</strong> rear body harness (not the dash harness). A female terminal for the stock driver side door jamb switch is included as a loose piece.</p>
       </div>
+    </div>
 
-      <div class="guide-step">
-        <div class="guide-step-num">4</div>
-        <div class="guide-step-content">
-          <strong style="color:#9333ea">SPEEDOMETER CALIBRATION</strong>
-          <p>GPS method (recommended): Enter GPS calibration mode &rarr; Drive steady on a straight road &rarr; System auto-calibrates.</p>
-          <p>Manual method: Enter tire diameter (e.g. 28.0" for 275/60R15) + rear axle ratio (e.g. 3.73:1).</p>
-          <div class="note">If speedo is way off after manual entry, try GPS method &mdash; it's more accurate.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">5</div>
-        <div class="guide-step-content">
-          <strong style="color:#d2b48c">FUEL GAUGE CALIBRATION</strong>
-          <p>Uses existing factory tank sender &mdash; AAW Bag M rear harness, Fuse #9 (FUEL, 10A)</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>Key ON, tank near empty &rarr; FUEL SETUP &rarr; Set <strong>EMPTY</strong> point</li>
-            <li>Fill tank completely at pump</li>
-            <li>Key ON again &rarr; Set <strong>FULL</strong> point</li>
-            <li>System interpolates all points between (0-90 ohm range)</li>
-          </ol>
-          <div class="note">If fuel reads backwards (full when empty), sender ohm range is inverted. HDX can calibrate to any range &mdash; just re-do the empty/full points.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">6</div>
-        <div class="guide-step-content">
-          <strong>TACHOMETER &mdash; Verify Cylinder Count</strong>
-          <p>HDX Menu &rarr; ENGINE SETUP &rarr; CYLINDERS &rarr; <strong>8</strong> (should already be set from Area 5 Step 7)</p>
-          <p>Verify signal type matches your ignition (Points, HEI, or aftermarket).</p>
-          <div class="note">If tach reads double or half, cylinder count is wrong.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">7</div>
-        <div class="guide-step-content">
-          <strong>Configure TFT Message Center Displays</strong>
-          <p>Two small TFT screens flanking the speedometer and tach:</p>
-          <table class="circuit-specs"><tr><td>Left TFT</td><td>Digital RPM / Gear / Volts</td></tr><tr><td>Right TFT</td><td>Digital Speed / Odometer / Trip / Clock</td></tr></table>
-          <div class="note">Cycle through display options with the HDX touch buttons on the gauge face.</div>
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-step-num">8</div>
-        <div class="guide-step-content">
-          <strong style="color:var(--red)">Set Warning Thresholds</strong>
-          <p>These flash on-screen warnings that can save your engine:</p>
-          <table class="circuit-specs"><tr><td>Oil Pressure LOW</td><td style="color:var(--red);font-weight:700">&lt; 10 PSI</td></tr><tr><td>Water Temp HIGH</td><td style="color:var(--red);font-weight:700">&gt; 230&deg;F</td></tr><tr><td>Voltage LOW</td><td style="color:var(--red);font-weight:700">&lt; 11V</td></tr></table>
-          <div class="warn"><strong>DO NOT SKIP THIS.</strong> A low oil pressure warning at 10 PSI gives you time to shut down before bearing damage. A 230&deg;F temp warning catches overheating before head gasket failure.</div>
-        </div>
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Install Courtesy Lamp Assemblies</strong>
+        <p>Snap the lamp sockets into the original underdash locations. Install #631 bulbs (purchase separately from an auto parts store).</p>
       </div>
     </div>
   </div>
+</div>
+
+<!-- BAG V — VSS Connection Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">V</span>
+    <div>
+      <div class="guide-phase-title">VSS Lead Wires &mdash; 510730</div>
+      <div class="guide-phase-sub">Vehicle speed sensor extension &mdash; through firewall to transmission</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag V (510730 VSS Lead Wires)</div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Connect to Dash Harness</strong>
+        <p>Plug the VSS lead wires from this kit into the dash-side VSS extension from <strong>Bag G</strong> (connection <strong>#25</strong>).</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Route Through Firewall</strong>
+        <p>Pass the three wires through the firewall or floor down to the vehicle speed sensor unit on the transmission.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Connect to Vehicle Speed Sensor</strong>
+        <ul>
+          <li><span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">Purple</strong> (solid) = Signal lead &mdash; connects to &ldquo;signal&rdquo; on VSS</li>
+          <li><span style="color:#fc0">&#9632;</span> <strong style="color:#fc0">Yellow</strong> = Ground lead &mdash; connects to &ldquo;ground&rdquo; on VSS</li>
+          <li><span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">Purple</strong>/<span style="color:#e8e8f0">&#9632;</span> <strong style="color:#e8e8f0">White</strong> = 12V Power lead &mdash; connects to &ldquo;12V power&rdquo; on VSS</li>
+        </ul>
+        <p style="background:rgba(227,51,51,0.08);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;margin:10px 0;">
+          <strong>WARNING:</strong> The yellow and purple wires <strong>MUST</strong> remain twisted together for their entire length as shown. This prevents electrical interference. Do <strong>NOT</strong> untwist them.
+        </p>
+        <p style="background:rgba(0,229,204,0.08);border-left:3px solid #00e5cc;padding:8px 12px;border-radius:4px;font-size:0.97em;">
+          Consult your gauge manufacturer's instructions for exact VSS connections. If using Dakota Digital HDX, see the HDX Integration section.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BAG Z — Alternator & Main Power Connection Kit -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num">Z</span>
+    <div>
+      <div class="guide-phase-title">Alternator &amp; Main Power &mdash; 510476</div>
+      <div class="guide-phase-sub">Megafuse assemblies + alternator charge wire + main power feed</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+    <div class="kit-bag">
+      <div class="kit-bag-title">What You Need</div>
+      <div class="kit-bag-contents">AAW Bag Z (510476) &mdash; includes: 2 Megafuse bodies + covers, 2 &times; 175A Megafuses, Megafuse jumper, 144&Prime; (12ft) 6ga red charge wire, alternator boot, ring terminals (6ga starter, 6ga megafuse, 10ga megafuse, 6ga alternator), shrink tubing</div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>Assemble Megafuses</strong>
+        <p>Snap the two Megafuse bodies and covers together. Install the Megafuse jumper (item <strong>D</strong>) over the two studs &mdash; it <strong>MUST</strong> be on the side connecting to main power (starter solenoid or battery feed). Notch the top cover to clear the jumper.</p>
+        <p>Snap one 175A fuse onto each Megafuse body over the jumper. Loosely re-attach the 4 nuts and lock washers.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>Mount Megafuse Assembly</strong>
+        <p>Find a suitable location under the hood, as close to the battery power source as possible. It must be reachable by 12ft of 6ga wire from the starter <strong>AND</strong> by the main power feed from the fuse panel / bulkhead.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>Charge Wire &mdash; Starter to Megafuse</strong>
+        <p>Cut the 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire to length from the starter to the Megafuse. Strip &frac12;&Prime; of insulation on each end. Install 2 pieces of shrink tubing.</p>
+        <ul>
+          <li><strong>Starter end:</strong> Crimp and solder terminal <strong>G</strong> (6ga starter ring)</li>
+          <li><strong>Megafuse end:</strong> Crimp and solder terminal <strong>H</strong> (6ga megafuse)</li>
+        </ul>
+        <p>Shrink tubing over both terminals.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Charge Wire &mdash; Alternator to Megafuse</strong>
+        <p>Cut the remaining 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire from the alternator to the Megafuse. Strip &frac12;&Prime; on each end. Install 1 piece of shrink tubing.</p>
+        <ul>
+          <li><strong>Alternator end:</strong> Slip on boot <strong>E</strong>, then crimp and solder terminal <strong>J</strong> (6ga alternator)</li>
+          <li><strong>Megafuse end:</strong> Crimp and solder terminal <strong>H</strong> (6ga megafuse)</li>
+        </ul>
+        <p>Shrink tubing over terminal <strong>H</strong>.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>Main Panel Power Feed</strong>
+        <p>Take the 10ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> main power feed wire from your engine kit (<strong>Bag J</strong>) or panel. Route to the Megafuse, cut to length. Strip &frac38;&Prime;, install shrink tubing, crimp and solder terminal <strong>K</strong> (10ga megafuse).</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>Final Assembly</strong>
+        <p>Remove the 4 loosely tightened nuts from the Megafuses. Install all pre-assembled wires from steps 3&ndash;5 as shown in the diagram. Re-install nuts and lock washers, tighten down.</p>
+        <p style="background:rgba(227,51,51,0.12);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;margin:10px 0;">
+          <strong>WARNING:</strong> Make sure the battery is disconnected! This is the main power circuit. A loose connection here can cause fire.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- HDX Integration — Dakota Digital HDX-70C-CVL  -->
+<!-- ============================================ -->
+<div class="guide-phase">
+  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="guide-phase-num" style="background:var(--accent2);font-size:11px">HDX</span>
+    <div>
+      <div class="guide-phase-title">Dakota Digital HDX Integration</div>
+      <div class="guide-phase-sub">How the HDX-70C-CVL connects to the AAW 510105 harness</div>
+    </div>
+    <span class="guide-phase-arrow">&#9658;</span>
+  </div>
+  <div class="guide-phase-body">
+
+    <div class="note"><strong>IMPORTANT:</strong> The AAW 510105 kit does NOT include Dakota Digital HDX wiring. The HDX system connects TO the AAW harness at specific points. This section explains where and how.</div>
+
+    <!-- Step 1 — HDX replaces instrument cluster -->
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <div class="guide-step-content">
+        <strong>HDX Replaces the Stock Instrument Cluster</strong>
+        <p>The Dakota Digital HDX-70C-CVL gauge cluster replaces the stock instrument cluster entirely. You still install Bag H connectors F, G, H into Bag G &mdash; but instead of routing to a stock circuit board, the signals route to the HDX Control Box.</p>
+      </div>
+    </div>
+
+    <!-- Step 2 — Control Box Power -->
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <div class="guide-step-content">
+        <strong>HDX Control Box Power Connections</strong>
+        <p>The HDX Control Box taps into the AAW fuse panel for power:</p>
+        <table class="circuit-specs">
+          <tr><td style="color:#e33;font-weight:700">HDX RED</td><td>Constant 12V &larr; Fuse #8 (CLOCK, 5A, always hot) &mdash; powers clock, settings memory, Bluetooth</td></tr>
+          <tr><td style="color:#f0a;font-weight:700">HDX PINK</td><td>Switched 12V &larr; Fuse #7 (GAUGES, 10A, ignition-hot) &mdash; main gauge power</td></tr>
+          <tr><td style="font-weight:700">HDX BLACK</td><td>Ground &rarr; Dedicated firewall bolt, star washer, bare metal (&lt; 0.5&ohm; to battery negative)</td></tr>
+        </table>
+        <div class="warn"><strong>90% OF GAUGE PROBLEMS</strong> are bad grounds. Sand to bare shiny metal. Dedicated bolt only &mdash; do NOT share with radio or blower.</div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Dimmer -->
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <div class="guide-step-content">
+        <strong>HDX Backlight Dimmer</strong>
+        <p>The AAW 520001 Dim Wire Kit converts the headlight switch rheostat signal for the HDX:</p>
+        <table class="circuit-specs">
+          <tr><td style="color:#999;font-weight:700">AAW GRAY wire</td><td>From headlight switch rheostat (Bag G, connection #7)</td></tr>
+          <tr><td>&rarr;</td><td>AAW 520001 Dim Wire Kit interface</td></tr>
+          <tr><td style="color:#fa0;font-weight:700">HDX ORANGE</td><td>HDX Control Box dimmer terminal</td></tr>
+        </table>
+        <div class="note">If not connected, HDX backlights default to full brightness. Not a failure &mdash; just no dimming control.</div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Ribbon Cable -->
+    <div class="guide-step">
+      <div class="guide-step-num">4</div>
+      <div class="guide-step-content">
+        <strong>Ribbon Cable &mdash; Control Box to Gauge Cluster</strong>
+        <p>Route the flat ribbon cable from the HDX Control Box to the HDX gauge cluster behind the steering column.</p>
+        <table class="circuit-specs">
+          <tr><td>Min bend radius</td><td>1 inch &mdash; kinking kills the cable</td></tr>
+          <tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr>
+        </table>
+        <div class="warn"><strong>CONNECT RIBBON BEFORE POWER WIRES.</strong> Route gently behind column. Zip-tie loosely &mdash; do not pinch.</div>
+      </div>
+    </div>
+
+    <!-- Step 5 — HDX Senders vs AAW Senders -->
+    <div class="guide-step">
+      <div class="guide-step-num">5</div>
+      <div class="guide-step-content">
+        <strong>HDX Senders Replace AAW Stock Sender Wires</strong>
+        <p>The HDX system uses its own electronic senders that connect directly to the HDX Control Box &mdash; NOT through the AAW harness wires. The AAW engine bay wires for these signals are NOT USED:</p>
+        <table class="circuit-specs">
+          <tr><td>Oil Pressure</td><td>AAW <strong style="color:#4169e1">DARK BLUE</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX SEN-01-5 (3-wire: White=SIG, Red=5V, Black=GND) connects directly to HDX Control Box OIL terminal</td></tr>
+          <tr><td>Water Temp</td><td>AAW <strong style="color:#228b22">DARK GREEN</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX temp sender (2-wire) connects directly to HDX Control Box TEMP terminal</td></tr>
+          <tr><td>Speed</td><td>AAW VSS (Bag V) &rarr; <strong>STILL USED</strong> &mdash; connects through Connector H to HDX Control Box SPEED terminal</td></tr>
+          <tr><td>Tachometer</td><td>AAW <strong style="color:#e8e8f0">WHITE</strong> wire (coil/tach) &rarr; Can be used OR HDX tach wire can connect directly to HEI TACH terminal</td></tr>
+          <tr><td>Fuel Level</td><td>AAW <strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender signal routes through Fuse #9 (FUEL, 15A) to HDX FUEL terminal</td></tr>
+        </table>
+        <div class="warn"><strong>CRITICAL:</strong> Cap and secure any unused AAW sender wires in the engine bay. Do NOT leave bare wire ends exposed near engine heat.</div>
+      </div>
+    </div>
+
+    <!-- Step 6 — Calibration -->
+    <div class="guide-step">
+      <div class="guide-step-num">6</div>
+      <div class="guide-step-content">
+        <strong>HDX Calibration &amp; Setup</strong>
+        <p>After all wiring is complete and the power-on test passes:</p>
+        <ol style="font-size:13px;line-height:1.7;padding-left:20px">
+          <li>Download Dakota Digital app (App Store / Google Play)</li>
+          <li>Bluetooth pair &mdash; connect to &ldquo;HDX-70C&rdquo;</li>
+          <li>Set backlight color (30+ options)</li>
+          <li>Calibrate speedometer (GPS method recommended)</li>
+          <li>Calibrate fuel gauge (empty/full points, 0-90 ohm range)</li>
+          <li>Set tach: ENGINE SETUP &rarr; CYLINDERS &rarr; 8</li>
+          <li>Configure TFT displays (Left=RPM/gear/volts, Right=speed/odometer/trip/clock)</li>
+          <li>Set warning thresholds: Oil &lt;10 PSI, Temp &gt;230&deg;F, Volts &lt;11V</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 </div>
 
@@ -2337,17 +2839,30 @@
     <span class="collapsible-arrow" id="arrow-fuse-panel-section">&#9658;</span>
   </div>
   <div class="collapsible-body" id="fuse-panel-section" style="display:none">
-    <p>Tap any fuse slot for circuit details.</p>
-    <!-- PLACEHOLDER: existing fuse panel SVG will be pasted here -->
+    <p>AAW 500707 &mdash; 18-fuse panel. Mounted at firewall bulkhead, driver side, stock OEM hole. Flasher can bottom-right.</p>
+    <img src="aaw-diagrams/aaw-fuse-panel-layout.png" style="width:100%;border-radius:8px;margin:8px 0" alt="AAW 500707 Fuse Panel Layout">
     <table class="circuit-specs">
-      <tr><th>Fuse #</th><th>Label</th><th>Amps</th><th>Hot When</th><th>HDX?</th></tr>
-      <tr><td>5</td><td>TURN</td><td>15A</td><td>Ignition</td><td>&mdash;</td></tr>
-      <tr><td>7</td><td>GAUGES</td><td>10A</td><td>Ignition</td><td style="color:var(--accent);font-weight:700">YES &mdash; Switched 12V (Pink)</td></tr>
-      <tr><td>8</td><td>CLOCK</td><td>5A</td><td>Always</td><td style="color:var(--accent);font-weight:700">YES &mdash; Constant 12V (Red)</td></tr>
-      <tr><td>9</td><td>FUEL</td><td>10A</td><td>Ignition</td><td style="color:var(--accent);font-weight:700">YES &mdash; Fuel Level (Tan)</td></tr>
+      <tr><th>Fuse #</th><th>Label</th><th>Amps</th><th>Feed</th><th>HDX?</th></tr>
+      <tr><td>1</td><td>PARK LT</td><td>10A</td><td>Battery</td><td>&mdash;</td></tr>
+      <tr><td>2</td><td>TURN</td><td>10A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>3</td><td>SW IGN</td><td>10A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>4</td><td>TURN</td><td>15A</td><td>Battery (Hazard)</td><td>&mdash;</td></tr>
+      <tr><td>5</td><td>HAZARD</td><td>15A</td><td>Battery</td><td>&mdash;</td></tr>
+      <tr><td>6</td><td>BRK/CTSY</td><td>15A</td><td>Battery</td><td>&mdash;</td></tr>
+      <tr><td>7</td><td>GAUGES</td><td>10A</td><td>Ignition</td><td style="color:var(--accent);font-weight:700">YES &mdash; HDX Switched 12V (Pink)</td></tr>
+      <tr><td>8</td><td>CLOCK</td><td>5A</td><td>Battery (always)</td><td style="color:var(--accent);font-weight:700">YES &mdash; HDX Constant 12V (Red)</td></tr>
+      <tr><td>9</td><td>FUEL</td><td>15A</td><td>Ignition</td><td style="color:var(--accent);font-weight:700">YES &mdash; Fuel Sender (Tan)</td></tr>
       <tr><td>10</td><td>WIPER</td><td>20A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>11</td><td>RADIO</td><td>10A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>12</td><td>LIGHTER</td><td>20A</td><td>Battery</td><td>&mdash;</td></tr>
+      <tr><td>13</td><td>FAN</td><td>30A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>14</td><td>AC/HEAT</td><td>30A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>15</td><td>PWR WDO</td><td>30A</td><td>Ignition</td><td>&mdash;</td></tr>
+      <tr><td>16</td><td>ACCY 1</td><td>30A</td><td>Accessory</td><td>&mdash;</td></tr>
+      <tr><td>17</td><td>BAT 1</td><td>20A</td><td>Battery</td><td>&mdash;</td></tr>
+      <tr><td>18</td><td>BAT 2</td><td>30A</td><td>Battery</td><td>&mdash;</td></tr>
     </table>
-    <div class="note"><strong>NOTE:</strong> Fuse slots highlighted with <strong>YES</strong> are HDX-critical circuits (Fuse #7 GAUGES, Fuse #8 CLOCK, and Fuse #9 FUEL). Always check these first if gauges misbehave.</div>
+    <div class="note"><strong>HDX-CRITICAL:</strong> Fuse #7 (GAUGES), #8 (CLOCK), and #9 (FUEL) power the Dakota Digital HDX system. If gauges misbehave, check these three first.</div>
   </div>
 </div>
 
