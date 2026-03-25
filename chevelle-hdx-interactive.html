@@ -1955,7 +1955,11 @@
   /* GUIDE STEPS */
   .guide-step { display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); }
   .guide-step:last-child { border-bottom:none; }
-  .guide-step-num { width:28px; height:28px; border-radius:50%; background:rgba(0,180,216,.15); color:var(--accent2); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; margin-top:2px; }
+  .guide-step-num { width:28px; height:28px; border-radius:50%; background:rgba(0,180,216,.15); color:var(--accent2); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; margin-top:2px; cursor:pointer; transition:.3s; }
+  .guide-step-num.checked { background:var(--green); color:#fff; }
+  .guide-step-num.checked::after { content:''; }
+  .guide-step.checked .guide-step-content strong { opacity:.6; text-decoration:line-through; }
+  .guide-phase-progress { font-size:11px; color:var(--muted); margin-left:auto; margin-right:8px; white-space:nowrap; }
   .guide-step-content { flex:1; }
   .guide-step-content p { font-size:13px; line-height:1.6; margin:4px 0; }
   .guide-step-content strong { font-size:14px; }
@@ -7620,6 +7624,95 @@ function restoreState() {
 
 // Init on DOM ready
 document.addEventListener('DOMContentLoaded', restoreState);
+
+// ===== WIRING GUIDE CHECKBOXES =====
+document.addEventListener('DOMContentLoaded', function() {
+  var guideEl = document.getElementById('wiring-guide');
+  if (!guideEl) return;
+
+  // Assign data attributes to every guide-step based on parent phase
+  var phases = guideEl.querySelectorAll('.guide-phase');
+  phases.forEach(function(phase, pi) {
+    var header = phase.querySelector('.guide-phase-header');
+    var bagLetter = phase.querySelector('.guide-phase-num');
+    var bag = bagLetter ? bagLetter.textContent.trim() : ('w' + pi);
+
+    // Add progress counter to header
+    var progSpan = document.createElement('span');
+    progSpan.className = 'guide-phase-progress';
+    progSpan.id = 'wprog-' + bag;
+    if (header) header.insertBefore(progSpan, header.querySelector('.guide-phase-arrow'));
+
+    var steps = phase.querySelectorAll('.guide-step');
+    steps.forEach(function(step, si) {
+      var numEl = step.querySelector('.guide-step-num');
+      if (numEl) {
+        numEl.setAttribute('data-wbag', bag);
+        numEl.setAttribute('data-wstep', si);
+      }
+    });
+  });
+
+  // Click handler via delegation
+  guideEl.addEventListener('click', function(e) {
+    var numEl = e.target.closest('.guide-step-num');
+    if (!numEl || !numEl.hasAttribute('data-wbag')) return;
+    e.stopPropagation();
+
+    var bag = numEl.getAttribute('data-wbag');
+    var step = numEl.getAttribute('data-wstep');
+    var stepEl = numEl.closest('.guide-step');
+
+    numEl.classList.toggle('checked');
+    if (stepEl) stepEl.classList.toggle('checked');
+
+    // When checked, replace number with checkmark
+    if (numEl.classList.contains('checked')) {
+      numEl.setAttribute('data-orignum', numEl.textContent);
+      numEl.textContent = '\u2713';
+    } else {
+      numEl.textContent = numEl.getAttribute('data-orignum') || step;
+    }
+
+    // Persist
+    var key = 'w-' + bag + '-' + step;
+    ChevelleState.setSubstep(key, 0, numEl.classList.contains('checked'));
+
+    updateWiringProgress();
+  });
+
+  function updateWiringProgress() {
+    phases.forEach(function(phase) {
+      var bagLetter = phase.querySelector('.guide-phase-num');
+      var bag = bagLetter ? bagLetter.textContent.trim() : '';
+      var steps = phase.querySelectorAll('.guide-step-num[data-wbag]');
+      var total = steps.length;
+      var done = 0;
+      steps.forEach(function(s) { if (s.classList.contains('checked')) done++; });
+      var progEl = document.getElementById('wprog-' + bag);
+      if (progEl && total > 0) {
+        progEl.textContent = done + '/' + total;
+        progEl.style.color = (done === total) ? 'var(--green)' : 'var(--muted)';
+      }
+    });
+  }
+
+  // Restore saved state
+  var allNums = guideEl.querySelectorAll('.guide-step-num[data-wbag]');
+  allNums.forEach(function(numEl) {
+    var bag = numEl.getAttribute('data-wbag');
+    var step = numEl.getAttribute('data-wstep');
+    var key = 'w-' + bag + '-' + step;
+    if (ChevelleState.getSubstep(key, 0)) {
+      numEl.classList.add('checked');
+      numEl.setAttribute('data-orignum', numEl.textContent);
+      numEl.textContent = '\u2713';
+      var stepEl = numEl.closest('.guide-step');
+      if (stepEl) stepEl.classList.add('checked');
+    }
+  });
+  updateWiringProgress();
+});
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
