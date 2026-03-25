@@ -896,7 +896,7 @@
       <span class="guide-phase-num">2</span>
       <div>
         <div class="guide-phase-title">Route All Harnesses</div>
-        <div class="guide-phase-sub">Route harnesses through firewall — NO connections yet</div>
+        <div class="guide-phase-sub">8 steps — Route, tag, test continuity, install fuse panel — NO connections yet</div>
       </div>
       <span class="guide-phase-arrow">&#9658;</span>
     </div>
@@ -906,44 +906,71 @@
       <div class="guide-step">
         <div class="guide-step-num">1</div>
         <div class="guide-step-content">
-          <strong>Dash harness through firewall grommet</strong>
-          <p>Feed AAW dash harness (Bag D) through the main firewall grommet, driver side, ~6" left of center. Leave 18" of slack behind dash.</p>
+          <strong>Lay out entire harness on a clean floor</strong>
+          <p>Unbox everything and identify each piece before routing:</p>
+          <table class="circuit-specs"><tr><td>AAW Dash Kit</td><td><strong>Bag G</strong> &mdash; main dash harness</td></tr><tr><td>AAW Rear Body Harness</td><td><strong>Bag M</strong> &mdash; fuel sender + tail lights</td></tr><tr><td>AAW Engine Kit</td><td><strong>Bag J</strong> &mdash; engine bay harness</td></tr><tr><td>AAW Fuse Panel</td><td><strong>500707</strong> &mdash; 18-fuse inline panel</td></tr><tr><td>HDX Sender Sub-harnesses</td><td>3 &times; 10ft wires (oil, temp, speed)</td></tr><tr><td>HDX Ribbon Cable</td><td>Control Box to gauge cluster</td></tr></table>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">2</div>
         <div class="guide-step-content">
-          <strong>Connect bulkhead connector at firewall</strong>
-          <p>Large multi-pin keyed connector — aligns one way only. Push firmly until retaining clip snaps. Tug-test. Apply dielectric grease to exterior.</p>
+          <strong>Label EVERY connector with masking tape + marker</strong>
+          <p>15-20 connectors total. Write the destination on each: "Headlight Switch," "Wiper Motor," "Radio," "Ignition," etc. You'll thank yourself in Phase 4.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">3</div>
         <div class="guide-step-content">
-          <strong>Route engine harness</strong>
-          <p>Leave slack for engine movement. Route away from exhaust manifold. Zip-tie to existing brackets every 12".</p>
+          <strong>Feed dash harness (Bag G) through firewall grommet</strong>
+          <p>Main firewall grommet, driver side, ~6" left of center. Leave 18" of slack behind dash.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">4</div>
         <div class="guide-step-content">
-          <strong>Route rear harness (Bag M)</strong>
-          <p>Under carpet path along driver-side rocker panel to rear. This carries fuel sender signal (tan wire) and tail/brake lights.</p>
+          <strong>Connect bulkhead connector at firewall</strong>
+          <p>Large multi-pin keyed connector — aligns one way only. Push firmly until retaining clip snaps. Tug-test. Apply dielectric grease to exterior. Verify weather seal gasket is intact.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">5</div>
         <div class="guide-step-content">
-          <strong>Tag every connector</strong>
-          <p>Masking tape + Sharpie on every loose plug: "Headlight Switch," "Wiper Motor," "Radio," etc. You'll thank yourself in Phase 4.</p>
+          <strong>Route HDX sender sub-harnesses (3 pieces)</strong>
+          <p>Oil, temp, and speed &mdash; 3 &times; 10ft wires. Route through firewall grommet alongside the main harness. Leave 6-8" slack where wires cross from body to engine for engine movement.</p>
         </div>
       </div>
 
-      <div class="warn"><strong>DO NOT</strong> connect any wires yet. Just route and tag. Connections happen in Phase 4.</div>
+      <div class="guide-step">
+        <div class="guide-step-num">6</div>
+        <div class="guide-step-content">
+          <strong>Route rear body harness (Bag M) and engine harness (Bag J)</strong>
+          <p><strong>Rear (Bag M):</strong> Under carpet path along driver-side rocker panel to rear. Carries fuel sender signal (tan wire) and tail/brake lights.</p>
+          <p><strong>Engine (Bag J):</strong> Leave slack for engine movement. Route away from exhaust manifold. Zip-tie to existing brackets every 12".</p>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">7</div>
+        <div class="guide-step-content">
+          <strong>Test continuity on each circuit with multimeter</strong>
+          <p>Set multimeter to continuity/ohms. Test each labeled wire pair end-to-end. Check power, ground, lights, turn signals. Fix any open circuits NOW — much harder to trace once everything is installed.</p>
+          <div class="warn"><strong>DO THIS BEFORE CONNECTING ANYTHING.</strong> Finding a broken wire after the dash is assembled means tearing it all apart again.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">8</div>
+        <div class="guide-step-content">
+          <strong>Install inline fuse panel (AAW 500707)</strong>
+          <p>Behind dash, driver side, in an accessible location. 18-fuse panel. Mount with self-tapping screws. Must be reachable without removing the dash — you'll be checking fuses regularly.</p>
+        </div>
+      </div>
+
+      <div class="warn"><strong>DO NOT</strong> connect any wires yet. Just route, tag, test, and mount the fuse panel. Connections happen in Phase 4.</div>
     </div>
   </div>
 
@@ -953,15 +980,40 @@
       <span class="guide-phase-num">4</span>
       <div>
         <div class="guide-phase-title">HDX Control Box + Dash Install</div>
-        <div class="guide-phase-sub">5 connections — Power, Ignition, Ground, Dimmer, Ribbon Cable</div>
+        <div class="guide-phase-sub">11 steps — Mount, Ribbon, Power, Sensors, Dash Assembly</div>
       </div>
       <span class="guide-phase-arrow">&#9658;</span>
     </div>
     <div class="guide-phase-body">
-      <p>Mount HDX Control Box behind dash, driver side, right of steering column. Accessible location — you'll need to reach it for firmware updates.</p>
 
       <div class="guide-step">
         <div class="guide-step-num">1</div>
+        <div class="guide-step-content">
+          <strong>Choose Control Box mounting location</strong>
+          <p>Driver side, behind dash, right of steering column. The HDX Control Box is ~6" &times; 4" &times; 2". Mount where: (1) you can reach it for firmware updates, (2) ribbon cable can reach gauge cluster, (3) it won't interfere with steering column or pedals.</p>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">2</div>
+        <div class="guide-step-content">
+          <strong>Mount Control Box with velcro strips or bracket</strong>
+          <p>Industrial velcro is fine — the box is lightweight. Or drill two small holes and use #8 screws. Make sure it's secure and won't rattle.</p>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">3</div>
+        <div class="guide-step-content">
+          <strong style="color:#00b4d8">RIBBON CABLE &mdash; Control Box to Gauge Cluster</strong>
+          <p>HDX Control Box ribbon port &rarr; Route behind steering column (gentle curves, NO sharp bends!) &rarr; HDX Gauge Cluster ribbon port</p>
+          <table class="circuit-specs"><tr><td>Type</td><td>Flat ribbon, latching connectors both ends</td></tr><tr><td>Min bend radius</td><td>1 inch — kinking kills the cable</td></tr><tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr></table>
+          <div class="warn"><strong>CONNECT RIBBON BEFORE POWER WIRES.</strong> Route gently behind column. Zip-tie loosely for support — do not pinch. Leave enough slack to remove gauge cluster later if needed.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">4</div>
         <div class="guide-step-content">
           <strong style="color:#e33">CONSTANT 12V &mdash; RED wire</strong>
           <p>HDX Control Box RED terminal &larr; AAW Fuse Panel, Fuse #8 (CLOCK, 5A, always hot) &larr; Battery+</p>
@@ -971,7 +1023,7 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">2</div>
+        <div class="guide-step-num">5</div>
         <div class="guide-step-content">
           <strong style="color:#f0a">SWITCHED 12V &mdash; PINK wire</strong>
           <p>HDX Control Box PINK terminal &larr; AAW Fuse Panel, Fuse #7 (GAUGES, 10A, ignition-hot)</p>
@@ -981,7 +1033,7 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">3</div>
+        <div class="guide-step-num">6</div>
         <div class="guide-step-content">
           <strong style="color:#888">CHASSIS GROUND &mdash; BLACK wire</strong>
           <p>HDX Control Box BLACK terminal &rarr; DEDICATED firewall bolt &rarr; Star washer &rarr; Bare metal</p>
@@ -991,7 +1043,7 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">4</div>
+        <div class="guide-step-num">7</div>
         <div class="guide-step-content">
           <strong style="color:#fa0">DIMMER &mdash; ORANGE wire</strong>
           <p>HDX Control Box ORANGE/Dimmer terminal &larr; AAW 520001 Dim Wire Kit grey wire &larr; Headlight switch rheostat</p>
@@ -1001,16 +1053,42 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">5</div>
+        <div class="guide-step-num">8</div>
         <div class="guide-step-content">
-          <strong style="color:#00b4d8">RIBBON CABLE &mdash; HDX Cluster</strong>
-          <p>HDX Control Box ribbon port &rarr; Route behind steering column (gentle curves, NO sharp bends!) &rarr; HDX Gauge Cluster ribbon port</p>
-          <table class="circuit-specs"><tr><td>Type</td><td>Flat ribbon, latching connectors both ends</td></tr><tr><td>Min bend radius</td><td>1 inch — kinking kills the cable</td></tr><tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr></table>
-          <div class="warn"><strong>HANDLE WITH CARE.</strong> Route gently behind column. Zip-tie loosely for support — do not pinch. If ribbon cable is damaged, gauges will show partial or no data.</div>
+          <strong>Connect each sensor input wire to Control Box</strong>
+          <p>Each sensor plugs into a labeled connector on the Control Box:</p>
+          <table class="circuit-specs"><tr><td>Oil pressure</td><td>3-wire (White=SIG, Red=PWR, Black=GND)</td></tr><tr><td>Water temp</td><td>2-wire (signal + block ground)</td></tr><tr><td>Speed sensor</td><td>3-wire (Purple=SIG, Red=PWR, Black=GND)</td></tr><tr><td>Tachometer</td><td>Single wire from coil negative / HEI TACH</td></tr><tr><td>Fuel level</td><td>Single wire from tank sender (Bag M rear harness)</td></tr></table>
+          <div class="note">Don't worry about calibration yet — just plug them in. Senders get installed in Phase 5, calibration in Phase 16.</div>
         </div>
       </div>
 
-      <div class="note" style="border-color:var(--green)"><strong>CHECKPOINT:</strong> After these 5 connections, you can do a preliminary power test — turn key to ON (don't start engine). Gauges should sweep and TFTs should light up. If not, troubleshoot before moving to Phase 5.</div>
+      <div class="guide-step">
+        <div class="guide-step-num">9</div>
+        <div class="guide-step-content">
+          <strong>Install SS dash face with gauge cluster</strong>
+          <p>With all wiring connected behind the dash, position the SS dash face into the support structure.</p>
+          <table class="circuit-specs"><tr><td>Bolts</td><td>#8-32 &times; 1/2" Phillips &times; 6</td></tr><tr><td>Nuts</td><td>#8 speed nuts on backing plate</td></tr><tr><td>Torque</td><td>Hand-tighten all 6 first, then cross-pattern to snug + 1/4 turn</td></tr></table>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">10</div>
+        <div class="guide-step-content">
+          <strong>Install backing plate behind dash face</strong>
+          <p>Covers the rear of the gauge cluster. Prevents light leaks and protects electronics. Secure with included clips.</p>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">11</div>
+        <div class="guide-step-content">
+          <strong>Install SS dash pad with spring clips</strong>
+          <table class="circuit-specs"><tr><td>Long clips</td><td>2 &times; 2-3/4" &times; 5/8"</td></tr><tr><td>Short clips</td><td>2 &times; 2-3/8" &times; 5/8"</td></tr></table>
+          <p>Align vinyl pad flush all around. Press firmly on each clip until it snaps. Do NOT over-force — you will break the clips.</p>
+        </div>
+      </div>
+
+      <div class="note" style="border-color:var(--green)"><strong>CHECKPOINT:</strong> After all 11 steps, you can do a preliminary power test — turn key to ON (don't start engine). Gauges should sweep and TFTs should light up. If not, troubleshoot before moving to Phase 5.</div>
     </div>
   </div>
 
@@ -1020,7 +1098,7 @@
       <span class="guide-phase-num">5</span>
       <div>
         <div class="guide-phase-title">Under-Hood Senders (Engine Bay)</div>
-        <div class="guide-phase-sub">4 connections — Oil, Temp, Tach, Speed</div>
+        <div class="guide-phase-sub">6 steps — Oil, Temp, Tach, Speed + Label &amp; Protect</div>
       </div>
       <span class="guide-phase-arrow">&#9658;</span>
     </div>
@@ -1089,6 +1167,24 @@
           <div class="note"><strong>CALIBRATION REQUIRED</strong> in Phase 16 &mdash; speedometer will read wrong until calibrated (GPS method recommended).</div>
         </div>
       </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">5</div>
+        <div class="guide-step-content">
+          <strong>Label each wire at both ends</strong>
+          <p>Masking tape + marker on every sender wire at the firewall grommet AND at the Control Box end. Leave 6-8" slack on engine side for engine movement.</p>
+          <div class="note">If you ever need to disconnect a sender wire for service, labels save hours of tracing.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">6</div>
+        <div class="guide-step-content">
+          <strong style="color:var(--red)">Protect engine-side wiring with heat-resistant loom</strong>
+          <p>Braided loom or high-temp silicone wrap on EVERY wire near exhaust manifolds, engine block, or headers.</p>
+          <div class="warn"><strong>OIL and TEMP sender wires are RIGHT NEXT to hot metal.</strong> Without heat protection, they WILL melt. Use heat-resistant loom rated to 500&deg;F+ minimum. Secure with high-temp zip ties (not standard nylon — they melt at 185&deg;F).</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1098,7 +1194,7 @@
       <span class="guide-phase-num">6</span>
       <div>
         <div class="guide-phase-title">POWER-ON TEST (Critical Checkpoint)</div>
-        <div class="guide-phase-sub">Verify all connections before first start</div>
+        <div class="guide-phase-sub">7 steps — Reconnect battery, verify all gauges and displays</div>
       </div>
       <span class="guide-phase-arrow">&#9658;</span>
     </div>
@@ -1108,13 +1204,23 @@
       <div class="guide-step">
         <div class="guide-step-num">1</div>
         <div class="guide-step-content">
-          <strong>Key ON &mdash; Gauges should sweep and TFTs light up</strong>
-          <p>If nothing happens: check Fuse #7 (GAUGES), then ground, then constant 12V (Fuse #8).</p>
+          <strong>Reconnect battery NEGATIVE terminal</strong>
+          <p>Before reconnecting, verify: no tools sitting on engine, no dangling wires near moving parts (fan, belts), no bare wire ends touching metal.</p>
+          <div class="warn">If you see sparks when reconnecting the negative cable, something is shorted. STOP. Disconnect immediately and trace.</div>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">2</div>
+        <div class="guide-step-content">
+          <strong>Key ON &mdash; Gauges should sweep and TFTs light up</strong>
+          <p>All needles should sweep zero &rarr; full &rarr; zero. Both TFT displays show Dakota Digital logo, then default readings (2-3 seconds).</p>
+          <p>If nothing happens: check Fuse #7 (GAUGES), then ground, then constant 12V (Fuse #8).</p>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">3</div>
         <div class="guide-step-content">
           <strong>Verify oil pressure reads zero (engine off = correct)</strong>
           <p>If it reads something with engine off, sender wiring may be crossed.</p>
@@ -1122,7 +1228,7 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">3</div>
+        <div class="guide-step-num">4</div>
         <div class="guide-step-content">
           <strong>Verify temp reads ambient or low</strong>
           <p>Should show near room temp. If pegged high, sender wire is grounded to block.</p>
@@ -1130,7 +1236,7 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">4</div>
+        <div class="guide-step-num">5</div>
         <div class="guide-step-content">
           <strong>Check voltmeter &mdash; should read battery voltage (~12.4V)</strong>
           <p>If zero, ground or power connection issue.</p>
@@ -1138,14 +1244,23 @@
       </div>
 
       <div class="guide-step">
-        <div class="guide-step-num">5</div>
+        <div class="guide-step-num">6</div>
         <div class="guide-step-content">
           <strong>Test backlight dimmer (rotate headlight switch inner knob)</strong>
-          <p>Brightness should change. If always full bright, dimmer wire not connected (Phase 4 Step 4).</p>
+          <p>Brightness should change. If always full bright, dimmer wire not connected (Phase 4 Step 7).</p>
         </div>
       </div>
 
-      <div class="note" style="border-color:var(--green)"><strong>ALL GOOD?</strong> Gauges sweep, TFTs show data, voltmeter reads ~12.4V, dimmer works &rarr; proceed to remaining install phases (Column, Headliner, Carpet, etc.). Calibration happens in Phase 16.</div>
+      <div class="guide-step">
+        <div class="guide-step-num">7</div>
+        <div class="guide-step-content">
+          <strong>Enter HDX menu &mdash; set cylinder count to 8</strong>
+          <p>ENGINE SETUP &rarr; CYLINDERS &rarr; <strong>8</strong>. Critical for accurate tach reading on the big block. Do this now so tach is ready for first start.</p>
+          <div class="note">Wrong cylinder count = tach reads double or half. Always verify this before first engine start.</div>
+        </div>
+      </div>
+
+      <div class="note" style="border-color:var(--green)"><strong>ALL GOOD?</strong> Gauges sweep, TFTs show data, voltmeter reads ~12.4V, dimmer works, cylinder count set to 8 &rarr; proceed to remaining install phases (Column, Headliner, Carpet, etc.). Calibration happens in Phase 16.</div>
     </div>
   </div>
 
@@ -1155,54 +1270,90 @@
       <span class="guide-phase-num">16</span>
       <div>
         <div class="guide-phase-title">HDX Calibration &amp; Setup</div>
-        <div class="guide-phase-sub">3 calibrations — Fuel, Speed, Tach + backlight color</div>
+        <div class="guide-phase-sub">8 steps — Bluetooth, Color, Calibrations, TFT Config, Warnings</div>
       </div>
       <span class="guide-phase-arrow">&#9658;</span>
     </div>
     <div class="guide-phase-body">
-      <p>After first start and test drive, calibrate the HDX gauges.</p>
+      <p>After first start and test drive, pair Bluetooth and calibrate the HDX gauges.</p>
 
       <div class="guide-step">
         <div class="guide-step-num">1</div>
         <div class="guide-step-content">
-          <strong style="color:#d2b48c">FUEL GAUGE CALIBRATION</strong>
-          <p>Uses existing factory tank sender &mdash; AAW Bag M rear harness, Fuse #9 (FUEL, 10A)</p>
-          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
-            <li>Drive until tank is near empty (fuel light on)</li>
-            <li>Enter calibration mode on HDX &rarr; Set <strong>EMPTY</strong> point</li>
-            <li>Fill tank completely at pump</li>
-            <li>Set <strong>FULL</strong> point</li>
-            <li>System interpolates all points between</li>
-          </ol>
-          <div class="note">If fuel reads backwards (full when empty), sender ohm range is inverted. HDX can calibrate to any range — just re-do the empty/full points.</div>
+          <strong>Download Dakota Digital app</strong>
+          <p>Search "Dakota Digital" in App Store (iOS) or Google Play (Android). Free download.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">2</div>
         <div class="guide-step-content">
-          <strong style="color:#9333ea">SPEEDOMETER CALIBRATION</strong>
-          <p>GPS method (recommended): Enter GPS calibration mode &rarr; Drive steady on a straight road &rarr; System auto-calibrates.</p>
-          <p>Manual method: Enter tire diameter (e.g. 26.5" for P235/60R15) + rear axle ratio (e.g. 3.73:1).</p>
-          <div class="note">If speedo is way off after manual entry, try GPS method — it's more accurate.</div>
+          <strong style="color:#00b4d8">Pair phone via Bluetooth &mdash; "HDX-70C"</strong>
+          <p>Open app &rarr; "Connect to HDX" &rarr; Select <strong>HDX-70C</strong> from device list. If not visible, cycle ignition OFF then ON and retry.</p>
+          <div class="note">Key must be ON for Bluetooth to be active. Bluetooth is powered by the constant 12V (RED wire, Fuse #8).</div>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">3</div>
         <div class="guide-step-content">
-          <strong>TACHOMETER &mdash; Set Cylinder Count</strong>
-          <p>HDX Menu &rarr; Tach Setup &rarr; Cylinder Count: <strong>8</strong> (for 396/454 big block)</p>
-          <p>Verify signal type matches your ignition (Points, HEI, or aftermarket).</p>
-          <div class="note">If tach reads double or half, cylinder count is wrong.</div>
+          <strong>BACKLIGHT COLOR</strong>
+          <p>Dakota Digital app or HDX touch buttons &rarr; 30+ color options. Pick your color. Can change anytime.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="guide-step-num">4</div>
         <div class="guide-step-content">
-          <strong>BACKLIGHT COLOR</strong>
-          <p>HDX touch buttons or Dakota Digital Bluetooth app &rarr; 30+ color options. Pick your color.</p>
+          <strong style="color:#9333ea">SPEEDOMETER CALIBRATION</strong>
+          <p>GPS method (recommended): Enter GPS calibration mode &rarr; Drive steady on a straight road &rarr; System auto-calibrates.</p>
+          <p>Manual method: Enter tire diameter (e.g. 28.0" for 275/60R15) + rear axle ratio (e.g. 3.73:1).</p>
+          <div class="note">If speedo is way off after manual entry, try GPS method — it's more accurate.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">5</div>
+        <div class="guide-step-content">
+          <strong style="color:#d2b48c">FUEL GAUGE CALIBRATION</strong>
+          <p>Uses existing factory tank sender &mdash; AAW Bag M rear harness, Fuse #9 (FUEL, 10A)</p>
+          <ol style="font-size:13px;line-height:1.7;padding-left:20px">
+            <li>Key ON, tank near empty &rarr; FUEL SETUP &rarr; Set <strong>EMPTY</strong> point</li>
+            <li>Fill tank completely at pump</li>
+            <li>Key ON again &rarr; Set <strong>FULL</strong> point</li>
+            <li>System interpolates all points between (0-90 ohm range)</li>
+          </ol>
+          <div class="note">If fuel reads backwards (full when empty), sender ohm range is inverted. HDX can calibrate to any range — just re-do the empty/full points.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">6</div>
+        <div class="guide-step-content">
+          <strong>TACHOMETER &mdash; Set Cylinder Count</strong>
+          <p>HDX Menu &rarr; ENGINE SETUP &rarr; CYLINDERS &rarr; <strong>8</strong> (for 396/454 big block)</p>
+          <p>Verify signal type matches your ignition (Points, HEI, or aftermarket).</p>
+          <div class="note">If tach reads double or half, cylinder count is wrong.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">7</div>
+        <div class="guide-step-content">
+          <strong>Configure TFT Message Center Displays</strong>
+          <p>Two small TFT screens flanking the speedometer and tach:</p>
+          <table class="circuit-specs"><tr><td>Left TFT</td><td>Digital RPM / Gear / Volts</td></tr><tr><td>Right TFT</td><td>Digital Speed / Odometer / Trip / Clock</td></tr></table>
+          <div class="note">Cycle through display options with the HDX touch buttons on the gauge face.</div>
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="guide-step-num">8</div>
+        <div class="guide-step-content">
+          <strong style="color:var(--red)">Set Warning Thresholds</strong>
+          <p>These flash on-screen warnings that can save your engine:</p>
+          <table class="circuit-specs"><tr><td>Oil Pressure LOW</td><td style="color:var(--red);font-weight:700">&lt; 10 PSI</td></tr><tr><td>Water Temp HIGH</td><td style="color:var(--red);font-weight:700">&gt; 230&deg;F</td></tr><tr><td>Voltage LOW</td><td style="color:var(--red);font-weight:700">&lt; 11V</td></tr></table>
+          <div class="warn"><strong>DO NOT SKIP THIS.</strong> A low oil pressure warning at 10 PSI gives you time to shut down before bearing damage. A 230&deg;F temp warning catches overheating before head gasket failure.</div>
         </div>
       </div>
     </div>
