@@ -1,4 +1,4 @@
-const CACHE = 'chevelle-hdx-v4';
+const CACHE = 'chevelle-hdx-v5';
 const ASSETS = [
   './',
   './chevelle-hdx-interactive.html',
