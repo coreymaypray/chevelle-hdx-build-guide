@@ -1838,12 +1838,13 @@
       <div class="guide-step-num">2</div>
       <div class="guide-step-content">
         <strong>HDX Control Box Power Connections</strong>
-        <p>The HDX Control Box taps into the AAW fuse panel for power:</p>
+        <p>The HDX Control Box comes with its own <strong style="color:#e33">RED</strong>, <strong style="color:#f0a">PINK</strong>, and <strong>BLACK</strong> wires. These are NOT part of the AAW harness &mdash; you connect them yourself to the AAW fuse panel:</p>
         <table class="circuit-specs">
-          <tr><td style="color:#e33;font-weight:700">HDX RED</td><td>Constant 12V &larr; Fuse #8 (CLOCK, 5A, always hot) &mdash; powers clock, settings memory, Bluetooth</td></tr>
-          <tr><td style="color:#f0a;font-weight:700">HDX PINK</td><td>Switched 12V &larr; Fuse #7 (GAUGES, 10A, ignition-hot) &mdash; main gauge power</td></tr>
-          <tr><td style="font-weight:700">HDX BLACK</td><td>Ground &rarr; Dedicated firewall bolt, star washer, bare metal (&lt; 0.5&ohm; to battery negative)</td></tr>
+          <tr><td style="color:#e33;font-weight:700">HDX RED wire</td><td>Connect to Fuse #8 (CLOCK, 5A, always hot). The AAW fuse panel has a <strong style="color:#fc0">YELLOW</strong> wire on this fuse position for the factory clock. Tap the HDX red wire onto this same fuse slot or use an add-a-fuse adapter.</td></tr>
+          <tr><td style="color:#f0a;font-weight:700">HDX PINK wire</td><td>Connect to Fuse #7 (GAUGES, 10A, ignition-hot). The AAW fuse panel has a <strong style="color:#f0a">PINK</strong> wire on this position feeding the instrument cluster. Tap the HDX pink wire onto this fuse slot.</td></tr>
+          <tr><td style="font-weight:700">HDX BLACK wire</td><td>Ground &rarr; Dedicated firewall bolt, star washer, bare metal. Must measure &lt; 0.5&ohm; to battery negative.</td></tr>
         </table>
+        <div class="note"><strong>NOTE:</strong> The HDX wires are separate from the AAW harness. You are physically connecting the Dakota Digital wires to the AAW fuse panel positions. The AAW harness already has its own wires on these fuse slots &mdash; you&rsquo;re adding the HDX wires alongside them.</div>
         <div class="warn"><strong>90% OF GAUGE PROBLEMS</strong> are bad grounds. Sand to bare shiny metal. Dedicated bolt only &mdash; do NOT share with radio or blower.</div>
       </div>
     </div>
@@ -2234,12 +2235,12 @@
       <tr><td>Wire Color</td><td><strong style="color:#e33">RED</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG minimum</td></tr>
       <tr><td>Fuse</td><td>#8 CLOCK &mdash; 5A ATO</td></tr>
-      <tr><td>AAW Bag</td><td>D (Dash harness)</td></tr>
+      <tr><td>AAW Fuse Panel</td><td>Fuse #8 CLOCK position (AAW wire is YELLOW; HDX wire is RED)</td></tr>
       <tr><td>Hot When</td><td>Always (even key off)</td></tr>
     </table>
 
     <div class="warn"><strong>WARNING:</strong> Disconnect battery before working on this circuit. Carries constant power &mdash; can arc and cause fire if shorted.</div>
-    <div class="note"><strong>NOTE:</strong> This powers the HDX clock, settings memory, and Bluetooth module. If HDX loses settings after key-off, check this circuit first.</div>
+    <div class="note"><strong>NOTE:</strong> The HDX RED wire is NOT part of the AAW harness. You connect it yourself to the CLOCK fuse position on the AAW 500707 panel. The AAW&rsquo;s own YELLOW wire also uses this fuse for the factory clock circuit.</div>
   </div>
 </div>
 
@@ -2285,12 +2286,12 @@
       <tr><td>Wire Color</td><td><strong style="color:#f0a">PINK</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG minimum</td></tr>
       <tr><td>Fuse</td><td>#7 GAUGES &mdash; 10A ATO</td></tr>
-      <tr><td>AAW Bag</td><td>D (Dash harness)</td></tr>
+      <tr><td>AAW Fuse Panel</td><td>Fuse #7 GAUGES position (AAW wire is PINK to instrument cluster; HDX wire is also PINK)</td></tr>
       <tr><td>Hot When</td><td>Key ON only</td></tr>
     </table>
 
     <div class="warn"><strong>WARNING:</strong> If gauges go completely dark with key ON, check Fuse #7 FIRST &mdash; it&rsquo;s the most common cause.</div>
-    <div class="note"><strong>NOTE:</strong> Verify with multimeter: should read 12.4V+ at pink wire with key ON, 0V with key OFF.</div>
+    <div class="note"><strong>NOTE:</strong> The HDX PINK wire is NOT part of the AAW harness. You connect it yourself to the GAUGES fuse position. The AAW&rsquo;s own PINK wire also uses this fuse for the stock instrument cluster. Verify with multimeter: 12.4V+ with key ON, 0V with key OFF.</div>
   </div>
 </div>
 
