@@ -3170,12 +3170,18 @@ function toggleCollapsible(id) {
 
 <div class="section" id="sec-install">
   <h2>Complete Build — Step by Step</h2>
-  <p>Every phase from bare floor to first drive. Tap a phase to expand. Check off each step as you go.</p>
+  <p>Every phase from bare floor to first drive. Each phase has Barney-style step-by-step instructions, reference photos, and diagrams. <strong>Tap a phase title to expand it</strong> — or use the Expand All button below to open everything at once.</p>
 
   <div class="card" style="text-align:center">
     <span style="font-size:13px;color:var(--muted)">Overall Build Progress: <strong id="install-pct" style="color:var(--accent)">0</strong>%</span>
     <div class="progress-bar"><div class="progress-fill" id="install-progress" style="width:0%"></div></div>
     <span style="font-size:11px;color:var(--muted)" id="install-count">0 of 131 steps complete</span>
+  </div>
+
+  <div class="card" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px">
+    <button onclick="expandAllPhases()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">📂 Expand All Phases</button>
+    <button onclick="collapseAllPhases()" style="padding:8px 16px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">📁 Collapse All</button>
+    <button onclick="expandFirstIncomplete()" style="padding:8px 16px;background:var(--card);color:var(--accent2);border:1px solid var(--accent2);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">▶ Jump to Next Incomplete</button>
   </div>
 
   <div class="phase-nav" id="phase-nav">
@@ -3506,6 +3512,28 @@ function toggleCollapsible(id) {
     <li>Tape the final loom until after Phase 6 (power-on test). Loose loom now = easy fixes later.</li>
     <li>Skip a bag because "I don't need that circuit" &mdash; install everything, even if you cap the connector. The harness is engineered as a complete loop.</li>
   </ul>
+</div>
+
+<!-- ===== AAW VISUAL REFERENCES (embedded for Phase 2) ===== -->
+<div class="card">
+  <h4 style="margin-top:0">📷 AAW 510105 — Visual References</h4>
+  <p style="font-size:13px;color:var(--muted);margin:4px 0 12px">Reference these diagrams as you work each bag. Pinch-zoom on phone for detail.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Full Vehicle Schematic (1971-72 Chevelle)</p>
+  <img src="aaw-diagrams/aaw-schematic-1971-72.png" alt="AAW 510105 Full Vehicle Schematic" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Master schematic — every circuit in the AAW kit. Use for cross-reference only; the bag-by-bag steps below are easier to follow during install.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Fuse Panel — Install Location</p>
+  <img src="aaw-diagrams/aaw-fuse-panel-install.png" alt="AAW Fuse Panel Install Diagram" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Mounts at the firewall bulkhead in the stock OEM hole, driver side. Flasher can goes bottom-right.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Fuse Panel — Layout (Position Map)</p>
+  <img src="aaw-diagrams/aaw-fuse-panel-layout.png" alt="AAW Fuse Panel Layout" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">18-position panel. <strong>HDX-critical:</strong> Fuse #7 GAUGES (10A) feeds the HDX pink wire (switched 12V). Fuse #8 CLOCK (5A) feeds the HDX red wire (constant 12V). Fuse #9 FUEL (15A) feeds the tank sender.</p>
+
+  <div style="margin-top:14px;padding:12px;background:rgba(0,180,216,.08);border-radius:8px;border-left:3px solid var(--accent2)">
+    📚 <strong>Deep dive:</strong> Tap to open the full <a href="#sec-wiring" onclick="showSection('sec-wiring');event.preventDefault();return false;" style="color:var(--accent);text-decoration:underline;font-weight:600">Wiring Guide section</a> for bag-by-bag (G→H→J→K→L→M→N→V→Z) install steps, individual circuit cards with routing, and behind-dash reference photos.
+  </div>
 </div>
 
 <div class="kit-bag">
@@ -4055,6 +4083,30 @@ Lay them all out and identify each piece before routing anything.</div>
   </svg>
 </div>
 
+<!-- ===== HDX MOUNT VISUAL REFERENCES (Phase 4) ===== -->
+<div class="card">
+  <h4 style="margin-top:0">📷 Visual References — HDX Mount &amp; Behind-Dash Layout</h4>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Behind-Dash Reference Photo</p>
+  <img src="behind-dash-reference.jpg" alt="Behind the dash layout — AAW fuse panel, steering column, HDX Control Box, heater box" style="width:100%;border-radius:8px">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Real photo behind the dash: AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with ribbon cable (right), heater box (far right). This is where you mount the Control Box &mdash; pick a spot reachable for future service.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Dashboard Overview</p>
+  <img src="dash-reference.jpg" alt="SS Dashboard with HDX cluster installed" style="width:100%;border-radius:8px">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">SS dash face with HDX cluster installed &mdash; what you're working toward this phase.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Bag H — Instrument Circuit Board (AAW)</p>
+  <img src="aaw-diagrams/aaw-bag-h-circuit-board.png" alt="AAW Bag H Instrument Circuit Board" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Bag H is the instrument harness that connects the AAW dash harness to your gauges. For HDX builds, you'll use HDX-specific connections rather than the stock GM cluster &mdash; but the fuse-panel feeds (Fuses #7, #8, #9) come through Bag H wiring.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Bag H — Instrument Wiring</p>
+  <img src="aaw-diagrams/aaw-bag-h-instrument.png" alt="AAW Bag H Instrument Wiring" style="width:100%;border-radius:8px;background:#fff">
+
+  <div style="margin-top:14px;padding:12px;background:rgba(0,180,216,.08);border-radius:8px;border-left:3px solid var(--accent2)">
+    📚 <strong>Deep dive:</strong> Tap the <a href="#sec-wiring" onclick="showSection('sec-wiring');event.preventDefault();return false;" style="color:var(--accent);text-decoration:underline;font-weight:600">Wiring Guide</a> for the dedicated CHASSIS GROUND, CONSTANT 12V, SWITCHED 12V, and DIMMER circuit cards with full routing detail. Or the <a href="#sec-hdx" onclick="showSection('sec-hdx');event.preventDefault();return false;" style="color:var(--accent);text-decoration:underline;font-weight:600">HDX Calibration section</a> for what to do once power's on.
+  </div>
+</div>
+
 <div class="kit-bag">
   <div class="kit-bag-title">Dakota Digital HDX — Gauge Cluster</div>
   <div class="kit-bag-contents">
@@ -4317,6 +4369,23 @@ Lay them all out and identify each piece before routing anything.</div>
     <text x="240" y="195" text-anchor="middle" fill="#f59e0b" font-size="9" font-weight="700">If clearance tight → DEI Titanium Wrap</text>
   </svg>
   <p style="font-size:11px;color:var(--muted);text-align:center;margin:8px 0 0">Route over the top of the engine, not along the manifold side. If you must route close, wrap the harness section in DEI Titanium Wrap (or equivalent heat-reflective sleeve).</p>
+</div>
+
+<!-- ===== UNDER-HOOD SENDERS VISUAL REFERENCES (Phase 5) ===== -->
+<div class="card">
+  <h4 style="margin-top:0">📷 Visual References — AAW Bag J (Engine Compartment)</h4>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Bag J — Engine Compartment Diagram</p>
+  <img src="aaw-diagrams/aaw-bag-j-engine-diagram.png" alt="AAW Bag J Engine Compartment Diagram" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Bag J = engine harness. Shows where every engine-side connector lives: alternator, starter, HEI, oil pressure switch, water temp, transmission. Reference this BEFORE you start routing sender wires &mdash; existing connector locations show you where the harness already runs.</p>
+
+  <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Bag J — Engine Wiring Detail</p>
+  <img src="aaw-diagrams/aaw-bag-j-engine-wiring.png" alt="AAW Bag J Engine Wiring Detail" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Specific wire-by-wire connections for the engine harness. Note: HDX senders use their own 3-wire harness routing &mdash; not the original AAW engine sender wiring, but bundled together through the firewall grommet.</p>
+
+  <div style="margin-top:14px;padding:12px;background:rgba(0,180,216,.08);border-radius:8px;border-left:3px solid var(--accent2)">
+    📚 <strong>Deep dive:</strong> Tap to open the <a href="#sec-engine" onclick="showSection('sec-engine');event.preventDefault();return false;" style="color:var(--accent);text-decoration:underline;font-weight:600">Engine Bay section</a> &mdash; interactive top-down diagram with tap-to-explore for each sender (oil, temp, speed, tach, ground bolt) showing exact install location, thread spec, and wiring color codes.
+  </div>
 </div>
 
 <div class="kit-bag">
@@ -5045,6 +5114,13 @@ Lay them all out and identify each piece before routing anything.</div>
     <li>Use an impact gun on the steering wheel nut &mdash; you'll smash the splines or break the horn contact</li>
     <li>Force the column through the firewall &mdash; if it doesn't slide easily, something's misaligned</li>
   </ul>
+</div>
+
+<!-- ===== STEERING COLUMN VISUAL REFERENCE (Phase 7) ===== -->
+<div class="card">
+  <h4 style="margin-top:0">📷 Visual Reference — Dashboard Around Column</h4>
+  <img src="dash-reference-closeup.jpg" alt="Dashboard closeup showing steering column area" style="width:100%;border-radius:8px">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 0">Closeup of the dash near the steering column &mdash; reference for column alignment, dash pad position, and steering wheel orientation.</p>
 </div>
 
 <div class="card" style="padding:12px">
@@ -5992,6 +6068,13 @@ Lay them all out and identify each piece before routing anything.</div>
     <li>Force a quarter trim panel that doesn't fit &mdash; perimeter clips may be misaligned</li>
     <li>Skip J-hook engagement on the rear seat bottom &mdash; it'll flop forward at the first hard stop</li>
   </ul>
+</div>
+
+<!-- ===== REAR BODY VISUAL REFERENCE (Phase 13) ===== -->
+<div class="card">
+  <h4 style="margin-top:0">📷 Visual Reference — AAW Bag M (Rear Body Harness)</h4>
+  <img src="aaw-diagrams/aaw-bag-m-rear-body.png" alt="AAW Bag M Rear Body Diagram" style="width:100%;border-radius:8px;background:#fff">
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 0">Bag M = rear body harness. Tail lights, fuel sender, dome light, trunk light, back-up lights. If you're tucking carpet under sill plates and re-running speaker wire, reference this diagram to avoid routing speaker wire on top of the rear body harness.</p>
 </div>
 
 <div class="card" style="padding:12px">
@@ -8039,6 +8122,35 @@ function togglePhase(idx) {
   el.classList.toggle('open');
 }
 
+function expandAllPhases() {
+  document.querySelectorAll('#sec-install .vstep').forEach(el => el.classList.add('open'));
+}
+
+function collapseAllPhases() {
+  document.querySelectorAll('#sec-install .vstep').forEach(el => el.classList.remove('open'));
+}
+
+function expandFirstIncomplete() {
+  const phases = document.querySelectorAll('#sec-install .vstep');
+  for (const phase of phases) {
+    const checks = phase.querySelectorAll('.sub-check, .check-box');
+    const total = checks.length;
+    if (total === 0) continue;
+    const done = phase.querySelectorAll('.sub-check.checked, .check-box.checked').length;
+    if (done < total) {
+      phase.classList.add('open');
+      phase.scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+  }
+  // All complete — just expand the last phase
+  if (phases.length > 0) {
+    const last = phases[phases.length - 1];
+    last.classList.add('open');
+    last.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
 function scrollToPhase(idx) {
   const el = document.getElementById('phase-'+idx);
   if(el) {
@@ -8536,6 +8648,15 @@ function restoreState() {
 
 // Init on DOM ready
 document.addEventListener('DOMContentLoaded', restoreState);
+
+// Auto-open Phase 0 on first visit so users see the Barney content immediately
+document.addEventListener('DOMContentLoaded', function() {
+  if (!localStorage.getItem('seenInstallSection')) {
+    const phase0 = document.getElementById('phase-0');
+    if (phase0) phase0.classList.add('open');
+    localStorage.setItem('seenInstallSection', '1');
+  }
+});
 
 // ===== WIRING GUIDE CHECKBOXES =====
 document.addEventListener('DOMContentLoaded', function() {
