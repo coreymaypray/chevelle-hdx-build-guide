@@ -2145,7 +2145,7 @@ function toggleCollapsible(id) {
   <div class="card" style="text-align:center">
     <span style="font-size:13px;color:var(--muted)">Overall Build Progress: <strong id="install-pct" style="color:var(--accent)">0</strong>%</span>
     <div class="progress-bar"><div class="progress-fill" id="install-progress" style="width:0%"></div></div>
-    <span style="font-size:11px;color:var(--muted)" id="install-count">0 of 131 steps complete</span>
+    <span style="font-size:11px;color:var(--muted)" id="install-count">Loading…</span>
   </div>
 
   <div class="card" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px">
@@ -2539,18 +2539,20 @@ function toggleCollapsible(id) {
     <img src="aaw-diagrams/aaw-fuse-panel-install.png" style="width:100%;border-radius:8px;margin:12px 0" alt="AAW Fuse Panel — 26 numbered connections">
 
     <!-- Step 1 — Fuse Panel Install -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Fuse Panel Install</strong>
         <p>Mount the fuse panel at the firewall bulkhead in the stock OEM bulkhead hole on the driver side. The flasher can goes in the bottom-right corner of the panel. Secure with two mounting screws.</p>
       </div>
     </div>
 
     <!-- Step 2 — Dimmer Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Floor Dimmer Switch</strong>
         <p>Connect the four wires to the floor-mounted dimmer switch:</p>
         <table class="circuit-specs">
@@ -2563,18 +2565,20 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 3 — Emergency Brake -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Emergency Brake Switch</strong>
         <p>Connect the <strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch. This is a ground circuit that activates the brake warning light in the instrument cluster.</p>
       </div>
     </div>
 
     <!-- Step 4 — Headlight Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Headlight Switch (500332)</strong>
         <p>Install the headlight switch and connect:</p>
         <table class="circuit-specs">
@@ -2587,9 +2591,10 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 5 — Ignition Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Ignition Switch</strong>
         <p>Connect the ignition switch wires:</p>
         <table class="circuit-specs">
@@ -2599,13 +2604,14 @@ function toggleCollapsible(id) {
           <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>Starter lead to neutral safety switch</td></tr>
         </table>
         <div class="note"><strong>NOTE:</strong> Connectors are already plugged in for the stock 1970&ndash;72 ignition switch. No re-pinning required.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 6 — Turn Signal Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Turn Signal Switch</strong>
         <p>Connect the 7-wire connector for the 3-7/8&Prime; 1969&ndash;74 GM steering column:</p>
         <table class="circuit-specs">
@@ -2622,18 +2628,20 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 7 — Brake Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-7"></div>
       <div class="guide-step-num">7</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Brake Pedal Switch</strong>
         <p>Connect the <strong style="color:#e8e8f0">WHITE</strong> wire to the brake pedal switch at the brake pedal arm.</p>
       </div>
     </div>
 
     <!-- Step 8 — Wiper Switch -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-8"></div>
       <div class="guide-step-num">8</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Wiper Switch</strong>
         <p>Connect the wiper switch wires. There is a single connector (1972 only) and a 3-way connector:</p>
         <table class="circuit-specs">
@@ -2648,29 +2656,32 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 9 — Instrument Cluster Disconnects -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Instrument Cluster Disconnects</strong>
         <p>Locate the instrument cluster connectors (F, G, H) on this harness. These connectors mate with <strong>Bag H</strong>.</p>
         <div class="warn"><strong>WARNING:</strong> Do NOT connect these yet. Install Bag H next and refer to its instructions for proper hookup.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 10 — Rear Body Connector -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-10"></div>
       <div class="guide-step-num">10</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Rear Body Connector</strong>
         <p>Locate the rear body disconnect on this harness. It mates with <strong>Bag M</strong> (rear body harness).</p>
         <div class="warn"><strong>WARNING:</strong> Do NOT connect yet. Bag M is installed later during rear lighting.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 11 — Other Connections -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-11"></div>
       <div class="guide-step-num">11</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Remaining Dash Connections</strong>
         <p>Route and connect the remaining wires behind the dash:</p>
         <table class="circuit-specs">
@@ -2694,9 +2705,10 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 12 — Ground -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="G-12"></div>
       <div class="guide-step-num">12</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Chassis Ground</strong>
         <p>Attach the <strong style="color:#888">BLACK</strong> ground wire to a clean, bare-metal chassis ground point. Sand paint away if needed and use a star washer for solid contact.</p>
       </div>
@@ -2732,9 +2744,10 @@ function toggleCollapsible(id) {
     <div class="warn"><strong>IMPORTANT:</strong> If using Dakota Digital HDX gauges, you will NOT use the stock circuit board connections. Instead, use the aftermarket gauge instructions on sheet 3. The HDX Control Box replaces the instrument cluster. See the HDX Integration section below for how to connect.</div>
 
     <!-- Step 1 — Connector F -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="H-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connector F &mdash; Main Instrument Signals</strong>
         <p>Plug Connector F into its mating connector on the Bag G dash harness. Wires carried:</p>
         <table class="circuit-specs">
@@ -2752,9 +2765,10 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 2 — Connector G -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="H-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connector G &mdash; Power, Lamps &amp; Ground</strong>
         <p>Plug Connector G into its mating connector on the Bag G dash harness. Wires carried:</p>
         <table class="circuit-specs">
@@ -2769,9 +2783,10 @@ function toggleCollapsible(id) {
     <p style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px">Circuit board connector pinout &mdash; stock gauges (left) vs warning lights (right). With HDX, you bypass both and connect directly to the Control Box.</p>
 
     <!-- Step 3 — Connector H -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="H-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connector H &mdash; Aftermarket Electric Speedometer</strong>
         <p>This connector is ONLY for an aftermarket electric speedometer. If using a stock cable-driven speedo, do NOT use this connector.</p>
         <table class="circuit-specs">
@@ -2782,7 +2797,7 @@ function toggleCollapsible(id) {
           <tr><td><strong style="color:#f0a">PINK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo 12V Power (doubles onto same stud as Purple/White)</td></tr>
         </table>
         <div class="warn"><strong>WARNING:</strong> Twist the <strong style="color:#fc0">YELLOW</strong> and <strong style="color:#9333ea">PURPLE</strong> wires together for their entire length to prevent electromagnetic interference with the VSS signal.</div>
-      </div>
+    </div>
     </div>
 
     <div class="note"><strong>NOTE:</strong> With HDX gauges, Connector H is critical &mdash; it carries the VSS signal for your digital speedometer.</div>
@@ -2813,83 +2828,92 @@ function toggleCollapsible(id) {
     <img src="aaw-diagrams/aaw-bag-j-engine-wiring.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag J — Engine Bay Wiring">
 
     <!-- Step 1 — Bulkhead Assembly -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Bulkhead Assembly</strong>
         <p>Temporarily plug the main bulkhead connector from this kit into the mating connector on the dash-side bulkhead (located under the master cylinder). This connector will be unbolted later to install the front light harness (Bag L).</p>
       </div>
     </div>
 
     <!-- Step 2 — 12V Battery -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>12V Battery &mdash; <strong style="color:#e33">RED</strong></strong>
         <p>Route the <strong style="color:#e33">RED</strong> wire to the Megafuse assembly (from Bag Z) and cut to length. Use the ring terminal and shrink tubing from the 510476 kit.</p>
       </div>
     </div>
 
     <!-- Step 3 — Starter Solenoid -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Starter Solenoid &mdash; <strong style="color:#9333ea">PURPLE</strong></strong>
         <p>Route the <strong style="color:#9333ea">PURPLE</strong> wire to the starter solenoid S terminal and cut to length. Install rubber sleeve E and ring terminal D.</p>
       </div>
     </div>
 
     <!-- Step 4 — Oil Pressure Sender -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Oil Pressure Sender &mdash; <strong style="color:#4169e1">DARK BLUE</strong></strong>
         <p>Connect to the oil pressure sending unit. Use terminal P with sleeve L, OR terminal S with connector R, OR terminal C with connector A &mdash; depending on your sender type.</p>
         <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX SEN-01-5 (3-wire electronic sender), you will use the HDX sender sub-harness instead of this AAW wire. The AAW <strong style="color:#4169e1">DARK BLUE</strong> wire is for STOCK single-wire GM senders only. See the HDX Integration section.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 5 — Water Temp Sender -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Water Temp Sender &mdash; <strong style="color:#228b22">DARK GREEN</strong></strong>
         <p>Route to the water temperature sender and cut to length. Install ring terminal P with sleeve L, or terminal C with connector K depending on your application.</p>
         <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX temp sender, use the HDX sub-harness instead. The AAW <strong style="color:#228b22">DARK GREEN</strong> wire is for stock GM senders only. See the HDX Integration section.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 6 — Heat/Air -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Heat/Air &mdash; <strong style="color:#fa0">ORANGE</strong></strong>
         <p>If using aftermarket A/C: this wire is NOT used. If using stock heater only: plug into bulkhead assembly Y, route to heater blower, and terminate with terminal C and connector A.</p>
       </div>
     </div>
 
     <!-- Step 7 — 12V Ignition -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-7"></div>
       <div class="guide-step-num">7</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>12V Ignition &mdash; <strong style="color:#f0a">PINK</strong></strong>
         <p>If using HEI or electronic ignition: route to the coil and trim to length. Install terminal C and connector G, then plug into the distributor cap BAT location.</p>
       </div>
     </div>
 
     <!-- Step 8 — Starter Solenoid R -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-8"></div>
       <div class="guide-step-num">8</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Starter Solenoid R &mdash; <strong style="color:#fc0">YELLOW</strong></strong>
         <p>Assembly X &mdash; this is for points ignition with a ballast resistor. If using HEI: connect the <strong style="color:#fc0">YELLOW</strong> wire with terminal C and connector G to the distributor cap BAT location instead.</p>
       </div>
     </div>
 
     <!-- Step 9 — Coil-Tach -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Coil / Tach &mdash; <strong style="color:#e8e8f0">WHITE</strong></strong>
         <p>Route to the coil or distributor and trim to length.</p>
         <table class="circuit-specs">
@@ -2897,22 +2921,24 @@ function toggleCollapsible(id) {
           <tr><td>Points</td><td>Terminal P &rarr; connect to negative side of coil</td></tr>
         </table>
         <div class="warn"><strong>WARNING:</strong> Route this wire at least 6 inches away from spark plug wires to prevent EMI (electromagnetic interference).</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 10 — Electric Choke -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-10"></div>
       <div class="guide-step-num">10</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Electric Choke &mdash; <strong style="color:#d2b48c">TAN</strong></strong>
         <p>Only if using an electric choke. Route to the choke coil and trim to length. If not equipped, leave this wire capped and secured.</p>
       </div>
     </div>
 
     <!-- Step 11 — Alternator Connections -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-11"></div>
       <div class="guide-step-num">11</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Alternator Connections</strong>
         <p>Three wires service the alternator:</p>
         <table class="circuit-specs">
@@ -2924,9 +2950,10 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 12 — Wiper Motor -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-12"></div>
       <div class="guide-step-num">12</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Wiper Motor</strong>
         <p>Connect the wiper motor wires:</p>
         <table class="circuit-specs">
@@ -2939,19 +2966,21 @@ function toggleCollapsible(id) {
     </div>
 
     <!-- Step 13 — T400 Kickdown -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-13"></div>
       <div class="guide-step-num">13</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>TH400 Kickdown (if equipped)</strong>
         <p>Route the <strong style="color:#fa0">ORANGE</strong> wire through the firewall grommet T to the transmission kickdown solenoid. The <strong style="color:#f0a">PINK</strong> wire from the Bag G dash harness plugs onto one terminal of the kickdown switch.</p>
         <div class="note"><strong>NOTE:</strong> If your transmission does not have a kickdown solenoid, cap and secure these wires.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 14 — Seal & Finish -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="J-14"></div>
       <div class="guide-step-num">14</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Seal the Bulkhead Connector</strong>
         <p>Apply dielectric grease to the terminal side of the bulkhead connector. Then apply silicone RTV to the terminal cavities for a moisture seal. This prevents corrosion and ensures reliable connections through the firewall.</p>
       </div>
@@ -2980,17 +3009,19 @@ function toggleCollapsible(id) {
       Skip this bag if your car does not have a console.
     </p>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="K-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Console Rear Courtesy Lamp Extension</strong>
         <p>Plugs into mating connector at <strong>location 18</strong> on the Bag G dash harness. Snap lamp socket terminals into the original location at the back of the console and install bulb (not included).</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="K-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Manual Transmission</strong>
         <p>Route the NSS and back-up lamp wires (from Bag G locations <strong>13</strong> and <strong>14</strong>) down to the base of the steering column near the firewall. Trim to length.</p>
         <ul>
@@ -3000,9 +3031,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="K-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Console-Shifted Automatic Transmission</strong>
         <p>Plug the <span style="color:#999">&#9632;</span> <strong style="color:#999">gray</strong> wire from the shifter light harness into the console courtesy lamp extension. Ground ring terminals to the floor in the stock location. Plug into mating connector at <strong>location 18</strong> on Bag G.</p>
         <ul>
@@ -3032,17 +3064,19 @@ function toggleCollapsible(id) {
     </div>
     <img src="aaw-diagrams/aaw-bag-j-engine-diagram.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Front Light Kit — snaps into Bag J bulkhead connector">
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Bulkhead Assembly</strong>
         <p>Snap the bulkhead connector from this kit onto the mating connector from <strong>Bag J</strong> (engine kit). After snapping together, bolt the assembly into the dash harness firewall connector. Apply silicone sealant to the back side of the connector after installing terminals.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Left / Right Turn Signals</strong>
         <ul>
           <li><span style="color:#87ceeb">&#9632;</span> <strong style="color:#87ceeb">Light Blue</strong> = LH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
@@ -3051,9 +3085,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Park Lights (Both Sides + Side Markers)</strong>
         <p><span style="color:#a0522d">&#9632;</span> <strong style="color:#a0522d">Brown</strong> wire: Split to the left parking lamp and left side marker (through grommet <strong>Q</strong>). Repeat for the right side.</p>
         <ul>
@@ -3063,25 +3098,28 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Side Marker Grounds</strong>
         <p><span style="color:#888">&#9632;</span> <strong style="color:#888">Black</strong> (smaller gauge with ring terminal): Route through grommet <strong>Q</strong>, terminal <strong>P</strong> into side marker socket <strong>N</strong>. Ground ring terminal to radiator core support. Repeat for both sides.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Headlight Low Beam &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Route to the driver side headlight, trim to length, double wire with cutoff portion. Terminal <strong>B</strong> into connector <strong>A</strong>. Route the remaining wire to the passenger side, terminal <strong>C</strong> into connector <strong>A</strong>.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Headlight High Beam &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
         <p>Route to driver side headlight, terminal <strong>B</strong> into connector <strong>A</strong>.</p>
         <p><em>For 1970:</em> Also make a jumper to the inner headlight, terminal <strong>B</strong> into connector <strong>T</strong>.</p>
@@ -3089,25 +3127,28 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-7"></div>
       <div class="guide-step-num">7</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Headlight Grounds &mdash; <span style="color:#888">&#9632;</span> Black (heavy gauge)</strong>
         <p>Ring terminal to radiator core support (driver side). Route to headlight connector, terminal <strong>B</strong> into connector <strong>A</strong>. Route cutoff to inner headlight, terminal <strong>C</strong> into connector <strong>T</strong>. Repeat for the passenger side.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-8"></div>
       <div class="guide-step-num">8</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Horn &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
         <p>Route to horns, install terminals <strong>D</strong> &amp; <strong>E</strong>, plug into connectors <strong>L</strong>.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Electric Fan &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
         <p style="background:rgba(227,51,51,0.08);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;">
           <strong>WARNING:</strong> Use this wire as the <strong>TRIGGER</strong> wire for an electric fan relay &mdash; not as direct power.
@@ -3115,9 +3156,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="L-10"></div>
       <div class="guide-step-num">10</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Brake Light Switch &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Plug onto the stock brake pressure switch. Route the other end to the front light connector, terminal <strong>M</strong> into the front light connector.</p>
       </div>
@@ -3150,17 +3192,19 @@ function toggleCollapsible(id) {
       <strong>Before starting:</strong> Install grommets <strong>A</strong> (larger) and <strong>B</strong> (smaller) into the rear quarter panels.
     </p>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connect Main Harness</strong>
         <p>Connect the main connector to the mating connector on the <strong>Bag G</strong> dash harness. Route the harness along the door sill threshold to the rear of the car.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Tail Lamp Pigtails</strong>
         <p>Two pigtails are provided:</p>
         <ul>
@@ -3171,26 +3215,29 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Third Brake Light &mdash; <span style="color:#87ceeb">&#9632;</span> Light Blue</strong>
         <p>Connect to the third brake lamp (if equipped).</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Fuel Gauge Sender &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Route through grommet <strong>A</strong> to the fuel tank area, cut to length, terminal <strong>C</strong> into connector <strong>G</strong>.</p>
         <p>Separate <span style="color:#d2b48c">&#9632;</span> <strong style="color:#d2b48c">tan</strong> wire (with rubber end <strong>R</strong>): Plug the rubber end onto the sending unit on the fuel tank, route through the trunk floor, pull up and plug into connector <strong>G</strong>.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Parking / Tail Lamps &mdash; <span style="color:#a0522d">&#9632;</span> Brown</strong>
         <p>Split the brown wire to the following connections:</p>
         <ul>
@@ -3203,9 +3250,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Grounds &mdash; <span style="color:#888">&#9632;</span> Black</strong>
         <p>Ring terminal to chassis ground. Route to:</p>
         <ul>
@@ -3217,25 +3265,28 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-7"></div>
       <div class="guide-step-num">7</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>LH Stop / Tail &mdash; <span style="color:#fc0">&#9632;</span> Yellow</strong>
         <p>Route through grommet <strong>A</strong> to the LH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-8"></div>
       <div class="guide-step-num">8</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>RH Stop / Tail &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
         <p>Route through grommet <strong>A</strong> to the RH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Back-up Lamps &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
         <p>Route through grommet <strong>A</strong>, split to:</p>
         <ul>
@@ -3245,9 +3296,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="M-10"></div>
       <div class="guide-step-num">10</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Courtesy Ground &mdash; <span style="color:#e8e8f0">&#9632;</span> White &nbsp;+&nbsp; Courtesy Lamp &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
         <p>At the driver side kick panel, cut and double each wire with terminal <strong>D</strong> into connector <strong>E</strong> (mates with Bag N courtesy kit).</p>
         <p><em>If using a dome lamp:</em> Route the loose ends to the front A-pillar at the windshield area, terminal <strong>J</strong> into connector <strong>F</strong>.</p>
@@ -3272,33 +3324,37 @@ function toggleCollapsible(id) {
       <div class="kit-bag-contents">AAW Bag N (500708 Courtesy Light Kit), #631 bulbs (not included)</div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="N-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Plug In Courtesy Light Jumpers</strong>
         <p>Plug the courtesy light jumpers into their respective connections after the <strong>Bag G</strong> dash harness and <strong>Bag M</strong> rear body harness are installed.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="N-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Right Hand Courtesy</strong>
         <p>The RH courtesy lamp connection is always part of the <strong>Bag G</strong> dash harness. Plug the RH jumper into the mating connector.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="N-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Left Hand Courtesy (1964&ndash;72 Chevelle)</strong>
         <p>For Chevelle: The LH connection is built into the <strong>Bag M</strong> rear body harness (not the dash harness). A female terminal for the stock driver side door jamb switch is included as a loose piece.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="N-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Install Courtesy Lamp Assemblies</strong>
         <p>Snap the lamp sockets into the original underdash locations. Install #631 bulbs (purchase separately from an auto parts store).</p>
       </div>
@@ -3322,25 +3378,28 @@ function toggleCollapsible(id) {
       <div class="kit-bag-contents">AAW Bag V (510730 VSS Lead Wires)</div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="V-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connect to Dash Harness</strong>
         <p>Plug the VSS lead wires from this kit into the dash-side VSS extension from <strong>Bag G</strong> (connection <strong>#25</strong>).</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="V-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Route Through Firewall</strong>
         <p>Pass the three wires through the firewall or floor down to the vehicle speed sensor unit on the transmission.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="V-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Connect to Vehicle Speed Sensor</strong>
         <ul>
           <li><span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">Purple</strong> (solid) = Signal lead &mdash; connects to &ldquo;signal&rdquo; on VSS</li>
@@ -3374,26 +3433,29 @@ function toggleCollapsible(id) {
       <div class="kit-bag-contents">AAW Bag Z (510476) &mdash; includes: 2 Megafuse bodies + covers, 2 &times; 175A Megafuses, Megafuse jumper, 144&Prime; (12ft) 6ga red charge wire, alternator boot, ring terminals (6ga starter, 6ga megafuse, 10ga megafuse, 6ga alternator), shrink tubing</div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Assemble Megafuses</strong>
         <p>Snap the two Megafuse bodies and covers together. Install the Megafuse jumper (item <strong>D</strong>) over the two studs &mdash; it <strong>MUST</strong> be on the side connecting to main power (starter solenoid or battery feed). Notch the top cover to clear the jumper.</p>
         <p>Snap one 175A fuse onto each Megafuse body over the jumper. Loosely re-attach the 4 nuts and lock washers.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Mount Megafuse Assembly</strong>
         <p>Find a suitable location under the hood, as close to the battery power source as possible. It must be reachable by 12ft of 6ga wire from the starter <strong>AND</strong> by the main power feed from the fuse panel / bulkhead.</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Charge Wire &mdash; Starter to Megafuse</strong>
         <p>Cut the 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire to length from the starter to the Megafuse. Strip &frac12;&Prime; of insulation on each end. Install 2 pieces of shrink tubing.</p>
         <ul>
@@ -3404,9 +3466,10 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Charge Wire &mdash; Alternator to Megafuse</strong>
         <p>Cut the remaining 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire from the alternator to the Megafuse. Strip &frac12;&Prime; on each end. Install 1 piece of shrink tubing.</p>
         <ul>
@@ -3417,17 +3480,19 @@ function toggleCollapsible(id) {
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Main Panel Power Feed</strong>
         <p>Take the 10ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> main power feed wire from your engine kit (<strong>Bag J</strong>) or panel. Route to the Megafuse, cut to length. Strip &frac38;&Prime;, install shrink tubing, crimp and solder terminal <strong>K</strong> (10ga megafuse).</p>
       </div>
     </div>
 
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="Z-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Final Assembly</strong>
         <p>Remove the 4 loosely tightened nuts from the Megafuses. Install all pre-assembled wires from steps 3&ndash;5 as shown in the diagram. Re-install nuts and lock washers, tighten down.</p>
         <p style="background:rgba(227,51,51,0.12);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;margin:10px 0;">
@@ -3455,18 +3520,20 @@ function toggleCollapsible(id) {
     <div class="note"><strong>IMPORTANT:</strong> The AAW 510105 kit does NOT include Dakota Digital HDX wiring. The HDX system connects TO the AAW harness at specific points. This section explains where and how.</div>
 
     <!-- Step 1 — HDX replaces instrument cluster -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>HDX Replaces the Stock Instrument Cluster</strong>
         <p>The Dakota Digital HDX-70C-CVL gauge cluster replaces the stock instrument cluster entirely. You still install Bag H connectors F, G, H into Bag G &mdash; but instead of routing to a stock circuit board, the signals route to the HDX Control Box.</p>
       </div>
     </div>
 
     <!-- Step 2 — Control Box Power -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>HDX Control Box Power Connections</strong>
         <p>The HDX Control Box comes with its own <strong style="color:#e33">RED</strong>, <strong style="color:#f0a">PINK</strong>, and <strong>BLACK</strong> wires. These are NOT part of the AAW harness &mdash; you connect them yourself to the AAW fuse panel:</p>
         <table class="circuit-specs">
@@ -3476,13 +3543,14 @@ function toggleCollapsible(id) {
         </table>
         <div class="note"><strong>NOTE:</strong> The HDX wires are separate from the AAW harness. You are physically connecting the Dakota Digital wires to the AAW fuse panel positions. The AAW harness already has its own wires on these fuse slots &mdash; you&rsquo;re adding the HDX wires alongside them.</div>
         <div class="warn"><strong>90% OF GAUGE PROBLEMS</strong> are bad grounds. Sand to bare shiny metal. Dedicated bolt only &mdash; do NOT share with radio or blower.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 3 — Dimmer -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>HDX Backlight Dimmer</strong>
         <p>The AAW 520001 Dim Wire Kit converts the headlight switch rheostat signal for the HDX:</p>
         <table class="circuit-specs">
@@ -3491,13 +3559,14 @@ function toggleCollapsible(id) {
           <tr><td style="color:#fa0;font-weight:700">HDX ORANGE</td><td>HDX Control Box dimmer terminal</td></tr>
         </table>
         <div class="note">If not connected, HDX backlights default to full brightness. Not a failure &mdash; just no dimming control.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 4 — Ribbon Cable -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>Ribbon Cable &mdash; Control Box to Gauge Cluster</strong>
         <p>Route the flat ribbon cable from the HDX Control Box to the HDX gauge cluster behind the steering column.</p>
         <table class="circuit-specs">
@@ -3505,13 +3574,14 @@ function toggleCollapsible(id) {
           <tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr>
         </table>
         <div class="warn"><strong>CONNECT RIBBON BEFORE POWER WIRES.</strong> Route gently behind column. Zip-tie loosely &mdash; do not pinch.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 5 — HDX Senders vs AAW Senders -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>HDX Senders Replace AAW Stock Sender Wires</strong>
         <p>The HDX system uses its own electronic senders that connect directly to the HDX Control Box &mdash; NOT through the AAW harness wires. The AAW engine bay wires for these signals are NOT USED:</p>
         <table class="circuit-specs">
@@ -3522,13 +3592,14 @@ function toggleCollapsible(id) {
           <tr><td>Fuel Level</td><td>AAW <strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender signal routes through Fuse #9 (FUEL, 15A) to HDX FUEL terminal</td></tr>
         </table>
         <div class="warn"><strong>CRITICAL:</strong> Cap and secure any unused AAW sender wires in the engine bay. Do NOT leave bare wire ends exposed near engine heat.</div>
-      </div>
+    </div>
     </div>
 
     <!-- Step 6 — Calibration -->
-    <div class="guide-step">
+    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
+      <div class="sub-check" data-phase="1-aaw" data-step="HDX-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content">
+      <div class="guide-step-content sub-text">
         <strong>HDX Calibration &amp; Setup</strong>
         <p>After all wiring is complete and the power-on test passes:</p>
         <ol style="font-size:13px;line-height:1.7;padding-left:20px">
@@ -6410,7 +6481,10 @@ Lay them all out and identify each piece before routing anything.</div>
 </div>
 
 <div class="card">
-    <h3 style="margin-top:0">Initial Power-On Sequence</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="poweron"></div>
+      <h3 class="sub-text" style="margin:0">Initial Power-On Sequence</h3>
+    </div>
     <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
       <li>Turn ignition to ON (do NOT start engine)</li>
       <li>Gauges sweep through self-test — all needles sweep full range and return</li>
@@ -6420,7 +6494,10 @@ Lay them all out and identify each piece before routing anything.</div>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Speedometer Calibration</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="speedo"></div>
+      <h3 class="sub-text" style="margin:0">Speedometer Calibration</h3>
+    </div>
     <p><strong>Option A — Manual:</strong> Enter tire diameter (e.g., 26.5" for P235/60R15) + rear axle ratio (e.g., 3.73:1)</p>
     <p><strong>Option B — GPS (Recommended):</strong></p>
     <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
@@ -6432,7 +6509,10 @@ Lay them all out and identify each piece before routing anything.</div>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Fuel Gauge Calibration</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="fuel"></div>
+      <h3 class="sub-text" style="margin:0">Fuel Gauge Calibration</h3>
+    </div>
     <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
       <li>Drive until tank is near empty (fuel light on)</li>
       <li>Enter calibration mode → Set EMPTY point</li>
@@ -6443,24 +6523,36 @@ Lay them all out and identify each piece before routing anything.</div>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Tachometer Setup</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="tach"></div>
+      <h3 class="sub-text" style="margin:0">Tachometer Setup</h3>
+    </div>
     <p>Enter menu → Set cylinder count: <strong>8</strong> (for 396/454 big block)</p>
     <p>Verify signal type matches your ignition — points, HEI, or aftermarket</p>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Backlight Color</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="backlight"></div>
+      <h3 class="sub-text" style="margin:0">Backlight Color</h3>
+    </div>
     <p>30+ colors available. Set via capacitive touch buttons or Dakota Digital Bluetooth app. Color applies to all gauge backlights and TFT displays.</p>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Bluetooth App</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="bluetooth"></div>
+      <h3 class="sub-text" style="margin:0">Bluetooth App</h3>
+    </div>
     <p>Download the Dakota Digital app → Turn ignition ON → Pair via Bluetooth → Full gauge configuration from your phone</p>
     <div class="note">If Bluetooth won't connect: ensure ignition is ON, forget the device in phone settings and re-pair, update the app to the latest version.</div>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Dakota Digital Resources</h3>
+    <div class="substep" onclick="toggleSubstep(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div class="sub-check" data-phase="14-cal" data-step="resources"></div>
+      <h3 class="sub-text" style="margin:0">Dakota Digital Resources</h3>
+    </div>
     <p><strong>Official Manual:</strong> Dakota Digital #650572B (HDX-70C-CVL.pdf) — download at <strong>dakotadigital.com</strong></p>
     <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (ribbon cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
     <p><strong>Bluetooth App:</strong> iOS / Android — "Dakota Digital" by Dakota Digital, Inc.</p>
