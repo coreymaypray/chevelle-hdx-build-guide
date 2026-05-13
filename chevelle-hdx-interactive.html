@@ -2356,6 +2356,7 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> BAD GROUNDS cause 90% of gauge problems. If ANY gauge acts erratic &mdash; check this FIRST. Must measure less than 0.5 ohms to battery negative.</div>
+    <div class="warn"><strong>SIGNAL GROUND ISOLATION (gauge jitter fix):</strong> The HDX Control Box ground MUST be a dedicated 18 AWG run to a clean bolt on the dash frame or firewall &mdash; short path, no splices, no shared points. Sharing this ground with engine block, starter, audio amp, or electric fan grounds injects voltage noise into the analog sender signals and makes gauges jitter. If your gauges already jitter, jump a temporary 18 AWG from Control Box ground directly to the battery negative post &mdash; if the jitter stops, your permanent ground is the problem.</div>
     <div class="note"><strong>NOTE:</strong> Do NOT share this ground point with radio, blower motor, or other high-draw accessories. Dedicated bolt only.</div>
   </div>
 </div>
@@ -2481,7 +2482,7 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> You MUST use the Dakota Digital SEN-01-5 (3-wire) sender. The old GM single-wire sender will NOT work with HDX. If oil reads zero with engine running, wrong sender is the #1 cause.</div>
-    <div class="note"><strong>NOTE:</strong> Route sensor wires away from exhaust manifold heat. Zip-tie to existing harness bundles. Do not over-tighten sender or you&rsquo;ll crack the block port.</div>
+    <div class="note"><strong>NOTE:</strong> Route sensor wires <strong>at least 3-4 inches</strong> away from the exhaust manifold. If clearance is tighter (common on big-block 396/454 with stock manifolds), wrap the affected harness section in <strong>DEI Titanium Wrap</strong> or equivalent heat-reflective sleeve &mdash; radiant heat dry-cracks insulation in a single season otherwise. Zip-tie to existing harness bundles for routing. Do not over-tighten sender or you&rsquo;ll crack the block port.</div>
   </div>
 </div>
 
@@ -2600,6 +2601,7 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> Speed sensor MUST be calibrated or speedometer will read wrong. GPS calibration method is most accurate &mdash; enter GPS mode, drive steady on straight road, system auto-calibrates.</div>
+    <div class="note"><strong>WHICH SENSOR DO YOU HAVE?</strong> Two types ship with the HDX kit depending on transmission: <strong>cable-drive adapter</strong> (threads into the tailshaft where the mechanical speedo cable used to live &mdash; most common for stock 1972 TH350/TH400/Muncie) or <strong>electronic VSS</strong> (taps a pickup on the tailshaft or rear axle &mdash; only some later-swapped transmissions). Check the Sensor Installation steps for cable-drive routing. If you have an electronic-only trans with no cable-drive port, see the Dakota Digital manual for the VSS pickup wiring.</div>
     <div class="note"><strong>NOTE:</strong> If speedometer doesn&rsquo;t work at all, verify cable adapter is fully seated in transmission tailshaft. Common issue: adapter slips out under vibration.</div>
   </div>
 </div>
@@ -2653,7 +2655,7 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> Fuel sender MUST be calibrated via HDX menu &mdash; drive to empty, mark empty point; fill up, mark full point. Without calibration, fuel gauge will read wrong.</div>
-    <div class="note"><strong>NOTE:</strong> If fuel reads backwards (full when empty), sender ohm range is inverted. GM 1972 uses 0-90 ohm (empty-full). HDX can calibrate to match any range.</div>
+    <div class="note"><strong>FUEL GAUGE READS BACKWARDS &mdash; Recovery:</strong> If the gauge swings to F when empty and E when full, the sender ohm range is inverted. To diagnose: disconnect the sender signal wire at the tank, measure resistance at the sender terminals with a multimeter &mdash; should read ~0&Omega; at empty / ~90&Omega; at full for a GM 0-90 ohm sender (or the opposite if you have an inverted 90-0 aftermarket unit). Fix: either swap to the correct sender OR enable <strong>Fuel Sender Invert</strong> in the HDX menu (Settings &rarr; Calibration &rarr; Fuel &rarr; Invert). HDX can also calibrate to any nonstandard range.</div>
   </div>
 </div>
 
@@ -3253,6 +3255,7 @@ function toggleCollapsible(id) {
   </div>
 </div>
 <div class="note">⚠️ No fasteners in this phase — all adhesive. Do NOT cover floor drain holes or seat bolt holes.</div>
+<div class="note"><strong>Coverage priority if you're rationing mat:</strong> <strong>1)</strong> Floor pan (primary rust prevention — moisture trapped under carpet) → <strong>2)</strong> Firewall (heat barrier from exhaust manifolds and trans tunnel) → <strong>3)</strong> Transmission tunnel → <strong>4)</strong> Door skins (road noise — lowest priority unless cabin is loud) → <strong>5)</strong> Trunk floor. Full coverage on the floor pan is preferred; 50-75% on the rest is fine. Cover the structure, never the drain holes.</div>
 
 
         <div class="tools-needed"><span class="tool-tag">Degreaser/brake cleaner</span><span class="tool-tag">Roller tool</span><span class="tool-tag">Utility knife</span><span class="tool-tag">Heat gun</span><span class="tool-tag">Shop towels</span><span class="tool-tag">Isopropyl alcohol</span></div>
@@ -3650,6 +3653,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="font-size:13px;margin:4px 0"><strong>Lower L-brackets:</strong> <span class="hw-spec">5/16"-18 × 3/4" Grade 5 hex</span> × 4 (2 per side), lock + flat washers</p>
   <p style="font-size:13px;margin:4px 0"><strong>Center brace:</strong> <span class="hw-spec">5/16"-18 × 1" Grade 5 hex</span> × 2, <span class="hw-spec">5/16" lock washer</span></p>
   <p style="font-size:13px;margin:4px 0"><strong>Column bracket:</strong> <span class="hw-spec">3/8"-16 × 1" Grade 5 hex</span> × 2, <span class="hw-spec">3/8" lock + flat washers</span> · <strong style="color:var(--accent)">Torque: 20 ft-lbs</strong></p>
+  <p style="font-size:13px;margin:8px 0 4px 0;color:var(--yellow)"><strong>Big-block 396/454 upgrade:</strong> Grade 5 is the factory minimum, but 396/454 vibration loosens Grade 5 faster than Grade 8. Same dimensions, longer life — use Grade 8 if you have them on hand.</p>
 </div>
 
 
@@ -3670,13 +3674,13 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="substep" onclick="toggleSubstep(this)">
         <div class="sub-check" data-phase="2" data-step="1"></div>
         <div>
-          <div class="sub-text">Clean all mounting bolt holes with wire brush</div>
-          
+          <div class="sub-text">Wire-brush firewall bolt holes to bare metal (critical for ground return)</div>
+
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">Thread a bolt in and out to clean the threads. Wire brush the mounting surfaces. Apply a tiny bit of anti-seize to bolt threads (prevents seizing in 50 years when someone else works on this car).</div>
-    
+      <div class="detail-content">Thread a bolt in and out to clean the threads. Wire-brush the firewall mounting surfaces and the contact face around each bolt hole down to <strong>bare shiny metal</strong> — paint, powder coat, or seam sealer at the contact face prevents good ground return through the dash structure, and that ground path is what your gauges, lights, and radio use back to chassis. Hidden ground problems here are extremely hard to diagnose later because everything physically connects but voltage drops under load. Apply a tiny bit of anti-seize to bolt threads only (NOT on the contact face) so the bolts come out clean in 50 years.</div>
+
         </div>
       </div>
       <div class="substep" onclick="toggleSubstep(this)">
@@ -5153,11 +5157,11 @@ Lay them all out and identify each piece before routing anything.</div>
 
 <div class="card" style="padding:12px">
   <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Seats & Belts</h4>
-  <p style="font-size:13px;margin:4px 0"><strong>Bucket seat tracks:</strong> <span class="hw-spec">5/16"-18 × 1" hex</span> × 4 per seat, with <span class="hw-spec">5/16" flat + lock washers</span> and <span class="hw-spec">5/16"-18 nut</span> (underside) · <strong style="color:var(--accent)">Torque: 25-35 ft-lbs</strong></p>
-  <p style="font-size:13px;margin:4px 0"><strong>Seat belt anchors:</strong> <span class="hw-spec">7/16"-20 × 1-1/4" GRADE 8</span> + <span class="hw-spec">7/16" large flat washer</span> · <strong style="color:var(--red)">Torque: 30 ft-lbs · GRADE 8 ONLY</strong></p>
+  <p style="font-size:13px;margin:4px 0"><strong>Bucket seat tracks:</strong> <span class="hw-spec">5/16"-18 × 1" hex</span> × 4 per seat, with <span class="hw-spec">5/16" flat + lock washers</span> and <span class="hw-spec">5/16"-18 nut</span> (underside) · <strong style="color:var(--accent)">Torque: 30 ft-lbs (target, all 4 equally)</strong></p>
+  <p style="font-size:13px;margin:4px 0"><strong>Seat belt anchors:</strong> <span class="hw-spec">7/16"-20 × 1-1/4" GRADE 8</span> + <span class="hw-spec">7/16" large flat washer</span> · <strong style="color:var(--red)">Torque: 30 ft-lbs · GRADE 8 ONLY (verify 6 radial lines)</strong></p>
   <p style="font-size:13px;margin:4px 0"><strong>Seat back latch:</strong> <span class="hw-spec">#10 × 1/2" Phillips</span> × 2 per seat</p>
 </div>
-<div class="warn">🛑 Seat belt bolts MUST be Grade 8 (marked with 6 radial lines on head). Do NOT substitute with lower grade hardware.</div>
+<div class="warn">🛑 Seat belt bolts MUST be Grade 8 — verify markings BEFORE installing. <strong>Grade 8 = 6 radial lines</strong> on the bolt head. <strong>Grade 5 = 3 radial lines</strong> (stretches under crash load and fails — NOT acceptable for occupant restraint). <strong>Grade 2 = no markings</strong> (never acceptable). Wipe the bolt head clean of paint or oil so you can see the marking clearly. Mismatched Grade 5 hardware looks visually similar and is unsafe.</div>
 
 
         <div class="tools-needed"><span class="tool-tag">1/2" socket</span><span class="tool-tag">Torque wrench (ft-lbs)</span><span class="tool-tag">Grade 8 bolts for seat belts</span></div>
@@ -5165,7 +5169,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="substep" onclick="toggleSubstep(this)">
         <div class="sub-check" data-phase="11" data-step="0"></div>
         <div>
-          <div class="sub-text">Install seat tracks to floor: 5/16"-18 bolts, 25-35 ft-lbs</div>
+          <div class="sub-text">Install seat tracks to floor: 5/16"-18 bolts, torque to 30 ft-lbs (target, all 4 equally)</div>
           
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
@@ -5958,6 +5962,14 @@ Lay them all out and identify each piece before routing anything.</div>
     <div class="note">If Bluetooth won't connect: ensure ignition is ON, forget the device in phone settings and re-pair, update the app to the latest version.</div>
   </div>
 
+  <div class="card">
+    <h3 style="margin-top:0">Dakota Digital Resources</h3>
+    <p><strong>Official Manual:</strong> Dakota Digital #650572B (HDX-70C-CVL.pdf) — download at <strong>dakotadigital.com</strong></p>
+    <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (ribbon cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
+    <p><strong>Bluetooth App:</strong> iOS / Android — "Dakota Digital" by Dakota Digital, Inc.</p>
+    <div class="note">If the kit is old or paperwork is missing, call tech support and give them the cluster serial number — they can look up the original spec sheet, including pulses-per-mile for the speed sensor.</div>
+  </div>
+
   <h2 style="margin-top:24px">HDX Troubleshooting</h2>
 
   <div class="card" style="cursor:pointer" onclick="this.querySelector('.ts-detail').style.display=this.querySelector('.ts-detail').style.display==='block'?'none':'block'">
@@ -6039,11 +6051,16 @@ Lay them all out and identify each piece before routing anything.</div>
     <h3 style="margin-top:0">Fluids</h3>
     <ul class="checklist" id="cl-fluids">
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Drain and replace engine oil + filter (old oil has moisture and acids)</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Drain and flush coolant — inspect hoses for cracks/bulges</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Drain coolant from radiator petcock AND both block drain plugs (driver and passenger side, lower)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Flush radiator with garden hose through the top inlet until water runs clear</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">If water runs brown/sludgy: flush heater core separately — disconnect both heater hoses at engine, run hose through one until clear water exits the other, then reverse</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Re-tighten block drain plugs with Teflon tape; refill with 50/50 conventional green coolant</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inspect radiator and heater hoses (squeeze test — firm, not spongy or cracked)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check transmission fluid level and condition</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check power steering fluid</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check differential fluid</span></li>
     </ul>
+    <div class="note"><strong>Heater core flush matters:</strong> a radiator-only flush misses sludge trapped in the heater core. If the heater core ever clogs, you're pulling the dash to replace it — a $10 flush now beats an $800 R&amp;R later.</div>
   </div>
 
   <div class="card">
@@ -6066,31 +6083,53 @@ Lay them all out and identify each piece before routing anything.</div>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inspect brake lines for corrosion or leaks</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check wheel cylinders for leaks (rear drums)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Bleed sequence: RR → LR → RF → LF (furthest from master first)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">FIRM-PEDAL TEST: pump pedal 20-30 times, engine off. Pedal must feel firm with no more than ~1 inch travel before hard resistance. If still spongy or sinks under steady pressure → bleed again or find the leak.</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Re-inspect every fitting and wheel cylinder/caliper for new fluid weeping after the bleed</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Test parking brake cable for free movement</span></li>
     </ul>
+    <div class="warn"><strong>Do NOT road-test until the pedal is firm.</strong> A spongy pedal after a proper bleed means trapped air OR an active leak. Both kill you the first time you need to stop hard. Re-bleed, inspect every fitting, repeat — don't shortcut this.</div>
   </div>
 
   <div class="card">
     <h3 style="margin-top:0">Ignition and Electrical</h3>
     <ul class="checklist" id="cl-ignition">
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inspect spark plugs — replace if fouled or old</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Replace spark plugs with AC Delco R44T (or equivalent, 14mm heat range), gapped to .035"</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check distributor cap and rotor for corrosion</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inspect spark plug wires for cracks — MUST be spiral-wound or carbon-core suppression type (NOT solid-core). Solid-core wires cause erratic HDX gauge readings.</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check all fuses — replace any corroded ones</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Verify alternator belt tension and condition</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Set initial timing CONSERVATIVELY: 6-8° BTDC for stock 396/454. Increase only if engine doesn't ping on 93+ octane under load. Never exceed 12° without knowing cam profile and compression ratio.</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">For points ignition: replace points and condenser, set dwell to 28-32°</span></li>
+    </ul>
+    <div class="note"><strong>Plug heat range matters:</strong> stay with R44T (14mm) on a stock or mildly built 396/454. Hotter plugs (R45T, R46T) pre-ignite on pump gas and can hole a piston.</div>
+    <div class="warn"><strong>Big-block timing trap:</strong> running too much advance on a 396/454 makes it ping audibly under load, then quietly hammers pistons for thousands of miles before failure. If you don't know the cam, leave it at 8° and verify there's no detonation under hard acceleration in 2nd gear.</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Tires</h3>
+    <ul class="checklist" id="cl-tires">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check DOT date code on OUTER sidewall near the bead (bottom edge). Format: WWYY — e.g. 1523 = week 15 of 2023.</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Replace any tire older than 6 years regardless of tread depth — rubber dry-rots from the inside</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Inspect sidewalls for dry-rot cracks and bulges</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Set pressure to spec (typically 28-32 PSI for 14"/15" vintage tires, cold)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Expect flat-spot vibration the first few miles — should resolve as tires warm up and round out</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Re-torque lug nuts after 25-50 miles (85-100 ft-lbs, star pattern)</span></li>
     </ul>
   </div>
 
   <div class="card">
     <h3 style="margin-top:0">First Start Procedure</h3>
     <ul class="checklist" id="cl-start">
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Pull coil wire — crank engine 15 seconds to build oil pressure</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Verify oil level (engine cold, level surface, not running for at least 30 min — hot or tilted gives a false reading)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Pull coil wire — crank engine 15 seconds to build oil pressure (or use an oil pump priming tool in a drill)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Reconnect coil wire</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Start engine — let idle, do NOT rev</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Watch oil pressure gauge — should show 40+ PSI immediately</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Watch oil pressure: should show 40+ PSI on initial cold start, settling to 20-40 PSI at warm idle. If gauge reads ZERO while cranking or at idle → SHUT OFF IMMEDIATELY.</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Check for leaks (oil, coolant, fuel) while idling</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Monitor water temp — let it reach operating temp, verify thermostat opens</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Monitor water temp — let it reach operating temp (~195°F), verify thermostat opens</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Test brake pedal feel before moving the car</span></li>
     </ul>
+    <div class="warn"><strong>Zero oil pressure = stop now.</strong> Running a big-block dry destroys cam bearings and main bearings within seconds. If the gauge reads zero, kill the ignition before chasing the cause.</div>
   </div>
 </div>
 
@@ -6420,9 +6459,9 @@ Lay them all out and identify each piece before routing anything.</div>
     <div style="overflow-x:auto">
     <table style="width:100%;font-size:12px;border-collapse:collapse">
       <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px;color:var(--accent)">Location</th><th style="text-align:left;padding:6px;color:var(--accent)">Fastener</th><th style="text-align:left;padding:6px;color:var(--accent)">Size</th><th style="text-align:left;padding:6px;color:var(--accent)">Qty</th><th style="text-align:left;padding:6px;color:var(--accent)">Torque</th></tr>
-      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Upper dash bar → firewall</td><td style="padding:6px">Hex bolt + lock/flat washer</td><td style="padding:6px">5/16"-18 × 3/4" Gr5</td><td style="padding:6px">6</td><td style="padding:6px">—</td></tr>
-      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Lower dash brackets</td><td style="padding:6px">Hex bolt + lock/flat washer</td><td style="padding:6px">5/16"-18 × 3/4" Gr5</td><td style="padding:6px">4</td><td style="padding:6px">—</td></tr>
-      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Center brace</td><td style="padding:6px">Hex bolt + lock washer</td><td style="padding:6px">5/16"-18 × 1" Gr5</td><td style="padding:6px">2</td><td style="padding:6px">—</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Upper dash bar → firewall</td><td style="padding:6px">Hex bolt + lock/flat washer</td><td style="padding:6px">5/16"-18 × 3/4" Gr5 (Gr8 for big-block)</td><td style="padding:6px">6</td><td style="padding:6px">—</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Lower dash brackets</td><td style="padding:6px">Hex bolt + lock/flat washer</td><td style="padding:6px">5/16"-18 × 3/4" Gr5 (Gr8 for big-block)</td><td style="padding:6px">4</td><td style="padding:6px">—</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Center brace</td><td style="padding:6px">Hex bolt + lock washer</td><td style="padding:6px">5/16"-18 × 1" Gr5 (Gr8 for big-block)</td><td style="padding:6px">2</td><td style="padding:6px">—</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Column bracket</td><td style="padding:6px">Hex bolt + lock/flat washer</td><td style="padding:6px">3/8"-16 × 1" Gr5</td><td style="padding:6px">2</td><td style="padding:6px;color:var(--accent)">20 ft-lbs</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Cluster → dash</td><td style="padding:6px">Phillips + speed nut</td><td style="padding:6px">#8-32 × 1/2"</td><td style="padding:6px">4-6</td><td style="padding:6px">—</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Gauge bezels</td><td style="padding:6px">Phillips</td><td style="padding:6px">#6-32 × 3/8"</td><td style="padding:6px">per bezel</td><td style="padding:6px">—</td></tr>
@@ -6434,8 +6473,8 @@ Lay them all out and identify each piece before routing anything.</div>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Door panels</td><td style="padding:6px">Chrome oval Phillips + clips</td><td style="padding:6px">#8 × 3/4"</td><td style="padding:6px">4-5+6/door</td><td style="padding:6px">—</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Armrest</td><td style="padding:6px">Hex bolt</td><td style="padding:6px">1/4"-20 × 1"</td><td style="padding:6px">2/door</td><td style="padding:6px">—</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Console → tunnel</td><td style="padding:6px">Hex bolt</td><td style="padding:6px">1/4"-20 × 3/4"</td><td style="padding:6px">2</td><td style="padding:6px">—</td></tr>
-      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Seat tracks → floor</td><td style="padding:6px">Hex bolt + lock/flat washer + nut</td><td style="padding:6px">5/16"-18 × 1"</td><td style="padding:6px">4/seat</td><td style="padding:6px;color:var(--accent)">25-35 ft-lbs</td></tr>
-      <tr style="border-bottom:1px solid var(--border);background:rgba(239,68,68,.05)"><td style="padding:6px;color:var(--red)">Seat belt anchors</td><td style="padding:6px;color:var(--red)">GRADE 8 bolt + large washer</td><td style="padding:6px;color:var(--red)">7/16"-20 × 1-1/4"</td><td style="padding:6px">per belt</td><td style="padding:6px;color:var(--red)">30 ft-lbs</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Seat tracks → floor</td><td style="padding:6px">Hex bolt + lock/flat washer + nut</td><td style="padding:6px">5/16"-18 × 1"</td><td style="padding:6px">4/seat</td><td style="padding:6px;color:var(--accent)">30 ft-lbs (target)</td></tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(239,68,68,.05)"><td style="padding:6px;color:var(--red)">Seat belt anchors</td><td style="padding:6px;color:var(--red)">GRADE 8 bolt + large washer (verify 6 radial lines on head)</td><td style="padding:6px;color:var(--red)">7/16"-20 × 1-1/4"</td><td style="padding:6px">per belt</td><td style="padding:6px;color:var(--red)">30 ft-lbs</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Rear seat back</td><td style="padding:6px">Hex bolt</td><td style="padding:6px">5/16"-18 × 3/4"</td><td style="padding:6px">2</td><td style="padding:6px">—</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Oil drain plug</td><td style="padding:6px">Hex</td><td style="padding:6px">5/8" or 15/16"</td><td style="padding:6px">1</td><td style="padding:6px;color:var(--accent)">25 ft-lbs</td></tr>
       <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px">Spark plugs</td><td style="padding:6px">Plug</td><td style="padding:6px">5/8" or 13/16"</td><td style="padding:6px">8</td><td style="padding:6px;color:var(--accent)">15-25 ft-lbs</td></tr>
@@ -6498,11 +6537,12 @@ Lay them all out and identify each piece before routing anything.</div>
       <tr><td>Steering wheel nut</td><td>35 ft-lbs</td><td>—</td></tr>
       <tr><td>Steering gear mounting bolts</td><td>70 ft-lbs</td><td>Grade 5+</td></tr>
       <tr><td>Steering column clamp</td><td>20 ft-lbs</td><td>Grade 5</td></tr>
-      <tr><td>Seat track to floor</td><td>25-35 ft-lbs</td><td>5/16"-18</td></tr>
-      <tr><td>Seat belt anchor bolts</td><td>30 ft-lbs</td><td>Grade 8 ONLY</td></tr>
+      <tr><td>Seat track to floor</td><td>30 ft-lbs (target, all 4)</td><td>5/16"-18</td></tr>
+      <tr><td>Seat belt anchor bolts</td><td>30 ft-lbs</td><td>Grade 8 ONLY (6 radial lines)</td></tr>
       <tr><td>Wheel lug nuts</td><td>85-100 ft-lbs</td><td>Star pattern</td></tr>
-      <tr><td>Dash support to firewall</td><td>Snug + 1/4 turn</td><td>5/16"-18 Grade 5</td></tr>
+      <tr><td>Dash support to firewall</td><td>Snug + 1/4 turn</td><td>5/16"-18 Gr5 (Gr8 for 396/454)</td></tr>
     </table>
+    <div class="warn"><strong>Seat belt bolt verification (safety-critical):</strong> Grade 8 = <strong>6 radial lines</strong> on the bolt head. Grade 5 = 3 radial lines (stretches under crash load, will fail). Wipe the head clean of paint/oil before installing and confirm the marking — Grade 5 bolts look visually similar and are NOT acceptable for occupant restraint.</div>
   </div>
 
   <div class="card">
@@ -6565,7 +6605,8 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="trouble-section"><div class="trouble-label symptom">Symptom</div><p>Oil pressure gauge reads zero, pegged high, or shows wildly inaccurate pressure. Gauge may work on startup then fail.</p></div>
       <div class="trouble-section"><div class="trouble-label cause">Cause</div><p>Using the old GM single-wire sender instead of the Dakota Digital 3-wire electronic sender (SEN-01-5 from the HDX kit, or SEN-03-8 standalone).</p></div>
       <div class="trouble-section"><div class="trouble-label fix">Fix</div><p>Remove old sender. Install the SEN-01-5 (included in HDX kit) or SEN-03-8 (standalone purchase). Connect all 3 wires: signal, power (5V reference), and ground. Use Teflon tape on threads, 3-4 wraps.</p></div>
-      <div class="trouble-section"><div class="trouble-label test">Test</div><p>With engine running at operating temp, oil pressure should read 25-65 PSI at idle. If still zero, verify 5V reference with multimeter at the sender connector.</p></div>
+      <div class="trouble-section"><div class="trouble-label test">Test</div><p>With engine running at operating temp, oil pressure should read 25-65 PSI at idle (20-40 PSI is normal for a stock 396/454 at warm idle). If still zero, verify 5V reference with multimeter at the sender connector.</p></div>
+      <div class="trouble-section"><div class="trouble-label test">Field test (no spare sender)</div><p>Pull the SEN-01-5 from the block. On the workbench, connect a multimeter across the signal and ground pins and warm the sender in a cup of warm (not boiling) water vs. ambient air. If resistance varies between the two temperatures, the sender is functional &mdash; problem is upstream (wiring, 5V feed, Control Box). If resistance stays flat, replace the sender.</p></div>
     </div>
   </div>
 
