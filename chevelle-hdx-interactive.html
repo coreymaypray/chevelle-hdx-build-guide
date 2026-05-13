@@ -6403,6 +6403,71 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="conn-pair"><span class="conn-from">TFT Displays</span><span class="conn-arrow">→</span><span class="conn-to">Choose readouts: RPM, MPH, trip, volts, oil PSI, etc.</span></div>
 </div>
 
+<!-- ===== HDX CALIBRATION CARDS (moved from sec-hdx) ===== -->
+<div class="card" style="border-top:3px solid var(--accent);background:rgba(255,107,43,.04);padding:14px">
+  <h3 style="margin-top:0;color:var(--accent)">🎯 Detailed Calibration Cards</h3>
+  <p style="font-size:13px;color:var(--muted);margin:0">Step-by-step for each calibration parameter. Work through them in order. Tap any card for the full procedure.</p>
+</div>
+
+<div class="card">
+    <h3 style="margin-top:0">Initial Power-On Sequence</h3>
+    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
+      <li>Turn ignition to ON (do NOT start engine)</li>
+      <li>Gauges sweep through self-test — all needles sweep full range and return</li>
+      <li>TFT displays show firmware version briefly</li>
+      <li>Touch the capacitive buttons on the gauge face to enter setup, OR connect via Bluetooth</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Speedometer Calibration</h3>
+    <p><strong>Option A — Manual:</strong> Enter tire diameter (e.g., 26.5" for P235/60R15) + rear axle ratio (e.g., 3.73:1)</p>
+    <p><strong>Option B — GPS (Recommended):</strong></p>
+    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
+      <li>Enter GPS calibration mode in HDX menu</li>
+      <li>Drive at a steady speed on a straight road</li>
+      <li>System compares GPS speed to sensor pulses</li>
+      <li>Auto-calibrates — done</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Fuel Gauge Calibration</h3>
+    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
+      <li>Drive until tank is near empty (fuel light on)</li>
+      <li>Enter calibration mode → Set EMPTY point</li>
+      <li>Fill tank completely at the pump</li>
+      <li>Set FULL point</li>
+      <li>System interpolates all points between</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Tachometer Setup</h3>
+    <p>Enter menu → Set cylinder count: <strong>8</strong> (for 396/454 big block)</p>
+    <p>Verify signal type matches your ignition — points, HEI, or aftermarket</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Backlight Color</h3>
+    <p>30+ colors available. Set via capacitive touch buttons or Dakota Digital Bluetooth app. Color applies to all gauge backlights and TFT displays.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Bluetooth App</h3>
+    <p>Download the Dakota Digital app → Turn ignition ON → Pair via Bluetooth → Full gauge configuration from your phone</p>
+    <div class="note">If Bluetooth won't connect: ensure ignition is ON, forget the device in phone settings and re-pair, update the app to the latest version.</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Dakota Digital Resources</h3>
+    <p><strong>Official Manual:</strong> Dakota Digital #650572B (HDX-70C-CVL.pdf) — download at <strong>dakotadigital.com</strong></p>
+    <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (ribbon cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
+    <p><strong>Bluetooth App:</strong> iOS / Android — "Dakota Digital" by Dakota Digital, Inc.</p>
+    <div class="note">If the kit is old or paperwork is missing, call tech support and give them the cluster serial number — they can look up the original spec sheet, including pulses-per-mile for the speed sensor.</div>
+  </div>
+
+<!-- ===== END HDX CALIBRATION CARDS ===== -->
 
         <div class="tools-needed"><span class="tool-tag">Phone with Dakota Digital app (Bluetooth)</span><span class="tool-tag">Tire pressure gauge</span><span class="tool-tag">Known tire size info</span></div>
         
@@ -6877,68 +6942,16 @@ Lay them all out and identify each piece before routing anything.</div>
 
 <!-- ==================== HDX SETUP ==================== -->
 <div class="section" id="sec-hdx">
-  <h2>Dakota Digital HDX Calibration</h2>
+  <h2>HDX Troubleshooting Reference</h2>
 
-  <div class="card">
-    <h3 style="margin-top:0">Initial Power-On Sequence</h3>
-    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
-      <li>Turn ignition to ON (do NOT start engine)</li>
-      <li>Gauges sweep through self-test — all needles sweep full range and return</li>
-      <li>TFT displays show firmware version briefly</li>
-      <li>Touch the capacitive buttons on the gauge face to enter setup, OR connect via Bluetooth</li>
-    </ol>
+  <div class="card" style="border-top:3px solid var(--accent2);background:rgba(0,180,216,.04);padding:16px;text-align:center">
+    <h3 style="margin-top:0">📦 Calibration Steps Moved to Install Section</h3>
+    <p>The HDX calibration cards (Speedometer, Fuel Gauge, Tachometer, Backlight, Bluetooth, Resources) now live in the <strong>Install section → Phase 15 (HDX Calibration &amp; Setup)</strong>, alongside the Barney step-by-step.</p>
+    <p style="font-size:13px;color:var(--muted)">This section now serves as <strong>HDX Troubleshooting Reference</strong> only — quick lookup for diagnosing gauge issues by symptom.</p>
+    <button onclick="showSection('sec-install');setTimeout(function(){var p=document.getElementById('phase-14');if(p){p.classList.add('open');p.scrollIntoView({behavior:'smooth',block:'start'});}},100);" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px">🎯 Open Install Section → Phase 15</button>
   </div>
 
-  <div class="card">
-    <h3 style="margin-top:0">Speedometer Calibration</h3>
-    <p><strong>Option A — Manual:</strong> Enter tire diameter (e.g., 26.5" for P235/60R15) + rear axle ratio (e.g., 3.73:1)</p>
-    <p><strong>Option B — GPS (Recommended):</strong></p>
-    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
-      <li>Enter GPS calibration mode in HDX menu</li>
-      <li>Drive at a steady speed on a straight road</li>
-      <li>System compares GPS speed to sensor pulses</li>
-      <li>Auto-calibrates — done</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Fuel Gauge Calibration</h3>
-    <ol style="margin:8px 0 0 20px; font-size:14px; line-height:1.8;">
-      <li>Drive until tank is near empty (fuel light on)</li>
-      <li>Enter calibration mode → Set EMPTY point</li>
-      <li>Fill tank completely at the pump</li>
-      <li>Set FULL point</li>
-      <li>System interpolates all points between</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Tachometer Setup</h3>
-    <p>Enter menu → Set cylinder count: <strong>8</strong> (for 396/454 big block)</p>
-    <p>Verify signal type matches your ignition — points, HEI, or aftermarket</p>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Backlight Color</h3>
-    <p>30+ colors available. Set via capacitive touch buttons or Dakota Digital Bluetooth app. Color applies to all gauge backlights and TFT displays.</p>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Bluetooth App</h3>
-    <p>Download the Dakota Digital app → Turn ignition ON → Pair via Bluetooth → Full gauge configuration from your phone</p>
-    <div class="note">If Bluetooth won't connect: ensure ignition is ON, forget the device in phone settings and re-pair, update the app to the latest version.</div>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Dakota Digital Resources</h3>
-    <p><strong>Official Manual:</strong> Dakota Digital #650572B (HDX-70C-CVL.pdf) — download at <strong>dakotadigital.com</strong></p>
-    <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (ribbon cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
-    <p><strong>Bluetooth App:</strong> iOS / Android — "Dakota Digital" by Dakota Digital, Inc.</p>
-    <div class="note">If the kit is old or paperwork is missing, call tech support and give them the cluster serial number — they can look up the original spec sheet, including pulses-per-mile for the speed sensor.</div>
-  </div>
-
-  <h2 style="margin-top:24px">HDX Troubleshooting</h2>
-
+  
   <div class="card" style="cursor:pointer" onclick="this.querySelector('.ts-detail').style.display=this.querySelector('.ts-detail').style.display==='block'?'none':'block'">
     <p style="font-weight:600">Gauges don't power on at all <span class="tag tag-red">No Power</span></p>
     <div class="ts-detail" style="display:none;margin-top:10px">
@@ -7102,8 +7115,15 @@ Lay them all out and identify each piece before routing anything.</div>
 
 <!-- ==================== ENGINE BAY ==================== -->
 <div class="section" id="sec-engine">
-  <h2>Engine Bay — Under-Hood Sensor Installation</h2>
-  <p>Tap any component to see exact install location, thread size, and wiring.</p>
+  <h2>Engine Bay Reference — Interactive Diagram</h2>
+  <p>Tap any component below to see install location, thread size, and wiring summary.</p>
+
+  <div class="card" style="border-top:3px solid var(--accent2);background:rgba(0,180,216,.04);padding:14px;text-align:center">
+    <h3 style="margin-top:0;font-size:15px">📦 Looking for the Full Install Procedure?</h3>
+    <p style="font-size:13px;margin:4px 0 8px">The complete Barney step-by-step for under-hood senders (oil pressure, water temp, speed, tach), with exhaust manifold clearance diagram and substep checklist, lives in the <strong>Install section → Phase 5 (Under-Hood Senders)</strong>.</p>
+    <p style="font-size:12px;color:var(--muted);margin:4px 0 12px">This page is the <strong>interactive reference</strong> — tap sensors below for spec lookup. Use the Install section for the actual build flow.</p>
+    <button onclick="showSection('sec-install');setTimeout(function(){var p=document.getElementById('phase-4');if(p){p.classList.add('open');p.scrollIntoView({behavior:'smooth',block:'start'});}},100);" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer">🔧 Open Install Section → Phase 5</button>
+  </div>
 
   <div class="wire-diagram">
     <svg class="wire-svg" viewBox="0 0 800 650" xmlns="http://www.w3.org/2000/svg">
