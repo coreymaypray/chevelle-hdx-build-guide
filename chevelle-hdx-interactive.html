@@ -1271,7 +1271,7 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> If gauges go completely dark with key ON, check Fuse #7 FIRST &mdash; it&rsquo;s the most common cause.</div>
-    <div class="note"><strong>NOTE:</strong> The HDX PINK wire is NOT part of the AAW harness. You connect it yourself to the GAUGES fuse position. The AAW&rsquo;s own PINK wire also uses this fuse for the stock instrument cluster. Verify with multimeter: 12.4V+ with key ON, 0V with key OFF.</div>
+    <div class="note"><strong>HDX BUILDS:</strong> The AAW PINK wire that originally fed the stock cluster goes UNUSED &mdash; cap it. The HDX has its own PINK wire you tap into the same Fuse #7 (GAUGES) slot independently. Verify with multimeter: 12.4V+ with key ON, 0V with key OFF.</div>
   </div>
 </div>
 
@@ -2525,7 +2525,7 @@ function toggleCollapsible(id) {
     <span class="guide-phase-num">G</span>
     <div>
       <div class="guide-phase-title">Dash Harness Kit &mdash; 510524</div>
-      <div class="guide-phase-sub">26 connections &mdash; fuse panel, switches, instrument cluster, console, rear body</div>
+      <div class="guide-phase-sub">Fuse panel, switches, console NSS, rear body. On HDX builds, the cluster connectors (F/G/H) re-route to the HDX Control Box instead of a factory cluster.</div>
     </div>
     <span class="guide-phase-arrow">&#9658;</span>
   </div>
@@ -2568,10 +2568,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="G-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text">
-        <strong>Emergency Brake Switch</strong>
-        <p>Connect the <strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch. This is a ground circuit that activates the brake warning light in the instrument cluster.</p>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Emergency Brake Switch</strong><p>Connect the <strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch on the parking brake pedal bracket. Ground-trigger circuit.</p><div class="note"><strong>HDX builds:</strong> The brake warning indicator is on the HDX gauge cluster face, not a separate factory bulb. The signal still flows through this AAW wire &mdash; the HDX Control Box reads it through the ribbon cable to the cluster. Wire it the standard AAW way.</div></div>
     </div>
 
     <!-- Step 4 — Headlight Switch -->
@@ -2681,27 +2678,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="G-11"></div>
       <div class="guide-step-num">11</div>
-      <div class="guide-step-content sub-text">
-        <strong>Remaining Dash Connections</strong>
-        <p>Route and connect the remaining wires behind the dash:</p>
-        <table class="circuit-specs">
-          <tr><td>Horn relay</td><td>Connect horn relay lead</td></tr>
-          <tr><td>Radio</td><td><strong style="color:#f0a">PINK</strong> = ignition feed</td></tr>
-          <tr><td>Cigarette Lighter</td><td><strong style="color:#fa0">ORANGE</strong> = fused power</td></tr>
-          <tr><td>RH Courtesy Lamp</td><td><strong style="color:#fa0">ORANGE</strong> + <strong style="color:#e8e8f0">WHITE</strong></td></tr>
-          <tr><td>Heater Resistor</td><td>Connect to blower resistor assembly</td></tr>
-          <tr><td>Glove Box Light</td><td><strong style="color:#fa0">ORANGE</strong> = fused power</td></tr>
-          <tr><td>Heater Lamp</td><td><strong style="color:#999">GRAY</strong> = dash lamp circuit</td></tr>
-          <tr><td>Heater Switch</td><td><strong style="color:#a0522d">BROWN</strong> = ACCY &bull; <strong style="color:#fc0">YELLOW</strong> / <strong style="color:#87ceeb">LT BLUE</strong> / <strong style="color:#fa0">ORANGE</strong> = resistor taps</td></tr>
-          <tr><td>Console Connection</td><td>Mate with console harness (if equipped)</td></tr>
-          <tr><td>T400 Kickdown</td><td><strong style="color:#f0a">PINK</strong> = ignition feed to kickdown switch</td></tr>
-          <tr><td>Neutral Safety Switch</td><td><strong style="color:#9333ea">PURPLE</strong> in / <strong style="color:#9333ea">PURPLE</strong> out</td></tr>
-          <tr><td>Back-Up Switch</td><td><strong style="color:#f0a">PINK</strong> in &rarr; <strong style="color:#90ee90">LT GREEN</strong> out</td></tr>
-          <tr><td>Speedo Ground</td><td><strong style="color:#888">BLACK</strong>/<strong style="color:#e8e8f0">WHITE</strong> &mdash; NOT connected to main ground #9</td></tr>
-          <tr><td>VSS Extension</td><td>Mates with Bag V (Dakota Digital VSS)</td></tr>
-          <tr><td>Accessory Connector</td><td>6 fused circuits for auxiliary accessories</td></tr>
-        </table>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Remaining Dash Connections</strong><p>Route and connect the remaining wires behind the dash for components <strong>your car has</strong>:</p><table class="circuit-specs"><tr><td><strong>Horn relay</strong></td><td>Connect horn relay lead</td></tr><tr><td><strong style="color:#f0a">Radio PINK</strong></td><td>Ignition feed to factory radio shaft mount</td></tr><tr><td><strong style="color:#fa0">Cigarette Lighter ORANGE</strong></td><td>Fused constant 12V to lighter element</td></tr><tr><td><strong>Heater Resistor</strong></td><td>Connect to blower resistor assembly</td></tr><tr><td><strong style="color:#999">Heater Lamp GRAY</strong></td><td>Dash lamp dimmer feeds heater control illumination</td></tr><tr><td><strong style="color:#a0522d">Heater Switch BROWN</strong></td><td>ACCY feed</td></tr><tr><td><strong style="color:#fc0">YELLOW</strong> / <strong style="color:#87ceeb">LT BLUE</strong> / <strong style="color:#fa0">ORANGE</strong></td><td>Heater blower resistor taps (Low/Med/High)</td></tr><tr><td><strong>Console connection</strong></td><td>Mate with console harness</td></tr><tr><td><strong style="color:#f0a">T400 Kickdown PINK</strong></td><td>Ignition feed to transmission kickdown solenoid</td></tr></table><div class="note"><strong>Cut for this build:</strong> RH courtesy lamp (no interior lights) and glove box light (no glove box lamp). Cap and label those AAW wires &mdash; do not connect.</div></div>
     </div>
 
     <!-- Step 12 — Ground -->
@@ -2747,36 +2724,14 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="H-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content sub-text">
-        <strong>Connector F &mdash; Main Instrument Signals</strong>
-        <p>Plug Connector F into its mating connector on the Bag G dash harness. Wires carried:</p>
-        <table class="circuit-specs">
-          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Right Turn Lamp</td></tr>
-          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>Left Turn Lamp</td></tr>
-          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong></td><td>High Beam Lamp</td></tr>
-          <tr><td><strong style="color:#228b22">DARK GREEN</strong></td><td>Temperature Sender</td></tr>
-          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Oil Pressure Sender</td></tr>
-          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Fuel Sender</td></tr>
-          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Brake Warning Lamp</td></tr>
-          <tr><td><strong style="color:#e8e8f0">WHITE</strong> (loose)</td><td>Tachometer &mdash; only if using a tach</td></tr>
-          <tr><td><strong style="color:#a0522d">BROWN</strong> (loose)</td><td>Alternator warning lamp</td></tr>
-        </table>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Connector F &mdash; Main Instrument Signals</strong><p>Attaches at the back of the dash where the stock gauge cluster connector lived.</p><div class="warn"><strong>HDX BUILDS:</strong> Connector F plugs into the <strong>HDX Control Box</strong> (or wires get spliced into the HDX harness) &mdash; NOT into a factory cluster circuit board. AAW wires and pin assignments unchanged; only the destination differs. See HDX-1 for the rerouting overview.</div></div>
     </div>
 
     <!-- Step 2 — Connector G -->
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="H-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content sub-text">
-        <strong>Connector G &mdash; Power, Lamps &amp; Ground</strong>
-        <p>Plug Connector G into its mating connector on the Bag G dash harness. Wires carried:</p>
-        <table class="circuit-specs">
-          <tr><td><strong style="color:#f0a">PINK</strong></td><td>12V Ignition</td></tr>
-          <tr><td><strong style="color:#999">GRAY</strong></td><td>Instrument Lamps (dimmer circuit)</td></tr>
-          <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground &mdash; attach to back of stock gauge cluster assembly</td></tr>
-        </table>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Connector G &mdash; Power, Lamps &amp; Ground</strong><p>Carries 12V power, ground, and dash illumination feeds intended for the stock cluster.</p><div class="warn"><strong>HDX BUILDS:</strong> The HDX Control Box has its own power/ground/dimmer terminals &mdash; see HDX-2 for dedicated routing. The AAW Connector G wires that fed stock cluster bulbs are <strong>not used by the HDX</strong>. The Pink (Fuse #7 GAUGES) and Orange (dimmer) functions are duplicated on the HDX harness; AAW versions can be capped.</div></div>
     </div>
 
     <img src="aaw-diagrams/aaw-bag-h-circuit-board.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag H — Circuit Board Connector Pinout (Gauges vs Warning Lights)">
@@ -2861,10 +2816,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content sub-text">
-        <strong>Oil Pressure Sender &mdash; <strong style="color:#4169e1">DARK BLUE</strong></strong>
-        <p>Connect to the oil pressure sending unit. Use terminal P with sleeve L, OR terminal S with connector R, OR terminal C with connector A &mdash; depending on your sender type.</p>
-        <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX SEN-01-5 (3-wire electronic sender), you will use the HDX sender sub-harness instead of this AAW wire. The AAW <strong style="color:#4169e1">DARK BLUE</strong> wire is for STOCK single-wire GM senders only. See the HDX Integration section.</div>
+      <div class="guide-step-content sub-text"><strong>Oil Pressure Sender &mdash; DARK BLUE</strong><div class="warn"><strong>HDX BUILDS: This wire is NOT USED.</strong> The HDX has its own 3-wire oil pressure sender (Dakota Digital <strong>SEN-01-5</strong>) connecting directly to the HDX Control Box on a separate harness &mdash; not through the AAW dash harness. <strong>Cap and label this AAW DK BLUE wire. Do not connect it.</strong></div><p style="font-size:12px;color:var(--muted)">For HDX sender install: see Install &rarr; Phase 5 (Under-Hood Senders) and HDX-5.</p></div>
     </div>
     </div>
 
@@ -2872,10 +2824,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-5"></div>
       <div class="guide-step-num">5</div>
-      <div class="guide-step-content sub-text">
-        <strong>Water Temp Sender &mdash; <strong style="color:#228b22">DARK GREEN</strong></strong>
-        <p>Route to the water temperature sender and cut to length. Install ring terminal P with sleeve L, or terminal C with connector K depending on your application.</p>
-        <div class="warn"><strong>WARNING:</strong> If using Dakota Digital HDX temp sender, use the HDX sub-harness instead. The AAW <strong style="color:#228b22">DARK GREEN</strong> wire is for stock GM senders only. See the HDX Integration section.</div>
+      <div class="guide-step-content sub-text"><strong>Water Temp Sender &mdash; DARK GREEN</strong><div class="warn"><strong>HDX BUILDS: This wire is NOT USED.</strong> The HDX has its own water temperature sender (1/8" NPT, 2-wire) connecting directly to the HDX Control Box. <strong>Cap and label this AAW DK GREEN wire. Do not connect it.</strong></div><p style="font-size:12px;color:var(--muted)">For HDX sender install: see Install &rarr; Phase 5 (Under-Hood Senders) and HDX-5.</p></div>
     </div>
     </div>
 
@@ -2883,10 +2832,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-6"></div>
       <div class="guide-step-num">6</div>
-      <div class="guide-step-content sub-text">
-        <strong>Heat/Air &mdash; <strong style="color:#fa0">ORANGE</strong></strong>
-        <p>If using aftermarket A/C: this wire is NOT used. If using stock heater only: plug into bulkhead assembly Y, route to heater blower, and terminate with terminal C and connector A.</p>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Heat &mdash; ORANGE (stock heater only)</strong><p>Plug into bulkhead assembly Y, route to the heater blower, and terminate with terminal C and connector A.</p><p style="font-size:12px;color:var(--muted)">Note: this car has stock heat, no factory A/C. The AAW "if using aftermarket A/C" conditional has been trimmed.</p></div>
     </div>
 
     <!-- Step 7 — 12V Ignition -->
@@ -2913,14 +2859,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content sub-text">
-        <strong>Coil / Tach &mdash; <strong style="color:#e8e8f0">WHITE</strong></strong>
-        <p>Route to the coil or distributor and trim to length.</p>
-        <table class="circuit-specs">
-          <tr><td>HEI</td><td>Terminal B and connector F &rarr; plug into TACH location on negative side of coil</td></tr>
-          <tr><td>Points</td><td>Terminal P &rarr; connect to negative side of coil</td></tr>
-        </table>
-        <div class="warn"><strong>WARNING:</strong> Route this wire at least 6 inches away from spark plug wires to prevent EMI (electromagnetic interference).</div>
+      <div class="guide-step-content sub-text"><strong>Coil / Tach &mdash; WHITE</strong><div class="warn"><strong>HDX BUILDS:</strong> The HDX uses its own dedicated tach signal wire that connects directly to the HDX Control Box (see HDX-2 and Phase 5 for HEI TACH terminal or coil-negative routing). <strong>The AAW WHITE wire is redundant on HDX builds &mdash; cap and label it.</strong></div></div>
     </div>
     </div>
 
@@ -3010,39 +2949,9 @@ function toggleCollapsible(id) {
     </p>
 
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="K-1"></div>
-      <div class="guide-step-num">1</div>
-      <div class="guide-step-content sub-text">
-        <strong>Console Rear Courtesy Lamp Extension</strong>
-        <p>Plugs into mating connector at <strong>location 18</strong> on the Bag G dash harness. Snap lamp socket terminals into the original location at the back of the console and install bulb (not included).</p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="K-2"></div>
-      <div class="guide-step-num">2</div>
-      <div class="guide-step-content sub-text">
-        <strong>Manual Transmission</strong>
-        <p>Route the NSS and back-up lamp wires (from Bag G locations <strong>13</strong> and <strong>14</strong>) down to the base of the steering column near the firewall. Trim to length.</p>
-        <ul>
-          <li><strong>NSS:</strong> Connect the two <span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">purple</strong> wires together <em>(1968)</em> &mdash; <strong>OR</strong> crimp terminals <strong>D</strong> into connector <strong>B</strong> and plug into the clutch-operated NSS extension <em>(1969&ndash;72)</em>.</li>
-          <li><strong>Back-up:</strong> Crimp terminals <strong>C</strong> onto the <span style="color:#f0a">&#9632;</span> <strong style="color:#f0a">pink</strong> and <span style="color:#90ee90">&#9632;</span> <strong style="color:#90ee90">light green</strong> wires, plug into connector <strong>A</strong>, then plug onto the column-mounted back-up switch.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="K-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text">
-        <strong>Console-Shifted Automatic Transmission</strong>
-        <p>Plug the <span style="color:#999">&#9632;</span> <strong style="color:#999">gray</strong> wire from the shifter light harness into the console courtesy lamp extension. Ground ring terminals to the floor in the stock location. Plug into mating connector at <strong>location 18</strong> on Bag G.</p>
-        <ul>
-          <li><strong>NSS Extension:</strong> Plug the 90&deg; 2-position connector (<span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">purple</strong> wires) onto the NSS connection on the shifter.</li>
-          <li><strong>Back-up Extension:</strong> Plug the 90&deg; single connectors (<span style="color:#f0a">&#9632;</span> <strong style="color:#f0a">pink</strong> and <span style="color:#90ee90">&#9632;</span> <strong style="color:#90ee90">light green</strong>) onto the back-up connections on the shifter.</li>
-        </ul>
-        <p>Route the NSS and back-up wires from Bag G down to the shifter extensions, trim to length, crimp and connect.</p>
-      </div>
+      <div class="guide-step-content sub-text"><strong>Console-Shifted Automatic &mdash; Neutral Safety Switch (NSS)</strong><p><strong>NSS Extension</strong> (required &mdash; car won't start without it):</p><p>Plug the 90&deg; 2-position connector (<strong style="color:#9333ea">purple</strong> wires) onto the NSS connection on the console shifter assembly. Safety interlock allows starter only in Park or Neutral.</p><div class="note"><strong>Trimmed for this build:</strong> AAW K-3 also covers shifter illumination and back-up lamp extension. <strong>Both removed</strong> &mdash; no interior lights, no back-up lamps. Cap the gray shifter-light wire and the pink/light-green back-up extension wires.</div></div>
     </div>
   </div>
 </div>
@@ -3146,17 +3055,6 @@ function toggleCollapsible(id) {
     </div>
 
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="L-9"></div>
-      <div class="guide-step-num">9</div>
-      <div class="guide-step-content sub-text">
-        <strong>Electric Fan &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
-        <p style="background:rgba(227,51,51,0.08);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;">
-          <strong>WARNING:</strong> Use this wire as the <strong>TRIGGER</strong> wire for an electric fan relay &mdash; not as direct power.
-        </p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="L-10"></div>
       <div class="guide-step-num">10</div>
       <div class="guide-step-content sub-text">
@@ -3212,15 +3110,6 @@ function toggleCollapsible(id) {
           <li><strong>T</strong> (RH) &mdash; with <span style="color:#228b22">&#9632;</span> <strong style="color:#228b22">dark green</strong> wire</li>
         </ul>
         <p>These plug into the <strong>RB</strong> connection.</p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="M-3"></div>
-      <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text">
-        <strong>Third Brake Light &mdash; <span style="color:#87ceeb">&#9632;</span> Light Blue</strong>
-        <p>Connect to the third brake lamp (if equipped).</p>
       </div>
     </div>
 
@@ -3282,84 +3171,10 @@ function toggleCollapsible(id) {
         <p>Route through grommet <strong>A</strong> to the RH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
       </div>
     </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="M-9"></div>
-      <div class="guide-step-num">9</div>
-      <div class="guide-step-content sub-text">
-        <strong>Back-up Lamps &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
-        <p>Route through grommet <strong>A</strong>, split to:</p>
-        <ul>
-          <li>LH tail lamp connection &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
-          <li>RH tail lamp connection &mdash; terminal <strong>D</strong>, connector <strong>K</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="M-10"></div>
-      <div class="guide-step-num">10</div>
-      <div class="guide-step-content sub-text">
-        <strong>Courtesy Ground &mdash; <span style="color:#e8e8f0">&#9632;</span> White &nbsp;+&nbsp; Courtesy Lamp &mdash; <span style="color:#fa0">&#9632;</span> Orange</strong>
-        <p>At the driver side kick panel, cut and double each wire with terminal <strong>D</strong> into connector <strong>E</strong> (mates with Bag N courtesy kit).</p>
-        <p><em>If using a dome lamp:</em> Route the loose ends to the front A-pillar at the windshield area, terminal <strong>J</strong> into connector <strong>F</strong>.</p>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- BAG N — Courtesy Light Kit -->
-<div class="guide-phase">
-  <div class="guide-phase-header" onclick="this.parentElement.classList.toggle('open')">
-    <span class="guide-phase-num">N</span>
-    <div>
-      <div class="guide-phase-title">Courtesy Light Kit &mdash; 500708</div>
-      <div class="guide-phase-sub">Door jamb switches + underdash courtesy lamps</div>
-    </div>
-    <span class="guide-phase-arrow">&#9658;</span>
-  </div>
-  <div class="guide-phase-body">
-    <div class="kit-bag">
-      <div class="kit-bag-title">What You Need</div>
-      <div class="kit-bag-contents">AAW Bag N (500708 Courtesy Light Kit), #631 bulbs (not included)</div>
-    </div>
 
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="N-1"></div>
-      <div class="guide-step-num">1</div>
-      <div class="guide-step-content sub-text">
-        <strong>Plug In Courtesy Light Jumpers</strong>
-        <p>Plug the courtesy light jumpers into their respective connections after the <strong>Bag G</strong> dash harness and <strong>Bag M</strong> rear body harness are installed.</p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="N-2"></div>
-      <div class="guide-step-num">2</div>
-      <div class="guide-step-content sub-text">
-        <strong>Right Hand Courtesy</strong>
-        <p>The RH courtesy lamp connection is always part of the <strong>Bag G</strong> dash harness. Plug the RH jumper into the mating connector.</p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="N-3"></div>
-      <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text">
-        <strong>Left Hand Courtesy (1964&ndash;72 Chevelle)</strong>
-        <p>For Chevelle: The LH connection is built into the <strong>Bag M</strong> rear body harness (not the dash harness). A female terminal for the stock driver side door jamb switch is included as a loose piece.</p>
-      </div>
-    </div>
-
-    <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
-      <div class="sub-check" data-phase="1-aaw" data-step="N-4"></div>
-      <div class="guide-step-num">4</div>
-      <div class="guide-step-content sub-text">
-        <strong>Install Courtesy Lamp Assemblies</strong>
-        <p>Snap the lamp sockets into the original underdash locations. Install #631 bulbs (purchase separately from an auto parts store).</p>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- BAG V — VSS Connection Kit -->
