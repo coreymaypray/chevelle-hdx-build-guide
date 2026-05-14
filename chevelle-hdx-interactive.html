@@ -854,7 +854,7 @@
   <div id="info-oil" class="gauge-info">
     <h3 style="margin-top:0">Oil Pressure</h3>
     <p><span class="tag tag-orange">HDX Analog Sweep</span> <span class="tag tag-red">Critical Sender</span></p>
-    <p><strong>Sender:</strong> SEN-01-5 (3-wire electronic), 1/8" NPT thread</p>
+    <p><strong>Sender:</strong> SEN-03-8 (3 wires + bare shield, 1/8" NPT, 0-100 PSI solid-state)</p>
     <p><strong>Location:</strong> Engine block oil gallery port (where factory sender was)</p>
     <table>
       <tr><th>Wire</th><th>Color</th><th>Connection</th></tr>
@@ -863,7 +863,7 @@
       <tr><td>Ground</td><td style="color:#888">Black</td><td>Engine block / chassis</td></tr>
     </table>
     <div class="warn">This is a 3-wire sender — NOT the old single-wire GM type. Do not reuse the factory sender. Use Teflon tape, hand-tight + 1/4 turn only.</div>
-    <div class="note">Part number: SEN-01-5 comes included in the HDX kit. If ordering separately (replacement), the standalone part number is SEN-03-8. Same sender, different kit packaging.</div>
+    <div class="note">Part number: <strong>SEN-03-8</strong> oil pressure sender ships in the HDX kit (Dakota Digital MAN 650542H p.10). Do not confuse with SEN-01-5 (speed sensor, MAN 650542H p.9). Standalone replacement part number is the same: SEN-03-8.</div>
   </div>
 
   <div id="info-temp" class="gauge-info">
@@ -1426,7 +1426,7 @@
       <!-- Sender -->
       <line x1="105" y1="80" x2="130" y2="80" stroke="#4169e1" stroke-width="2" marker-end="url(#arrow-oil)"/>
       <rect x="135" y="55" width="100" height="50" rx="8" fill="#1a1d27" stroke="#4169e1" stroke-width="1.5"/>
-      <text x="185" y="72" text-anchor="middle" fill="#e8e8f0" font-size="11" font-family="sans-serif">SEN-01-5</text>
+      <text x="185" y="72" text-anchor="middle" fill="#e8e8f0" font-size="11" font-family="sans-serif">SEN-03-8</text>
       <text x="185" y="88" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">3-Wire Sender</text>
       <!-- Firewall -->
       <line x1="290" y1="8" x2="290" y2="152" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
@@ -1455,7 +1455,7 @@
     <h4>Route Step-by-Step</h4>
     <ol>
       <li>Engine block, driver side, mid-height &mdash; oil gallery port (where factory sender was)</li>
-      <li>Remove old single-wire sender. Install Dakota Digital <strong>SEN-01-5</strong> (1/8&quot; NPT threads)</li>
+      <li>Remove old single-wire sender. Install Dakota Digital <strong>SEN-03-8</strong> oil pressure sender (1/8&quot; NPT, 0-100 PSI)</li>
       <li>Apply Teflon tape to threads, hand-tight + 1/4 turn only</li>
       <li>Connect 3 wires: <strong>WHITE</strong>=Signal, <strong>RED</strong>=5V Power, <strong>BLACK</strong>=Ground</li>
       <li>Route through firewall grommet (away from exhaust manifold!)</li>
@@ -1472,7 +1472,7 @@
       <tr><td>Thread</td><td>1/8&quot; NPT</td></tr>
     </table>
 
-    <div class="warn"><strong>WARNING:</strong> You MUST use the Dakota Digital SEN-01-5 (3-wire) sender. The old GM single-wire sender will NOT work with HDX. If oil reads zero with engine running, wrong sender is the #1 cause.</div>
+    <div class="warn"><strong>WARNING:</strong> You MUST use the Dakota Digital SEN-03-8 (3-wire + bare shield) sender. The old GM single-wire sender will NOT work with HDX. If oil reads zero with engine running, wrong sender is the #1 cause.</div>
     <div class="note"><strong>NOTE:</strong> Route sensor wires <strong>at least 3-4 inches</strong> away from the exhaust manifold. If clearance is tighter (common on big-block 396/454 with stock manifolds), wrap the affected harness section in <strong>DEI Titanium Wrap</strong> or equivalent heat-reflective sleeve &mdash; radiant heat dry-cracks insulation in a single season otherwise. Zip-tie to existing harness bundles for routing. Do not over-tighten sender or you&rsquo;ll crack the block port.</div>
   </div>
 </div>
@@ -1632,8 +1632,8 @@
       <li>Existing fuel tank sending unit (keep factory sender &mdash; no replacement needed)</li>
       <li>Signal wire connects to AAW rear body harness, Bag M</li>
       <li>Bag M routes under carpet along driver rocker panel</li>
-      <li>Through to AAW fuse panel, Fuse #9 (FUEL, 10A)</li>
-      <li>From fuse panel &rarr; HDX Control Box <strong>FUEL</strong> terminal</li>
+      <li>Twisted pair DIRECT from tank sender to Control Box FUEL INPUT-SIG and FUEL INPUT-GND (Dakota Digital MAN 650542H p.11). Fuel sender is unpowered &mdash; do NOT route through a fuse</li>
+      <li>Direct to HDX Control Box <strong>FUEL INPUT-SIG</strong> (signal) and <strong>FUEL INPUT-GND</strong> (separate ground) &mdash; twisted pair, no fuse</li>
     </ol>
 
     <table class="circuit-specs">
@@ -1878,7 +1878,7 @@
   </div>
   <div class="collapsible-body" id="ref-photos-section" style="display:none">
     <img src="behind-dash-reference.jpg" style="width:100%;border-radius:8px;margin:8px 0" alt="Behind the dash — AAW fuse panel, steering column, HDX Control Box">
-    <p style="font-size:12px;color:var(--muted);text-align:center">Reference: Behind-the-dash layout &mdash; AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with ribbon cable (right), heater box (far right)</p>
+    <p style="font-size:12px;color:var(--muted);text-align:center">Reference: Behind-the-dash layout &mdash; AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with 8-pin display cable (right), heater box (far right)</p>
     <img src="dash-reference.jpg" style="width:100%;border-radius:8px;margin:8px 0" alt="Dashboard overview">
     <img src="dash-reference-closeup.jpg" style="width:100%;border-radius:8px;margin:8px 0" alt="Dashboard closeup">
   </div>
@@ -2205,7 +2205,7 @@ function toggleCollapsible(id) {
     <text x="395" y="58" text-anchor="middle" fill="#e8e8f0" font-size="11" font-weight="600">HDX-70C-CVL Gauge Kit</text>
     <text x="395" y="71" text-anchor="middle" fill="#10b981" font-size="8">(Digital Gauge System)</text>
     <text x="395" y="86" text-anchor="middle" fill="#8b8fa3" font-size="9">HDX gauge cluster display</text>
-    <text x="395" y="99" text-anchor="middle" fill="#8b8fa3" font-size="9">Control Box + ribbon cable</text>
+    <text x="395" y="99" text-anchor="middle" fill="#8b8fa3" font-size="9">Control Box + 8-pin display cable</text>
     <text x="395" y="112" text-anchor="middle" fill="#8b8fa3" font-size="9">3 sender harnesses (10ft each)</text>
     <text x="395" y="125" text-anchor="middle" fill="#8b8fa3" font-size="9">Oil, Temp, Speed sensors</text>
     <text x="395" y="145" text-anchor="middle" fill="#10b981" font-size="9" font-weight="600">→ Phase 5: Under-Hood</text>
@@ -2520,7 +2520,7 @@ function toggleCollapsible(id) {
 
   <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Fuse Panel — Layout (Position Map)</p>
   <img src="aaw-diagrams/aaw-fuse-panel-layout.png" alt="AAW Fuse Panel Layout" style="width:100%;border-radius:8px;background:#fff">
-  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">18-position panel. <strong>HDX-critical:</strong> Fuse #7 GAUGES (10A) feeds the HDX pink wire (switched 12V). Fuse #8 CLOCK (5A) feeds the HDX red wire (constant 12V). Fuse #9 FUEL (15A) feeds the tank sender.</p>
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">18-position panel. <strong>HDX power feeds (per Dakota Digital MAN 650542H): the HDX RED constant-12V wire taps any battery-hot fuse position rated 5-20A (CLOCK is a common choice); HDX PINK switched-12V taps any accessory fuse 5-20A (GAUGES is typical). Verify fuse positions on the AAW panel&apos;s printed legend &mdash; layouts have changed across 510105 revisions. <strong>Fuel sender does NOT route through a fuse</strong> &mdash; per MAN 650542H p.11, run a twisted pair direct from tank sender to Control Box FUEL INPUT-SIG and FUEL INPUT-GND.</p>
 
   <div style="margin-top:14px;padding:12px;background:rgba(0,180,216,.08);border-radius:8px;border-left:3px solid var(--accent2)">
     📚 <strong>Deep dive:</strong> Tap to open the full <a href="#sec-wiring" onclick="showSection('sec-wiring');event.preventDefault();return false;" style="color:var(--accent);text-decoration:underline;font-weight:600">Wiring Guide section</a> for bag-by-bag (G→H→J→K→L→M→N→V→Z) install steps, individual circuit cards with routing, and behind-dash reference photos.
@@ -2546,7 +2546,7 @@ function toggleCollapsible(id) {
     <span class="guide-phase-num">G</span>
     <div>
       <div class="guide-phase-title">Dash Harness Kit &mdash; 510524</div>
-      <div class="guide-phase-sub">Fuse panel, switches, console NSS, rear body. On HDX builds, the cluster connectors (F/G/H) re-route to the HDX Control Box instead of a factory cluster.</div>
+      <div class="guide-phase-sub">Fuse panel, switches, console NSS, rear body. On HDX builds the factory printed-circuit cluster is discarded entirely &mdash; the AAW Connector F/G/H disconnect terminates at empty since the HDX uses its own 8-pin display cable.</div>
     </div>
     <span class="guide-phase-arrow">&#9658;</span>
   </div>
@@ -2589,7 +2589,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="G-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text"><strong>Emergency Brake Switch</strong><p>Connect the <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch on the parking brake pedal bracket. Ground-trigger circuit.</p><div class="note"><strong>HDX builds:</strong> The brake warning indicator is on the HDX gauge cluster face, not a separate factory bulb. The signal still flows through this AAW wire &mdash; the HDX Control Box reads it through the ribbon cable to the cluster. Wire it the standard AAW way.</div></div>
+      <div class="guide-step-content sub-text"><strong>Emergency Brake Switch</strong><p>Connect the <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch on the parking brake pedal bracket. Ground-trigger circuit.</p><div class="note"><strong>HDX builds:</strong> The brake warning indicator is on the HDX gauge cluster face, not a separate factory bulb. The signal still flows through this AAW wire &mdash; the HDX Control Box reads it through the 8-pin display cable to the cluster. Wire it the standard AAW way.</div></div>
     </div>
 
     <!-- Step 4 — Headlight Switch -->
@@ -2745,14 +2745,14 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="H-1"></div>
       <div class="guide-step-num">1</div>
-      <div class="guide-step-content sub-text"><strong>Connector F &mdash; Main Instrument Signals</strong><p>Attaches at the back of the dash where the stock gauge cluster connector lived.</p><div class="warn"><strong>HDX BUILDS:</strong> Connector F plugs into the <strong>HDX Control Box</strong> (or wires get spliced into the HDX harness) &mdash; NOT into a factory cluster circuit board. AAW wires and pin assignments unchanged; only the destination differs. See HDX-1 for the rerouting overview.</div></div>
+      <div class="guide-step-content sub-text"><strong>Connector F &mdash; Main Instrument Signals</strong><p>Attaches at the back of the dash where the stock gauge cluster connector lived.</p><div class="warn"><strong>HDX BUILDS</strong> (per Dakota Digital MAN 650542H p.6 + MAN 650572B): The AAW gauge-cluster-disconnect interfaces with the FACTORY printed-circuit-board cluster. On HDX builds the factory PCB is <strong>discarded</strong> (per 650572B Step 2/4). The HDX gauge cluster connects to the Control Box via its own <strong>8-pin round display cable (~3 ft)</strong>, NOT via AAW Connector F. The AAW Connector F wires either get (a) abandoned and capped, or (b) repurposed as discrete signal sources to the Control Box indicator inputs (turn signals -> LEFT/RIGHT, high beam -> HIGH, brake -> BRAKE).</div></div>
     </div>
 
     <!-- Step 2 — Connector G -->
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="H-2"></div>
       <div class="guide-step-num">2</div>
-      <div class="guide-step-content sub-text"><strong>Connector G &mdash; Power, Lamps &amp; Ground</strong><p>Carries 12V power, ground, and dash illumination feeds intended for the stock cluster.</p><div class="warn"><strong>HDX BUILDS:</strong> The HDX Control Box has its own power/ground/dimmer terminals &mdash; see HDX-2 for dedicated routing. The AAW Connector G wires that fed stock cluster bulbs are <strong>not used by the HDX</strong>. The Pink (Fuse #7 GAUGES) and Orange (dimmer) functions are duplicated on the HDX harness; AAW versions can be capped.</div></div>
+      <div class="guide-step-content sub-text"><strong>Connector G &mdash; Power, Lamps &amp; Ground</strong><p>Carries 12V power, ground, and dash illumination feeds intended for the stock cluster.</p><div class="warn"><strong>HDX BUILDS</strong> (per Dakota Digital MAN 650542H): The HDX Control Box has its own dedicated terminal block (12V CONSTANT, IGNITION PWR, GND, DIM, sensors, indicator inputs) &mdash; see HDX-2. The AAW Connector G wires that originally fed the stock cluster bulbs and lamps are <strong>not used by the HDX cluster itself</strong> &mdash; cap and label them. You separately wire the HDX&apos;s own RED/PINK/BLACK/ORANGE pigtails to AAW fuse panel positions you verify on its printed legend (typical: any battery-hot 5-20A for RED, any accessory 5-20A for PINK).</div></div>
     </div>
 
     <img src="aaw-diagrams/aaw-bag-h-circuit-board.png" style="width:100%;border-radius:8px;margin:12px 0" alt="Bag H — Circuit Board Connector Pinout (Gauges vs Warning Lights)">
@@ -2837,7 +2837,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-4"></div>
       <div class="guide-step-num">4</div>
-      <div class="guide-step-content sub-text"><strong>Oil Pressure Sender &mdash; DARK BLUE</strong><div class="warn"><strong>HDX BUILDS: This wire is NOT USED.</strong> The HDX has its own 3-wire oil pressure sender (Dakota Digital <strong>SEN-01-5</strong>) connecting directly to the HDX Control Box on a separate harness &mdash; not through the AAW dash harness. <strong>Cap and label this AAW DK BLUE wire. Do not connect it.</strong></div><p style="font-size:12px;color:var(--muted)">For HDX sender install: see Install &rarr; Phase 5 (Under-Hood Senders) and HDX-5.</p></div>
+      <div class="guide-step-content sub-text"><strong>Oil Pressure Sender &mdash; DARK BLUE</strong><div class="warn"><strong>HDX BUILDS: This wire is NOT USED.</strong> The HDX has its own oil pressure sender, <strong>Dakota Digital SEN-03-8</strong> (3 wires + bare shield, 0-100 PSI solid-state per MAN 650542H p.10), connecting directly to the HDX Control Box on a separate harness &mdash; not through the AAW dash harness. <strong>Cap and label this AAW DK BLUE wire. Do not connect it.</strong></div><p style="font-size:12px;color:var(--muted)">For HDX sender install: see Install &rarr; Phase 5 (Under-Hood Senders) and HDX-5.</p></div>
     </div>
     </div>
 
@@ -2880,7 +2880,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="J-9"></div>
       <div class="guide-step-num">9</div>
-      <div class="guide-step-content sub-text"><strong>Coil / Tach &mdash; WHITE</strong><div class="warn"><strong>HDX BUILDS:</strong> The HDX uses its own dedicated tach signal wire that connects directly to the HDX Control Box (see HDX-2 and Phase 5 for HEI TACH terminal or coil-negative routing). <strong>The AAW WHITE wire is redundant on HDX builds &mdash; cap and label it.</strong></div></div>
+      <div class="guide-step-content sub-text"><strong>Coil / Tach &mdash; WHITE</strong><div class="warn"><strong>HDX BUILDS:</strong> The HDX uses its own dedicated tach signal wire connecting directly to the HDX Control Box TACH terminal (HEI TACH terminal OR coil negative; never positive). The AAW WHITE wire is redundant &mdash; cap and label.<br><strong>NEVER use solid-core spark plug wires</strong> with the HDX (MAN 650542H p.7) &mdash; EMI from solid-core wires destroys the tach signal. Use spiral-wound or carbon-core suppression wires only. <strong>Do not route the tach wire alongside any other sensor or input wires</strong> &mdash; keep it isolated to prevent EMI bleed (MAN 650542H p.7).</div></div>
     </div>
     </div>
 
@@ -3398,15 +3398,15 @@ function toggleCollapsible(id) {
     </div>
     </div>
 
-    <!-- Step 4 — Ribbon Cable -->
+    <!-- Step 4 — 8-pin Display Cable -->
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="HDX-4"></div>
       <div class="guide-step-num">4</div>
       <div class="guide-step-content sub-text">
-        <strong>Ribbon Cable &mdash; Control Box to Gauge Cluster</strong>
-        <p>Route the flat ribbon cable from the HDX Control Box to the HDX gauge cluster behind the steering column.</p>
+        <strong>8-pin Display Cable &mdash; Control Box to Gauge Cluster</strong>
+        <p>Route the flat 8-pin display cable from the HDX Control Box to the HDX gauge cluster behind the steering column.</p>
         <table class="circuit-specs">
-          <tr><td>Min bend radius</td><td>1 inch &mdash; kinking kills the cable</td></tr>
+          <tr><td>Mount Control Box</td><td>Away from HEI/coil (MAN 650542H p.4) &mdash; EMI from ignition</td></tr>
           <tr><td>Repairable?</td><td style="color:var(--red);font-weight:700">NO &mdash; if damaged, must replace entire cable</td></tr>
         </table>
         <div class="warn"><strong>CONNECT RIBBON BEFORE POWER WIRES.</strong> Route gently behind column. Zip-tie loosely &mdash; do not pinch.</div>
@@ -3421,11 +3421,11 @@ function toggleCollapsible(id) {
         <strong>HDX Senders Replace AAW Stock Sender Wires</strong>
         <p>The HDX system uses its own electronic senders that connect directly to the HDX Control Box &mdash; NOT through the AAW harness wires. The AAW engine bay wires for these signals are NOT USED:</p>
         <table class="circuit-specs">
-          <tr><td>Oil Pressure</td><td>AAW <span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX SEN-01-5 (3-wire: White=SIG, Red=5V, Black=GND) connects directly to HDX Control Box OIL terminal</td></tr>
+          <tr><td>Oil Pressure</td><td>AAW <span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX SEN-03-8 (3 wires + bare shield: WHITE=SIG, RED=5V PWR, BLACK=GND, bare=DRN) connects directly to HDX Control Box OIL terminal</td></tr>
           <tr><td>Water Temp</td><td>AAW <span class="wire-color" style="background:#228b22"></span><strong style="color:#228b22">DARK GREEN</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX temp sender (2-wire) connects directly to HDX Control Box TEMP terminal</td></tr>
           <tr><td>Speed</td><td>AAW VSS (Bag V) &rarr; <strong>STILL USED</strong> &mdash; connects through Connector H to HDX Control Box SPEED terminal</td></tr>
           <tr><td>Tachometer</td><td>AAW <strong style="color:#e8e8f0">WHITE</strong> wire (coil/tach) &rarr; Can be used OR HDX tach wire can connect directly to HEI TACH terminal</td></tr>
-          <tr><td>Fuel Level</td><td>AAW <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender signal routes through Fuse #9 (FUEL, 15A) to HDX FUEL terminal</td></tr>
+          <tr><td>Fuel Level</td><td>AAW <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender connects via <strong>twisted pair direct to Control Box FUEL INPUT-SIG and FUEL INPUT-GND</strong> per MAN 650542H p.11 (fuel is an unpowered signal &mdash; no fuse)</td></tr>
         </table>
         <div class="warn"><strong>CRITICAL:</strong> Cap and secure any unused AAW sender wires in the engine bay. Do NOT leave bare wire ends exposed near engine heat.</div>
     </div>
@@ -3556,7 +3556,7 @@ function toggleCollapsible(id) {
     <!-- Yellow: Fuel → along rocker → forward to dash -->
     <path d="M680,210 L600,220 L500,225 L400,220 L310,200 L295,192" fill="none" stroke="#fd0" stroke-width="1.5" stroke-dasharray="4,2"/>
 
-    <!-- Gray: Ribbon cable Control Box → Gauges -->
+    <!-- Gray: 8-pin display cable Control Box → Gauges -->
     <path d="M470,148 L490,137" fill="none" stroke="#888" stroke-width="4" opacity=".5"/>
 
     <!-- Zip tie indicators -->
@@ -3594,7 +3594,7 @@ function toggleCollapsible(id) {
 • <strong>AAW Engine Kit</strong> (Bag J) — all engine bay wires, bulkhead connector, alternator, coil, wiper motor.<br>
 • <strong>AAW Fuse Panel</strong> (500707) — 18-fuse panel, mounts behind dash driver side.<br>
 • <strong>HDX Sender Sub-harnesses</strong> — 3 x 10ft long. Oil pressure, water temp, speed sensor. Route from engine bay through firewall to Control Box.<br>
-• <strong>HDX Ribbon Cable</strong> — short flat cable, Control Box → Gauge Cluster.<br>
+• <strong>HDX 8-pin display cable</strong> — round multi-conductor cable (~3 ft, MAN 650542H p.6), Control Box → Gauge Cluster.<br>
 Lay them all out and identify each piece before routing anything.</div>
     
         </div>
@@ -3907,22 +3907,22 @@ Lay them all out and identify each piece before routing anything.</div>
 
 <div class="card" style="border-top:3px solid var(--accent2);background:rgba(0,180,216,.04)">
   <h4 style="margin-top:0;color:var(--accent2)">📋 Barney Step-by-Step</h4>
-  <p><strong>Goal:</strong> Mount the HDX Control Box behind the dash, plug it into the gauge cluster with the ribbon cable, hook up four power/ground wires, and physically install the SS dash assembly into the support bracket. <strong>This is the phase where most people make a mistake that takes hours to find later.</strong> Go slow.</p>
+  <p><strong>Goal:</strong> Mount the HDX Control Box behind the dash, plug it into the gauge cluster with the 8-pin display cable, hook up four power/ground wires, and physically install the SS dash assembly into the support bracket. <strong>This is the phase where most people make a mistake that takes hours to find later.</strong> Go slow.</p>
   <p><strong>Before you touch the kit:</strong></p>
   <ol style="margin:4px 0 0 20px;line-height:1.7">
     <li>Battery is disconnected at the negative terminal &mdash; verify with a test light.</li>
     <li>Dash support is fully torqued (Phase 3 done) and ground-tested &lt; 0.5 ohms to battery negative.</li>
     <li>AAW harness is routed but not final-taped, so you can move it.</li>
-    <li>Unbox the HDX cluster on a clean surface &mdash; <strong>do NOT bend the ribbon cable</strong>. Minimum bend radius is 1 inch.</li>
+    <li>Unbox the HDX cluster on a clean surface &mdash; fully seat the connectors at both ends. Mount the Control Box away from HEI/coil &mdash; ignition EMI is the real concern (MAN 650542H p.4).</li>
     <li>Have on hand: multimeter, test light, 1/4" drill + bit, self-tapping screws or stand-offs for the Control Box, zip ties, sharpie.</li>
   </ol>
   <p style="margin-top:10px"><strong>Wire-by-wire order (do them ALL before powering on):</strong></p>
   <ol style="margin:4px 0 0 20px;line-height:1.7">
-    <li><strong>RED</strong> (constant 12V) &rarr; Fuse Panel <strong>#8 CLOCK</strong> position (5A, battery-hot). With a test light: 12V key OFF AND key ON.</li>
-    <li><strong>PINK</strong> (switched 12V) &rarr; Fuse Panel <strong>#7 GAUGES</strong> position (10A, ignition-hot). With test light: 0V key OFF, 12V key ON.</li>
+    <li><strong>RED</strong> (constant 12V) &rarr; any battery-hot fuse position rated 5-20A on the AAW panel &mdash; verify the position on the panel's printed legend (the CLOCK position is typically a good choice, but AAW 510105 fuse layouts have changed across revisions). With a test light: 12V key OFF AND key ON.</li>
+    <li><strong>PINK</strong> (switched 12V) &rarr; any accessory/ignition fuse position rated 5-20A on the AAW panel &mdash; the GAUGES position is the typical choice. Verify on the panel's printed legend. With test light: 0V key OFF, 12V key ON.</li>
     <li><strong>BLACK</strong> (ground) &rarr; <strong>Dedicated 18 AWG run to a clean dash-frame bolt, star washer, bare metal</strong>. Do NOT share this ground with anything else &mdash; this is the gauge jitter killer.</li>
-    <li><strong>ORANGE</strong> (dimmer) &rarr; Headlight switch rheostat output via AAW 520001 dimmer kit. Routes through grey wire.</li>
-    <li><strong>Ribbon cable</strong> &rarr; Plug into HDX Control Box AND gauge cluster &mdash; both ends seated, no creases, no kinks. Bend radius 1" minimum.</li>
+    <li><strong>ORANGE</strong> (dimmer) &rarr; +12V tap from the tail/parking-light circuit (active when headlights are ON). <strong>This is a digital on/off &quot;night mode&quot; trigger, NOT a variable brightness control.</strong> For continuously variable brightness, install the optional Dakota Digital <strong>DIM-1</strong> kit (P/N 650057) wired to separate DIM ADJ-SIG and DIM ADJ-GND terminals &mdash; a stock headlight rheostat will not work (MAN 650542H p.12, p.15).</li>
+    <li><strong>8-pin display cable</strong> &rarr; Plug into HDX Control Box AND gauge cluster &mdash; both ends seated, no creases, no kinks. Mount the Control Box well away from HEI/coil &mdash; ignition components emit massive EMI (MAN 650542H p.4).</li>
     <li>All sensor connectors (oil, temp, speed, fuel, tach) &rarr; mate to AAW harness ends. They're keyed and labeled.</li>
   </ol>
   <p style="margin-top:10px"><strong>Done when:</strong></p>
@@ -3930,14 +3930,14 @@ Lay them all out and identify each piece before routing anything.</div>
     <li>Control Box is mounted with screws or stand-offs (NOT zip ties alone) somewhere reachable for future service &mdash; behind glove box is ideal</li>
     <li>All 4 power wires fused correctly and verified with multimeter</li>
     <li>Dedicated ground wire reads &lt; 0.5 ohms to battery negative with a multimeter</li>
-    <li>Ribbon cable has zero kinks or sharp bends &mdash; gentle curves only</li>
+    <li>8-pin display cable has zero kinks or sharp bends &mdash; gentle curves only</li>
     <li>SS dash face is mounted to the support bracket with 6× 7/16" hex bolts, backing plate installed</li>
     <li>Dash pad is on with all 4 spring clips engaged (you'll hear them click)</li>
   </ul>
   <p style="margin-top:10px;color:var(--red)"><strong>Don't:</strong></p>
   <ul style="margin:4px 0 0 20px;line-height:1.7">
     <li>Reconnect the battery yet &mdash; that happens in Phase 6 (Power-On Test)</li>
-    <li>Bend the ribbon cable sharper than a 1" radius &mdash; it'll crack the traces inside and the gauges will go dark intermittently</li>
+    <li>Bend the 8-pin display cable sharper than a 1" radius &mdash; it'll crack the traces inside and the gauges will go dark intermittently</li>
     <li>Bond the HDX ground to the engine block, starter, or audio amp &mdash; <strong>dedicated dash-frame bolt only</strong></li>
     <li>Swap RED and PINK &mdash; reversed power kills memory settings every key-off (Top 10 Gotcha #5)</li>
     <li>Mount the Control Box behind the glove box opening if it'll block glove box function &mdash; check fit before drilling</li>
@@ -3959,7 +3959,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <line x1="240" y1="100" x2="240" y2="60" stroke="#a855f7" stroke-width="3"/>
     <rect x="160" y="30" width="160" height="30" rx="4" fill="#1a1d27" stroke="#a855f7" stroke-width="2"/>
     <text x="240" y="50" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="700">HDX GAUGE CLUSTER</text>
-    <text x="270" y="80" fill="#a855f7" font-size="9" font-weight="700">Ribbon cable</text>
+    <text x="270" y="80" fill="#a855f7" font-size="9" font-weight="700">8-pin display cable</text>
     <text x="270" y="90" fill="#a855f7" font-size="8">(min bend 1")</text>
     <!-- RED -->
     <line x1="180" y1="120" x2="40" y2="120" stroke="#ef4444" stroke-width="2.5"/>
@@ -3985,14 +3985,14 @@ Lay them all out and identify each piece before routing anything.</div>
     <!-- Sensors right side -->
     <line x1="300" y1="140" x2="430" y2="140" stroke="#10b981" stroke-width="2.5"/>
     <text x="425" y="136" text-anchor="end" fill="#10b981" font-size="10" font-weight="700">OIL</text>
-    <text x="425" y="148" text-anchor="end" fill="#888" font-size="8">3-wire to SEN-01-5 (engine)</text>
+    <text x="425" y="148" text-anchor="end" fill="#888" font-size="8">4-conductor to SEN-03-8 (oil sender on engine)</text>
     <line x1="300" y1="155" x2="430" y2="155" stroke="#228b22" stroke-width="2.5"/>
     <text x="425" y="167" text-anchor="end" fill="#888" font-size="8">Dk Green → Water temp sender</text>
     <line x1="300" y1="170" x2="430" y2="170" stroke="#9333ea" stroke-width="2.5"/>
     <text x="425" y="182" text-anchor="end" fill="#888" font-size="8">Purple → Speed sensor (trans tail)</text>
     <line x1="240" y1="180" x2="240" y2="240" stroke="#e8e8e8" stroke-width="2.5"/>
     <text x="245" y="220" fill="#888" font-size="8">White → Tach (HEI TACH or coil&minus;)</text>
-    <text x="245" y="232" fill="#888" font-size="8">Tan → Fuel (Fuse #9, 10A)</text>
+    <text x="245" y="232" fill="#888" font-size="8">Tan → Fuel (twisted pair direct to Control Box)</text>
     <!-- Fuse panel label -->
     <rect x="5" y="100" width="30" height="65" rx="3" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="2,2"/>
     <text x="20" y="180" text-anchor="middle" fill="#888" font-size="8">AAW FUSE</text>
@@ -4008,7 +4008,7 @@ Lay them all out and identify each piece before routing anything.</div>
 
   <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Behind-Dash Reference Photo</p>
   <img src="behind-dash-reference.jpg" alt="Behind the dash layout — AAW fuse panel, steering column, HDX Control Box, heater box" style="width:100%;border-radius:8px">
-  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Real photo behind the dash: AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with ribbon cable (right), heater box (far right). This is where you mount the Control Box &mdash; pick a spot reachable for future service.</p>
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 12px">Real photo behind the dash: AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with 8-pin display cable (right), heater box (far right). This is where you mount the Control Box &mdash; pick a spot reachable for future service.</p>
 
   <p style="font-size:13px;font-weight:700;margin:12px 0 4px">Dashboard Overview</p>
   <img src="dash-reference.jpg" alt="SS Dashboard with HDX cluster installed" style="width:100%;border-radius:8px">
@@ -4035,7 +4035,7 @@ Lay them all out and identify each piece before routing anything.</div>
 <div class="kit-bag">
   <div class="kit-bag-title">Dakota Digital HDX — Control Box &amp; Senders</div>
   <div class="kit-bag-contents">
-    HDX Control Box (brain unit) · Oil pressure sender SEN-01-5 (3-wire, 1/8" NPT) · Water temp sender (2-wire, 1/8" NPT) · Speed sensor (3-wire) · Wiring sub-harness for senders · Mounting bracket for Control Box
+    HDX Control Box (brain unit) · Oil pressure sender SEN-03-8 (3-wire, 1/8" NPT) · Water temp sender (2-wire, 1/8" NPT) · Speed sensor (3-wire) · Wiring sub-harness for senders · Mounting bracket for Control Box
   </div>
 </div>
 <div class="kit-bag">
@@ -4050,7 +4050,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="conn-pair"><span class="conn-from">Pink wire</span><span class="conn-arrow">→</span><span class="conn-to">Switched 12V (ignition-hot fuse)</span></div>
   <div class="conn-pair"><span class="conn-from">Black wire</span><span class="conn-arrow">→</span><span class="conn-to">Chassis ground bolt (clean bare metal + star washer)</span></div>
   <div class="conn-pair"><span class="conn-from">Orange wire</span><span class="conn-arrow">→</span><span class="conn-to">Dimmer (headlight switch rheostat)</span></div>
-  <div class="conn-pair"><span class="conn-from">HDX ↔ Gauge Cluster</span><span class="conn-arrow">→</span><span class="conn-to">Multi-pin ribbon cable (pre-wired, just plug in)</span></div>
+  <div class="conn-pair"><span class="conn-from">HDX ↔ Gauge Cluster</span><span class="conn-arrow">→</span><span class="conn-to">Multi-pin 8-pin display cable (pre-wired, just plug in)</span></div>
 </div>
 <div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Dash Assembly</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Cluster to dash:</strong> <span class="hw-spec">#8-32 × 1/2" Phillips</span> × 4-6, with <span class="hw-spec">#8 speed nuts</span> on backing plate</p>
@@ -4071,7 +4071,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">The HDX Control Box is approximately 6" x 4" x 2". Mount it where: (1) you can reach it for future access, (2) the ribbon cable can reach the gauge cluster, (3) it won't interfere with steering column or pedals. Most people mount it on the dash support bar using velcro strips or a small bracket.</div>
+      <div class="detail-content">The HDX Control Box is approximately 6" x 4" x 2". Mount it where: (1) you can reach it for future access, (2) the 8-pin display cable can reach the gauge cluster, (3) it won't interfere with steering column or pedals. Most people mount it on the dash support bar using velcro strips or a small bracket.</div>
     
         </div>
       </div>
@@ -4090,12 +4090,12 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="substep" onclick="toggleSubstep(this)">
         <div class="sub-check" data-phase="3" data-step="2"></div>
         <div>
-          <div class="sub-text">Connect ribbon cable from Control Box to HDX gauge cluster</div>
+          <div class="sub-text">Connect 8-pin display cable from Control Box to HDX gauge cluster</div>
           
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">The flat ribbon cable connects the Control Box to the back of the gauge cluster. Route it neatly. Don't fold or crease the ribbon cable — it will damage the traces inside. Leave enough slack to remove the gauge cluster if needed later.</div>
+      <div class="detail-content">The flat 8-pin display cable connects the Control Box to the back of the gauge cluster. Route it neatly. Don't fold or crease the 8-pin display cable — it will damage the traces inside. Leave enough slack to remove the gauge cluster if needed later.</div>
     
         </div>
       </div>
@@ -4231,7 +4231,7 @@ Lay them all out and identify each piece before routing anything.</div>
   </ol>
   <p style="margin-top:10px"><strong>Sender-by-sender order (most-critical first):</strong></p>
   <ol style="margin:4px 0 0 20px;line-height:1.7">
-    <li><strong>Oil Pressure (SEN-01-5, 3-wire)</strong> &mdash; Driver side block, oil gallery port. Remove old single-wire GM sender. Teflon tape on new sender threads (3-4 wraps clockwise). Hand-tight + 1/4 turn with wrench &mdash; <strong>do NOT crank on it</strong>, you'll crack the block port. Connect: White=Signal, Red=5V Power, Black=Ground.</li>
+    <li><strong>Oil Pressure (SEN-03-8, 3 wires + bare shield)</strong> &mdash; Driver side block, oil gallery port. Remove old single-wire GM sender. Teflon tape on new sender threads (3-4 wraps clockwise). Hand-tight + 1/4 turn with wrench &mdash; <strong>do NOT crank on it</strong>, you'll crack the block port. Connect: White=Signal, Red=5V Power, Black=Ground.</li>
     <li><strong>Water Temp (2-wire)</strong> &mdash; Intake manifold water jacket port, passenger side front. Almost always needs a <strong>3/8" NPT to 1/8" NPT reducer bushing</strong> &mdash; verify thread size before installing. Teflon tape on both the bushing AND the sender. Single signal wire to AAW Connector G. Grounds through engine block (no separate ground).</li>
     <li><strong>Speed Sensor (cable-drive adapter)</strong> &mdash; Trans tailshaft, where the speedometer cable used to live. Pull old mechanical cable. Thread in adapter, tighten retaining bolt/clip. 3-wire connection: signal, power, ground.</li>
     <li><strong>Tach Signal</strong> &mdash; HEI distributor: TACH terminal on the cap. Points ignition: coil <strong>negative (-)</strong> terminal. <strong>Never positive.</strong> Route tach wire <strong>6"+ away from all spark plug wires</strong> &mdash; EMI will trash the reading.</li>
@@ -4253,7 +4253,7 @@ Lay them all out and identify each piece before routing anything.</div>
   </ul>
   <p style="margin-top:10px;color:var(--red)"><strong>Don't:</strong></p>
   <ul style="margin:4px 0 0 20px;line-height:1.7">
-    <li>Reuse the old GM single-wire oil pressure sender &mdash; the HDX will read zero. Use SEN-01-5 only.</li>
+    <li>Reuse the old GM single-wire oil pressure sender &mdash; the HDX will read zero. Use SEN-03-8 only (this is the oil sender; SEN-01-5 is the speed sensor &mdash; different part).</li>
     <li>Over-tighten the oil pressure sender &mdash; cracked block port = $$$ repair</li>
     <li>Connect tach to coil (+) positive &mdash; tach won't work and you'll burn the HDX tach input</li>
     <li>Skip the reducer bushing for the temp sender &mdash; sender threads won't seal and coolant leaks at the intake</li>
@@ -4309,7 +4309,7 @@ Lay them all out and identify each piece before routing anything.</div>
 <div class="kit-bag">
   <div class="kit-bag-title">Dakota Digital HDX: Senders &amp; Sensors</div>
   <div class="kit-bag-contents">
-    Oil pressure sender SEN-01-5 · Water temp sender · Speed sensor (3-wire pulse type) · Sender wiring sub-harness · Teflon tape (not included — bring your own)
+    Oil pressure sender SEN-03-8 · Water temp sender · Speed sensor (3-wire pulse type) · Sender wiring sub-harness · Teflon tape (not included — bring your own)
   </div>
 </div>
 <div class="connector-map">
@@ -4338,7 +4338,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <g onclick="showEngineInfo('oil')" style="cursor:pointer">
       <rect x="16" y="16" width="372" height="252" rx="8" fill="transparent" stroke="transparent" stroke-width="1"/>
       <text x="200" y="38" fill="#0d8" font-size="13" font-weight="700" text-anchor="middle">OIL PRESSURE SENDER</text>
-      <text x="200" y="52" fill="#6b7a99" font-size="9" text-anchor="middle">SEN-01-5 · 1/8" NPT · 3-Wire Electronic</text>
+      <text x="200" y="52" fill="#6b7a99" font-size="9" text-anchor="middle">SEN-03-8 · 1/8" NPT · 0-100 PSI · 4-conductor</text>
 
       <!-- Engine block wall cross-section -->
       <rect x="60" y="80" width="40" height="140" rx="2" fill="#2a3040" stroke="#475569" stroke-width="1.5"/>
@@ -4539,12 +4539,12 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="substep" onclick="toggleSubstep(this)">
         <div class="sub-check" data-phase="4" data-step="0"></div>
         <div>
-          <div class="sub-text">Install oil pressure sender SEN-01-5 in engine block</div>
+          <div class="sub-text">Install oil pressure sender SEN-03-8 in engine block</div>
           
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">Locate the oil gallery port on the driver side of the block (where the factory idiot light sender was). Remove the old sender. Apply 2-3 wraps of Teflon tape clockwise. Thread the SEN-01-5 in hand-tight, then wrench snug + 1/4 turn. Do NOT overtighten — you will crack the housing. This is a 1/8" NPT port.</div>
+      <div class="detail-content">Locate the oil gallery port on the driver side of the block (where the factory idiot light sender was). Remove the old sender. Apply 2-3 wraps of Teflon tape clockwise. Thread the SEN-03-8 in hand-tight, then wrench snug + 1/4 turn. Do NOT overtighten — you will crack the housing. This is a 1/8" NPT port.</div>
     
         </div>
       </div>
@@ -4556,7 +4556,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">The SEN-01-5 is a 3-wire electronic sender (not the old resistive type). White = signal output (to Control Box OIL input). Red = 5V power (from Control Box). Black = ground (bolt to engine block).</div>
+      <div class="detail-content">The SEN-03-8 is a 0-100 PSI solid-state sender with 3 wires + a bare shield (4 conductors). The bare shield wire connects to the Control Box DRN terminal (do not omit). It is NOT the old resistive type. (not the old resistive type). WHITE = signal to Control Box PRESSURE INPUT-SIG. RED = 5V power FROM the Control Box PRESSURE INPUT-PWR (do NOT tap for any other device). BLACK = ground to PRESSURE INPUT-GND. BARE shield = PRESSURE INPUT-DRN (shield drain &mdash; reduces EMI pickup).</div>
     
         </div>
       </div>
@@ -4674,7 +4674,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <ol style="margin:4px 0 0 20px;line-height:1.7">
     <li>Battery is fully charged (12.4V+ at the posts, measured with a multimeter)</li>
     <li>All 4 HDX power wires are connected to the correct fuse positions (RED→#8, PINK→#7) with the correct fuse amps (5A and 10A)</li>
-    <li>Ribbon cable is fully seated at BOTH the Control Box AND the gauge cluster, no kinks</li>
+    <li>8-pin display cable is fully seated at BOTH the Control Box AND the gauge cluster</li>
     <li>Ground wire is bolted to dedicated dash-frame bolt, bare metal, star washer &mdash; pull-test it: should not move at all</li>
     <li>No loose wires touching the firewall, dash frame, or each other</li>
     <li>Reconnect battery: positive first, then negative. Listen for clicks, sparks, or smoke. If you smell anything, disconnect IMMEDIATELY.</li>
@@ -4691,7 +4691,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="margin-top:10px"><strong>If something is wrong &mdash; fail-by-symptom map:</strong></p>
   <ul style="margin:4px 0 0 20px;line-height:1.7">
     <li><strong>Nothing lights up at all</strong> &rarr; check fuse #8 CLOCK first, then verify 12V at the RED wire with key OFF using a multimeter</li>
-    <li><strong>Gauges sweep but TFT is dark</strong> &rarr; ribbon cable not fully seated; reseat both ends</li>
+    <li><strong>Gauges sweep but TFT is dark</strong> &rarr; 8-pin display cable not fully seated; reseat both ends</li>
     <li><strong>Voltmeter reads 0V or wildly wrong</strong> &rarr; ground problem; jump a temporary wire from HDX ground to battery negative &mdash; if it fixes it, your permanent ground is bad</li>
     <li><strong>Gauges flicker or jump erratically</strong> &rarr; ground problem (sharing ground with another circuit), or solid-core spark plug wires creating EMI</li>
     <li><strong>Backlight stays full bright, dimmer doesn't work</strong> &rarr; orange dimmer wire not connected, or AAW 520001 dimmer kit not wired</li>
@@ -4775,7 +4775,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <text x="350" y="75" fill="#ff6b2b" font-size="11" font-weight="700" text-anchor="middle">HDX CONTROL BOX</text>
     <text x="350" y="88" fill="#6b7a99" font-size="8" text-anchor="middle">HDX-70C-CVL</text>
 
-    <!-- Ribbon cable to gauges (top) -->
+    <!-- 8-pin display cable to gauges (top) -->
     <rect x="300" y="40" width="100" height="14" rx="3" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
     <text x="350" y="50" fill="#64748b" font-size="7" text-anchor="middle">→ GAUGE CLUSTER</text>
 
@@ -4918,7 +4918,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
       </div>
-      <div class="detail-content">Both the tach and speedo have small TFT screens below the needle. They should show digital readouts. If one is dark, check the ribbon cable connection.</div>
+      <div class="detail-content">Both the tach and speedo have small TFT screens below the needle. They should show digital readouts. If one is dark, check the 8-pin display cable connection.</div>
     
         </div>
       </div>
@@ -6380,7 +6380,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <h3 class="sub-text" style="margin:0">Dakota Digital Resources</h3>
     </div>
     <p><strong>Official Manual:</strong> Dakota Digital #650572B (HDX-70C-CVL.pdf) — download at <strong>dakotadigital.com</strong></p>
-    <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (ribbon cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
+    <p><strong>Tech Support Phone:</strong> <strong style="color:var(--accent)">(605) 332-6513</strong> — call for firmware updates, replacement parts (8-pin display cable, senders), or installation questions. Real humans, weekday hours Central Time.</p>
     <p><strong>Bluetooth App:</strong> iOS / Android — "Dakota Digital" by Dakota Digital, Inc.</p>
     <div class="note">If the kit is old or paperwork is missing, call tech support and give them the cluster serial number — they can look up the original spec sheet, including pulses-per-mile for the speed sensor.</div>
   </div>
@@ -6743,7 +6743,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <li><strong>Under the hood</strong> &mdash; every electrical connector seated, no loose wires touching the manifold, fluid levels at full, belts at proper tension, no leaks, sender wires not chafed</li>
     <li><strong>Under the car</strong> &mdash; brake lines secure, fuel lines secure, exhaust hangers intact, no fresh fluid drops on the ground, lug nuts re-torqued (85-100 ft-lbs, star pattern)</li>
     <li><strong>Interior (visible)</strong> &mdash; every visible screw torqued, no rattles when you rock the dash, console, or seats, dome light works, all 4 corner lights work</li>
-    <li><strong>Interior (hidden)</strong> &mdash; reach behind the dash and tug each wire bundle, verify Control Box is secure, ribbon cable has no kinks, ground wire is tight</li>
+    <li><strong>Interior (hidden)</strong> &mdash; reach behind the dash and tug each wire bundle, verify Control Box is secure, 8-pin display cable has no kinks, ground wire is tight</li>
     <li><strong>HDX gauges (key ON, engine OFF)</strong> &mdash; voltmeter reads battery voltage, dimmer works, indicators light when triggered, no error codes on TFT</li>
     <li><strong>HDX gauges (engine running)</strong> &mdash; oil pressure in spec (20-40 PSI at idle), water temp at 180-210&deg;F, voltmeter at 13.5-14.5V, fuel gauge sensible, tach steady at idle</li>
     <li><strong>Test drive (short, low-speed first)</strong> &mdash; brakes firm, steering centered, no vibration, tach tracks RPM smoothly, speedometer matches GPS</li>
@@ -6877,7 +6877,7 @@ Lay them all out and identify each piece before routing anything.</div>
         <li>Check 5-20A fuse on constant 12V (red wire) circuit</li>
         <li>Verify 12.4V+ at Control Box red wire with multimeter</li>
         <li>Check ground (black wire) — clean bare metal with star washer?</li>
-        <li>Check ribbon cable from Control Box to gauge cluster — fully seated?</li>
+        <li>Check 8-pin display cable from Control Box to gauge cluster (~3 ft, Dakota Digital MAN 650542H p.6) — fully seated?</li>
       </ul>
     </div>
   </div>
@@ -6897,7 +6897,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <p style="font-weight:600">Oil pressure reads zero with engine running <span class="tag tag-red">Sender Issue</span></p>
     <div class="ts-detail" style="display:none;margin-top:10px">
       <ul style="margin:0 0 0 20px;font-size:13px;line-height:1.8">
-        <li>Confirm SEN-01-5 wiring: WHITE=signal, RED=5V, BLACK=ground</li>
+        <li>Confirm SEN-03-8 wiring: WHITE=SIG, RED=5V PWR (from Control Box), BLACK=GND, bare shield=DRN</li>
         <li>Check sender is tight and sealed with Teflon tape</li>
         <li>Try swapping with known-good sender</li>
         <li>Inspect wires for pinches or cuts near exhaust</li>
@@ -7088,7 +7088,7 @@ Lay them all out and identify each piece before routing anything.</div>
         <line x1="160" y1="255" x2="80" y2="220" stroke="#0d8" stroke-width="1" stroke-dasharray="3,2"/>
         <rect x="20" y="195" width="120" height="50" rx="6" fill="var(--card)" stroke="#0d8" stroke-width="1"/>
         <text x="80" y="215" text-anchor="middle" fill="#0fa" font-size="10" font-weight="bold">OIL SENDER</text>
-        <text x="80" y="230" text-anchor="middle" fill="#888" font-size="8">SEN-01-5 (3-wire)</text>
+        <text x="80" y="230" text-anchor="middle" fill="#888" font-size="8">SEN-03-8 (3-wire + bare shield)</text>
         <text x="80" y="240" text-anchor="middle" fill="#888" font-size="9">1/8" NPT</text>
       </g>
 
@@ -7172,21 +7172,22 @@ Lay them all out and identify each piece before routing anything.</div>
 
   <!-- Engine bay info panels -->
   <div id="einfo-oil-sender" class="gauge-info">
-    <h3 style="margin-top:0">Oil Pressure Sender — SEN-01-5</h3>
-    <p><span class="tag tag-green">3-Wire Electronic</span> <span class="tag tag-red">Do NOT Reuse Factory Sender</span></p>
+    <h3 style="margin-top:0">Oil Pressure Sender — SEN-03-8</h3>
+    <p><span class="tag tag-green">4-Conductor (3 wires + bare shield)</span> <span class="tag tag-red">Do NOT Reuse Factory Sender</span></p>
+    <p style="font-size:11px;color:var(--muted);margin:0">Part number per Dakota Digital MAN 650542H p.10. 0-100 PSI solid-state. (Note: SEN-01-5 is the SPEED sensor — different part.)</p>
     <p><strong>Location:</strong> Driver side of block, oil gallery port (where factory single-wire sender was)</p>
     <p><strong>Thread:</strong> 1/8" NPT</p>
     <p><strong>Install Steps:</strong></p>
     <ol style="margin:8px 0 0 20px; font-size:13px; line-height:1.8;">
       <li>Remove old single-wire GM oil pressure sender</li>
       <li>Clean port threads with a thread chaser or rag</li>
-      <li>Apply 2-3 wraps of Teflon tape to SEN-01-5 threads (clockwise when looking at threads)</li>
+      <li>Apply 2-3 wraps of Teflon tape to SEN-03-8 threads (clockwise when looking at threads)</li>
       <li>Thread in by hand until snug, then 1/4 turn with wrench — do NOT over-tighten</li>
       <li>Connect 3 wires: <strong style="color:#fff">White=Signal</strong>, <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">Red=5V Power</strong>, <strong style="color:#888">Black=Ground</strong></li>
       <li>Route wires away from exhaust manifold — use heat-resistant loom</li>
       <li>Route through firewall grommet to HDX Control Box</li>
     </ol>
-    <div class="warn">The HDX REQUIRES the 3-wire SEN-01-5 sender. The old GM single-wire sender will NOT work. The 5V power wire (red) comes FROM the Control Box — it is NOT a 12V source.</div>
+    <div class="warn">The HDX REQUIRES the SEN-03-8 oil pressure sender (3 wires + bare shield). The old GM single-wire sender will NOT work. The 5V power wire (red) comes FROM the Control Box — it is NOT a 12V source.</div>
   </div>
 
   <div id="einfo-temp-sender" class="gauge-info">
@@ -7251,7 +7252,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <li>Disconnect and remove the mechanical speedometer cable from the trans tailshaft</li>
       <li>Thread the Dakota Digital cable-drive speed sensor adapter into the tailshaft port</li>
       <li>Tighten the retaining bolt/clip</li>
-      <li>Connect 3 wires (signal, power, ground) and route to Control Box</li>
+      <li>Connect 3 wires: WHITE=SIG, RED=5V PWR (from Control Box's SPEED INPUT-PWR &mdash; this is a 5V output, do NOT tap for any other device), BLACK=GND. Route to Control Box</li>
       <li>Route wires along existing harness path, through firewall grommet</li>
       <li>After install, calibrate: enter tire diameter + axle ratio, or use GPS auto-calibration</li>
     </ol>
@@ -7280,8 +7281,8 @@ Lay them all out and identify each piece before routing anything.</div>
     <ul class="checklist" id="cl-unbox">
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Black SS dash face panel</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Dakota Digital HDX-70C-CVL gauge cluster</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">HDX Control Box with ribbon cable</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Oil pressure sender SEN-01-5 (3-wire, 1/8" NPT)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">HDX Control Box with 8-pin display cable</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Oil pressure sender SEN-03-8 (3-wire, 1/8" NPT)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Water temperature sender + bushing adapters</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Speed sensor cable-drive adapter</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">SS dash harness with integrated fuse panel</span></li>
@@ -7313,7 +7314,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="card">
     <h3 style="margin-top:0">3. Install Under-Hood Senders (Before Dash)</h3>
     <ul class="checklist" id="cl-senders">
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Install oil pressure sender SEN-01-5 in block (Teflon tape, snug + 1/4 turn)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Install oil pressure sender SEN-03-8 in block (Teflon tape, snug + 1/4 turn)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Install water temp sender in intake (with bushing if needed)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Install speed sensor adapter in trans tailshaft</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Route all sender wires through firewall grommet</span></li>
@@ -7328,7 +7329,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <h3 style="margin-top:0">4. Mount HDX Control Box and Dash</h3>
     <ul class="checklist" id="cl-mount">
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Mount HDX Control Box behind dash (driver side, accessible spot)</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Connect ribbon cable from Control Box to HDX gauge cluster</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Connect 8-pin display cable from Control Box to HDX gauge cluster</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Connect constant 12V (red) to battery-hot fuse (5-20A)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Connect switched 12V (pink) to ignition-hot fuse</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Connect ground (black) to dedicated firewall bolt (bare metal + star washer)</span></li>
@@ -7508,10 +7509,10 @@ Lay them all out and identify each piece before routing anything.</div>
     </div>
     <div class="trouble-body">
       <div class="trouble-section"><div class="trouble-label symptom">Symptom</div><p>Oil pressure gauge reads zero, pegged high, or shows wildly inaccurate pressure. Gauge may work on startup then fail.</p></div>
-      <div class="trouble-section"><div class="trouble-label cause">Cause</div><p>Using the old GM single-wire sender instead of the Dakota Digital 3-wire electronic sender (SEN-01-5 from the HDX kit, or SEN-03-8 standalone).</p></div>
-      <div class="trouble-section"><div class="trouble-label fix">Fix</div><p>Remove old sender. Install the SEN-01-5 (included in HDX kit) or SEN-03-8 (standalone purchase). Connect all 3 wires: signal, power (5V reference), and ground. Use Teflon tape on threads, 3-4 wraps.</p></div>
+      <div class="trouble-section"><div class="trouble-label cause">Cause</div><p>Using the old GM single-wire sender instead of the Dakota Digital <strong>SEN-03-8</strong> 0-100 PSI solid-state sender that ships with the HDX kit (MAN 650542H p.10). The old GM sender is incompatible with the HDX and will read zero.</p></div>
+      <div class="trouble-section"><div class="trouble-label fix">Fix</div><p>Remove old GM single-wire sender. Install the Dakota Digital <strong>SEN-03-8</strong> (the HDX kit's oil sender). Connect all 4 conductors: WHITE=SIG, RED=5V PWR, BLACK=GND, bare shield=DRN. Use Teflon tape on threads, 3-4 wraps.</p></div>
       <div class="trouble-section"><div class="trouble-label test">Test</div><p>With engine running at operating temp, oil pressure should read 25-65 PSI at idle (20-40 PSI is normal for a stock 396/454 at warm idle). If still zero, verify 5V reference with multimeter at the sender connector.</p></div>
-      <div class="trouble-section"><div class="trouble-label test">Field test (no spare sender)</div><p>Pull the SEN-01-5 from the block. On the workbench, connect a multimeter across the signal and ground pins and warm the sender in a cup of warm (not boiling) water vs. ambient air. If resistance varies between the two temperatures, the sender is functional &mdash; problem is upstream (wiring, 5V feed, Control Box). If resistance stays flat, replace the sender.</p></div>
+      <div class="trouble-section"><div class="trouble-label test">Field test (no spare sender)</div><p>Pull the SEN-03-8 from the block. On the workbench, connect a multimeter across the signal and ground pins and warm the sender in a cup of warm (not boiling) water vs. ambient air. If resistance varies between the two temperatures, the sender is functional &mdash; problem is upstream (wiring, 5V feed, Control Box). If resistance stays flat, replace the sender.</p></div>
     </div>
   </div>
 
@@ -7574,13 +7575,13 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="trouble-item">
     <div class="trouble-header" onclick="toggleTrouble(this)">
       <div class="trouble-rank">7</div>
-      <div class="trouble-title">Ribbon Cable Damaged</div>
+      <div class="trouble-title">Display Cable Damaged</div>
       <div class="trouble-arrow">&#9654;</div>
     </div>
     <div class="trouble-body">
       <div class="trouble-section"><div class="trouble-label symptom">Symptom</div><p>Some or all gauges are dead, TFT displays are dark, or intermittent failures. Gauges may work with hand pressure on the cable.</p></div>
-      <div class="trouble-section"><div class="trouble-label cause">Cause</div><p>The flat ribbon cable between the HDX Control Box and gauge cluster was bent sharply, pinched, or creased during installation.</p></div>
-      <div class="trouble-section"><div class="trouble-label fix">Fix</div><p>Never bend the ribbon cable sharply — minimum bend radius is 1 inch. Route with slack using adhesive cable clips every 4-6 inches. If damaged, contact Dakota Digital for a replacement ribbon cable (605-332-6513).</p></div>
+      <div class="trouble-section"><div class="trouble-label cause">Cause</div><p>The flat 8-pin display cable between the HDX Control Box and gauge cluster was bent sharply, pinched, or creased during installation.</p></div>
+      <div class="trouble-section"><div class="trouble-label fix">Fix</div><p>Mount the Control Box away from HEI/coil &mdash; ignition EMI is the dominant failure mode for cable signal disruption (MAN 650542H p.4). Route with slack using adhesive cable clips every 4-6 inches. If damaged, contact Dakota Digital for a replacement 8-pin display cable (605-332-6513).</p></div>
       <div class="trouble-section"><div class="trouble-label test">Test</div><p>Visually inspect the entire cable length for creases, kinks, or pinch marks. Gently flex the cable while watching the gauges — if display flickers, the cable is damaged.</p></div>
     </div>
   </div>
@@ -7687,9 +7688,9 @@ Lay them all out and identify each piece before routing anything.</div>
     <div class="parts-list">
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">HDX-70C-CVL Gauge Cluster</div></div>
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">HDX Control Box</div></div>
-      <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">Ribbon Cable (Control Box to Cluster)</div></div>
+      <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">8-pin Display Cable (Control Box to Cluster)</div></div>
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">Power Harness (Red/Pink/Black)</div></div>
-      <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">SEN-01-5 Oil Pressure Sender (3-wire)</div></div>
+      <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">SEN-03-8 Oil Pressure Sender (3-wire + shield)</div></div>
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">SEN-04-5 Water Temp Sender</div></div>
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">Speed Sensor (SEN-05-5 or GPS)</div></div>
       <div class="part-item" onclick="togglePart(this)"><div class="part-check"></div><div class="part-name">Dimmer Wire Harness</div></div>
@@ -7873,7 +7874,7 @@ let timerInterval = null;
 const phases = [
   { title:'Sound Deadening', items:['Clean all floor pans, firewall, trans tunnel with degreaser','Apply Dynamat or equivalent to floor pans in sections','Apply to firewall (reduces engine noise and heat)','Apply to transmission tunnel','Apply to inner door skins','Apply to trunk floor (optional but recommended)','Let adhesive cure 24hrs before walking on it'] },
   { title:'Wiring Harness', items:['Route dash harness through firewall grommet','Connect bulkhead connector at firewall','Route engine harness — leave slack for engine movement','Route rear harness under carpet path along rocker panels','Tag every connector before plugging in (masking tape + marker)','Test continuity on each circuit with multimeter before connecting'] },
-  { title:'Dash Assembly', items:['Inspect dash support bracket for rust, bends, broken welds','Mount upper dash support bar to firewall (5/16"-18 bolts, lock washers)','Mount lower dash support brackets (left and right)','Mount center support brace','Install HDX Control Box behind dash, driver side — accessible location','Route HDX ribbon cable from Control Box to gauge cluster position','Test-fit SS dash face and gauge cluster before final mount','Connect HDX power wires: RED=constant 12V, PINK=switched 12V, BLACK=ground','Secure dash face with 6x 7/16" hex bolts through support structure','Install dash pad with 4 spring clips'] },
+  { title:'Dash Assembly', items:['Inspect dash support bracket for rust, bends, broken welds','Mount upper dash support bar to firewall (5/16"-18 bolts, lock washers)','Mount lower dash support brackets (left and right)','Mount center support brace','Install HDX Control Box behind dash, driver side — accessible location','Route HDX 8-pin display cable from Control Box to gauge cluster (~3 ft, Dakota Digital MAN 650542H p.6) position','Test-fit SS dash face and gauge cluster before final mount','Connect HDX power wires: RED=constant 12V, PINK=switched 12V, BLACK=ground','Secure dash face with 6x 7/16" hex bolts through support structure','Install dash pad with 4 spring clips'] },
   { title:'Steering Column', items:['Verify column clamp bracket on dash support is straight','Feed column through firewall and floor','Align column to dash opening','Tighten column clamp bolts: 3/8"-16, 20 ft-lbs','Connect turn signal wiring connectors','Install steering wheel — align spline marks','Torque steering wheel nut: 35 ft-lbs','Install horn button/contact','Test turn signals, horn, and hazards'] },
   { title:'Headliner', items:['Install headliner bows (replace if bent)','Feed headliner material from rear to front','Secure with adhesive at edges','Install dome light wiring before closing up','Install windshield trim and sail panels','Trim excess material'] },
   { title:'Carpet and Floor', items:['Lay jute or mass-backed padding over Dynamat','Cut padding around pedals, seats, console area','Position molded carpet kit — start from firewall, work back','Press carpet into corners with flat tool','Cut holes for seat bolts and seat belt anchors from underneath','Ensure carpet sits flat under console and seat areas'] },
