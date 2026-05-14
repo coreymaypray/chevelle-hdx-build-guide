@@ -164,6 +164,27 @@
   .sub-text { font-size:14px; line-height:1.5; }
   .sub-text.checked { text-decoration:line-through; color:var(--muted); }
 
+  /* Painless-style inline wire color swatches */
+  .wire-color {
+    display:inline-block;
+    width:13px;
+    height:13px;
+    border-radius:3px;
+    border:1px solid rgba(255,255,255,.25);
+    vertical-align:middle;
+    margin-right:4px;
+    margin-left:1px;
+    box-shadow:0 1px 2px rgba(0,0,0,.4) inset;
+  }
+
+  /* Collapsible Hardware Specs card */
+  .hw-specs-toggle { cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
+  .hw-specs-toggle:hover { color:var(--accent) !important; }
+  .hw-specs-arrow { font-size:11px; transition:transform .2s; opacity:.6; }
+  .hw-specs-card.open .hw-specs-arrow { transform:rotate(90deg); }
+  .hw-specs-body { display:none; margin-top:8px; }
+  .hw-specs-card.open .hw-specs-body { display:block; }
+
   .sub-detail { font-size:12px; margin-top:4px; color:var(--accent2); cursor:pointer; user-select:none; }
   .detail-content { display:none; font-size:13px; color:var(--muted); margin-top:6px; padding:10px; background:rgba(255,255,255,.02); border-radius:6px; border-left:3px solid var(--accent2); line-height:1.6; }
   .detail-content.open { display:block; }
@@ -1212,7 +1233,7 @@
     <!-- Specs Table -->
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#e33">RED</strong></td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG minimum</td></tr>
       <tr><td>Fuse</td><td>#8 CLOCK &mdash; 5A ATO</td></tr>
       <tr><td>AAW Fuse Panel</td><td>Fuse #8 CLOCK position (AAW wire is YELLOW; HDX wire is RED)</td></tr>
@@ -1263,7 +1284,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#f0a">PINK</strong></td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG minimum</td></tr>
       <tr><td>Fuse</td><td>#7 GAUGES &mdash; 10A ATO</td></tr>
       <tr><td>AAW Fuse Panel</td><td>Fuse #7 GAUGES position (AAW wire is PINK to instrument cluster; HDX wire is also PINK)</td></tr>
@@ -1444,7 +1465,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#4169e1">3-Wire</strong> (White / Red / Black)</td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">3-Wire</strong> (White / Red / Black)</td></tr>
       <tr><td>Wire Gauge</td><td>22 AWG sensor wire</td></tr>
       <tr><td>Fuse</td><td>None (5V from Control Box)</td></tr>
       <tr><td>AAW Connector</td><td>F</td></tr>
@@ -1501,7 +1522,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#228b22">DARK GREEN</strong></td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#228b22"></span><strong style="color:#228b22">DARK GREEN</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG</td></tr>
       <tr><td>Fuse</td><td>None</td></tr>
       <tr><td>AAW Connector</td><td>G</td></tr>
@@ -1563,7 +1584,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#9333ea">PURPLE</strong> (signal)</td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong> (signal)</td></tr>
       <tr><td>Wire Gauge</td><td>22 AWG sensor wire</td></tr>
       <tr><td>Fuse</td><td>None</td></tr>
       <tr><td>AAW Connector</td><td>VSS</td></tr>
@@ -1617,7 +1638,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#d2b48c">TAN</strong></td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong></td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG</td></tr>
       <tr><td>Fuse</td><td>#9 FUEL &mdash; 10A</td></tr>
       <tr><td>AAW Bag</td><td>M (Rear harness)</td></tr>
@@ -1665,7 +1686,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong>GREY</strong> (AAW side) &rarr; <strong style="color:#fa0">ORANGE</strong> (HDX side)</td></tr>
+      <tr><td>Wire Color</td><td><strong>GREY</strong> (AAW side) &rarr; <span class="wire-color" style="background:#fa0"></span><strong style="color:#fa0">ORANGE</strong> (HDX side)</td></tr>
       <tr><td>Wire Gauge</td><td>18 AWG</td></tr>
       <tr><td>Fuse</td><td>None</td></tr>
       <tr><td>AAW Kit</td><td>520001</td></tr>
@@ -1732,7 +1753,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Color</td><td><strong style="color:#87ceeb">LT BLUE</strong> (left) + <strong style="color:#5b9bd5">DK BLUE</strong> (right)</td></tr>
+      <tr><td>Wire Color</td><td><span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LT BLUE</strong> (left) + <span class="wire-color" style="background:#5b9bd5"></span><strong style="color:#5b9bd5">DK BLUE</strong> (right)</td></tr>
       <tr><td>Wire Gauge</td><td>16 AWG</td></tr>
       <tr><td>Fuse</td><td>#5 TURN &mdash; 15A</td></tr>
       <tr><td>AAW Bag</td><td>G</td></tr>
@@ -1801,7 +1822,7 @@
 
     <table class="circuit-specs">
       <tr><th>Spec</th><th>Value</th></tr>
-      <tr><td>Wire Colors</td><td><strong style="color:#9b7aff">PURPLE</strong> / <strong style="color:#d2b48c">BROWN</strong> / <strong style="color:#f5c842">YELLOW</strong> / <strong style="color:#87ceeb">LT BLUE</strong></td></tr>
+      <tr><td>Wire Colors</td><td><span class="wire-color" style="background:#9b7aff"></span><strong style="color:#9b7aff">PURPLE</strong> / <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">BROWN</strong> / <span class="wire-color" style="background:#f5c842"></span><strong style="color:#f5c842">YELLOW</strong> / <span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LT BLUE</strong></td></tr>
       <tr><td>Wire Gauge</td><td>14-16 AWG</td></tr>
       <tr><td>Fuse</td><td>#10 WIPER &mdash; 20A</td></tr>
       <tr><td>AAW Bag</td><td>G &rarr; J</td></tr>
@@ -2161,7 +2182,7 @@ function toggleCollapsible(id) {
 
 <div class="card" style="margin:16px 0">
   <h3 style="margin:0 0 4px;font-size:16px">📦 Three Kits Combined — What's In The Build</h3>
-  <p style="margin:0 0 12px;font-size:11px;color:var(--muted)"><strong style="color:#e33">American Autowire 510105</strong> (complete vehicle wiring) + <strong style="color:#10b981">Dakota Digital HDX-70C-CVL</strong> (gauges) + <strong style="color:#f59e0b">Hi-Tech Classics</strong> (SS dash &amp; trim)</p>
+  <p style="margin:0 0 12px;font-size:11px;color:var(--muted)"><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">American Autowire 510105</strong> (complete vehicle wiring) + <strong style="color:#10b981">Dakota Digital HDX-70C-CVL</strong> (gauges) + <span class="wire-color" style="background:#f59e0b"></span><strong style="color:#f59e0b">Hi-Tech Classics</strong> (SS dash &amp; trim)</p>
   <svg viewBox="0 0 800 320" style="width:100%;height:auto;background:#1a1d27;border-radius:8px">
     <!-- Kit 1: American Autowire 510105 -->
     <rect x="20" y="20" width="230" height="130" rx="10" fill="#1e2130" stroke="#e33" stroke-width="2" style="cursor:pointer" onclick="scrollToPhase(1)"/>
@@ -2556,10 +2577,10 @@ function toggleCollapsible(id) {
         <strong>Floor Dimmer Switch</strong>
         <p>Connect the four wires to the floor-mounted dimmer switch:</p>
         <table class="circuit-specs">
-          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong> (heavy)</td><td>Headlight high beam feed</td></tr>
-          <tr><td><strong style="color:#90ee90">LIGHT GREEN</strong> (thin)</td><td>High beam indicator light</td></tr>
-          <tr><td><strong style="color:#d2b48c">TAN</strong></td><td>Headlight low beam feed</td></tr>
-          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>Headlight power feed from headlight switch</td></tr>
+          <tr><td><span class="wire-color" style="background:#90ee90"></span><strong style="color:#90ee90">LIGHT GREEN</strong> (heavy)</td><td>Headlight high beam feed</td></tr>
+          <tr><td><span class="wire-color" style="background:#90ee90"></span><strong style="color:#90ee90">LIGHT GREEN</strong> (thin)</td><td>High beam indicator light</td></tr>
+          <tr><td><span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong></td><td>Headlight low beam feed</td></tr>
+          <tr><td><span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong></td><td>Headlight power feed from headlight switch</td></tr>
         </table>
       </div>
     </div>
@@ -2568,7 +2589,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="G-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text"><strong>Emergency Brake Switch</strong><p>Connect the <strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch on the parking brake pedal bracket. Ground-trigger circuit.</p><div class="note"><strong>HDX builds:</strong> The brake warning indicator is on the HDX gauge cluster face, not a separate factory bulb. The signal still flows through this AAW wire &mdash; the HDX Control Box reads it through the ribbon cable to the cluster. Wire it the standard AAW way.</div></div>
+      <div class="guide-step-content sub-text"><strong>Emergency Brake Switch</strong><p>Connect the <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire to the emergency brake switch on the parking brake pedal bracket. Ground-trigger circuit.</p><div class="note"><strong>HDX builds:</strong> The brake warning indicator is on the HDX gauge cluster face, not a separate factory bulb. The signal still flows through this AAW wire &mdash; the HDX Control Box reads it through the ribbon cable to the cluster. Wire it the standard AAW way.</div></div>
     </div>
 
     <!-- Step 4 — Headlight Switch -->
@@ -2579,9 +2600,9 @@ function toggleCollapsible(id) {
         <strong>Headlight Switch (500332)</strong>
         <p>Install the headlight switch and connect:</p>
         <table class="circuit-specs">
-          <tr><td><strong style="color:#e33">RED</strong></td><td>12V battery feed (BAT location)</td></tr>
-          <tr><td><strong style="color:#fa0">ORANGE</strong></td><td>Park/tail feed in</td></tr>
-          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Park lamp feed out</td></tr>
+          <tr><td><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong></td><td>12V battery feed (BAT location)</td></tr>
+          <tr><td><span class="wire-color" style="background:#fa0"></span><strong style="color:#fa0">ORANGE</strong></td><td>Park/tail feed in</td></tr>
+          <tr><td><span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">BROWN</strong></td><td>Park lamp feed out</td></tr>
           <tr><td><strong style="color:#999">GRAY</strong></td><td>Dash light rheostat &mdash; feeds instrument lamp dimming</td></tr>
         </table>
       </div>
@@ -2595,10 +2616,10 @@ function toggleCollapsible(id) {
         <strong>Ignition Switch</strong>
         <p>Connect the ignition switch wires:</p>
         <table class="circuit-specs">
-          <tr><td><strong style="color:#e33">RED</strong></td><td>12V battery feed</td></tr>
-          <tr><td><strong style="color:#f0a">PINK</strong></td><td>12V ignition feed</td></tr>
-          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>12V accessory feed</td></tr>
-          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>Starter lead to neutral safety switch</td></tr>
+          <tr><td><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong></td><td>12V battery feed</td></tr>
+          <tr><td><span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong></td><td>12V ignition feed</td></tr>
+          <tr><td><span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">BROWN</strong></td><td>12V accessory feed</td></tr>
+          <tr><td><span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong></td><td>Starter lead to neutral safety switch</td></tr>
         </table>
         <div class="note"><strong>NOTE:</strong> Connectors are already plugged in for the stock 1970&ndash;72 ignition switch. No re-pinning required.</div>
     </div>
@@ -2613,12 +2634,12 @@ function toggleCollapsible(id) {
         <p>Connect the 7-wire connector for the 3-7/8&Prime; 1969&ndash;74 GM steering column:</p>
         <table class="circuit-specs">
           <tr><td><strong style="color:#e8e8f0">WHITE</strong></td><td>Brake switch feed</td></tr>
-          <tr><td><strong style="color:#228b22">DARK GREEN</strong></td><td>RH tail / turn</td></tr>
-          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>LH tail / turn</td></tr>
-          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>Turn signal flasher</td></tr>
-          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Hazard flasher</td></tr>
-          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>RH front park lamp</td></tr>
-          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>LH front park lamp</td></tr>
+          <tr><td><span class="wire-color" style="background:#228b22"></span><strong style="color:#228b22">DARK GREEN</strong></td><td>RH tail / turn</td></tr>
+          <tr><td><span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong></td><td>LH tail / turn</td></tr>
+          <tr><td><span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong></td><td>Turn signal flasher</td></tr>
+          <tr><td><span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">BROWN</strong></td><td>Hazard flasher</td></tr>
+          <tr><td><span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong></td><td>RH front park lamp</td></tr>
+          <tr><td><span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>LH front park lamp</td></tr>
           <tr><td><strong style="color:#888">BLACK</strong></td><td>Horn relay ground</td></tr>
         </table>
       </div>
@@ -2646,8 +2667,8 @@ function toggleCollapsible(id) {
           <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground for switch assembly</td></tr>
           <tr><td colspan="2" style="font-style:italic;opacity:.7">3-way connector</td></tr>
           <tr><td><strong style="color:#888">BLACK</strong></td><td>Ground &mdash; low speed</td></tr>
-          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Ground &mdash; washer</td></tr>
-          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>Ground &mdash; high speed</td></tr>
+          <tr><td><span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong></td><td>Ground &mdash; washer</td></tr>
+          <tr><td><span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>Ground &mdash; high speed</td></tr>
         </table>
       </div>
     </div>
@@ -2678,7 +2699,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="G-11"></div>
       <div class="guide-step-num">11</div>
-      <div class="guide-step-content sub-text"><strong>Remaining Dash Connections</strong><p>Route and connect the remaining wires behind the dash for components <strong>your car has</strong>:</p><table class="circuit-specs"><tr><td><strong>Horn relay</strong></td><td>Connect horn relay lead</td></tr><tr><td><strong style="color:#f0a">Radio PINK</strong></td><td>Ignition feed to factory radio shaft mount</td></tr><tr><td><strong style="color:#fa0">Cigarette Lighter ORANGE</strong></td><td>Fused constant 12V to lighter element</td></tr><tr><td><strong>Heater Resistor</strong></td><td>Connect to blower resistor assembly</td></tr><tr><td><strong style="color:#999">Heater Lamp GRAY</strong></td><td>Dash lamp dimmer feeds heater control illumination</td></tr><tr><td><strong style="color:#a0522d">Heater Switch BROWN</strong></td><td>ACCY feed</td></tr><tr><td><strong style="color:#fc0">YELLOW</strong> / <strong style="color:#87ceeb">LT BLUE</strong> / <strong style="color:#fa0">ORANGE</strong></td><td>Heater blower resistor taps (Low/Med/High)</td></tr><tr><td><strong>Console connection</strong></td><td>Mate with console harness</td></tr><tr><td><strong style="color:#f0a">T400 Kickdown PINK</strong></td><td>Ignition feed to transmission kickdown solenoid</td></tr></table><div class="note"><strong>Cut for this build:</strong> RH courtesy lamp (no interior lights) and glove box light (no glove box lamp). Cap and label those AAW wires &mdash; do not connect.</div></div>
+      <div class="guide-step-content sub-text"><strong>Remaining Dash Connections</strong><p>Route and connect the remaining wires behind the dash for components <strong>your car has</strong>:</p><table class="circuit-specs"><tr><td><strong>Horn relay</strong></td><td>Connect horn relay lead</td></tr><tr><td><span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">Radio PINK</strong></td><td>Ignition feed to factory radio shaft mount</td></tr><tr><td><span class="wire-color" style="background:#fa0"></span><strong style="color:#fa0">Cigarette Lighter ORANGE</strong></td><td>Fused constant 12V to lighter element</td></tr><tr><td><strong>Heater Resistor</strong></td><td>Connect to blower resistor assembly</td></tr><tr><td><strong style="color:#999">Heater Lamp GRAY</strong></td><td>Dash lamp dimmer feeds heater control illumination</td></tr><tr><td><span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">Heater Switch BROWN</strong></td><td>ACCY feed</td></tr><tr><td><span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong> / <span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LT BLUE</strong> / <span class="wire-color" style="background:#fa0"></span><strong style="color:#fa0">ORANGE</strong></td><td>Heater blower resistor taps (Low/Med/High)</td></tr><tr><td><strong>Console connection</strong></td><td>Mate with console harness</td></tr><tr><td><span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">T400 Kickdown PINK</strong></td><td>Ignition feed to transmission kickdown solenoid</td></tr></table><div class="note"><strong>Cut for this build:</strong> RH courtesy lamp (no interior lights) and glove box light (no glove box lamp). Cap and label those AAW wires &mdash; do not connect.</div></div>
     </div>
 
     <!-- Step 12 — Ground -->
@@ -2745,13 +2766,13 @@ function toggleCollapsible(id) {
         <strong>Connector H &mdash; Aftermarket Electric Speedometer</strong>
         <p>This connector is ONLY for an aftermarket electric speedometer. If using a stock cable-driven speedo, do NOT use this connector.</p>
         <table class="circuit-specs">
-          <tr><td><strong style="color:#fc0">YELLOW</strong></td><td>VSS Ground</td></tr>
-          <tr><td><strong style="color:#9333ea">PURPLE</strong></td><td>VSS Signal</td></tr>
-          <tr><td><strong style="color:#9333ea">PURPLE</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>VSS 12V Power</td></tr>
+          <tr><td><span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong></td><td>VSS Ground</td></tr>
+          <tr><td><span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong></td><td>VSS Signal</td></tr>
+          <tr><td><span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>VSS 12V Power</td></tr>
           <tr><td><strong style="color:#888">BLACK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo Ground</td></tr>
-          <tr><td><strong style="color:#f0a">PINK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo 12V Power (doubles onto same stud as Purple/White)</td></tr>
+          <tr><td><span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong>/<strong style="color:#e8e8f0">WHITE</strong></td><td>Speedo 12V Power (doubles onto same stud as Purple/White)</td></tr>
         </table>
-        <div class="warn"><strong>WARNING:</strong> Twist the <strong style="color:#fc0">YELLOW</strong> and <strong style="color:#9333ea">PURPLE</strong> wires together for their entire length to prevent electromagnetic interference with the VSS signal.</div>
+        <div class="warn"><strong>WARNING:</strong> Twist the <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong> and <span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong> wires together for their entire length to prevent electromagnetic interference with the VSS signal.</div>
     </div>
     </div>
 
@@ -2797,8 +2818,8 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="J-2"></div>
       <div class="guide-step-num">2</div>
       <div class="guide-step-content sub-text">
-        <strong>12V Battery &mdash; <strong style="color:#e33">RED</strong></strong>
-        <p>Route the <strong style="color:#e33">RED</strong> wire to the Megafuse assembly (from Bag Z) and cut to length. Use the ring terminal and shrink tubing from the 510476 kit.</p>
+        <strong>12V Battery &mdash; <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong></strong>
+        <p>Route the <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong> wire to the Megafuse assembly (from Bag Z) and cut to length. Use the ring terminal and shrink tubing from the 510476 kit.</p>
       </div>
     </div>
 
@@ -2807,8 +2828,8 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="J-3"></div>
       <div class="guide-step-num">3</div>
       <div class="guide-step-content sub-text">
-        <strong>Starter Solenoid &mdash; <strong style="color:#9333ea">PURPLE</strong></strong>
-        <p>Route the <strong style="color:#9333ea">PURPLE</strong> wire to the starter solenoid S terminal and cut to length. Install rubber sleeve E and ring terminal D.</p>
+        <strong>Starter Solenoid &mdash; <span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong></strong>
+        <p>Route the <span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">PURPLE</strong> wire to the starter solenoid S terminal and cut to length. Install rubber sleeve E and ring terminal D.</p>
       </div>
     </div>
 
@@ -2840,7 +2861,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="J-7"></div>
       <div class="guide-step-num">7</div>
       <div class="guide-step-content sub-text">
-        <strong>12V Ignition &mdash; <strong style="color:#f0a">PINK</strong></strong>
+        <strong>12V Ignition &mdash; <span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong></strong>
         <p>If using HEI or electronic ignition: route to the coil and trim to length. Install terminal C and connector G, then plug into the distributor cap BAT location.</p>
       </div>
     </div>
@@ -2850,8 +2871,8 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="J-8"></div>
       <div class="guide-step-num">8</div>
       <div class="guide-step-content sub-text">
-        <strong>Starter Solenoid R &mdash; <strong style="color:#fc0">YELLOW</strong></strong>
-        <p>Assembly X &mdash; this is for points ignition with a ballast resistor. If using HEI: connect the <strong style="color:#fc0">YELLOW</strong> wire with terminal C and connector G to the distributor cap BAT location instead.</p>
+        <strong>Starter Solenoid R &mdash; <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong></strong>
+        <p>Assembly X &mdash; this is for points ignition with a ballast resistor. If using HEI: connect the <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong> wire with terminal C and connector G to the distributor cap BAT location instead.</p>
       </div>
     </div>
 
@@ -2868,7 +2889,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="J-10"></div>
       <div class="guide-step-num">10</div>
       <div class="guide-step-content sub-text">
-        <strong>Electric Choke &mdash; <strong style="color:#d2b48c">TAN</strong></strong>
+        <strong>Electric Choke &mdash; <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong></strong>
         <p>Only if using an electric choke. Route to the choke coil and trim to length. If not equipped, leave this wire capped and secured.</p>
       </div>
     </div>
@@ -2881,9 +2902,9 @@ function toggleCollapsible(id) {
         <strong>Alternator Connections</strong>
         <p>Three wires service the alternator:</p>
         <table class="circuit-specs">
-          <tr><td><strong style="color:#e33">RED</strong> (heavy 6ga, from Bag Z)</td><td>Charge wire &mdash; route from alternator output stud to Megafuse. Install boot E on alternator end.</td></tr>
-          <tr><td><strong style="color:#e33">RED</strong> (small, Assembly W)</td><td>Sense wire &mdash; ring terminal through boot L to alternator battery stud. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
-          <tr><td><strong style="color:#a0522d">BROWN</strong></td><td>Exciter wire &mdash; route to alternator regulator connector. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
+          <tr><td><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong> (heavy 6ga, from Bag Z)</td><td>Charge wire &mdash; route from alternator output stud to Megafuse. Install boot E on alternator end.</td></tr>
+          <tr><td><span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong> (small, Assembly W)</td><td>Sense wire &mdash; ring terminal through boot L to alternator battery stud. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
+          <tr><td><span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">BROWN</strong></td><td>Exciter wire &mdash; route to alternator regulator connector. ONLY for internally regulated alternators. Remove if using a 1-wire alternator.</td></tr>
         </table>
       </div>
     </div>
@@ -2897,8 +2918,8 @@ function toggleCollapsible(id) {
         <p>Connect the wiper motor wires:</p>
         <table class="circuit-specs">
           <tr><td><strong style="color:#888">BLACK</strong></td><td>Low speed &rarr; terminal C, connector H</td></tr>
-          <tr><td><strong style="color:#4169e1">DARK BLUE</strong></td><td>Washer &rarr; terminal C, connector J</td></tr>
-          <tr><td><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>High speed &rarr; terminal C, connector K</td></tr>
+          <tr><td><span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong></td><td>Washer &rarr; terminal C, connector J</td></tr>
+          <tr><td><span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">LIGHT BLUE</strong></td><td>High speed &rarr; terminal C, connector K</td></tr>
           <tr><td><strong style="color:#e8e8f0">WHITE</strong></td><td>Wiper feed &rarr; terminal B, connector H (double wire &mdash; route the cutoff to the washer pump with terminal C, connector J)</td></tr>
         </table>
       </div>
@@ -2910,7 +2931,7 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">13</div>
       <div class="guide-step-content sub-text">
         <strong>TH400 Kickdown (if equipped)</strong>
-        <p>Route the <strong style="color:#fa0">ORANGE</strong> wire through the firewall grommet T to the transmission kickdown solenoid. The <strong style="color:#f0a">PINK</strong> wire from the Bag G dash harness plugs onto one terminal of the kickdown switch.</p>
+        <p>Route the <span class="wire-color" style="background:#fa0"></span><strong style="color:#fa0">ORANGE</strong> wire through the firewall grommet T to the transmission kickdown solenoid. The <span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong> wire from the Bag G dash harness plugs onto one terminal of the kickdown switch.</p>
         <div class="note"><strong>NOTE:</strong> If your transmission does not have a kickdown solenoid, cap and secure these wires.</div>
     </div>
     </div>
@@ -2951,7 +2972,7 @@ function toggleCollapsible(id) {
     <div class="guide-step substep" onclick="toggleSubstep(this)" style="cursor:pointer">
       <div class="sub-check" data-phase="1-aaw" data-step="K-3"></div>
       <div class="guide-step-num">3</div>
-      <div class="guide-step-content sub-text"><strong>Console-Shifted Automatic &mdash; Neutral Safety Switch (NSS)</strong><p><strong>NSS Extension</strong> (required &mdash; car won't start without it):</p><p>Plug the 90&deg; 2-position connector (<strong style="color:#9333ea">purple</strong> wires) onto the NSS connection on the console shifter assembly. Safety interlock allows starter only in Park or Neutral.</p><div class="note"><strong>Trimmed for this build:</strong> AAW K-3 also covers shifter illumination and back-up lamp extension. <strong>Both removed</strong> &mdash; no interior lights, no back-up lamps. Cap the gray shifter-light wire and the pink/light-green back-up extension wires.</div></div>
+      <div class="guide-step-content sub-text"><strong>Console-Shifted Automatic &mdash; Neutral Safety Switch (NSS)</strong><p><strong>NSS Extension</strong> (required &mdash; car won't start without it):</p><p>Plug the 90&deg; 2-position connector (<span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">purple</strong> wires) onto the NSS connection on the console shifter assembly. Safety interlock allows starter only in Park or Neutral.</p><div class="note"><strong>Trimmed for this build:</strong> AAW K-3 also covers shifter illumination and back-up lamp extension. <strong>Both removed</strong> &mdash; no interior lights, no back-up lamps. Cap the gray shifter-light wire and the pink/light-green back-up extension wires.</div></div>
     </div>
   </div>
 </div>
@@ -2988,8 +3009,8 @@ function toggleCollapsible(id) {
       <div class="guide-step-content sub-text">
         <strong>Left / Right Turn Signals</strong>
         <ul>
-          <li><span style="color:#87ceeb">&#9632;</span> <strong style="color:#87ceeb">Light Blue</strong> = LH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
-          <li><span style="color:#4169e1">&#9632;</span> <strong style="color:#4169e1">Dark Blue</strong> = RH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
+          <li><span class="wire-color" style="background:#87ceeb"></span><span style="color:#87ceeb">&#9632;</span> <span class="wire-color" style="background:#87ceeb"></span><strong style="color:#87ceeb">Light Blue</strong> = LH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
+          <li><span class="wire-color" style="background:#4169e1"></span><span style="color:#4169e1">&#9632;</span> <span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">Dark Blue</strong> = RH front turn &rarr; terminal <strong>M</strong>, plug into connector <strong>H</strong></li>
         </ul>
       </div>
     </div>
@@ -2999,7 +3020,7 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">3</div>
       <div class="guide-step-content sub-text">
         <strong>Park Lights (Both Sides + Side Markers)</strong>
-        <p><span style="color:#a0522d">&#9632;</span> <strong style="color:#a0522d">Brown</strong> wire: Split to the left parking lamp and left side marker (through grommet <strong>Q</strong>). Repeat for the right side.</p>
+        <p><span class="wire-color" style="background:#a0522d"></span><span style="color:#a0522d">&#9632;</span> <span class="wire-color" style="background:#a0522d"></span><strong style="color:#a0522d">Brown</strong> wire: Split to the left parking lamp and left side marker (through grommet <strong>Q</strong>). Repeat for the right side.</p>
         <ul>
           <li>Use terminal <strong>J</strong> for parking lamp connector <strong>H</strong></li>
           <li>Use terminal <strong>P</strong> for side marker socket <strong>N</strong></li>
@@ -3020,7 +3041,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="L-5"></div>
       <div class="guide-step-num">5</div>
       <div class="guide-step-content sub-text">
-        <strong>Headlight Low Beam &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <strong>Headlight Low Beam &mdash; <span class="wire-color" style="background:#d2b48c"></span><span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Route to the driver side headlight, trim to length, double wire with cutoff portion. Terminal <strong>B</strong> into connector <strong>A</strong>. Route the remaining wire to the passenger side, terminal <strong>C</strong> into connector <strong>A</strong>.</p>
       </div>
     </div>
@@ -3029,7 +3050,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="L-6"></div>
       <div class="guide-step-num">6</div>
       <div class="guide-step-content sub-text">
-        <strong>Headlight High Beam &mdash; <span style="color:#90ee90">&#9632;</span> Light Green</strong>
+        <strong>Headlight High Beam &mdash; <span class="wire-color" style="background:#90ee90"></span><span style="color:#90ee90">&#9632;</span> Light Green</strong>
         <p>Route to driver side headlight, terminal <strong>B</strong> into connector <strong>A</strong>.</p>
         <p><em>For 1970:</em> Also make a jumper to the inner headlight, terminal <strong>B</strong> into connector <strong>T</strong>.</p>
         <p>Route to passenger side, terminal <strong>C</strong> into connector <strong>A</strong> (and <strong>T</strong> for 1970).</p>
@@ -3049,7 +3070,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="L-8"></div>
       <div class="guide-step-num">8</div>
       <div class="guide-step-content sub-text">
-        <strong>Horn &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
+        <strong>Horn &mdash; <span class="wire-color" style="background:#228b22"></span><span style="color:#228b22">&#9632;</span> Dark Green</strong>
         <p>Route to horns, install terminals <strong>D</strong> &amp; <strong>E</strong>, plug into connectors <strong>L</strong>.</p>
       </div>
     </div>
@@ -3058,7 +3079,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="L-10"></div>
       <div class="guide-step-num">10</div>
       <div class="guide-step-content sub-text">
-        <strong>Brake Light Switch &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <strong>Brake Light Switch &mdash; <span class="wire-color" style="background:#d2b48c"></span><span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Plug onto the stock brake pressure switch. Route the other end to the front light connector, terminal <strong>M</strong> into the front light connector.</p>
       </div>
     </div>
@@ -3106,8 +3127,8 @@ function toggleCollapsible(id) {
         <strong>Tail Lamp Pigtails</strong>
         <p>Two pigtails are provided:</p>
         <ul>
-          <li><strong>S</strong> (LH) &mdash; with <span style="color:#fc0">&#9632;</span> <strong style="color:#fc0">yellow</strong> wire</li>
-          <li><strong>T</strong> (RH) &mdash; with <span style="color:#228b22">&#9632;</span> <strong style="color:#228b22">dark green</strong> wire</li>
+          <li><strong>S</strong> (LH) &mdash; with <span class="wire-color" style="background:#fc0"></span><span style="color:#fc0">&#9632;</span> <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">yellow</strong> wire</li>
+          <li><strong>T</strong> (RH) &mdash; with <span class="wire-color" style="background:#228b22"></span><span style="color:#228b22">&#9632;</span> <span class="wire-color" style="background:#228b22"></span><strong style="color:#228b22">dark green</strong> wire</li>
         </ul>
         <p>These plug into the <strong>RB</strong> connection.</p>
       </div>
@@ -3117,9 +3138,9 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="M-4"></div>
       <div class="guide-step-num">4</div>
       <div class="guide-step-content sub-text">
-        <strong>Fuel Gauge Sender &mdash; <span style="color:#d2b48c">&#9632;</span> Tan</strong>
+        <strong>Fuel Gauge Sender &mdash; <span class="wire-color" style="background:#d2b48c"></span><span style="color:#d2b48c">&#9632;</span> Tan</strong>
         <p>Route through grommet <strong>A</strong> to the fuel tank area, cut to length, terminal <strong>C</strong> into connector <strong>G</strong>.</p>
-        <p>Separate <span style="color:#d2b48c">&#9632;</span> <strong style="color:#d2b48c">tan</strong> wire (with rubber end <strong>R</strong>): Plug the rubber end onto the sending unit on the fuel tank, route through the trunk floor, pull up and plug into connector <strong>G</strong>.</p>
+        <p>Separate <span class="wire-color" style="background:#d2b48c"></span><span style="color:#d2b48c">&#9632;</span> <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">tan</strong> wire (with rubber end <strong>R</strong>): Plug the rubber end onto the sending unit on the fuel tank, route through the trunk floor, pull up and plug into connector <strong>G</strong>.</p>
       </div>
     </div>
 
@@ -3127,7 +3148,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="M-5"></div>
       <div class="guide-step-num">5</div>
       <div class="guide-step-content sub-text">
-        <strong>Parking / Tail Lamps &mdash; <span style="color:#a0522d">&#9632;</span> Brown</strong>
+        <strong>Parking / Tail Lamps &mdash; <span class="wire-color" style="background:#a0522d"></span><span style="color:#a0522d">&#9632;</span> Brown</strong>
         <p>Split the brown wire to the following connections:</p>
         <ul>
           <li>Left side marker &mdash; terminal <strong>L</strong>, socket <strong>M</strong></li>
@@ -3158,7 +3179,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="M-7"></div>
       <div class="guide-step-num">7</div>
       <div class="guide-step-content sub-text">
-        <strong>LH Stop / Tail &mdash; <span style="color:#fc0">&#9632;</span> Yellow</strong>
+        <strong>LH Stop / Tail &mdash; <span class="wire-color" style="background:#fc0"></span><span style="color:#fc0">&#9632;</span> Yellow</strong>
         <p>Route through grommet <strong>A</strong> to the LH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
       </div>
     </div>
@@ -3167,7 +3188,7 @@ function toggleCollapsible(id) {
       <div class="sub-check" data-phase="1-aaw" data-step="M-8"></div>
       <div class="guide-step-num">8</div>
       <div class="guide-step-content sub-text">
-        <strong>RH Stop / Tail &mdash; <span style="color:#228b22">&#9632;</span> Dark Green</strong>
+        <strong>RH Stop / Tail &mdash; <span class="wire-color" style="background:#228b22"></span><span style="color:#228b22">&#9632;</span> Dark Green</strong>
         <p>Route through grommet <strong>A</strong> to the RH tail lamp, terminal <strong>C</strong> into connector <strong>K</strong>.</p>
       </div>
     </div>
@@ -3217,9 +3238,9 @@ function toggleCollapsible(id) {
       <div class="guide-step-content sub-text">
         <strong>Connect to Vehicle Speed Sensor</strong>
         <ul>
-          <li><span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">Purple</strong> (solid) = Signal lead &mdash; connects to &ldquo;signal&rdquo; on VSS</li>
-          <li><span style="color:#fc0">&#9632;</span> <strong style="color:#fc0">Yellow</strong> = Ground lead &mdash; connects to &ldquo;ground&rdquo; on VSS</li>
-          <li><span style="color:#9333ea">&#9632;</span> <strong style="color:#9333ea">Purple</strong>/<span style="color:#e8e8f0">&#9632;</span> <strong style="color:#e8e8f0">White</strong> = 12V Power lead &mdash; connects to &ldquo;12V power&rdquo; on VSS</li>
+          <li><span class="wire-color" style="background:#9333ea"></span><span style="color:#9333ea">&#9632;</span> <span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">Purple</strong> (solid) = Signal lead &mdash; connects to &ldquo;signal&rdquo; on VSS</li>
+          <li><span class="wire-color" style="background:#fc0"></span><span style="color:#fc0">&#9632;</span> <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">Yellow</strong> = Ground lead &mdash; connects to &ldquo;ground&rdquo; on VSS</li>
+          <li><span class="wire-color" style="background:#9333ea"></span><span style="color:#9333ea">&#9632;</span> <span class="wire-color" style="background:#9333ea"></span><strong style="color:#9333ea">Purple</strong>/<span style="color:#e8e8f0">&#9632;</span> <strong style="color:#e8e8f0">White</strong> = 12V Power lead &mdash; connects to &ldquo;12V power&rdquo; on VSS</li>
         </ul>
         <p style="background:rgba(227,51,51,0.08);border-left:3px solid #e33;padding:8px 12px;border-radius:4px;margin:10px 0;">
           <strong>WARNING:</strong> The yellow and purple wires <strong>MUST</strong> remain twisted together for their entire length as shown. This prevents electrical interference. Do <strong>NOT</strong> untwist them.
@@ -3272,7 +3293,7 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">3</div>
       <div class="guide-step-content sub-text">
         <strong>Charge Wire &mdash; Starter to Megafuse</strong>
-        <p>Cut the 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire to length from the starter to the Megafuse. Strip &frac12;&Prime; of insulation on each end. Install 2 pieces of shrink tubing.</p>
+        <p>Cut the 6ga <span class="wire-color" style="background:#e33"></span><span style="color:#e33">&#9632;</span> <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">red</strong> wire to length from the starter to the Megafuse. Strip &frac12;&Prime; of insulation on each end. Install 2 pieces of shrink tubing.</p>
         <ul>
           <li><strong>Starter end:</strong> Crimp and solder terminal <strong>G</strong> (6ga starter ring)</li>
           <li><strong>Megafuse end:</strong> Crimp and solder terminal <strong>H</strong> (6ga megafuse)</li>
@@ -3286,7 +3307,7 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">4</div>
       <div class="guide-step-content sub-text">
         <strong>Charge Wire &mdash; Alternator to Megafuse</strong>
-        <p>Cut the remaining 6ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> wire from the alternator to the Megafuse. Strip &frac12;&Prime; on each end. Install 1 piece of shrink tubing.</p>
+        <p>Cut the remaining 6ga <span class="wire-color" style="background:#e33"></span><span style="color:#e33">&#9632;</span> <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">red</strong> wire from the alternator to the Megafuse. Strip &frac12;&Prime; on each end. Install 1 piece of shrink tubing.</p>
         <ul>
           <li><strong>Alternator end:</strong> Slip on boot <strong>E</strong>, then crimp and solder terminal <strong>J</strong> (6ga alternator)</li>
           <li><strong>Megafuse end:</strong> Crimp and solder terminal <strong>H</strong> (6ga megafuse)</li>
@@ -3300,7 +3321,7 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">5</div>
       <div class="guide-step-content sub-text">
         <strong>Main Panel Power Feed</strong>
-        <p>Take the 10ga <span style="color:#e33">&#9632;</span> <strong style="color:#e33">red</strong> main power feed wire from your engine kit (<strong>Bag J</strong>) or panel. Route to the Megafuse, cut to length. Strip &frac38;&Prime;, install shrink tubing, crimp and solder terminal <strong>K</strong> (10ga megafuse).</p>
+        <p>Take the 10ga <span class="wire-color" style="background:#e33"></span><span style="color:#e33">&#9632;</span> <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">red</strong> main power feed wire from your engine kit (<strong>Bag J</strong>) or panel. Route to the Megafuse, cut to length. Strip &frac38;&Prime;, install shrink tubing, crimp and solder terminal <strong>K</strong> (10ga megafuse).</p>
       </div>
     </div>
 
@@ -3350,10 +3371,10 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">2</div>
       <div class="guide-step-content sub-text">
         <strong>HDX Control Box Power Connections</strong>
-        <p>The HDX Control Box comes with its own <strong style="color:#e33">RED</strong>, <strong style="color:#f0a">PINK</strong>, and <strong>BLACK</strong> wires. These are NOT part of the AAW harness &mdash; you connect them yourself to the AAW fuse panel:</p>
+        <p>The HDX Control Box comes with its own <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">RED</strong>, <span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong>, and <strong>BLACK</strong> wires. These are NOT part of the AAW harness &mdash; you connect them yourself to the AAW fuse panel:</p>
         <table class="circuit-specs">
-          <tr><td style="color:#e33;font-weight:700">HDX RED wire</td><td>Connect to Fuse #8 (CLOCK, 5A, always hot). The AAW fuse panel has a <strong style="color:#fc0">YELLOW</strong> wire on this fuse position for the factory clock. Tap the HDX red wire onto this same fuse slot or use an add-a-fuse adapter.</td></tr>
-          <tr><td style="color:#f0a;font-weight:700">HDX PINK wire</td><td>Connect to Fuse #7 (GAUGES, 10A, ignition-hot). The AAW fuse panel has a <strong style="color:#f0a">PINK</strong> wire on this position feeding the instrument cluster. Tap the HDX pink wire onto this fuse slot.</td></tr>
+          <tr><td style="color:#e33;font-weight:700">HDX RED wire</td><td>Connect to Fuse #8 (CLOCK, 5A, always hot). The AAW fuse panel has a <span class="wire-color" style="background:#fc0"></span><strong style="color:#fc0">YELLOW</strong> wire on this fuse position for the factory clock. Tap the HDX red wire onto this same fuse slot or use an add-a-fuse adapter.</td></tr>
+          <tr><td style="color:#f0a;font-weight:700">HDX PINK wire</td><td>Connect to Fuse #7 (GAUGES, 10A, ignition-hot). The AAW fuse panel has a <span class="wire-color" style="background:#ec4899"></span><strong style="color:#f0a">PINK</strong> wire on this position feeding the instrument cluster. Tap the HDX pink wire onto this fuse slot.</td></tr>
           <tr><td style="font-weight:700">HDX BLACK wire</td><td>Ground &rarr; Dedicated firewall bolt, star washer, bare metal. Must measure &lt; 0.5&ohm; to battery negative.</td></tr>
         </table>
         <div class="note"><strong>NOTE:</strong> The HDX wires are separate from the AAW harness. You are physically connecting the Dakota Digital wires to the AAW fuse panel positions. The AAW harness already has its own wires on these fuse slots &mdash; you&rsquo;re adding the HDX wires alongside them.</div>
@@ -3400,11 +3421,11 @@ function toggleCollapsible(id) {
         <strong>HDX Senders Replace AAW Stock Sender Wires</strong>
         <p>The HDX system uses its own electronic senders that connect directly to the HDX Control Box &mdash; NOT through the AAW harness wires. The AAW engine bay wires for these signals are NOT USED:</p>
         <table class="circuit-specs">
-          <tr><td>Oil Pressure</td><td>AAW <strong style="color:#4169e1">DARK BLUE</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX SEN-01-5 (3-wire: White=SIG, Red=5V, Black=GND) connects directly to HDX Control Box OIL terminal</td></tr>
-          <tr><td>Water Temp</td><td>AAW <strong style="color:#228b22">DARK GREEN</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX temp sender (2-wire) connects directly to HDX Control Box TEMP terminal</td></tr>
+          <tr><td>Oil Pressure</td><td>AAW <span class="wire-color" style="background:#4169e1"></span><strong style="color:#4169e1">DARK BLUE</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX SEN-01-5 (3-wire: White=SIG, Red=5V, Black=GND) connects directly to HDX Control Box OIL terminal</td></tr>
+          <tr><td>Water Temp</td><td>AAW <span class="wire-color" style="background:#228b22"></span><strong style="color:#228b22">DARK GREEN</strong> wire &rarr; <strong>NOT USED</strong>. Instead: HDX temp sender (2-wire) connects directly to HDX Control Box TEMP terminal</td></tr>
           <tr><td>Speed</td><td>AAW VSS (Bag V) &rarr; <strong>STILL USED</strong> &mdash; connects through Connector H to HDX Control Box SPEED terminal</td></tr>
           <tr><td>Tachometer</td><td>AAW <strong style="color:#e8e8f0">WHITE</strong> wire (coil/tach) &rarr; Can be used OR HDX tach wire can connect directly to HEI TACH terminal</td></tr>
-          <tr><td>Fuel Level</td><td>AAW <strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender signal routes through Fuse #9 (FUEL, 15A) to HDX FUEL terminal</td></tr>
+          <tr><td>Fuel Level</td><td>AAW <span class="wire-color" style="background:#d2b48c"></span><strong style="color:#d2b48c">TAN</strong> wire (Bag M) &rarr; <strong>STILL USED</strong> &mdash; existing tank sender signal routes through Fuse #9 (FUEL, 15A) to HDX FUEL terminal</td></tr>
         </table>
         <div class="warn"><strong>CRITICAL:</strong> Cap and secure any unused AAW sender wires in the engine bay. Do NOT leave bare wire ends exposed near engine heat.</div>
     </div>
@@ -3766,8 +3787,7 @@ Lay them all out and identify each piece before routing anything.</div>
     Upper dash support bar · Lower L-brackets (left + right) · Center support brace · Steering column bracket assembly · All mounting hardware below
   </div>
 </div>
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Dash Support</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Dash Support</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Upper bar to firewall:</strong> <span class="hw-spec">5/16"-18 × 3/4" Grade 5 hex</span> × 6, with <span class="hw-spec">5/16" lock washer</span> + <span class="hw-spec">5/16" flat washer</span></p>
   <p style="font-size:13px;margin:4px 0"><strong>Lower L-brackets:</strong> <span class="hw-spec">5/16"-18 × 3/4" Grade 5 hex</span> × 4 (2 per side), lock + flat washers</p>
   <p style="font-size:13px;margin:4px 0"><strong>Center brace:</strong> <span class="hw-spec">5/16"-18 × 1" Grade 5 hex</span> × 2, <span class="hw-spec">5/16" lock washer</span></p>
@@ -3873,7 +3893,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(2)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-3">
@@ -4032,8 +4052,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="conn-pair"><span class="conn-from">Orange wire</span><span class="conn-arrow">→</span><span class="conn-to">Dimmer (headlight switch rheostat)</span></div>
   <div class="conn-pair"><span class="conn-from">HDX ↔ Gauge Cluster</span><span class="conn-arrow">→</span><span class="conn-to">Multi-pin ribbon cable (pre-wired, just plug in)</span></div>
 </div>
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Dash Assembly</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Dash Assembly</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Cluster to dash:</strong> <span class="hw-spec">#8-32 × 1/2" Phillips</span> × 4-6, with <span class="hw-spec">#8 speed nuts</span> on backing plate</p>
   <p style="font-size:13px;margin:4px 0"><strong>Gauge bezels:</strong> <span class="hw-spec">#6-32 × 3/8" Phillips</span> (per bezel)</p>
   <p style="font-size:13px;margin:4px 0"><strong>Dash pad clips:</strong> 2 long <span class="hw-spec">2-3/4" × 5/8" spring clips</span> + 2 short <span class="hw-spec">2-3/8" × 5/8" spring clips</span></p>
@@ -4187,7 +4206,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(3)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-4">
@@ -5022,8 +5041,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 0">Closeup of the dash near the steering column &mdash; reference for column alignment, dash pad position, and steering wheel orientation.</p>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Steering Column</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Steering Column</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Column to dash bracket:</strong> <span class="hw-spec">3/8"-16 × 1" hex</span> × 2, <span class="hw-spec">3/8" lock washer</span> · <strong style="color:var(--accent)">Torque: 20 ft-lbs</strong></p>
   <p style="font-size:13px;margin:4px 0"><strong>Column lower bracket (firewall):</strong> <span class="hw-spec">5/16"-18 × 1" hex</span> × 2-3 + rubber seal/grommet</p>
   <p style="font-size:13px;margin:4px 0"><strong>Steering wheel nut:</strong> <span class="hw-spec">3/4"-20</span> · <strong style="color:var(--accent)">Torque: 35 ft-lbs</strong></p>
@@ -5159,7 +5177,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(6)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-7">
@@ -5212,8 +5230,7 @@ Lay them all out and identify each piece before routing anything.</div>
   </ul>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Headliner</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Headliner</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Headliner bows:</strong> 5-6 bows with <span class="hw-spec">2 retainer clips per bow</span> (push into roof channel)</p>
   <p style="font-size:13px;margin:4px 0"><strong>Sail panel / pillar trim:</strong> <span class="hw-spec">#8 × 3/4" chrome Phillips</span> × 2-3 per panel</p>
   <p style="font-size:13px;margin:4px 0"><strong>Dome light lens:</strong> Twist or squeeze tabs to release</p>
@@ -5317,7 +5334,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(7)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-8">
@@ -5368,8 +5385,7 @@ Lay them all out and identify each piece before routing anything.</div>
   </ul>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Carpet & Floor</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Carpet & Floor</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Carpet:</strong> No screws — held by seat tracks, sill plates, console, kick panels. Lay jute padding first.</p>
   <p style="font-size:13px;margin:4px 0"><strong>Sill plates:</strong> <span class="hw-spec">#8 × 3/4" chrome oval Phillips</span> × 4-5 per side</p>
   <p style="font-size:13px;margin:4px 0"><strong>Kick panels:</strong> <span class="hw-spec">#8 × 1/2" Phillips</span> × 2-3 per panel + 1-2 push-in retainer clips</p>
@@ -5461,7 +5477,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(8)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-9">
@@ -5512,8 +5528,7 @@ Lay them all out and identify each piece before routing anything.</div>
   </ul>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Door Panels</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Door Panels</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Panel to door:</strong> <span class="hw-spec">#8 × 3/4" chrome oval Phillips</span> × 4-5 per door + <span class="hw-spec">6 push-in clips</span> per door (perimeter)</p>
   <p style="font-size:13px;margin:4px 0"><strong>Armrest:</strong> <span class="hw-spec">1/4"-20 × 1" hex</span> × 2 per door</p>
   <p style="font-size:13px;margin:4px 0"><strong>Window crank / door handle:</strong> <span class="hw-spec">Horseshoe clip</span> behind escutcheon — use crank removal tool or thin towel</p>
@@ -5619,7 +5634,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(9)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-10">
@@ -5672,8 +5687,7 @@ Lay them all out and identify each piece before routing anything.</div>
     SS console shell · Console top plate / lid · Shifter plate · Mounting hardware
   </div>
 </div>
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Console</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Console</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Console to tunnel (front):</strong> <span class="hw-spec">1/4"-20 × 3/4" hex</span> × 2</p>
   <p style="font-size:13px;margin:4px 0"><strong>Rear bracket bolt:</strong> <span class="hw-spec">1/4"-20 × 1" hex</span> × 1 (through rear bracket)</p>
   <p style="font-size:13px;margin:4px 0"><strong>Side brackets:</strong> <span class="hw-spec">#10 × 1/2" self-tapping</span> × 2 (if applicable)</p>
@@ -5755,7 +5769,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(10)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-11">
@@ -5842,8 +5856,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="font-size:11px;color:var(--muted);text-align:center;margin:8px 0 0">Look at the bolt head before you install. Count the radial marks around the center. <strong style="color:var(--red)">3 marks = Grade 5 = NO.</strong> <strong style="color:var(--green)">6 marks = Grade 8 = YES.</strong></p>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Seats & Belts</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Seats & Belts</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Bucket seat tracks:</strong> <span class="hw-spec">5/16"-18 × 1" hex</span> × 4 per seat, with <span class="hw-spec">5/16" flat + lock washers</span> and <span class="hw-spec">5/16"-18 nut</span> (underside) · <strong style="color:var(--accent)">Torque: 30 ft-lbs (target, all 4 equally)</strong></p>
   <p style="font-size:13px;margin:4px 0"><strong>Seat belt anchors:</strong> <span class="hw-spec">7/16"-20 × 1-1/4" GRADE 8</span> + <span class="hw-spec">7/16" large flat washer</span> · <strong style="color:var(--red)">Torque: 30 ft-lbs · GRADE 8 ONLY (verify 6 radial lines)</strong></p>
   <p style="font-size:13px;margin:4px 0"><strong>Seat back latch:</strong> <span class="hw-spec">#10 × 1/2" Phillips</span> × 2 per seat</p>
@@ -5924,7 +5937,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(11)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-12">
@@ -5976,8 +5989,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="font-size:11px;color:var(--muted);text-align:center;margin:4px 0 0">Bag M = rear body harness. Tail lights, fuel sender, dome light, trunk light, back-up lights. If you're tucking carpet under sill plates and re-running speaker wire, reference this diagram to avoid routing speaker wire on top of the rear body harness.</p>
 </div>
 
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Rear Panels</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Rear Panels</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Rear seat bottom:</strong> 2 J-hooks — hook and pull forward to release</p>
   <p style="font-size:13px;margin:4px 0"><strong>Rear seat back:</strong> <span class="hw-spec">5/16"-18 × 3/4" hex</span> × 2 retainers</p>
   <p style="font-size:13px;margin:4px 0"><strong>Quarter trim panels:</strong> <span class="hw-spec">#8 × 3/4" chrome Phillips</span> × 2-3 per panel + <span class="hw-spec">4-5 push-in clips</span> per panel</p>
@@ -6058,7 +6070,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(12)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-13">
@@ -6113,8 +6125,7 @@ Lay them all out and identify each piece before routing anything.</div>
   <div class="conn-pair"><span class="conn-from">Orange (illumination)</span><span class="conn-arrow">→</span><span class="conn-to">Headlight switch dimmer circuit (dims with dash)</span></div>
   <div class="conn-pair"><span class="conn-from">Speaker wires</span><span class="conn-arrow">→</span><span class="conn-to">Run new 16-18 AWG to each speaker location</span></div>
 </div>
-<div class="card" style="padding:12px">
-  <h4 style="font-size:14px;color:var(--yellow);margin-bottom:8px">🔩 Hardware Specs — Radio/Stereo</h4>
+<div class="card hw-specs-card" style="padding:12px"><h4 class="hw-specs-toggle" style="font-size:14px;color:var(--yellow);margin:0;" onclick="this.parentElement.classList.toggle('open')"><span>🔩 Hardware Specs — Radio/Stereo</span><span class="hw-specs-arrow">▶</span></h4><div class="hw-specs-body">
   <p style="font-size:13px;margin:4px 0"><strong>Radio shaft nuts:</strong> <span class="hw-spec">7/16"-20 hex nut</span> × 2 (original AM radio)</p>
   <p style="font-size:13px;margin:4px 0"><strong>Rear support:</strong> <span class="hw-spec">#10 × 1/2"</span> bracket screw</p>
   <p style="font-size:13px;margin:4px 0"><strong>Cigarette lighter:</strong> Constant 12V through own fuse, <span class="hw-spec">12-14 AWG</span> wire (high current draw)</p>
@@ -6230,7 +6241,7 @@ Lay them all out and identify each piece before routing anything.</div>
     <button class="timer-btn" onclick="resetTimer(13)" style="background:var(--card); color:var(--muted); font-size:11px;">Reset</button>
   </div>
 </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="vstep" id="phase-14">
@@ -7171,7 +7182,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <li>Clean port threads with a thread chaser or rag</li>
       <li>Apply 2-3 wraps of Teflon tape to SEN-01-5 threads (clockwise when looking at threads)</li>
       <li>Thread in by hand until snug, then 1/4 turn with wrench — do NOT over-tighten</li>
-      <li>Connect 3 wires: <strong style="color:#fff">White=Signal</strong>, <strong style="color:#e33">Red=5V Power</strong>, <strong style="color:#888">Black=Ground</strong></li>
+      <li>Connect 3 wires: <strong style="color:#fff">White=Signal</strong>, <span class="wire-color" style="background:#e33"></span><strong style="color:#e33">Red=5V Power</strong>, <strong style="color:#888">Black=Ground</strong></li>
       <li>Route wires away from exhaust manifold — use heat-resistant loom</li>
       <li>Route through firewall grommet to HDX Control Box</li>
     </ol>
