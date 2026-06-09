@@ -152,6 +152,21 @@
   .vstep.open .vstep-arrow { transform:rotate(90deg); color:var(--accent); }
   .vstep-body { display:none; padding:0 16px 16px; }
   .vstep.open .vstep-body { display:block; }
+  /* === BARNEY EXPLAINER CHIPS === */
+  .vstep.barney { background:rgba(0,180,216,.04); border:1px solid rgba(0,180,216,.2); }
+  .vstep.barney.open { border-color:var(--accent2); }
+  .vstep.barney .vstep-header { padding:10px 14px; min-height:auto; }
+  .vstep.barney .vstep-num { display:none; }
+  .vstep.barney .vstep-title { font-size:13px; font-weight:500; color:var(--accent2); flex:1; }
+  .vstep.barney .vstep-time { display:none; }
+  .vstep.barney .vstep-arrow { font-size:16px; color:var(--muted); }
+  .vstep.barney.open .vstep-arrow { color:var(--accent2); }
+  .vstep.barney .vstep-body { padding:10px 14px 12px; font-size:13px; color:var(--muted); line-height:1.5; }
+  .barney-icon { font-size:14px; margin-right:4px; }
+  .barney-topic { font-weight:500; color:var(--accent2); }
+  body.barney-on .vstep.barney .vstep-body { display:block !important; }
+  .barney-nav-btn { background:none; border:1px solid var(--border); border-radius:6px; padding:4px 10px; color:var(--muted); font-size:11px; cursor:pointer; display:flex; align-items:center; gap:4px; white-space:nowrap; transition:.2s; margin-left:4px; }
+  .barney-nav-btn:hover { border-color:var(--accent2); color:var(--accent2); }
 
   .tools-needed { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; padding:10px; background:rgba(0,180,216,.06); border-radius:8px; border:1px solid rgba(0,180,216,.15); }
   .tool-tag { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; background:rgba(0,180,216,.1); color:var(--accent2); border:1px solid rgba(0,180,216,.2); }
@@ -371,7 +386,11 @@
     <div class="nav-tab" onclick="showSection('specs')">Specs</div>
     <div class="nav-tab" onclick="showSection('troubleshoot')">Troubleshoot</div>
     <div class="nav-tab" onclick="showSection('budget')">Budget</div>
+    <div class="nav-tab" onclick="showSection('skills')">🛠 Skills</div>
+    <div class="nav-tab" onclick="showSection('glossary')">Glossary</div>
   </div>
+
+  <button class="barney-nav-btn" onclick="toggleBarneyMode()" title="Toggle Barney Mode">🔰 Barney On</button>
   <button class="nav-search-btn" onclick="openSearch()" title="Search (Ctrl+K)" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:8px;margin-left:4px;">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
   </button>
@@ -848,7 +867,10 @@
     <p><strong>Signal Source:</strong> 3-wire pulse speed sensor (replaces mechanical cable)</p>
     <p><strong>Calibration:</strong> Enter tire diameter + axle ratio, or use GPS auto-calibration mode</p>
     <p><strong>TFT Message Center:</strong> Digital speed, odometer, trip odometer, or clock.</p>
-    <div class="note">The speed sensor cable-drive adapter threads into the transmission tailshaft where the mechanical cable used to connect. Route the 3 wires (signal, power, ground) to the Control Box.</div>
+    <div class="note">The speed sensor cable-drive adapter threads into the transmission tailshaft where the mechanical cable used to connect. Route the 3 wires (signal, power, ground) to the Control Box.</div><div class="vstep barney" data-barney="barney-cable-drive-speed-sensor">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Cable-drive VSS adapter</span></div>
+  <div class="vstep-body">The HDX speedo is electronic, but the '72 trans has a mechanical cable output. A cable-drive adapter threads into the tailshaft where the old cable went and converts shaft rotation into electronic pulses (signal/power/ground) for the HDX. Must be calibrated (GPS method most accurate) or speed reads wrong.</div>
+</div>
   </div>
 
   <div id="info-oil" class="gauge-info">
@@ -862,7 +884,10 @@
       <tr><td>Power</td><td style="color:#e33">Red</td><td>5V DC from Control Box</td></tr>
       <tr><td>Ground</td><td style="color:#888">Black</td><td>Engine block / chassis</td></tr>
     </table>
-    <div class="warn">This is a 3-wire sender — NOT the old single-wire GM type. Do not reuse the factory sender. Use Teflon tape, hand-tight + 1/4 turn only.</div>
+    <div class="warn">This is a 3-wire sender — NOT the old single-wire GM type. Do not reuse the factory sender. Use Teflon tape, hand-tight + 1/4 turn only.</div><div class="vstep barney" data-barney="barney-sender-types">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">3-wire vs 2-wire senders</span></div>
+  <div class="vstep-body">A 3-wire sender (SEN-03-8) has separate power (5V), signal, and ground — isolated and clean. A 2-wire sender returns through the block (old GM style), noisier. The HDX <strong>requires</strong> 3-wire; a 2-wire won't read right.</div>
+</div>
     <div class="note">Part number: <strong>SEN-03-8</strong> oil pressure sender ships in the HDX kit (Dakota Digital MAN 650542H p.10). Do not confuse with SEN-01-5 (speed sensor, MAN 650542H p.9). Standalone replacement part number is the same: SEN-03-8.</div>
   </div>
 
@@ -1241,7 +1266,10 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> Disconnect battery before working on this circuit. Carries constant power &mdash; can arc and cause fire if shorted.</div>
-    <div class="note"><strong>NOTE:</strong> The HDX RED wire is NOT part of the AAW harness. You connect it yourself to the CLOCK fuse position on the AAW 500707 panel. The AAW&rsquo;s own YELLOW wire also uses this fuse for the factory clock circuit.</div>
+    <div class="note"><strong>NOTE:</strong> The HDX RED wire is NOT part of the AAW harness. You connect it yourself to the CLOCK fuse position on the AAW 500707 panel. The AAW&rsquo;s own YELLOW wire also uses this fuse for the factory clock circuit.</div><div class="vstep barney" data-barney="barney-const-vs-switched">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Constant vs switched 12V</span></div>
+  <div class="vstep-body">Constant 12V (red) stays live with the key off — it powers the HDX clock/memory so settings persist. Switched 12V (pink) only powers with the key ON. The HDX needs <strong>both</strong>: red keeps the clock alive, pink controls when gauges power up.</div>
+</div>
   </div>
 </div>
 
@@ -1291,7 +1319,10 @@
       <tr><td>Hot When</td><td>Key ON only</td></tr>
     </table>
 
-    <div class="warn"><strong>WARNING:</strong> If gauges go completely dark with key ON, check Fuse #7 FIRST &mdash; it&rsquo;s the most common cause.</div>
+    <div class="warn"><strong>WARNING:</strong> If gauges go completely dark with key ON, check Fuse #7 FIRST &mdash; it&rsquo;s the most common cause.</div><div class="vstep barney" data-barney="barney-fuse-amperage">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Fuse amperage</span></div>
+  <div class="vstep-body">A fuse is a circuit breaker in a wrapper — it melts at a set current to protect wires from overheating/fire. Fuse #7 (GAUGES) is 10A because the cluster/HDX/radio draw ~8–9A peak. A 15A fuse lets too much through → melted insulation/fire.</div>
+</div>
     <div class="note"><strong>HDX BUILDS:</strong> The AAW PINK wire that originally fed the stock cluster goes UNUSED &mdash; cap it. The HDX has its own PINK wire you tap into the same Fuse #7 (GAUGES) slot independently. Verify with multimeter: 12.4V+ with key ON, 0V with key OFF.</div>
   </div>
 </div>
@@ -1346,8 +1377,14 @@
       <tr><td>Hot When</td><td>N/A</td></tr>
     </table>
 
-    <div class="warn"><strong>WARNING:</strong> BAD GROUNDS cause 90% of gauge problems. If ANY gauge acts erratic &mdash; check this FIRST. Must measure less than 0.5 ohms to battery negative.</div>
-    <div class="warn"><strong>SIGNAL GROUND ISOLATION (gauge jitter fix):</strong> The HDX Control Box ground MUST be a dedicated 18 AWG run to a clean bolt on the dash frame or firewall &mdash; short path, no splices, no shared points. Sharing this ground with engine block, starter, audio amp, or electric fan grounds injects voltage noise into the analog sender signals and makes gauges jitter. If your gauges already jitter, jump a temporary 18 AWG from Control Box ground directly to the battery negative post &mdash; if the jitter stops, your permanent ground is the problem.</div>
+    <div class="warn"><strong>WARNING:</strong> BAD GROUNDS cause 90% of gauge problems. If ANY gauge acts erratic &mdash; check this FIRST. Must measure less than 0.5 ohms to battery negative.</div><div class="vstep barney" data-barney="barney-ground-quality">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Why ground quality > wire quality</span></div>
+  <div class="vstep-body">Paint, rust, and corrosion are insulators — they block current and cause voltage drops. Bad grounds cause gauge jitter, dim lights, and gremlins. Sand each ground bolt to <strong>shiny bare metal</strong>, use a star washer to bite through paint.</div>
+</div>
+    <div class="warn"><strong>SIGNAL GROUND ISOLATION (gauge jitter fix):</strong> The HDX Control Box ground MUST be a dedicated 18 AWG run to a clean bolt on the dash frame or firewall &mdash; short path, no splices, no shared points. Sharing this ground with engine block, starter, audio amp, or electric fan grounds injects voltage noise into the analog sender signals and makes gauges jitter. If your gauges already jitter, jump a temporary 18 AWG from Control Box ground directly to the battery negative post &mdash; if the jitter stops, your permanent ground is the problem.</div><div class="vstep barney" data-barney="barney-signal-ground-isolation">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Dedicated signal ground</span></div>
+  <div class="vstep-body">Analog gauges read tiny voltage changes. Share the ground with high-current devices (engine, radio, blower) and their return currents inject noise → jitter. Run a <strong>dedicated 18 AWG</strong> ground from the Control Box to a clean dash bolt; never share it.</div>
+</div>
     <div class="note"><strong>NOTE:</strong> Do NOT share this ground point with radio, blower motor, or other high-draw accessories. Dedicated bolt only.</div>
   </div>
 </div>
@@ -1401,8 +1438,14 @@
       <tr><td>Setup</td><td>Set cylinder count to 8 in HDX menu</td></tr>
     </table>
 
-    <div class="warn"><strong>WARNING:</strong> Route tach wire at least 6 inches away from spark plug wires and distributor cap. EMI interference causes erratic tach readings. MUST use spiral-wound (suppression) plug wires &mdash; solid-core wires cause tach interference.</div>
-    <div class="note"><strong>NOTE:</strong> If tach reads double or half, check cylinder count setting (should be 8 for 396/454 big block).</div>
+    <div class="warn"><strong>WARNING:</strong> Route tach wire at least 6 inches away from spark plug wires and distributor cap. EMI interference causes erratic tach readings. MUST use spiral-wound (suppression) plug wires &mdash; solid-core wires cause tach interference.</div><div class="vstep barney" data-barney="barney-emi-tach">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">EMI & wire spacing</span></div>
+  <div class="vstep-body">Spark-plug wires emit radio-like noise (EMI) that leaks into signal wires like the tach line and makes it jitter. EMI is invisible but travels through air and metal. Keep tach wires ≥6″ from plug wires; use suppression (not solid-core) plug wires.</div>
+</div>
+    <div class="note"><strong>NOTE:</strong> If tach reads double or half, check cylinder count setting (should be 8 for 396/454 big block).</div><div class="vstep barney" data-barney="barney-cylinder-count-tach">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Cylinder count setting</span></div>
+  <div class="vstep-body">A tach counts ignition pulses to compute RPM, so it must know cylinders-per-rev. Set HDX cylinder count to <strong>8</strong> for the 396/454. Wrong count → tach reads exactly <strong>double</strong> (set to 4) or <strong>half</strong> (set to 16).</div>
+</div>
   </div>
 </div>
 
@@ -1456,7 +1499,10 @@
     <ol>
       <li>Engine block, driver side, mid-height &mdash; oil gallery port (where factory sender was)</li>
       <li>Remove old single-wire sender. Install Dakota Digital <strong>SEN-03-8</strong> oil pressure sender (1/8&quot; NPT, 0-100 PSI)</li>
-      <li>Apply Teflon tape to threads, hand-tight + 1/4 turn only</li>
+      <li>Apply Teflon tape to threads, hand-tight + 1/4 turn only</li><div class="vstep barney" data-barney="barney-npt-threads">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">NPT threads / ¼-turn</span></div>
+  <div class="vstep-body">NPT threads are <strong>tapered</strong> — they seal by compression as you tighten, so senders are <strong>not</strong> torqued hard. "Hand-tight + ¼ turn" = sealed but won't crack the aluminum block. Over-tightening is permanent damage.</div>
+</div>
       <li>Connect 3 wires: <strong>WHITE</strong>=Signal, <strong>RED</strong>=5V Power, <strong>BLACK</strong>=Ground</li>
       <li>Route through firewall grommet (away from exhaust manifold!)</li>
       <li>Connect to AAW Connector F</li>
@@ -1633,7 +1679,10 @@
       <li>Signal wire connects to AAW rear body harness, Bag M</li>
       <li>Bag M routes under carpet along driver rocker panel</li>
       <li>Twisted pair DIRECT from tank sender to Control Box FUEL INPUT-SIG and FUEL INPUT-GND (Dakota Digital MAN 650542H p.11). Fuel sender is unpowered &mdash; do NOT route through a fuse</li>
-      <li>Direct to HDX Control Box <strong>FUEL INPUT-SIG</strong> (signal) and <strong>FUEL INPUT-GND</strong> (separate ground) &mdash; twisted pair, no fuse</li>
+      <li>Direct to HDX Control Box <strong>FUEL INPUT-SIG</strong> (signal) and <strong>FUEL INPUT-GND</strong> (separate ground) &mdash; twisted pair, no fuse</li><div class="vstep barney" data-barney="barney-twisted-pair">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Twisted pair</span></div>
+  <div class="vstep-body">Twisting the signal and ground wires together cancels EMI that tries to leak in. Run them straight and parallel instead and they act like an antenna. Twisted pair is an invisible shield for analog sensor signals.</div>
+</div>
     </ol>
 
     <table class="circuit-specs">
@@ -1646,7 +1695,10 @@
     </table>
 
     <div class="warn"><strong>WARNING:</strong> Fuel sender MUST be calibrated via HDX menu &mdash; drive to empty, mark empty point; fill up, mark full point. Without calibration, fuel gauge will read wrong.</div>
-    <div class="note"><strong>FUEL GAUGE READS BACKWARDS &mdash; Recovery:</strong> If the gauge swings to F when empty and E when full, the sender ohm range is inverted. To diagnose: disconnect the sender signal wire at the tank, measure resistance at the sender terminals with a multimeter &mdash; should read ~0&Omega; at empty / ~90&Omega; at full for a GM 0-90 ohm sender (or the opposite if you have an inverted 90-0 aftermarket unit). Fix: either swap to the correct sender OR enable <strong>Fuel Sender Invert</strong> in the HDX menu (Settings &rarr; Calibration &rarr; Fuel &rarr; Invert). HDX can also calibrate to any nonstandard range.</div>
+    <div class="note"><strong>FUEL GAUGE READS BACKWARDS &mdash; Recovery:</strong> If the gauge swings to F when empty and E when full, the sender ohm range is inverted. To diagnose: disconnect the sender signal wire at the tank, measure resistance at the sender terminals with a multimeter &mdash; should read ~0&Omega; at empty / ~90&Omega; at full for a GM 0-90 ohm sender (or the opposite if you have an inverted 90-0 aftermarket unit). Fix: either swap to the correct sender OR enable <strong>Fuel Sender Invert</strong> in the HDX menu (Settings &rarr; Calibration &rarr; Fuel &rarr; Invert). HDX can also calibrate to any nonstandard range.</div><div class="vstep barney" data-barney="barney-fuel-sender-inversion">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Fuel sender range / calibration</span></div>
+  <div class="vstep-body">The HDX reads fuel as resistance (ohms) from the tank sender. GM senders run ~0Ω empty → ~90Ω full, but some are <strong>inverted</strong>. The HDX empty/full calibration (drive to empty, mark; fill, mark) handles either; if the gauge reads backwards, the range is inverted.</div>
+</div>
   </div>
 </div>
 
@@ -1866,7 +1918,10 @@
       <tr><td>17</td><td>BAT 1</td><td>20A</td><td>Battery</td><td>&mdash;</td></tr>
       <tr><td>18</td><td>BAT 2</td><td>30A</td><td>Battery</td><td>&mdash;</td></tr>
     </table>
-    <div class="note"><strong>HDX-CRITICAL:</strong> Fuse #7 (GAUGES), #8 (CLOCK), and #9 (FUEL) power the Dakota Digital HDX system. If gauges misbehave, check these three first.</div>
+    <div class="note"><strong>HDX-CRITICAL:</strong> Fuse #7 (GAUGES), #8 (CLOCK), and #9 (FUEL) power the Dakota Digital HDX system. If gauges misbehave, check these three first.</div><div class="vstep barney" data-barney="barney-ohms-resistance">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Ohms / thresholds</span></div>
+  <div class="vstep-body">An ohm measures resistance. A good ground reads <strong>&lt; 0.5Ω</strong> (near zero); over 0.5Ω means corrosion/loose contact. A fuel sender reads ~0Ω empty, ~90Ω full. The multimeter's Ω mode tells you good vs bad in seconds.</div>
+</div>
   </div>
 </div>
 
@@ -2708,7 +2763,10 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">12</div>
       <div class="guide-step-content sub-text">
         <strong>Chassis Ground</strong>
-        <p>Attach the <strong style="color:#888">BLACK</strong> ground wire to a clean, bare-metal chassis ground point. Sand paint away if needed and use a star washer for solid contact.</p>
+        <p>Attach the <strong style="color:#888">BLACK</strong> ground wire to a clean, bare-metal chassis ground point. Sand paint away if needed and use a star washer for solid contact.</p><div class="vstep barney" data-barney="barney-star-washer">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Star washers</span></div>
+  <div class="vstep-body">A star (toothed) washer's teeth dig through paint/oxidation to bare metal, so the ring terminal makes true metal-to-metal contact. Stack order: bolt → star washer → ring terminal → flat washer → nut.</div>
+</div>
       </div>
     </div>
 
@@ -2942,7 +3000,10 @@ function toggleCollapsible(id) {
       <div class="guide-step-num">14</div>
       <div class="guide-step-content sub-text">
         <strong>Seal the Bulkhead Connector</strong>
-        <p>Apply dielectric grease to the terminal side of the bulkhead connector. Then apply silicone RTV to the terminal cavities for a moisture seal. This prevents corrosion and ensures reliable connections through the firewall.</p>
+        <p>Apply dielectric grease to the terminal side of the bulkhead connector. Then apply silicone RTV to the terminal cavities for a moisture seal. This prevents corrosion and ensures reliable connections through the firewall.</p><div class="vstep barney" data-barney="barney-bulkhead-connector">
+  <div class="vstep-header" onclick="toggleBarney(this)"><span class="barney-icon">🔰</span> Why? <span class="barney-topic">Bulkhead connectors</span></div>
+  <div class="vstep-body">A bulkhead connector is a sealed multi-pin plug through the firewall. It carries engine-bay circuits into the cabin through one sealed point, keeping water/oil/heat/rodents out of the cabin harness.</div>
+</div>
       </div>
     </div>
 
@@ -4750,6 +4811,21 @@ Lay them all out and identify each piece before routing anything.</div>
 </div>
 
 <div class="note">⚡ This is a critical checkpoint. Do NOT proceed past this phase until all gauges respond correctly. It's 10x harder to troubleshoot after the interior is installed.</div>
+<div class="warn" style="background:rgba(239,68,68,.12);border-left:4px solid var(--red);padding:14px;margin:16px 0;border-radius:0 8px 8px 0">
+  <div style="font-weight:700;font-size:15px;color:var(--red);margin:0 0 12px">⚠️ First Power-Up — The Safe Way</div>
+  <p style="margin:0 0 10px;color:var(--text);font-size:14px">Do NOT connect the main battery to test the HDX for the first time. A wiring mistake (crossed 12V or ground) can fry the HDX, start a fire, or damage the car's electrical system.</p>
+  <ol style="margin:8px 0 0 20px;line-height:1.8;font-size:14px;color:var(--text)">
+    <li>Use a low-amperage charger (≤10A with a breaker) as your first power source</li>
+    <li>Connect charger negative to a clean frame bolt (not the battery)</li>
+    <li>Connect charger positive to the battery positive terminal</li>
+    <li>Turn the ignition key OFF — if the HDX lights up and backlight glows, the constant 12V (red) and ground (black) are correct</li>
+    <li>Watch for smoke, burning smell, or sparks — if any appear, STOP immediately; do not proceed further until the fault is found</li>
+    <li>Turn the ignition key ON (do NOT crank) — gauges should sweep full range and return to zero. Watch for flickering, wrong gauge responses, or any sign of distress</li>
+    <li>Test one circuit at a time: turn on headlights, horn, windshield wipers — each time watching for abnormal behavior</li>
+    <li>If everything checks: disconnect the charger, reconnect the car battery normally, and re-test</li>
+    <li>If anything fails or looks wrong at any step: STOP, disconnect the charger, and find the fault before re-energizing</li>
+  </ol>
+</div>
 <div class="connector-map">
   <div class="connector-map-title">🔌 What to Verify at Power-On</div>
   <div class="conn-pair"><span class="conn-from">Constant 12V (red)</span><span class="conn-arrow">→</span><span class="conn-to">HDX should show startup sequence with key OFF (clock, backlight)</span></div>
@@ -4937,7 +5013,7 @@ Lay them all out and identify each piece before routing anything.</div>
       <div class="substep" onclick="toggleSubstep(this)">
         <div class="sub-check" data-phase="5" data-step="4"></div>
         <div>
-          <div class="sub-text">Verify voltmeter shows battery voltage (12.4V+)</div>
+          <div class="sub-text">Verify voltmeter shows battery voltage (12.4V+)</div> <a class="skill-link" href="#skill-multimeter-basics" onclick="scrollToSkill('skill-multimeter-basics');return false" style="display:inline-block;margin-left:8px;padding:2px 6px;font-size:12px;background:rgba(0,180,216,.1);color:var(--accent2);border-radius:4px;text-decoration:none;font-weight:500">🛠 How to read a multimeter</a>
           
       <div class="sub-detail" onclick="event.stopPropagation();this.previousElementSibling?null:null;let d=this.nextElementSibling;if(d)d.classList.toggle('open')" style="cursor:pointer;color:var(--accent2)">
         ▸ More detail
@@ -5862,6 +5938,20 @@ Lay them all out and identify each piece before routing anything.</div>
   <p style="font-size:13px;margin:4px 0"><strong>Seat back latch:</strong> <span class="hw-spec">#10 × 1/2" Phillips</span> × 2 per seat</p>
 </div>
 <div class="warn">🛑 Seat belt bolts MUST be Grade 8 — verify markings BEFORE installing. <strong>Grade 8 = 6 radial lines</strong> on the bolt head. <strong>Grade 5 = 3 radial lines</strong> (stretches under crash load and fails — NOT acceptable for occupant restraint). <strong>Grade 2 = no markings</strong> (never acceptable). Wipe the bolt head clean of paint or oil so you can see the marking clearly. Mismatched Grade 5 hardware looks visually similar and is unsafe.</div>
+<div class="warn" style="background:rgba(239,68,68,.12);border-left:4px solid var(--red);padding:14px;margin:16px 0;border-radius:0 8px 8px 0">
+  <div style="font-weight:700;font-size:15px;color:var(--red);margin:0 0 12px">⚠️ Grade-8 Seat Belt Anchor Verification</div>
+  <p style="margin:0 0 10px;color:var(--text);font-size:14px">Seat belt anchors are life-safety hardware. A Grade 5 bolt stretches under crash load and fails catastrophically. The only acceptable bolt is Grade 8.</p>
+  <ol style="margin:8px 0 0 20px;line-height:1.8;font-size:14px;color:var(--text)">
+    <li>Before installing ANY seat belt anchor bolt, wipe the bolt head clean of paint, oil, or corrosion with a clean cloth</li>
+    <li>Count the radial (spoke-like) lines radiating from the center of the bolt head — do NOT count circumferential grooves</li>
+    <li>If you see 6 radial lines: Grade 8 ✓ — proceed with installation</li>
+    <li>If you see 3 radial lines: Grade 5 ✗ — DISCARD the bolt and obtain a new Grade 8 bolt</li>
+    <li>If you see no markings: Grade 2 or hardware-store bolt ✗ — DISCARD and get Grade 8</li>
+    <li>Torque the Grade 8 anchor bolt to exactly 30 ft-lbs with a calibrated torque wrench</li>
+    <li>After torquing, pull hard on the seat belt webbing (50+ pounds of force) — the anchor must not move at all</li>
+    <li>If the anchor shifts when you pull the belt, the bolt was undertorqued or the floor backing is loose — re-torque or reinforce and retry</li>
+  </ol>
+</div>
 
 
         <div class="tools-needed"><span class="tool-tag">1/2" socket</span><span class="tool-tag">Torque wrench (ft-lbs)</span><span class="tool-tag">Grade 8 bolts for seat belts</span></div>
@@ -7019,7 +7109,18 @@ Lay them all out and identify each piece before routing anything.</div>
     <h3 style="margin-top:0">First Start Procedure</h3>
     <ul class="checklist" id="cl-start">
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Verify oil level (engine cold, level surface, not running for at least 30 min — hot or tilted gives a false reading)</span></li>
-      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Pull coil wire — crank engine 15 seconds to build oil pressure (or use an oil pump priming tool in a drill)</span></li>
+<div class="warn" style="background:rgba(239,68,68,.12);border-left:4px solid var(--red);padding:14px;margin:16px 0;border-radius:0 8px 8px 0">
+  <div style="font-weight:700;font-size:15px;color:var(--red);margin:0 0 12px">⚠️ Prime the Oil Pump Before First Start</div>
+  <p style="margin:0 0 10px;color:var(--text);font-size:14px">A big-block engine with no oil pressure for 5 seconds will destroy cam bearings and main bearings. This is not optional.</p>
+  <ol style="margin:8px 0 0 20px;line-height:1.8;font-size:14px;color:var(--text)">
+    <li>Pull the coil wire from the distributor (disconnect ignition completely)</li>
+    <li>Crank the engine with the starter in 10–15 second bursts, pausing 5 seconds between bursts</li>
+    <li>Watch the oil pressure gauge — it should move within the first 5–10 seconds of cranking</li>
+    <li>Once the gauge shows any pressure (10+ PSI), stop cranking, reconnect the coil wire, and proceed to start</li>
+    <li>Start the engine normally and watch oil pressure immediately — should see 40+ PSI on a cold start</li>
+    <li>If the gauge reads ZERO after 10 seconds of running: SHUT OFF THE ENGINE IMMEDIATELY. Do not crank it again until you confirm oil flow at the sender or pump</li>
+  </ol>
+</div>      <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Pull coil wire — crank engine 15 seconds to build oil pressure (or use an oil pump priming tool in a drill)</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Reconnect coil wire</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Start engine — let idle, do NOT rev</span></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Watch oil pressure: should show 40+ PSI on initial cold start, settling to 20-40 PSI at warm idle. If gauge reads ZERO while cranking or at idle → SHUT OFF IMMEDIATELY.</span></li>
@@ -7356,6 +7457,167 @@ Lay them all out and identify each piece before routing anything.</div>
   </div>
 </div>
 
+<!-- ==================== SKILLS & HOW-TOS ==================== -->
+<div class="section" id="sec-skills">
+  <h2>🛠 Skills — Reusable How-Tos</h2>
+  <p style="color:var(--muted);margin-bottom:16px">Plain-language guides for common tasks you'll do multiple times during this build. Tap any card to expand.</p>
+
+  <!-- Skill Card: Crimping Terminals -->
+  <div class="vstep barney skillcard" data-barney="skill-crimping-terminals">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Crimp & Terminate a Connector</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Strip the wire:</strong> Use a wire stripper sized to the wire gauge. 12 AWG typically needs about 1/4" of insulation removed. Don't nick the copper.</li>
+        <li style="margin:6px 0"><strong>Select the right crimp tool jaw:</strong> Each jaw size corresponds to a wire gauge (usually stamped on the tool). Wrong jaw = weak crimp that will pull apart under vibration.</li>
+        <li style="margin:6px 0"><strong>Insert stripped wire into the terminal barrel:</strong> The terminal (ring, spade, or shrouded pin) has a long copper crimp barrel and a short insulation barrel. Wire goes into the copper part.</li>
+        <li style="margin:6px 0"><strong>Crimp the copper barrel:</strong> Position the terminal in the jaw so the copper barrel goes into the numbered notch. Squeeze the crimp tool handle until it clicks or stops — it should take firm pressure but not require extreme force.</li>
+        <li style="margin:6px 0"><strong>Crimp the insulation barrel:</strong> Move the terminal to a second notch (usually marked on the tool) and crimp the insulation barrel. This locks the insulation onto the crimp and prevents the wire from pulling free.</li>
+        <li style="margin:6px 0"><strong>Pull-test the crimp:</strong> Tug hard on the wire. If it pulls free, the crimp failed — cut off the terminal, re-strip, and try again.</li>
+        <li style="margin:6px 0"><strong>Heat-shrink over the crimp:</strong> Slide adhesive-lined heat-shrink tubing over the bare crimp and insulation, then apply heat with a heat gun until the shrink tightens (takes ~3 seconds). This seals out moisture.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> A poor crimp corrodes in the engine bay and causes intermittent electrical problems (dead gauges, no power to the HDX, mysterious shorts). Clean, properly crimped connections last decades.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Multimeter Basics -->
+  <div class="vstep barney skillcard" data-barney="skill-multimeter-basics">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Read a Multimeter (V / Continuity / Ω)</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>DC Volts mode (V):</strong> Turn the dial to "DC V" or "DCV". Red probe → positive, black probe → negative. At rest (key OFF), battery should read 12.4–12.7V. With the engine running, should read 13.5–14.5V (alternator charging). Lower = weak battery or bad alternator.</li>
+        <li style="margin:6px 0"><strong>Continuity mode (→):</strong> This beep mode tells you if a wire is connected or broken. Touch both probes to the two ends of the wire. If it beeps and shows ~0–5Ω, the wire is continuous (good). No beep = broken or corroded connection.</li>
+        <li style="margin:6px 0"><strong>Ohms mode (Ω):</strong> Measures resistance. Turn the dial to "Ω". Use this to test grounds and senders. <strong>Good ground:</strong> should read <0.5Ω (near zero). <strong>Bad ground:</strong> reads >0.5Ω (indicates corrosion/loose bolt). <strong>Fuel sender:</strong> should read ~0Ω when empty, ~90Ω when full (GM spec).</li>
+        <li style="margin:6px 0"><strong>Safety note:</strong> Always disconnect the probes from the circuit before switching modes. Don't measure volts on the Ω setting — it can damage the meter.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> A multimeter is your diagnostic superhero. Most gauge problems come down to bad power, bad ground, or broken wires — all invisible to the naked eye but obvious on a multimeter in 10 seconds.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Back-Probing -->
+  <div class="vstep barney skillcard" data-barney="skill-back-probing">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Back-Probe Without Breaking a Connector</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Locate the connector:</strong> Find the multi-pin connector you need to test (e.g., the HDX Control Box 8-pin, a sender connector).</li>
+        <li style="margin:6px 0"><strong>From the REAR:</strong> Instead of piercing the front of the insulation, gently push a small probe tool (or a straightened paper clip / solid 22 AWG wire) into the **rear** of the pin, from the back of the connector body. The connector shell has relief holes on the back for this purpose.</li>
+        <li style="margin:6px 0"><strong>Push gently:</strong> You should feel the probe slide into the pin's rear socket with light pressure. Push until the probe makes contact with the pin.</li>
+        <li style="margin:6px 0"><strong>Take your multimeter reading:</strong> Now connect your multimeter probes to the inserted tool and the reference point (ground, 12V+, etc.). Read the voltage or continuity.</li>
+        <li style="margin:6px 0"><strong>Withdraw carefully:</strong> Pull the probe straight out with steady pressure. Don't wiggle or force it — the pin should stay seated inside the connector.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> Back-probing lets you test a live circuit without unplugging the connector. Unplugging can cause intermittent problems if the connector gets reinserted incorrectly. Back-probing is faster and safer.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: NPT Thread Installation -->
+  <div class="vstep barney skillcard" data-barney="skill-npt-thread-installation">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Install NPT Senders with Teflon Tape</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Wrap Teflon tape:</strong> Grab a small roll of white Teflon (PTFE) tape from the hardware store. Wrap **clockwise** (looking down the threads) around the NPT threads, 3–4 turns. The tape compresses as you tighten and fills the tapered void, creating the seal.</li>
+        <li style="margin:6px 0"><strong>Screw in by hand:</strong> Thread the sender into the block by hand until it's snug. Don't use tools yet — you want to feel when the taper engages.</li>
+        <li style="margin:6px 0"><strong>Mark the position:</strong> With a paint pen or marker, draw a line on the sender head and the surrounding block so you have a visual reference.</li>
+        <li style="margin:6px 0"><strong>Exactly ¼ turn with a wrench:</strong> Using a wrench on the sender hex, turn the sender exactly ¼ turn (90°). This compresses the Teflon tape into the tapered thread void and creates the seal. **Stop there.**</li>
+        <li style="margin:6px 0"><strong>Check for weeping:</strong> If oil or coolant slowly drips from the threads after a few minutes of running, the sender is not seated. Remove it, re-wrap the tape, and try again — this time ½ turn instead of ¼.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> NPT threads are tapered — they don't have a flat face that a washer can push against. Over-tightening crushes the aluminum threads and creates a permanent leak. ¼ turn is the sweet spot.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Wire Routing & EMI -->
+  <div class="vstep barney skillcard" data-barney="skill-wire-routing-emicancel">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Route & Bundle Wires to Avoid EMI & Damage</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Keep signal wires away from ignition:</strong> Keep tach and sensor signal wires at least 6 inches away from spark plug wires, coil wire, and distributor cap. EMI from these high-voltage components leaks into the signal wires and makes gauges jitter.</li>
+        <li style="margin:6px 0"><strong>Cross at 90°:</strong> If a signal wire must cross an ignition wire, cross at a right angle (90°). Parallel routing is terrible — they act like coupled inductors and amplify the interference.</li>
+        <li style="margin:6px 0"><strong>Twist signal + ground together:</strong> For sensor signals (especially fuel and speed), twist the signal and ground wires together. Twisting cancels EMI that tries to leak in — it's an invisible shield.</li>
+        <li style="margin:6px 0"><strong>Bundle with cable ties, but loosely:</strong> Use velcro cable ties (not zip ties) so you can open them up later if you need to troubleshoot. Don't tighten them until you've confirmed everything works — loose wires are easier to reroute if you find a jitter problem.</li>
+        <li style="margin:6px 0"><strong>Avoid heat sources and sharp edges:</strong> Route wiring away from the exhaust manifold, radiator hoses, and sharp sheet-metal edges. Heat degrades insulation; sharp edges can cut it. Secure wires with P-clips where they might rub.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> Bad wire routing is the #1 cause of gauge jitter and tach bouncing. EMI is invisible but travels through air and metal. Clean routing prevents 90% of electrical gremlins.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Heat-Shrink Application -->
+  <div class="vstep barney skillcard" data-barney="skill-heat-shrink-application">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Install Heat-Shrink Properly</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Choose the right size:</strong> Heat-shrink comes in assorted diameters. When shrunk, it should fit snugly over the wire/crimp with no gaps. Test-fit before committing — if it's too small, the insulation pops out; too large, water gets underneath.</li>
+        <li style="margin:6px 0"><strong>Slide it on BEFORE crimping:</strong> This is the most common mistake. Always slide the heat-shrink tubing over the wire **before** you crimp the terminal. You can't retroactively thread it onto a crimped connector.</li>
+        <li style="margin:6px 0"><strong>Position it correctly:</strong> After crimping, slide the heat-shrink to cover the crimp **and** about ¼" onto the insulation (so the adhesive inside seals the transition point).</li>
+        <li style="margin:6px 0"><strong>Apply even heat:</strong> Use a heat gun (preferred) or a lighter held a few inches away. Move the heat source back and forth so the shrink heats evenly. It should tighten and conform to the wire in 2–3 seconds. If you overheat (turn black), you've cooked the insulation.</li>
+        <li style="margin:6px 0"><strong>For under-hood connections:</strong> Use **adhesive-lined** heat-shrink (dual-wall). The adhesive melts and seals out moisture and oil — essential in the engine bay.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> Heat-shrink seals the crimp against moisture, salt, and vibration. A bare crimp corrodes in weeks; a sealed one lasts indefinitely. Under-hood connections especially need this protection.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Bolt Grade Inspection -->
+  <div class="vstep barney skillcard" data-barney="skill-bolt-grade-inspection">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Identify Bolt Grades (5 vs 8)</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Wipe the bolt head clean:</strong> Use a dry cloth or wire brush to remove oil, paint, and corrosion from the bolt head. You need a clear view of the markings.</li>
+        <li style="margin:6px 0"><strong>Count the radial lines (dashes):</strong> Look at the top of the bolt head. You'll see radial lines running from the center outward. Grade 5 = **3 lines**. Grade 8 = **6 lines** (looks like a star when you count all the lines radiating from the middle). Grade 8 has 2x the tensile strength.</li>
+        <li style="margin:6px 0"><strong>Seat belt anchors are CRITICAL — GRADE 8 ONLY:</strong> Wipe the head, confirm 6 radial lines, and mark the bolt with a paint pen once verified. Grade 5 bolts look visually similar but **will stretch and fail under crash load**. A Grade 5 anchor can mean the difference between safe restraint and the belt pulling free in an accident.</li>
+        <li style="margin:6px 0"><strong>Other Grade 8 locations:</strong> Steering wheel attachment, steering gear mounting, lug nuts, and front suspension. Grade 5 is fine for most trim and interior bolts.</li>
+        <li style="margin:6px 0"><strong>If unmarked or unclear:</strong> Go to the hardware store and compare side-by-side with known-grade reference bolts. When in doubt for critical safety items, use Grade 8.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> Under a crash load, a weak (Grade 5) bolt stretches and fails. A strong (Grade 8) bolt stays tight. This is not about being over-cautious — it's about seat belt anchors staying where they're supposed to be.</p>
+    </div>
+  </div>
+
+  <!-- Skill Card: Torque Wrench Use -->
+  <div class="vstep barney skillcard" data-barney="skill-torque-wrench-use">
+    <div class="vstep-header" onclick="toggleBarney(this)">
+      <span class="barney-icon" style="font-size:18px;flex-shrink:0">🛠</span>
+      <div class="vstep-title">Use a Torque Wrench</div>
+      <div class="vstep-arrow">›</div>
+    </div>
+    <div class="vstep-body">
+      <ol style="font-size:13px;margin:8px 0;padding-left:16px;line-height:1.6">
+        <li style="margin:6px 0"><strong>Set the value:</strong> Click-type torque wrenches have a knob at the bottom. Turn it to the desired torque value (e.g., 30 ft-lbs for seat anchors, 35 ft-lbs for the steering wheel). Align the top pointer with the value marked on the handle.</li>
+        <li style="margin:6px 0"><strong>Smooth pull:</strong> Place the correct socket on the wrench and position it on the bolt. Pull smoothly and steadily. Don't jerk or yank — the wrench needs a smooth application of force to click accurately at the set value.</li>
+        <li style="margin:6px 0"><strong>Listen and feel for the click:</strong> When the wrench reaches the preset torque, it will click or "break" under your hand. Stop immediately. The bolt is now torqued correctly — tightening further can strip threads or damage the fastener.</li>
+        <li style="margin:6px 0"><strong>Star pattern (for multiple bolts on the same part):</strong> If you're torquing, for example, 4 seat-track bolts, don't go around in a circle. Instead, tighten in a "star" or "X" pattern: bolt 1 → bolt 3 (opposite) → bolt 2 → bolt 4. This pulls the part down evenly and prevents binding.</li>
+        <li style="margin:6px 0"><strong>Re-torque after a few miles:</strong> For critical bolts (seats, steering), drive 10–50 miles then re-torque. Vibration settles things, and you may need a final click to reach spec.</li>
+        <li style="margin:6px 0"><strong>After use, reset to the lowest setting:</strong> A torque wrench left at high tension has a weak spring inside. After each use, back the knob down to the lowest setting so the spring relaxes.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why this matters:</strong> A bolt that's too loose can vibrate free (dangerous). A bolt that's too tight strips threads or breaks the fastener (also dangerous and expensive). A torque wrench ensures you hit the spec every time.</p>
+    </div>
+  </div>
+
+</div>
+
 <!-- ==================== SPECS & PARTS ==================== -->
 <div class="section" id="sec-specs">
   <h2>Torque Specs and Parts Reference</h2>
@@ -7501,6 +7763,23 @@ Lay them all out and identify each piece before routing anything.</div>
     </div>
   </div>
 
+
+  <div class="trouble-item" style="background:rgba(239,68,68,.08);border-left:4px solid var(--red);padding:14px;margin:12px 0;border-radius:0 8px 8px 0">
+    <div style="font-weight:700;font-size:15px;color:var(--red);margin:0 0 12px">⚠️ Gauge Jitter → Dedicated Ground Test</div>
+    <p style="margin:0 0 10px;color:var(--text);font-size:14px">If gauges flicker or read erratically, a bad ground is the culprit 90% of the time. Here's a diagnostic procedure to confirm and temporarily fix.</p>
+    <ol style="margin:8px 0 0 20px;line-height:1.8;font-size:14px;color:var(--text)">
+      <li>With the engine running and gauges showing jitter, take a multimeter and measure the resistance between the HDX Control Box ground wire (the black wire connected to the dash bolt) and the battery negative terminal</li>
+      <li>Good ground reads &lt;0.5Ω (near zero). If your reading is higher, the ground bolt is touching paint, rust, or corrosion — the connection is not making true metal-to-metal contact</li>
+      <li>Stop the engine. Disconnect the Control Box ground wire at the dash bolt</li>
+      <li>Sand the dash bolt down to shiny bare metal with 80–120 grit sandpaper, removing all paint and oxidation</li>
+      <li>Sand the ring terminal (the crimped connector on the ground wire) until it is also bright and shiny</li>
+      <li>Reconnect the ground wire to the bolt. Use a star washer under the ring terminal to bite through any remaining oxidation. Torque hand-tight + ¼ turn</li>
+      <li>Apply dielectric grease (silicone-based, non-conductive) around the connection to prevent future corrosion</li>
+      <li>Re-test with the multimeter — resistance should now read &lt;0.5Ω</li>
+      <li><strong>Temporary diagnostic jumper (test only):</strong> if jitter persists after cleaning the main ground, you can try a temporary 18 AWG jumper wire directly from the Control Box ground to the battery negative terminal (parallel to the main ground, as a test). If the gauges stabilize immediately, your permanent ground point is still bad — clean it more aggressively or relocate it. Never leave the jumper wire in place; use the proper, cleaned ground bolt</li>
+    </ol>
+  </div>
+
   <div class="trouble-item">
     <div class="trouble-header" onclick="toggleTrouble(this)">
       <div class="trouble-rank">2</div>
@@ -7629,6 +7908,175 @@ Lay them all out and identify each piece before routing anything.</div>
   </div>
 </div>
 
+
+<!-- ==================== GLOSSARY ==================== -->
+<div class="section" id="sec-glossary">
+  <h2>Glossary</h2>
+  <p style="color: var(--muted); font-size: 13px; margin-bottom: 16px;">Plain-language definitions of wiring, electrical, and build terms used throughout the guide.</p>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px;">
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Bulkhead connector</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A sealed multi-pin plug through the firewall that carries engine-bay circuits into the cabin through one sealed point, keeping water, oil, heat, and rodents out of the cabin harness.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Constant 12V</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Always-hot power (red wire) that stays live with the key off — powers the HDX clock and memory so settings persist.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Switched 12V</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Ignition-fed power (pink wire) that only activates when the key is ON or in ACC — controls when gauges and accessories power up.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">EMI</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Electromagnetic interference from spark-plug wires and other sources that leaks into signal wires and causes gauge jitter.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Sending unit / Sender</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A sensor that reads engine parameters (oil pressure, coolant temp, fuel level, speed) and sends the signal to the gauges.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Three-wire sender</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A sender with separate power (5V), signal, and ground lines — isolated and clean, required by the HDX.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Two-wire sender</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A sender that returns ground through the engine block (old GM style) — noisier and incompatible with the HDX.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">NPT</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">National Pipe Thread — tapered threads that seal by compression, used for oil and temp senders; installed hand-tight + ¼ turn (not over-torqued).</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Ohms (Ω)</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A unit of electrical resistance; a good ground reads &lt;0.5Ω; fuel sender reads ~0Ω empty, ~90Ω full.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Twisted pair</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Signal and ground wires twisted together to cancel EMI; keeps them from acting like an antenna.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Star washer</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A toothed washer whose teeth dig through paint and oxidation to ensure bare-metal contact at ground connections.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Dielectric grease</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Moisture-blocking grease used under star washers and heat-shrink at grounds to prevent corrosion.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Rheostat</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">A variable resistor (dimmer switch) that controls the brightness of dash and gauge illumination.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Continuity</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Unbroken electrical path; a multimeter beep &lt;50Ω confirms good continuity.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Back-probe</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Testing technique where you probe from the rear of a connector pin without piercing the front, preserving the connection.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">VSS</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Vehicle Speed Sensor — electronic speed signal sent to the HDX speedo.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Cable-drive speed-sensor adapter</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Device that threads into the tailshaft where the old mechanical cable outlet was and converts shaft rotation into electronic pulses for the HDX; must be calibrated (GPS method most accurate).</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Teflon (PTFE) tape</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Thread-seal tape wrapped 3–4 times clockwise on NPT threads before sender installation to prevent weeping.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">ATO blade fuse</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Standard automotive fuse type used in the American Autowire panel; amperage determines circuit protection.</div>
+    </div>
+
+    <div class="hw-specs-card" style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+      <div class="hw-specs-toggle" onclick="this.closest('.hw-specs-card').classList.toggle('open')">
+        <strong style="color: var(--accent2); font-size: 14px;">Suppression (resistance) plug wires</strong>
+        <span class="hw-specs-arrow">▸</span>
+      </div>
+      <div class="hw-specs-body" style="font-size: 13px; color: var(--muted); line-height: 1.6;">Wires with internal resistance that reduce EMI (preferred over solid-core wires for HDX tach and sensor circuits).</div>
+    </div>
+  </div>
+</div>
 <!-- === BUDGET & PARTS SECTION === -->
 <div class="section" id="sec-budget">
   <h2>Budget & Parts Tracker</h2>
@@ -7864,7 +8312,41 @@ const ChevelleState = {
     this.save();
   }
 };
-ChevelleState.load();
+ChevelleState.load();applyBarneyState();
+// === GLOSSARY TERMS ===
+const GlossaryTerms = {
+  'Bulkhead connector': 'A sealed multi-pin plug through the firewall that carries engine-bay circuits into the cabin through one sealed point, keeping water, oil, heat, and rodents out of the cabin harness.',
+  'Constant 12V': 'Always-hot power (red wire) that stays live with the key off — powers the HDX clock and memory so settings persist.',
+  'Switched 12V': 'Ignition-fed power (pink wire) that only activates when the key is ON or in ACC — controls when gauges and accessories power up.',
+  'EMI': 'Electromagnetic interference from spark-plug wires and other sources that leaks into signal wires and causes gauge jitter.',
+  'Sending unit / Sender': 'A sensor that reads engine parameters (oil pressure, coolant temp, fuel level, speed) and sends the signal to the gauges.',
+  'Three-wire sender': 'A sender with separate power (5V), signal, and ground lines — isolated and clean, required by the HDX.',
+  'Two-wire sender': 'A sender that returns ground through the engine block (old GM style) — noisier and incompatible with the HDX.',
+  'NPT': 'National Pipe Thread — tapered threads that seal by compression, used for oil and temp senders; installed hand-tight + ¼ turn (not over-torqued).',
+  'Ohms (Ω)': 'A unit of electrical resistance; a good ground reads <0.5Ω; fuel sender reads ~0Ω empty, ~90Ω full.',
+  'Twisted pair': 'Signal and ground wires twisted together to cancel EMI; keeps them from acting like an antenna.',
+  'Star washer': 'A toothed washer whose teeth dig through paint and oxidation to ensure bare-metal contact at ground connections.',
+  'Dielectric grease': 'Moisture-blocking grease used under star washers and heat-shrink at grounds to prevent corrosion.',
+  'Rheostat': 'A variable resistor (dimmer switch) that controls the brightness of dash and gauge illumination.',
+  'Continuity': 'Unbroken electrical path; a multimeter beep <50Ω confirms good continuity.',
+  'Back-probe': 'Testing technique where you probe from the rear of a connector pin without piercing the front, preserving the connection.',
+  'VSS': 'Vehicle Speed Sensor — electronic speed signal sent to the HDX speedo.',
+  'Cable-drive speed-sensor adapter': 'Device that threads into the tailshaft where the old mechanical cable outlet was and converts shaft rotation into electronic pulses for the HDX; must be calibrated (GPS method most accurate).',
+  'Teflon (PTFE) tape': 'Thread-seal tape wrapped 3–4 times clockwise on NPT threads before sender installation to prevent weeping.',
+  'ATO blade fuse': 'Standard automotive fuse type used in the American Autowire panel; amperage determines circuit protection.',
+  'Suppression (resistance) plug wires': 'Wires with internal resistance that reduce EMI (preferred over solid-core wires for HDX tach and sensor circuits).'
+};
+
+function glossaryTip(spanEl, term) {
+  const def = GlossaryTerms[term];
+  if(!def) return;
+  const detail = document.createElement('div');
+  detail.className = 'detail-content';
+  detail.textContent = def;
+  spanEl.after(detail);
+  detail.classList.add('open');
+}
+
 
 // Active timer tracking
 let activeTimerPhase = null;
@@ -7874,7 +8356,7 @@ let timerInterval = null;
 const phases = [
   { title:'Sound Deadening', items:['Clean all floor pans, firewall, trans tunnel with degreaser','Apply Dynamat or equivalent to floor pans in sections','Apply to firewall (reduces engine noise and heat)','Apply to transmission tunnel','Apply to inner door skins','Apply to trunk floor (optional but recommended)','Let adhesive cure 24hrs before walking on it'] },
   { title:'Wiring Harness', items:['Route dash harness through firewall grommet','Connect bulkhead connector at firewall','Route engine harness — leave slack for engine movement','Route rear harness under carpet path along rocker panels','Tag every connector before plugging in (masking tape + marker)','Test continuity on each circuit with multimeter before connecting'] },
-  { title:'Dash Assembly', items:['Inspect dash support bracket for rust, bends, broken welds','Mount upper dash support bar to firewall (5/16"-18 bolts, lock washers)','Mount lower dash support brackets (left and right)','Mount center support brace','Install HDX Control Box behind dash, driver side — accessible location','Route HDX 8-pin display cable from Control Box to gauge cluster (~3 ft, Dakota Digital MAN 650542H p.6) position','Test-fit SS dash face and gauge cluster before final mount','Connect HDX power wires: RED=constant 12V, PINK=switched 12V, BLACK=ground','Secure dash face with 6x 7/16" hex bolts through support structure','Install dash pad with 4 spring clips'] },
+  { title:'Dash Assembly', items:['Inspect dash support bracket for rust, bends, broken welds','Mount upper dash support bar to firewall (5/16"-18 bolts, lock washers)','Mount lower dash support brackets (left and right)','Mount center support brace','Install HDX Control Box behind dash, driver side — accessible location','Route HDX 8-pin display cable from Control Box to gauge cluster (~3 ft, Dakota Digital MAN 650542H p.6) position','Test-fit SS dash face and gauge cluster before final mount','Connect HDX power wires: RED=constant 12V, PINK=switched 12V, BLACK=ground <a class="skill-link" href="#skill-crimping-terminals" onclick="scrollToSkill(&#39;skill-crimping-terminals&#39;);return false" style="display:inline-block;margin-left:8px;padding:2px 6px;font-size:12px;background:rgba(0,180,216,.1);color:var(--accent2);border-radius:4px;text-decoration:none;font-weight:500">🛠 How to crimp</a>','Secure dash face with 6x 7/16" hex bolts through support structure','Install dash pad with 4 spring clips'] },
   { title:'Steering Column', items:['Verify column clamp bracket on dash support is straight','Feed column through firewall and floor','Align column to dash opening','Tighten column clamp bolts: 3/8"-16, 20 ft-lbs','Connect turn signal wiring connectors','Install steering wheel — align spline marks','Torque steering wheel nut: 35 ft-lbs','Install horn button/contact','Test turn signals, horn, and hazards'] },
   { title:'Headliner', items:['Install headliner bows (replace if bent)','Feed headliner material from rear to front','Secure with adhesive at edges','Install dome light wiring before closing up','Install windshield trim and sail panels','Trim excess material'] },
   { title:'Carpet and Floor', items:['Lay jute or mass-backed padding over Dynamat','Cut padding around pedals, seats, console area','Position molded carpet kit — start from firewall, work back','Press carpet into corners with flat tool','Cut holes for seat bolts and seat belt anchors from underneath','Ensure carpet sits flat under console and seat areas'] },
@@ -8303,6 +8785,18 @@ function buildSearchIndex() {
       const title = vstep.querySelector('.vstep-title');
       if(title) searchIndex.push({ section: secName, text: title.textContent, element: vstep, isPhase: true });
     });
+    // Index glossary terms
+    if(secName === 'glossary') {
+      Object.entries(GlossaryTerms).forEach(([term, def]) => {
+        searchIndex.push({ section: 'glossary', text: term + ' — ' + def, element: sec, glossaryTerm: term });
+      });
+    }
+    // Index Barney explainer chips (searchable)
+    sec.querySelectorAll('.vstep.barney').forEach(function(chip){
+      var topic = chip.querySelector('.barney-topic');
+      var body = chip.querySelector('.vstep-body');
+      if(body) searchIndex.push({ section: secName, text: (topic? topic.textContent.trim()+' — ':'') + body.textContent.trim().substring(0,200), element: chip });
+    });
   });
 }
 
@@ -8698,6 +9192,53 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   updateWiringProgress();
 });
+
+// === BARNEY EXPLAINER CHIPS ===
+function toggleBarney(headerEl) {
+  const chip = headerEl.closest('.vstep.barney');
+  if(!chip) return;
+  chip.classList.toggle('open');
+  // Persist open chips
+  const openIds = [];
+  document.querySelectorAll('.vstep.barney.open').forEach(el => {
+    const id = el.getAttribute('data-barney');
+    if(id) openIds.push(id);
+  });
+  ChevelleState.set('barneyOpen', openIds);
+}
+
+function applyBarneyState() {
+  const openIds = ChevelleState.get('barneyOpen') || [];
+  const barneyMode = ChevelleState.get('barneyMode') || false;
+  // Open stored chips
+  openIds.forEach(id => {
+    const el = document.querySelector('[data-barney="'+id+'"]');
+    if(el) el.classList.add('open');
+  });
+  // Toggle Barney Mode
+  if(barneyMode) {
+    document.body.classList.add('barney-on');
+  }
+  // Update nav button
+  const btn = document.querySelector('.barney-nav-btn');
+  if(btn) btn.textContent = (barneyMode ? '🔰 Barney Off' : '🔰 Barney On');
+}
+
+function toggleBarneyMode() {
+  const isOn = document.body.classList.toggle('barney-on');
+  ChevelleState.set('barneyMode', isOn);
+  const btn = document.querySelector('.barney-nav-btn');
+  if(btn) btn.textContent = (isOn ? '🔰 Barney Off' : '🔰 Barney On');
+}
+
+
+function scrollToSkill(id) {
+  showSection('skills');
+  setTimeout(function(){
+    var el = document.querySelector('[data-barney="'+id+'"]');
+    if(el){ el.classList.add('open'); el.scrollIntoView({behavior:'smooth', block:'center'}); }
+  }, 60);
+}
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
