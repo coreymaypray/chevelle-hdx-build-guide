@@ -1,8 +1,10 @@
-const CACHE = 'chevelle-hdx-v7';
+const CACHE = 'chevelle-hdx-v8';
 const ASSETS = [
   './',
   './index.html',
   './chevelle-hdx-interactive.html',
+  './chevelle-data.js',
+  './chevelle-app.js',
   './manifest.json',
   './icon-180.png',
   './icon-192.png',
@@ -10,6 +12,13 @@ const ASSETS = [
   './dash-reference.jpg',
   './dash-reference-closeup.jpg',
   './behind-dash-reference.jpg',
+  './fonts/geist-400.woff2',
+  './fonts/geist-500.woff2',
+  './fonts/geist-600.woff2',
+  './fonts/geist-700.woff2',
+  './fonts/geist-mono-400.woff2',
+  './fonts/geist-mono-500.woff2',
+  './fonts/geist-mono-600.woff2',
   './aaw-diagrams/aaw-schematic-1971-72.png',
   './aaw-diagrams/aaw-fuse-panel-install.png',
   './aaw-diagrams/aaw-fuse-panel-layout.png',
