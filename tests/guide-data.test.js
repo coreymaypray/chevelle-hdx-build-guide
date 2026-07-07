@@ -145,9 +145,11 @@ test('Phase 4 hookup text matches the verified plan (F14/F15/F18)', () => {
   assert.match(src, /CLOCK fuse position/);
   assert.match(src, /GAUGES fuse position/);
   assert.match(src, /FUEL INPUT-SIG \+ FUEL INPUT-GND/);
+  assert.match(src, /must not be fused above 10A/);
+  assert.match(src, /HEI TACH terminal/);
 });
 
-test('Phase 5 temp sender text is corrected (F3/F40) — in BOTH files', () => {
+test('Phase 5 temp sender text is corrected in the data file (F3/F40)', () => {
   const src = DATA_SRC();
   assert.doesNotMatch(src, /the threads in the manifold complete the ground path/);
   assert.doesNotMatch(src, /ground through block/);
