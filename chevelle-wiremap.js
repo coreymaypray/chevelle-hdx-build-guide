@@ -66,7 +66,7 @@ window.WIRE_MAP = {
      the firewall — driver side is photo RIGHT (brake booster top right). */
   'engine-bay': {
     photo: { src: 'engine-bay-reference.jpg', w: 1280, h: 960 },
-    shotList: 'Your car: stand at the driver-side fender, frame the firewall + rear half of the intake, level with the carb, landscape. Drop the file in as engine-bay-reference.jpg, update w/h, re-anchor pins (ids stay — checks survive).',
+    shotList: 'Stand at the driver-side fender, frame the firewall + rear half of the intake, level with the carb, landscape. Drop the file in as engine-bay-reference.jpg, update w/h, re-anchor pins (ids stay — checks survive).',
     pins: [
       { id: 'oil-sender',  part: 'Oil Pressure Sender',       x: 895,  y: 540 },
       { id: 'temp-sender', part: 'Coolant Temp Sender',       x: 605,  y: 528 },
@@ -82,9 +82,11 @@ window.WIRE_MAP = {
         path: [[605, 528], [655, 470], [745, 425], [830, 330], [872, 258]] },
       { id: 'tach-lead',   label: 'Tach WHITE from HEI TACH terminal',        color: '#f5f5f5', halo: true, pin: 'tach-source', circuit: 'tach',
         path: [[700, 195], [770, 172], [840, 200], [872, 240]] },
-      { id: 'charge-wire', label: 'Alternator charge wire (Bag Z)',           color: '#e5484d', pin: 'alternator', circuit: 'const12v',
+      { id: 'charge-wire', label: 'Alternator charge wire (Bag Z)',           color: '#e5484d', pin: 'alternator', circuit: null,
+        note: 'Heavy 6-ga alternator output to the battery (AAW Bag Z), protected by the MEGAFUSE — not a dash fuse, not an HDX gauge circuit. The engine-to-chassis ground strap at the alternator bracket is what keeps gauge readings stable.',
         path: [[440, 620], [330, 655], [215, 700], [115, 745]] },
-      { id: 'main-feed',   label: 'Megafuse main feed → fuse panel',          color: '#e5484d', pin: 'megafuse', circuit: 'const12v',
+      { id: 'main-feed',   label: 'Megafuse main feed → fuse panel',          color: '#e5484d', pin: 'megafuse', circuit: null,
+        note: 'Heavy 6-ga main feed from the megafuse through the bulkhead to the AAW fuse panel — powers the entire harness. Mount and wire the megafuse BEFORE routing this feed.',
         path: [[95, 735], [200, 480], [420, 200], [700, 120], [865, 225]] },
     ],
   },
@@ -92,7 +94,7 @@ window.WIRE_MAP = {
      photo LEFT (front of trans), extension/tailhousing at photo RIGHT. */
   'under-car': {
     photo: { src: 'under-car-reference.jpg', w: 1600, h: 1070 },
-    shotList: 'Your car: on ramps/jack stands, shoot the trans tailshaft from the driver side showing the speedo-cable port. Replace under-car-reference.jpg, update w/h, re-anchor (ids stay).',
+    shotList: 'On ramps/jack stands, shoot the trans tailshaft from the driver side showing the speedo-cable port. Replace under-car-reference.jpg, update w/h, re-anchor (ids stay).',
     pins: [
       { id: 'vss-port',     part: 'Speed Sensor Adapter', x: 1290, y: 440 },
       { id: 'frame-ground', part: 'Frame/Body Ground',    x: 600,  y: 490 },
@@ -108,7 +110,7 @@ window.WIRE_MAP = {
      installed in a strapped metal tank; twisted pair exits bottom-left. */
   'rear': {
     photo: { src: 'rear-sender-reference.jpg', w: 1280, h: 960 },
-    shotList: 'Your car (PRIORITY — this stock photo is a generic sender, not an A-body): trunk open, shoot the tank/sender area, or under-rear showing tank + lines. Replace rear-sender-reference.jpg, update w/h, re-anchor (ids stay).',
+    shotList: 'PRIORITY — this stock photo is a generic sender, not an A-body. Trunk open, shoot the tank/sender area, or under-rear showing tank + lines. Replace rear-sender-reference.jpg, update w/h, re-anchor (ids stay).',
     pins: [
       { id: 'tank-sender', part: 'Fuel Tank Sending Unit', x: 585, y: 285 },
       { id: 'rear-ground', part: 'Rear Body Ground',       x: 130, y: 765 },
