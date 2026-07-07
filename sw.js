@@ -45,15 +45,22 @@ function isCodeRequest(request) {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   if (isCodeRequest(e.request)) {
-    /* network-first: latest content when online, cache when offline (F11) */
+    /* network-first with a 3s cap: newest content when online, but on flaky
+       garage wifi fall back to cache fast instead of hanging (F11) */
+    const network = fetch(e.request).then(res => {
+      if (res && res.status === 200) {
+        const copy = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, copy));
+      }
+      return res;
+    });
     e.respondWith(
-      fetch(e.request).then(res => {
-        if (res && res.status === 200) {
-          const copy = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, copy));
-        }
-        return res;
-      }).catch(() => caches.match(e.request))
+      caches.match(e.request).then(cached => {
+        if (!cached) return network;                  // nothing cached: must wait for network
+        const capped = network.catch(() => cached);   // never rejects → race can't reject
+        const timeout = new Promise(r => setTimeout(() => r(cached), 3000));
+        return Promise.race([capped, timeout]);       // whichever is first; network still revalidates
+      })
     );
     return;
   }
