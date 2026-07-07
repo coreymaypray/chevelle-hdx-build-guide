@@ -66,6 +66,7 @@ window.WIRE_MAP = {
      the firewall — driver side is photo RIGHT (brake booster top right). */
   'engine-bay': {
     photo: { src: 'engine-bay-reference.jpg', w: 1280, h: 960 },
+    credit: 'Photo: Michael Barera, Wikimedia Commons, CC BY-SA 4.0',
     shotList: 'Stand at the driver-side fender, frame the firewall + rear half of the intake, level with the carb, landscape. Drop the file in as engine-bay-reference.jpg, update w/h, re-anchor pins (ids stay — checks survive).',
     pins: [
       { id: 'oil-sender',  part: 'Oil Pressure Sender',       x: 895,  y: 540 },
@@ -94,6 +95,7 @@ window.WIRE_MAP = {
      photo LEFT (front of trans), extension/tailhousing at photo RIGHT. */
   'under-car': {
     photo: { src: 'under-car-reference.jpg', w: 1600, h: 1070 },
+    credit: 'Photo: OSX, Wikimedia Commons, public domain',
     shotList: 'On ramps/jack stands, shoot the trans tailshaft from the driver side showing the speedo-cable port. Replace under-car-reference.jpg, update w/h, re-anchor (ids stay).',
     pins: [
       { id: 'vss-port',     part: 'Speed Sensor Adapter', x: 1290, y: 440 },
@@ -110,6 +112,7 @@ window.WIRE_MAP = {
      installed in a strapped metal tank; twisted pair exits bottom-left. */
   'rear': {
     photo: { src: 'rear-sender-reference.jpg', w: 1280, h: 960 },
+    credit: 'Photo: dave_7, Wikimedia Commons, CC BY-SA 2.0',
     shotList: 'PRIORITY — this stock photo is a generic sender, not an A-body. Trunk open, shoot the tank/sender area, or under-rear showing tank + lines. Replace rear-sender-reference.jpg, update w/h, re-anchor (ids stay).',
     pins: [
       { id: 'tank-sender', part: 'Fuel Tank Sending Unit', x: 585, y: 285 },

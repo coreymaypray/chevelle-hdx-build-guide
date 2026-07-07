@@ -330,7 +330,7 @@ const PARTS_MAP = [
         wiresIn: '—', wiresOut: 'WHITE 18 AWG — Dakota lead direct to Control Box TACH', note: 'Keep ≥6" from plug wires. Suppression wires only.' },
       { n: 'Wiper Motor', pn: '—', loc: 'Firewall, passenger side (4-wire motor)', thread: '—',
         wiresIn: 'PURPLE low / BROWN high / YELLOW park / LT BLUE washer via Bag J', wiresOut: '—',
-        note: '20A circuit — keep every connection tight or connectors melt.' },
+        note: '10A circuit (WIPER fuse) — keep every connection tight or connectors melt.' },
       { n: 'Alternator + Ground Strap', pn: '—', loc: 'Alternator; strap from engine block to frame/firewall', thread: '—',
         wiresIn: 'Charge wire to battery via Bag Z', wiresOut: 'Engine→chassis ground path',
         note: 'The engine-to-chassis strap is essential for stable gauges — verify it during recommission.' },
@@ -1081,7 +1081,8 @@ function wireMapInnerHTML(zone, interactive) {
   return '<div class="wm-wrap"><img src="' + esc(z.photo.src) + '" alt="' + esc(zone) + ' wiring photo"'
     + ' onerror="this.closest(\'.wm-wrap\').classList.add(\'wm-imgfail\')"/>'
     + '<svg viewBox="0 0 ' + z.photo.w + ' ' + z.photo.h + '" preserveAspectRatio="xMidYMid meet">' + svg + '</svg>'
-    + '<div class="wm-fallback">Photo unavailable — reconnect once on Wi-Fi to cache it. The parts list below still works.</div></div>';
+    + '<div class="wm-fallback">Photo unavailable — reconnect once on Wi-Fi to cache it. The parts list below still works.</div></div>'
+    + (z.credit ? '<div class="pm-caption">' + esc(z.credit) + '</div>' : '');
 }
 function wmDetailHTML(zone) {
   const z = (window.WIRE_MAP || {})[zone];
@@ -1482,9 +1483,10 @@ appEl.addEventListener('click', e => {
         if (ph != null) { state.activePhase = Number(ph); state.view = 'build'; }
         else state.view = v;
         state.ui.accordion = acc != null ? Number(acc) : null;
-        /* clear the non-targeted selection so the scroll-to-hit can't land on a stale open card */
+        /* clear the non-targeted selections so the scroll-to-hit can't land on a stale open card */
         state.ui.circuitSel = circ || null;
         state.ui.fuseSel = fu != null ? Number(fu) : null;
+        state.ui.wm = null;
         if (da) state.ui.dashSel = da;
         persist(); render({ resetScroll: true });
         requestAnimationFrame(() => {
