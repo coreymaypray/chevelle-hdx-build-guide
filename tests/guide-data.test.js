@@ -129,8 +129,29 @@ test('turn-signal circuit cites TURN 10A by label (F13/F34)', () => {
   const src = APP_SRC();
   assert.doesNotMatch(src, /Fuse #5 TURN 15A/);
   assert.doesNotMatch(src, /label:\s*'TURN',\s*amps:\s*15/);
+  assert.match(src, /'TURN fuse 10A'/);
 });
 
 test('voltmeter has no signal wire claim (F41)', () => {
   assert.doesNotMatch(APP_SRC(), /voltmeter needs only its signal wire/);
+});
+
+const DATA_SRC = () => read('chevelle-data.js');
+
+test('Phase 4 hookup text matches the verified plan (F14/F15/F18)', () => {
+  const src = DATA_SRC();
+  assert.doesNotMatch(src, /Tach: single wire from coil negative\. Fuel: single wire from tank sender/);
+  assert.doesNotMatch(src, /run a dedicated 14-16 AWG wire from the battery\/starter solenoid through the firewall, fused at 15A/);
+  assert.match(src, /CLOCK fuse position/);
+  assert.match(src, /GAUGES fuse position/);
+  assert.match(src, /FUEL INPUT-SIG \+ FUEL INPUT-GND/);
+});
+
+test('Phase 5 temp sender text is corrected (F3/F40) — in BOTH files', () => {
+  const src = DATA_SRC();
+  assert.doesNotMatch(src, /the threads in the manifold complete the ground path/);
+  assert.doesNotMatch(src, /ground through block/);
+  assert.doesNotMatch(src, /[Gg]rounds through the engine block/);
+  assert.doesNotMatch(src, /usually rear, near the thermostat housing/);
+  assert.match(src, /front of the intake, passenger side/);
 });

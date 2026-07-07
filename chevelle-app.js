@@ -250,7 +250,7 @@ const CIRCUITS = [
   { id: 'temp', name: 'Water Temp Sender', swatch: '#1f8a4c',
     hdxWire: 'DARK GREEN signal', aawWire: 'AAW DK GREEN — capped on HDX builds', awg: '18 AWG',
     fuse: null, hotWhen: 'Sender signal (SIG + GND pair)', aawRef: 'Dakota SEN-04-5 sub-harness',
-    route: ['SEN-04-5 at intake manifold water jacket (passenger front)', '3/8"→1/8" NPT reducing bushing', 'Firewall grommet', 'Dakota sender sub-harness', 'HDX Control Box TEMP INPUT-SIG + TEMP INPUT-GND'],
+    route: ['SEN-04-5 at intake manifold water jacket (passenger front)', '3/8"→1/8" NPT reducing bushing', 'Firewall grommet', 'Dakota sender sub-harness', 'HDX Control Box TEMP (SIG + GND)'],
     warnings: ['Missing the 3/8"-to-1/8" NPT reducer bushing = no seal = coolant leak = engine damage. Verify bushing fit first.'],
     notes: ['2-wire sender: BOTH wires go to the Control Box (TEMP INPUT-SIG + TEMP INPUT-GND per MAN 650542H). If the reading is wrong, check both wires at the box — not the threads.'] },
   { id: 'speed', name: 'Speed Sensor (VSS)', swatch: '#9b59d0',

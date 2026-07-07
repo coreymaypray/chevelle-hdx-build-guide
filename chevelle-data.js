@@ -282,11 +282,11 @@ const PHASES = [
       },
       {
         "text": "Connect CONSTANT 12V (RED wire) to battery-hot fuse",
-        "detail": "This wire must have power at ALL times (even when key is off). Connect to a fused source: 5-20A inline fuse. Best practice: run a dedicated 14-16 AWG wire from the battery/starter solenoid through the firewall, fused at 15A. The red wire from the Control Box is 18 AWG."
+        "detail": "This wire must have power at ALL times (even when key is off) — it keeps the HDX memory alive. CANONICAL METHOD: land it on the AAW fuse panel's CLOCK fuse position (battery-hot, 10A — find it by the printed label on the panel legend). Alternative only if the CLOCK position is already taken: a dedicated wire from the battery/starter stud through the firewall with an inline fuse of 10A MAX — the Control Box RED pigtail is 18 AWG and must not be fused above 10A."
       },
       {
         "text": "Connect SWITCHED 12V (PINK wire) to ignition-hot source",
-        "detail": "This wire provides power only when the key is in the ON or RUN position. Tap into the ignition switch output or use the fuse panel's IGN circuit. Use a test light to verify: power at ON, no power at OFF."
+        "detail": "This wire provides power only when the key is in the ON or RUN position. Land it on the AAW fuse panel's GAUGES fuse position (ignition-hot, 5A — find it by the printed label). Use a test light to verify: power at ON, no power at OFF."
       },
       {
         "text": "Connect GROUND (BLACK wire) to dedicated firewall ground bolt",
@@ -298,7 +298,7 @@ const PHASES = [
       },
       {
         "text": "Connect each sensor input wire to Control Box",
-        "detail": "Oil pressure: 3-wire (white SIG, red PWR, black GND). Water temp: 2-wire. Speed sensor: 3-wire. Tach: single wire from coil negative. Fuel: single wire from tank sender. Each one plugs into a labeled connector on the Control Box."
+        "detail": "Oil pressure: 3-wire + shield (WHITE sig, RED 5V, BLACK gnd, bare shield to DRN). Water temp: 2-wire — BOTH to the box (TEMP INPUT-SIG + TEMP INPUT-GND). Speed sensor: 3-wire. Tach: HEI TACH terminal (points ignition: coil negative) — see Phase 5. Fuel: TAN twisted pair from the tank sender to FUEL INPUT-SIG + FUEL INPUT-GND, unfused. Each one lands on a labeled terminal on the Control Box."
       },
       {
         "text": "Install SS dash face with gauge cluster into support structure",
@@ -357,11 +357,11 @@ const PHASES = [
       },
       {
         "text": "Install water temperature sender in intake manifold",
-        "detail": "Find the water jacket port on the intake manifold (usually rear, near the thermostat housing). You may need a reducing bushing: GM ports are often 3/8\" or 1/2\" NPT, but the HDX sender is 1/8\" NPT. Use the included bushing adapter. Teflon tape, hand-tight + 1/4 turn."
+        "detail": "Find the water jacket port at the front of the intake, passenger side, near the thermostat housing. You may need a reducing bushing: GM ports are often 3/8\" or 1/2\" NPT, but the HDX sender is 1/8\" NPT. Use the included bushing adapter. Teflon tape, hand-tight + 1/4 turn."
       },
       {
-        "text": "Wire the temp sender: signal to Control Box, ground through block",
-        "detail": "This is a 2-wire sender. One wire goes to the Control Box TEMP input. The other grounds through the engine block (the threads in the manifold complete the ground path)."
+        "text": "Wire the temp sender: both wires to the Control Box (SIG + GND)",
+        "detail": "This is a 2-wire sender and BOTH wires go to the Control Box: one to TEMP INPUT-SIG, one to TEMP INPUT-GND (MAN 650542H). The ground does NOT run through the engine block — Teflon tape on the threads is fine and does not affect the reading."
       },
       {
         "text": "Install speed sensor adapter in transmission tailshaft",
