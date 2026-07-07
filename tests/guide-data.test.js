@@ -37,3 +37,38 @@ test('substep counts per phase are locked (index-based check keys)', () => {
   }
   assert.deepStrictEqual(counts, JSON.parse(fs.readFileSync(snapshotFile, 'utf8')));
 });
+
+const APP_SRC = () => read('chevelle-app.js');
+
+test('fuse table matches the shipped AAW diagram (F2)', () => {
+  const src = APP_SRC();
+  // Corrected anchors — label + amps pairs that MUST exist in FUSES
+  assert.match(src, /label:\s*'GAUGES',\s*amps:\s*5\b/);
+  assert.match(src, /label:\s*'CLOCK',\s*amps:\s*10\b/);
+  assert.match(src, /label:\s*'WIPER',\s*amps:\s*10\b/);
+  assert.match(src, /label:\s*'LIGHTER',\s*amps:\s*10\b/);
+  assert.match(src, /label:\s*'DASH LTS',\s*amps:\s*10\b/);
+  assert.match(src, /label:\s*'IGN 1',\s*amps:\s*20\b/);
+  // Disproven claims that must be GONE
+  assert.doesNotMatch(src, /label:\s*'GAUGES',\s*amps:\s*10\b/);
+  assert.doesNotMatch(src, /label:\s*'CLOCK',\s*amps:\s*5\b/);
+  assert.doesNotMatch(src, /SW IGN/);
+  assert.doesNotMatch(src, /label:\s*'WIPER',\s*amps:\s*20\b/);
+  // Exactly one TURN fuse
+  assert.strictEqual((src.match(/label:\s*'TURN'/g) || []).length, 1);
+});
+
+test('HDX callouts are keyed by fuse label, not slot number (F2)', () => {
+  const src = APP_SRC();
+  assert.doesNotMatch(src, /HDX on #7 \/ #8 \/ #9/);
+  assert.doesNotMatch(src, /#7 \/ #8 \/ #9\) power the HDX/);
+  assert.doesNotMatch(src, /Fuse #8 CLOCK/);
+  assert.doesNotMatch(src, /Fuse #7 GAUGES/);
+});
+
+test('FUEL fuse is not called HDX-critical (F42)', () => {
+  const src = APP_SRC();
+  const fuelSlot = src.match(/label:\s*'FUEL'[^}]*/);
+  assert.ok(fuelSlot, 'FUEL fuse entry exists');
+  assert.doesNotMatch(fuelSlot[0], /HDX-critical|powers the HDX/i);
+});

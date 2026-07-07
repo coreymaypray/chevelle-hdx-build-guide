@@ -179,26 +179,55 @@ const DASH_GAUGES = [
     note: 'Per MAN 650542H p.11 the sender signal runs unfused, twisted pair, direct to the box. If the gauge reads backwards the sender range is inverted — use Settings → Calibration → Fuel → Invert, don’t rewire.' },
   { key: 'volt', n: 'Voltmeter', range: '8 – 16 V', cx: 388, cy: 122, r: 26, color: '#caa53a',
     sender: 'Internal — reads system voltage at the Control Box',
-    wire: 'Via RED (constant, Fuse #8) + PINK (switched, Fuse #7) feeds',
+    wire: 'Via RED (constant — CLOCK fuse) + PINK (switched — GAUGES fuse) feeds',
     cal: 'None',
-    fuse: { slot: 7, label: 'GAUGES', amps: 10 },
-    trace: ['Fuse #7 GAUGES (PINK)', 'HDX Control Box', 'Cluster — Volts'],
+    fuse: { label: 'GAUGES', amps: 5 },
+    trace: ['GAUGES fuse 5A (PINK)', 'HDX Control Box', 'Cluster — Volts'],
     note: 'Key OFF: 12.4–12.7 V battery rest. Running: 13.5–14.5 V charging. A low reading at idle is almost always a bad ground, not the alternator. Disconnect and insulate the old ammeter bypass wire — it interferes.' },
 ];
 
-/* 11 real circuits (old guide lines ~1219-1887) */
+/* AAW 500707 fuse panel — transcribed from the shipped diagram
+   aaw-diagrams/aaw-fuse-panel-layout.png (18 positions, top-to-bottom
+   as drawn). The printed panel legend has NO slot numbers — fuses are
+   identified by circuit name only; `slot` here is purely an internal
+   grid-position / selection id, never shown as a panel number.
+   ATC colors: tan=5A, red=10A, blue=15A, yellow=20A, green=30A. */
+const FUSES = [
+  { slot: 1,  label: 'DASH LTS', amps: 10, feed: 'Battery — via headlight switch dimmer', hdx: null, detail: 'Instrument / dash illumination, fed through the headlight-switch rheostat.' },
+  { slot: 2,  label: 'FUEL',     amps: 15, feed: 'Ignition', hdx: null, detail: 'Factory fuel circuit. The HDX fuel sender signal is UNFUSED — a fuel-gauge problem means checking the TAN twisted pair and rear body ground, not this fuse.' },
+  { slot: 3,  label: 'BRK/CTSY', amps: 15, feed: 'Battery', hdx: null, detail: 'Brake lights + courtesy lamps — hot at all times.' },
+  { slot: 4,  label: 'BAT 2',    amps: 30, feed: 'Battery', hdx: null, detail: 'Spare battery-feed circuit.' },
+  { slot: 5,  label: 'GAUGES',   amps: 5,  feed: 'Ignition', hdx: 'PINK switched 12V feed — the HDX taps this fuse position. Gauges dark with key ON? Check here FIRST.', detail: 'Instrument power — 5A tan fuse on the ignition bus.' },
+  { slot: 6,  label: 'FAN',      amps: 30, feed: 'Ignition', hdx: null, detail: 'Heater blower fan feed.' },
+  { slot: 7,  label: 'CLOCK',    amps: 10, feed: 'Battery (always hot)', hdx: 'RED constant 12V feed — keeps HDX memory alive. You land the HDX RED here yourself.', detail: 'Constant-power circuit — keeps the HDX clock and settings alive with the key off.' },
+  { slot: 8,  label: 'WIPER',    amps: 10, feed: 'Ignition', hdx: null, detail: 'Wiper motor feed — keep every terminal tight.' },
+  { slot: 9,  label: 'AC/HEAT',  amps: 30, feed: 'Ignition', hdx: null, detail: 'HVAC feed.' },
+  { slot: 10, label: 'LIGHTER',  amps: 10, feed: 'Battery', hdx: null, detail: 'Cigarette lighter / power port.' },
+  { slot: 11, label: 'BAT 1',    amps: 20, feed: 'Battery', hdx: null, detail: 'Spare battery-feed circuit.' },
+  { slot: 12, label: 'IGN 1',    amps: 20, feed: 'Ignition', hdx: null, detail: 'Spare ignition-switched feed.' },
+  { slot: 13, label: 'ACCY 1',   amps: 30, feed: 'Accessory', hdx: null, detail: 'Spare accessory feed.' },
+  { slot: 14, label: 'HAZARD',   amps: 15, feed: 'Battery', hdx: null, detail: 'Hazard flasher circuit — works with the key off.' },
+  { slot: 15, label: 'PWR WDO',  amps: 30, feed: 'Ignition', hdx: null, detail: 'Power window option.' },
+  { slot: 16, label: 'RADIO',    amps: 10, feed: 'Accessory', hdx: null, detail: 'Radio feed.' },
+  { slot: 17, label: 'PARK LT',  amps: 10, feed: 'Battery — via headlight switch', hdx: null, detail: 'Park / marker lamps.' },
+  { slot: 18, label: 'TURN',     amps: 10, feed: 'Ignition', hdx: null, detail: 'Turn-signal feed — the AAW TURN SW terminal takes the column-switch wire.' },
+];
+const fuseByLabel = l => FUSES.find(f => f.label === l);
+
+/* 11 real circuits (old guide lines ~1219-1887) — fused circuits
+   reference the FUSES entries above so panel data stays single-source */
 const CIRCUITS = [
   { id: 'const12v', name: 'Constant 12V Power', swatch: '#e8453c',
     hdxWire: 'RED', aawWire: 'YELLOW (factory clock feed shares the slot)', awg: '18 AWG',
-    fuse: { slot: 8, label: 'CLOCK', amps: 5, feed: 'Battery — always hot' }, hotWhen: 'Always (key off too)', aawRef: 'AAW 500707 Fuse #8',
-    route: ['Battery (+)', 'Engine-bay main harness', 'Bulkhead connector (driver side, 6" left of center)', 'Fuse #8 CLOCK 5A', 'HDX Control Box RED'],
+    fuse: fuseByLabel('CLOCK'), hotWhen: 'Always (key off too)', aawRef: 'AAW 500707 — CLOCK fuse',
+    route: ['Battery (+)', 'Engine-bay main harness', 'Bulkhead connector (driver side, 6" left of center)', 'CLOCK fuse 10A', 'HDX Control Box RED'],
     warnings: ['Carries constant power — disconnect the battery before working this circuit; it can arc and cause fire if shorted.'],
     notes: ['The HDX RED wire is NOT part of the AAW harness — you land it on the CLOCK fuse position yourself.', 'Verify: 12.4V+ with key OFF and ON.'] },
   { id: 'sw12v', name: 'Switched 12V Ignition', swatch: '#f06fae',
     hdxWire: 'PINK', aawWire: 'PINK (AAW’s own stock-cluster PINK goes UNUSED — cap it)', awg: '18 AWG',
-    fuse: { slot: 7, label: 'GAUGES', amps: 10, feed: 'Ignition' }, hotWhen: 'Key ON / ACC only', aawRef: 'AAW 500707 Fuse #7',
-    route: ['Ignition switch', 'AAW dash harness', 'Fuse #7 GAUGES 10A', 'HDX Control Box PINK'],
-    warnings: ['If gauges go completely dark with key ON, check Fuse #7 FIRST — most common cause.'],
+    fuse: fuseByLabel('GAUGES'), hotWhen: 'Key ON / ACC only', aawRef: 'AAW 500707 — GAUGES fuse',
+    route: ['Ignition switch', 'AAW dash harness', 'GAUGES fuse 5A', 'HDX Control Box PINK'],
+    warnings: ['If gauges go completely dark with key ON, check the GAUGES fuse FIRST — most common cause.'],
     notes: ['The HDX taps the same GAUGES fuse independently of the capped AAW wire.', 'Verify: 12.4V+ key ON, 0V key OFF.'] },
   { id: 'gnd', name: 'Control Box Ground', swatch: '#777f8c',
     hdxWire: 'BLACK', aawWire: '—', awg: '18 AWG dedicated run',
@@ -235,7 +264,7 @@ const CIRCUITS = [
     fuse: null, hotWhen: 'Resistance signal — unfused', aawRef: 'Factory tank sender, 0–90 Ω (1972 GM)',
     route: ['Tank sending unit', 'Rear body run (Bag M path)', 'Twisted pair DIRECT', 'HDX FUEL INPUT-SIG + FUEL INPUT-GND'],
     warnings: ['MUST calibrate via HDX menu: drive to empty → mark Empty; fill up → mark Full.'],
-    /* NOTE: panel table lists Fuse #9 FUEL 15A (factory fuel circuit); per MAN 650542H p.11 the
+    /* NOTE: the panel's FUEL 15A fuse is the factory fuel circuit; per MAN 650542H p.11 the
        HDX sender signal itself is unfused twisted pair — both are represented here deliberately. */
     notes: ['Reads backwards? The sender range is inverted — enable Settings → Calibration → Fuel → Invert instead of rewiring.'] },
   { id: 'dimmer', name: 'Dash Lighting / Dimmer', swatch: '#ff9a3c',
@@ -245,41 +274,17 @@ const CIRCUITS = [
     warnings: [],
     notes: ['Not connected = backlights default to full brightness (not a failure).', 'Flickering backlights → check this connection and the headlight-switch contacts.'] },
   { id: 'turn', name: 'Turn Signals', swatch: '#5aa9ff',
-    /* Fuse # per old circuit card; panel table also shows TURN at slots 2/4 — verify against the
-       physical AAW 500707 sheet. */
     hdxWire: 'HDX reads indicator status', aawWire: 'LT BLUE (left) / DK BLUE (right)', awg: '16 AWG',
-    fuse: { slot: 5, label: 'TURN', amps: 15, feed: 'Ignition' }, hotWhen: 'Key ON, lever engaged', aawRef: 'AAW Bag G split · flasher can behind dash (driver side)',
-    route: ['Column turn-signal switch', 'AAW dash harness', 'Fuse #5 TURN 15A', 'Bag G split: LT BLUE left / DK BLUE right', 'Front + rear sockets'],
+    fuse: fuseByLabel('TURN'), hotWhen: 'Key ON, lever engaged', aawRef: 'AAW Bag G split · flasher can behind dash (driver side)',
+    route: ['Column turn-signal switch', 'AAW dash harness', 'TURN fuse 10A', 'Bag G split: LT BLUE left / DK BLUE right', 'Front + rear sockets'],
     warnings: [],
     notes: ['No flash (solid on)? Replace the 2-pin flasher can. One side dead? Check that side’s bulbs — a burned bulb changes resistance and stops the flash.'] },
   { id: 'wiper', name: 'Wiper Motor', swatch: '#8b6cc4',
     hdxWire: '— (not an HDX circuit)', aawWire: 'PURPLE low / BROWN high / YELLOW park / LT BLUE washer', awg: '14–16 AWG',
-    fuse: { slot: 10, label: 'WIPER', amps: 20, feed: 'Ignition' }, hotWhen: 'Key ON', aawRef: 'Bag G → bulkhead → Bag J · motor on firewall, passenger side',
-    route: ['Wiper switch', 'AAW dash harness', 'Fuse #10 WIPER 20A', 'Bulkhead', 'Bag J engine harness', 'Wiper motor (firewall, passenger side)'],
-    warnings: ['High-current circuit (20A) — loose wiper connections melt connectors. Make every terminal tight.'],
+    fuse: fuseByLabel('WIPER'), hotWhen: 'Key ON', aawRef: 'Bag G → bulkhead → Bag J · motor on firewall, passenger side',
+    route: ['Wiper switch', 'AAW dash harness', 'WIPER fuse 10A', 'Bulkhead', 'Bag J engine harness', 'Wiper motor (firewall, passenger side)'],
+    warnings: ['Motor-load circuit — loose wiper connections melt connectors. Make every terminal tight.'],
     notes: ['Standalone AAW circuit — included here because it shares the bulkhead route with the gauge wiring.'] },
-];
-
-/* AAW 500707 — 18-slot fuse panel (verbatim, old guide ~1901-1919) */
-const FUSES = [
-  { slot: 1,  label: 'PARK LT',  amps: 10, feed: 'Battery',  hdx: null, detail: 'Park / marker lamps.' },
-  { slot: 2,  label: 'TURN',     amps: 10, feed: 'Ignition', hdx: null, detail: 'Turn-signal feed (see also slot 4 hazard side).' },
-  { slot: 3,  label: 'SW IGN',   amps: 10, feed: 'Ignition', hdx: null, detail: 'Switched ignition accessories.' },
-  { slot: 4,  label: 'TURN',     amps: 15, feed: 'Battery (Hazard)', hdx: null, detail: 'Hazard-side turn feed.' },
-  { slot: 5,  label: 'HAZARD',   amps: 15, feed: 'Battery',  hdx: null, detail: 'Hazard flasher circuit.' },
-  { slot: 6,  label: 'BRK/CTSY', amps: 15, feed: 'Battery',  hdx: null, detail: 'Brake lights + courtesy lamps.' },
-  { slot: 7,  label: 'GAUGES',   amps: 10, feed: 'Ignition', hdx: 'HDX Switched 12V (PINK)', detail: 'Gauges go dark with key ON? Check this FIRST — most common cause.' },
-  { slot: 8,  label: 'CLOCK',    amps: 5,  feed: 'Battery (always hot)', hdx: 'HDX Constant 12V (RED)', detail: 'Keeps the HDX clock and memory alive with the key off.' },
-  { slot: 9,  label: 'FUEL',     amps: 15, feed: 'Ignition', hdx: 'Factory fuel circuit — the HDX sender signal itself is unfused twisted pair', detail: 'Third of the three HDX-critical slots.' },
-  { slot: 10, label: 'WIPER',    amps: 20, feed: 'Ignition', hdx: null, detail: 'Wiper motor — high current, keep terminals tight.' },
-  { slot: 11, label: 'RADIO',    amps: 10, feed: 'Ignition', hdx: null, detail: 'Radio feed.' },
-  { slot: 12, label: 'LIGHTER',  amps: 20, feed: 'Battery',  hdx: null, detail: 'Cigarette lighter / power port.' },
-  { slot: 13, label: 'FAN',      amps: 30, feed: 'Ignition', hdx: null, detail: 'Blower / electric fan.' },
-  { slot: 14, label: 'AC/HEAT',  amps: 30, feed: 'Ignition', hdx: null, detail: 'HVAC feed.' },
-  { slot: 15, label: 'PWR WDO',  amps: 30, feed: 'Ignition', hdx: null, detail: 'Power window option.' },
-  { slot: 16, label: 'ACCY 1',   amps: 30, feed: 'Accessory', hdx: null, detail: 'Spare accessory feed.' },
-  { slot: 17, label: 'BAT 1',    amps: 20, feed: 'Battery',  hdx: null, detail: 'Spare battery feed.' },
-  { slot: 18, label: 'BAT 2',    amps: 30, feed: 'Battery',  hdx: null, detail: 'Spare battery feed.' },
 ];
 
 /* Parts Map — where everything physically lives */
@@ -289,11 +294,11 @@ const PARTS_MAP = [
       caption: 'AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with 8-pin display cable (right), heater box (far right)' },
     parts: [
       { n: 'HDX Control Box', pn: 'HDX-70C-CVL kit', loc: 'Behind dash, driver side — accessible for testing; away from HEI/coil', thread: '—',
-        wiresIn: 'RED const 12V (Fuse #8) · PINK sw 12V (Fuse #7) · ORANGE dimmer · all sender leads',
+        wiresIn: 'RED const 12V (CLOCK fuse) · PINK sw 12V (GAUGES fuse) · ORANGE dimmer · all sender leads',
         wiresOut: '8-pin display cable (~3 ft) to cluster · BLACK dedicated ground',
         note: 'Ignition EMI is the dominant display-cable failure mode — mount away from the coil (MAN 650542H p.4).' },
       { n: 'AAW Fuse Panel', pn: 'AAW 500707', loc: 'Firewall bulkhead, driver side, stock OEM hole', thread: '—',
-        wiresIn: 'Battery + ignition feeds via bulkhead', wiresOut: '18 fused circuits — HDX on #7 / #8 / #9',
+        wiresIn: 'Battery + ignition feeds via bulkhead', wiresOut: '18 fused circuits — HDX taps GAUGES (PINK) + CLOCK (RED); fuel sender is unfused',
         note: 'Flasher can mounts bottom-right corner of the panel.' },
       { n: 'HDX Gauge Cluster', pn: 'HDX-70C-CVL', loc: 'In the SS dash bezel (Hi-Tech Classics dash kit)', thread: '—',
         wiresIn: '8-pin display cable from Control Box', wiresOut: '—',
@@ -630,7 +635,7 @@ function buildSearchIndex() {
   GLOSSARY.forEach(g => add({ type: 'gloss', title: g.term, text: g.def, view: 'glossary' }));
   TROUBLE.forEach((t, i) => add({ type: 'trouble', title: t.title, text: [t.symptom, t.cause, t.fix, t.test].join(' '), view: 'trouble', acc: i }));
   CIRCUITS.forEach(c => add({ type: 'circuit', title: c.name, text: [c.hdxWire, c.aawWire, c.aawRef, c.route.join(' '), (c.warnings || []).join(' '), (c.notes || []).join(' ')].join(' '), view: 'wiring', circuit: c.id }));
-  FUSES.forEach(f => add({ type: 'fuse', title: '#' + f.slot + ' ' + f.label + ' ' + f.amps + 'A', text: f.feed + ' ' + (f.hdx || '') + ' ' + f.detail, view: 'wiring', fuse: f.slot }));
+  FUSES.forEach(f => add({ type: 'fuse', title: f.label + ' ' + f.amps + 'A', text: f.feed + ' ' + (f.hdx || '') + ' ' + f.detail, view: 'wiring', fuse: f.slot }));
   PARTS_MAP.forEach(z => z.parts.forEach(p => add({ type: 'part', title: p.n, text: [p.pn, p.loc, p.wiresIn, p.wiresOut, p.note].join(' '), view: 'parts' })));
   RECOM_GROUPS.forEach(g => g.items.forEach(it => add({ type: 'recom', title: it.text, text: g.g + ' (recommissioning)', view: 'recom' })));
   DASH_GAUGES.forEach(g => add({ type: 'gauge', title: g.n, text: [g.sender, g.wire, g.cal, g.note].join(' '), view: 'dash', dash: g.key }));
@@ -909,7 +914,7 @@ function dashHTML() {
       + (i < g.trace.length - 1 ? icon('arrowR', 15, 'trace-arrow') : '');
   });
   flow += '</div>';
-  const fuseTxt = g.fuse ? ('#' + g.fuse.slot + ' ' + g.fuse.label + ' ' + g.fuse.amps + 'A') : 'None — sender signal (unfused)';
+  const fuseTxt = g.fuse ? (g.fuse.label + ' ' + g.fuse.amps + 'A') : 'None — sender signal (unfused)';
   return '<div class="page"><p class="muted" style="margin-bottom:18px;max-width:64ch">HDX-70C-CVL — real arrangement: <strong style="color:var(--text)">tach left + TFT, speedo right + TFT, quad pod: oil / temp over fuel / volt.</strong> Tap a gauge to trace its actual wiring, sender, fuse, and calibration. Wire swatches show the real signal-wire color.</p>'
     + '<div class="dash-split"><div class="card pad"><div class="section-eyebrow" style="margin-bottom:10px">Instrument cluster</div>'
     + '<div class="cluster-mini dash-cluster">' + clusterSVG({ interactive: true, sel: sel }) + '</div>'
@@ -949,7 +954,7 @@ function circuitCardHTML(c) {
       + '<div class="trace-spec"><span class="ts-k">HDX wire</span><span class="ts-v">' + esc(c.hdxWire) + '</span></div>'
       + '<div class="trace-spec"><span class="ts-k">AAW side</span><span class="ts-v">' + esc(c.aawWire) + '</span></div>'
       + '<div class="trace-spec"><span class="ts-k">Gauge</span><span class="ts-v">' + esc(c.awg) + '</span></div>'
-      + '<div class="trace-spec"><span class="ts-k">Fuse</span><span class="ts-v">' + esc(c.fuse ? ('#' + c.fuse.slot + ' ' + c.fuse.label + ' ' + c.fuse.amps + 'A — ' + c.fuse.feed) : 'None') + '</span></div>'
+      + '<div class="trace-spec"><span class="ts-k">Fuse</span><span class="ts-v">' + esc(c.fuse ? (c.fuse.label + ' ' + c.fuse.amps + 'A — ' + c.fuse.feed) : 'None') + '</span></div>'
       + '<div class="trace-spec"><span class="ts-k">Hot when</span><span class="ts-v">' + esc(c.hotWhen) + '</span></div>'
       + '<div class="trace-spec"><span class="ts-k">Reference</span><span class="ts-v">' + esc(c.aawRef) + '</span></div>'
       + '<div class="block-label" style="margin:14px 0 8px">' + icon('route', 14) + ' Route</div><div class="trace-flow">';
@@ -966,7 +971,7 @@ function circuitCardHTML(c) {
     + '<button class="circ-head" data-act="circuit" data-id="' + c.id + '">'
     + '<span class="circ-swatch" style="background:' + c.swatch + '"></span>'
     + '<span class="circ-name">' + esc(c.name) + '</span>'
-    + (c.fuse ? '<span class="pill mono" style="font-size:11.5px">#' + c.fuse.slot + ' ' + esc(c.fuse.label) + ' ' + c.fuse.amps + 'A</span>' : '')
+    + (c.fuse ? '<span class="pill mono" style="font-size:11.5px">' + esc(c.fuse.label) + ' ' + c.fuse.amps + 'A</span>' : '')
     + icon('chevron', 16, 'sk-x') + '</button>' + body + '</div>';
 }
 
@@ -982,18 +987,18 @@ function wiringHTML() {
   let grid = '';
   FUSES.forEach(f => {
     grid += '<button class="fuse-slot' + (f.hdx ? ' hdx' : '') + (state.ui.fuseSel === f.slot ? ' sel' : '') + '" data-act="fuse" data-slot="' + f.slot + '">'
-      + '<span class="fs-n mono">#' + f.slot + '</span><span class="fs-l">' + esc(f.label) + '</span><span class="fs-a mono">' + f.amps + 'A</span></button>';
+      + '<span class="fs-l">' + esc(f.label) + '</span><span class="fs-a mono">' + f.amps + 'A</span></button>';
   });
   let fdetail = '';
   const sel = FUSES.find(f => f.slot === state.ui.fuseSel);
   if (sel) {
     fdetail = '<div class="fuse-detail card pad">'
-      + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="fs-n mono" style="font-size:18px;font-weight:700">#' + sel.slot + '</span>'
+      + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'
       + '<strong style="font-size:16px">' + esc(sel.label) + '</strong><span class="pill mono">' + sel.amps + 'A</span><span class="pill">' + esc(sel.feed) + '</span></div>'
       + (sel.hdx ? '<div class="callout note" style="margin:8px 0">' + icon('bolt', 16) + '<div><strong>HDX-critical:</strong> ' + esc(sel.hdx) + '</div></div>' : '')
       + '<div class="muted" style="font-size:14px">' + esc(sel.detail) + '</div></div>';
   } else {
-    fdetail = '<div class="faint" style="font-size:13px;padding:8px 2px">Tap a slot for details. Accent-ringed slots (#7 / #8 / #9) power the HDX.</div>';
+    fdetail = '<div class="faint" style="font-size:13px;padding:8px 2px">Tap a fuse for details. The panel legend has no numbers — find fuses by their printed label. Accent-ringed: GAUGES + CLOCK power the HDX.</div>';
   }
   return '<div class="page"><p class="muted" style="margin-bottom:16px;max-width:64ch">American Autowire diagrams — tap any to zoom. Below: the 11 real circuits with verified wire colors and fuse positions, then the AAW 500707 fuse panel (firewall bulkhead, driver side, stock hole — flasher can bottom-right).</p>'
     + '<div class="diagram-strip" style="margin-bottom:24px">' + strip + '</div>'
