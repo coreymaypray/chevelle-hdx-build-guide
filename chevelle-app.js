@@ -289,7 +289,7 @@ const CIRCUITS = [
 
 /* Parts Map — where everything physically lives */
 const PARTS_MAP = [
-  { zone: 'Behind Dash', icon: 'panel',
+  { zone: 'Behind Dash', icon: 'panel', wm: 'behind-dash',
     media: { src: 'behind-dash-reference.jpg', label: 'Behind the dash',
       caption: 'AAW fuse panel (left), steering column (center), Dakota Digital HDX Control Box with 8-pin display cable (right), heater box (far right)' },
     parts: [
@@ -570,7 +570,7 @@ const state = {
   search: '',
   settings: Object.assign({}, SETTING_DEFAULTS, load(SET_KEY, {})),
   settingsOpen: false,
-  ui: { expanded: {}, accordion: null, dashSel: 'tach', glossLocal: '', barneyOpen: {}, circuitSel: null, fuseSel: null },
+  ui: { expanded: {}, accordion: null, dashSel: 'tach', glossLocal: '', barneyOpen: {}, circuitSel: null, fuseSel: null, wm: null },
 };
 
 function persist() {
@@ -1008,11 +1008,106 @@ function wiringHTML() {
     + '<div class="fuse-grid">' + grid + '</div>' + fdetail + '</div>';
 }
 
+/* ---------- photo wiring overlay (WIRE_MAP) ---------- */
+function wmRouteDone(zone, id) { return !!state.checks['wm:' + zone + ':' + id]; }
+function wmZoneCounts(zone) {
+  const z = (window.WIRE_MAP || {})[zone];
+  if (!z) return { done: 0, total: 0 };
+  return { done: z.routes.filter(r => wmRouteDone(zone, r.id)).length, total: z.routes.length };
+}
+/* markup for photo+svg — shared by Parts Map view and (next task) the lightbox.
+   interactive=false emits no data-act attributes (display-only). */
+function wireMapInnerHTML(zone, interactive) {
+  const z = (window.WIRE_MAP || {})[zone];
+  if (!z) return '';
+  const sel = state.ui.wm && state.ui.wm.zone === zone ? state.ui.wm : null;
+  const selPin = sel && sel.type === 'pin' ? sel.id : null;
+  const selRoute = sel && sel.type === 'route' ? sel.id : null;
+  let svg = '<rect x="0" y="0" width="' + z.photo.w + '" height="' + z.photo.h + '" fill="transparent"'
+    + (interactive ? ' data-act="wm-reset" data-zone="' + zone + '"' : '') + '/>';
+  z.routes.forEach(r => {
+    const d = window.WIRE_MAP_UTIL.pathD(r.path);
+    const hot = (selPin && r.pin === selPin) || (selRoute && r.id === selRoute);
+    const dimmed = sel && !hot;
+    const done = wmRouteDone(zone, r.id);
+    const cls = 'wm-route' + (hot ? ' on' : '') + (dimmed ? ' dim' : '') + (done ? ' done' : '');
+    if (r.halo) svg += '<path d="' + d + '" class="wm-halo' + (dimmed ? ' dim' : '') + '" fill="none"/>';
+    svg += '<path d="' + d + '" class="' + cls + '" fill="none" stroke="' + r.color + '"'
+      + (r.dash ? ' stroke-dasharray="10 7"' : '') + '/>';
+    if (interactive) svg += '<path d="' + d + '" class="wm-hitpath" fill="none"'
+      + ' data-act="wm-route" data-zone="' + zone + '" data-id="' + r.id + '"/>';
+    if (done) {
+      const end = r.path[r.path.length - 1];
+      svg += '<circle cx="' + end[0] + '" cy="' + end[1] + '" r="16" class="wm-donedot"/>'
+        + '<path d="M' + (end[0] - 7) + ',' + end[1] + ' l5,6 l9,-12" class="wm-donetick" fill="none"/>';
+    }
+  });
+  z.pins.forEach((p, i) => {
+    const routes = z.routes.filter(r => r.pin === p.id);
+    const allDone = routes.length > 0 && routes.every(r => wmRouteDone(zone, r.id));
+    const active = selPin === p.id;
+    svg += '<g class="wm-pin' + (active ? ' on' : '') + (sel && !active ? ' dim' : '') + (allDone ? ' alldone' : '') + '"'
+      + (interactive ? ' data-act="wm-pin" data-zone="' + zone + '" data-id="' + p.id + '"' : '') + '>'
+      + '<circle cx="' + p.x + '" cy="' + p.y + '" r="52" class="wm-pinhit"/>'
+      + '<circle cx="' + p.x + '" cy="' + p.y + '" r="26" class="wm-pindot"/>'
+      + '<text x="' + p.x + '" y="' + (p.y + 9) + '" class="wm-pinnum">' + (i + 1) + '</text></g>';
+  });
+  return '<div class="wm-wrap"><img src="' + esc(z.photo.src) + '" alt="' + esc(zone) + ' wiring photo"'
+    + ' onerror="this.closest(\'.wm-wrap\').classList.add(\'wm-imgfail\')"/>'
+    + '<svg viewBox="0 0 ' + z.photo.w + ' ' + z.photo.h + '" preserveAspectRatio="xMidYMid meet">' + svg + '</svg>'
+    + '<div class="wm-fallback">Photo unavailable — reconnect once on Wi-Fi to cache it. The parts list below still works.</div></div>';
+}
+function wmDetailHTML(zone) {
+  const z = (window.WIRE_MAP || {})[zone];
+  const sel = state.ui.wm && state.ui.wm.zone === zone ? state.ui.wm : null;
+  if (!z || !sel) return '<div class="faint" style="font-size:13px;padding:8px 2px">Tap a numbered pin to light up its wires, or tap a wire for its circuit card. Tap the photo background to reset.</div>';
+  const doneBtn = (rid) => {
+    const k = 'wm:' + zone + ':' + rid;
+    const on = !!state.checks[k];
+    return '<button class="ghost-btn wm-donebtn' + (on ? ' on' : '') + '" data-act="wm-done" data-key="' + k + '">'
+      + icon('check', 15) + ' ' + (on ? 'Connected ✓' : 'Mark connected') + '</button>';
+  };
+  if (sel.type === 'route') {
+    const r = z.routes.find(x => x.id === sel.id);
+    if (!r) return '';
+    const c = r.circuit ? CIRCUITS.find(x => x.id === r.circuit) : null;
+    let h = '<div class="fuse-detail card pad"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'
+      + '<span class="circ-swatch" style="background:' + r.color + '"></span><strong style="font-size:16px">' + esc(r.label) + '</strong>'
+      + (c ? (c.fuse ? '<span class="pill mono">' + esc(c.fuse.label) + ' ' + c.fuse.amps + 'A</span>' : '<span class="pill">Unfused</span>') : '') + '</div>';
+    if (c) {
+      h += '<div class="trace-spec"><span class="ts-k">Wire</span><span class="ts-v">' + esc(c.hdxWire) + '</span></div>'
+        + '<div class="trace-spec"><span class="ts-k">Gauge</span><span class="ts-v">' + esc(c.awg) + '</span></div>'
+        + '<div class="trace-spec"><span class="ts-k">Route</span><span class="ts-v">' + esc(c.route.join(' → ')) + '</span></div>';
+      if (c.warnings && c.warnings.length) h += callout('warn', c.warnings[0]);
+    }
+    if (r.note) h += callout('note', r.note);
+    return h + '<div style="margin-top:10px">' + doneBtn(r.id) + '</div></div>';
+  }
+  const p = z.pins.find(x => x.id === sel.id);
+  if (!p) return '';
+  const routes = z.routes.filter(r => r.pin === p.id);
+  let h = '<div class="fuse-detail card pad"><strong style="font-size:16px">' + esc(p.part) + '</strong>'
+    + '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part — full details in the card below.</div>';
+  routes.forEach(r => {
+    h += '<div style="display:flex;align-items:center;gap:8px;margin:6px 0"><span class="circ-swatch" style="background:' + r.color + '"></span>'
+      + '<span style="flex:1;font-size:13.5px">' + esc(r.label) + '</span>' + doneBtn(r.id) + '</div>';
+  });
+  return h + '</div>';
+}
 function partsHTML() {
   let h = '<div class="page"><p class="muted" style="margin-bottom:18px;max-width:64ch">Where every part physically lives on the car — grouped by zone, with part numbers, thread sizes, and the wires in and out of each.</p>';
   PARTS_MAP.forEach(z => {
-    h += '<div class="zone-head">' + icon(z.icon, 16) + ' ' + esc(z.zone) + ' <span class="faint" style="font-weight:400">· ' + z.parts.length + ' items</span></div>';
-    if (z.media) {
+    const wmc = z.wm ? wmZoneCounts(z.wm) : null;
+    h += '<div class="zone-head">' + icon(z.icon, 16) + ' ' + esc(z.zone)
+      + ' <span class="faint" style="font-weight:400">· ' + z.parts.length + ' items'
+      + (wmc && wmc.total ? ' · <span class="mono">' + wmc.done + '/' + wmc.total + '</span> connected' : '') + '</span></div>';
+    if (z.wm && (window.WIRE_MAP || {})[z.wm]) {
+      h += wireMapInnerHTML(z.wm, true)
+        + '<button class="ghost-btn" style="height:34px;margin:8px 0 2px" data-act="zoom" data-wm="' + esc(z.wm) + '" data-src="" data-label="' + esc(z.zone) + ' — wiring overlay">' + icon('zoom', 15) + ' Zoom overlay</button>'
+        + wmDetailHTML(z.wm);
+      const wz = (window.WIRE_MAP || {})[z.wm];
+      if (wz.shotList) h += callout('note', '📷 Replace with your car: ' + wz.shotList);
+    } else if (z.media) {
       if (z.media.diagram) {
         h += '<button class="diagram-thumb" style="display:block;width:100%;max-width:680px;margin-bottom:14px" data-act="zoom" data-src="' + esc(z.media.src) + '" data-label="' + esc(z.media.label) + '">'
           + '<div class="dt-img" style="aspect-ratio:16/8"><img src="' + esc(z.media.src) + '" alt="' + esc(z.media.label) + '"/><span class="dt-zoom">' + icon('zoom', 15) + '</span></div>'
@@ -1026,7 +1121,7 @@ function partsHTML() {
     }
     h += '<div class="ref-grid" style="margin-bottom:24px">';
     z.parts.forEach(p => {
-      h += '<div class="gloss-item"><div class="gt">' + esc(p.n) + '</div>'
+      h += '<div class="gloss-item" data-partname="' + esc(p.n) + '"><div class="gt">' + esc(p.n) + '</div>'
         + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 8px">'
         + (p.pn && p.pn !== '—' ? '<span class="pill mono" style="font-size:12px">' + esc(p.pn) + '</span>' : '')
         + (p.thread && p.thread !== '—' ? '<span class="pill mono" style="font-size:12px">' + esc(p.thread) + '</span>' : '') + '</div>'
@@ -1293,6 +1388,33 @@ appEl.addEventListener('click', e => {
       case 'dash': state.ui.dashSel = t.getAttribute('data-key'); renderContent(); break;
       case 'circuit': { const id = t.getAttribute('data-id'); state.ui.circuitSel = state.ui.circuitSel === id ? null : id; renderContent(); break; }
       case 'fuse': { const s = Number(t.getAttribute('data-slot')); state.ui.fuseSel = state.ui.fuseSel === s ? null : s; renderContent(); break; }
+      case 'wm-pin': {
+        const zone = t.getAttribute('data-zone'), id = t.getAttribute('data-id');
+        const cur = state.ui.wm;
+        state.ui.wm = (cur && cur.zone === zone && cur.type === 'pin' && cur.id === id) ? null : { zone: zone, type: 'pin', id: id };
+        renderContent();
+        if (state.ui.wm) {
+          const z = (window.WIRE_MAP || {})[zone];
+          const pin = z && z.pins.find(p => p.id === id);
+          if (pin) requestAnimationFrame(() => {
+            const card = appEl.querySelector('[data-partname="' + CSS.escape(pin.part) + '"]');
+            if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          });
+        }
+        break;
+      }
+      case 'wm-route': {
+        const zone = t.getAttribute('data-zone'), id = t.getAttribute('data-id');
+        const cur = state.ui.wm;
+        state.ui.wm = (cur && cur.zone === zone && cur.type === 'route' && cur.id === id) ? null : { zone: zone, type: 'route', id: id };
+        renderContent(); break;
+      }
+      case 'wm-reset': state.ui.wm = null; renderContent(); break;
+      case 'wm-done': {
+        const k = t.getAttribute('data-key');
+        if (state.checks[k]) delete state.checks[k]; else state.checks[k] = true;
+        persist(); renderContent(); break;
+      }
       case 'zoom': openLightbox(t.getAttribute('data-src'), t.getAttribute('data-label')); break;
       case 'set-theme': state.settings.theme = t.getAttribute('data-val'); persistSettings(); applySettings(); render(); break;
       case 'set-density': state.settings.density = t.getAttribute('data-val'); persistSettings(); applySettings(); render(); break;
