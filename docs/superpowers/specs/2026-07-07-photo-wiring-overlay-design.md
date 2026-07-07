@@ -59,7 +59,8 @@ window.WIRE_MAP = {
 | Tap route | Same highlight for that single route + circuit card (fuse-detail card pattern from the Wiring view) rendered under the photo: swatch, from → to, fuse label + amps, gauge, notes |
 | Tap empty photo | Reset to default |
 
-- Tap handling via existing `data-act` delegation: new acts `wm-pin`, `wm-route`, `wm-reset`. Selection state in `state.ui.wm = { zone, type, id }` (not persisted).
+- Tap handling via existing `data-act` delegation: new acts `wm-pin`, `wm-route`, `wm-reset`, `wm-done`. Selection state in `state.ui.wm = { zone, type, id }` (ephemeral); completion state is persisted (below).
+- **"Mark connected" completion (persistent):** the circuit card and part card each carry a check toggle. Checked routes render as done — full-opacity color with a small check badge at the part end; a fully-connected part's pin fills the guide's done-green; each zone header shows an `n/m connected` count (same progress-ring DNA as Build phases). Completion keys are stable strings `wm:<zone>:<routeId>` stored in the existing localStorage progress object (mirrors the `recom:<id>` pattern), so they survive re-renders, app updates, and are included in Export/Import backups (additive optional `wm` key; format stays 2, old backups import unchanged).
 - Pin hit targets ≥44px at typical render width (SVG circle r sized against photo width; invisible larger hit circle if needed).
 - **Lightbox integration:** the lightbox gains overlay support — when opened from a wire-map zone it renders the same img+svg structure (selection preserved) instead of a bare `<img>`. Requires the Tier 1 lightbox tap-close fix (F12) so pan/zoom doesn't dismiss it.
 
@@ -90,9 +91,17 @@ window.WIRE_MAP = {
 - Route with unknown `circuit`/`pin` id → still draws, card shows route label only, `console.warn` for dev.
 - Coordinates outside the viewBox clip harmlessly.
 
+### Persistence guarantees (cross-cutting, user requirement)
+
+Checked progress is sacred: nothing in this project may uncheck what Corey has completed.
+
+- **Existing progress survives every change in this project** — the 154 build substeps, 48 recommission items, expenses, and settings. Before touching content, the plan must confirm how substep check keys are derived; if any key is index-based, Tier 1 text edits must not insert, delete, or reorder checked items without a one-time keyed migration (same pattern as `recomV: 2`), mapping old keys → new keys. Never reset progress on a cache/version bump; SW strategy changes (network-first code files) don't touch localStorage.
+- **Overlay completion persists** via stable `wm:<zone>:<routeId>` keys (see Interaction). Zone/route ids are permanent identifiers — renaming a label must not change its id. When a stock photo is later replaced with Corey's own (coordinates re-anchored), route ids stay the same, so connected checks survive the photo swap.
+- **Backups include everything:** Export/Import carries the `wm` map; import validation (Tier 3 F32 hardening aside) must round-trip it losslessly.
+
 ### Testing
 
-Manual QA checklist added at `docs/qa/wire-map-smoke.md` — per zone: pins land on the right parts; pin tap highlights only its routes and scrolls to the part card; route tap opens the correct circuit card (label + amps match the corrected FUSES table); empty-photo tap resets; lightbox keeps anchors under pinch-zoom and does not close on pan; airplane-mode reload renders all four zones; both themes; iPad landscape + portrait. Pre-commit: `node --check chevelle-app.js chevelle-wiremap.js`, SW bump verified, spot-check total precache size.
+Manual QA checklist added at `docs/qa/wire-map-smoke.md` — per zone: pins land on the right parts; pin tap highlights only its routes and scrolls to the part card; route tap opens the correct circuit card (label + amps match the corrected FUSES table); empty-photo tap resets; lightbox keeps anchors under pinch-zoom and does not close on pan; airplane-mode reload renders all four zones; both themes; iPad landscape + portrait. **Persistence checks:** mark routes connected → reload → still checked; seed build/recommission progress on the pre-update version → apply the update → every check intact; export → import round-trips the `wm` map. Pre-commit: `node --check chevelle-app.js chevelle-wiremap.js`, SW bump verified, spot-check total precache size.
 
 ## Part 2 — Guide improvements (from the 2026-07-07 review)
 
@@ -125,7 +134,8 @@ Everything else, notably: missing Bag L/Bag M phases (F5) and steering-column ra
 
 ### Implementation order
 
-1. Tier 1 data corrections (+ regression pass over Build/Wiring/Parts/Dash/Engine views for consistency)
+1. Confirm progress-key derivation; add a one-time migration if any Tier 1 edit would shift checked items (persistence guarantee)
+2. Tier 1 data corrections (+ regression pass over Build/Wiring/Parts/Dash/Engine views for consistency)
 2. Overlay: `chevelle-wiremap.js` schema + behind-dash zone → render component + interactions → lightbox integration
 3. Photo prep + remaining three zones + `ATTRIBUTIONS.md` + shot-list cards
 4. Tier 2 fixes
