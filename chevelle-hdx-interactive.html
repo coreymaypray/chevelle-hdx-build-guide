@@ -266,7 +266,7 @@ a { color:var(--accent); text-decoration:none; }
 .build-split { display:grid; grid-template-columns:340px 1fr; gap:var(--gap); align-items:start; }
 .build-stack .build-split { grid-template-columns:1fr; }
 .build-stack .phase-list-card { position:static; }
-.phase-list-card { position:sticky; top:0; padding:8px; max-height:calc(100vh - var(--topbar-h) - 52px); overflow-y:auto; }
+.phase-list-card { position:sticky; top:0; padding:8px; max-height:calc(100vh - var(--topbar-h) - env(safe-area-inset-top) - 52px); overflow-y:auto; }
 .pl-item { display:flex; align-items:center; gap:12px; width:100%; padding:11px 12px; border-radius:11px; text-align:left; transition:.13s; position:relative; }
 .pl-item:hover { background:var(--surface-2); }
 .pl-item.active { background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--accent-line); }
