@@ -6,6 +6,8 @@ Interactive Progressive Web App for installing Dakota Digital HDX-70C-CVL gauges
 
 - **SVG Dashboard** — animated gauge cluster mirrors the real HDX layout, shows build progress at a glance
 - **Wire Tracing** — tap any wire to highlight its full path, see color codes, connector IDs, and routing
+- **Wire Map** — tap-to-trace wiring overlays on real photos (Parts Map view); wire-by-wire
+  "connected" tracking persists offline. Third-party photo credits: see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
 - **17 Build Phases** — 131 substeps with per-phase timers, notes, and checklists
 - **Engine Bay Diagram** — interactive top-down view of Big Block 396/454 sensor locations
 - **Fuse Panel Reference** — all 18 AAW fuse slots with amp ratings and HDX circuit callouts
