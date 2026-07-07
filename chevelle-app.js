@@ -591,7 +591,12 @@ function syncWakeLock() {
     return;
   }
   navigator.wakeLock.request('screen')
-    .then(s => { wakeLockSentinel = s; })
+    .then(s => {
+      /* the toggle may have flipped off while this request was in flight */
+      if (state.settings.wakeLock === false) { s.release().catch(() => {}); return; }
+      if (wakeLockSentinel && wakeLockSentinel !== s) wakeLockSentinel.release().catch(() => {});
+      wakeLockSentinel = s;
+    })
     .catch(() => {}); /* denied (e.g. low battery) — not an error */
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncWakeLock(); });
