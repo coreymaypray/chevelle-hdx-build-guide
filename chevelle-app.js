@@ -1032,7 +1032,7 @@ function wireMapInnerHTML(zone, interactive) {
     const done = wmRouteDone(zone, r.id);
     const cls = 'wm-route' + (hot ? ' on' : '') + (dimmed ? ' dim' : '') + (done ? ' done' : '');
     if (r.halo) svg += '<path d="' + d + '" class="wm-halo' + (dimmed ? ' dim' : '') + '" fill="none"/>';
-    svg += '<path d="' + d + '" class="' + cls + '" fill="none" stroke="' + r.color + '"'
+    svg += '<path d="' + d + '" class="' + cls + '" fill="none" stroke="' + esc(r.color) + '"'
       + (r.dash ? ' stroke-dasharray="10 7"' : '') + '/>';
     if (interactive) svg += '<path d="' + d + '" class="wm-hitpath" fill="none"'
       + ' data-act="wm-route" data-zone="' + zone + '" data-id="' + r.id + '"/>';
@@ -1072,7 +1072,7 @@ function wmDetailHTML(zone) {
     if (!r) return '';
     const c = r.circuit ? CIRCUITS.find(x => x.id === r.circuit) : null;
     let h = '<div class="fuse-detail card pad"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'
-      + '<span class="circ-swatch" style="background:' + r.color + '"></span><strong style="font-size:16px">' + esc(r.label) + '</strong>'
+      + '<span class="circ-swatch" style="background:' + esc(r.color) + '"></span><strong style="font-size:16px">' + esc(r.label) + '</strong>'
       + (c ? (c.fuse ? '<span class="pill mono">' + esc(c.fuse.label) + ' ' + c.fuse.amps + 'A</span>' : '<span class="pill">Unfused</span>') : '') + '</div>';
     if (c) {
       h += '<div class="trace-spec"><span class="ts-k">Wire</span><span class="ts-v">' + esc(c.hdxWire) + '</span></div>'
@@ -1086,10 +1086,11 @@ function wmDetailHTML(zone) {
   const p = z.pins.find(x => x.id === sel.id);
   if (!p) return '';
   const routes = z.routes.filter(r => r.pin === p.id);
+  const hasCard = PARTS_MAP.some(zz => zz.parts.some(pp => pp.n === p.part));
   let h = '<div class="fuse-detail card pad"><strong style="font-size:16px">' + esc(p.part) + '</strong>'
-    + '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part — full details in the card below.</div>';
+    + '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part' + (hasCard ? ' — full details in the card below.' : '.') + '</div>';
   routes.forEach(r => {
-    h += '<div style="display:flex;align-items:center;gap:8px;margin:6px 0"><span class="circ-swatch" style="background:' + r.color + '"></span>'
+    h += '<div style="display:flex;align-items:center;gap:8px;margin:6px 0"><span class="circ-swatch" style="background:' + esc(r.color) + '"></span>'
       + '<span style="flex:1;font-size:13.5px">' + esc(r.label) + '</span>' + doneBtn(r.id) + '</div>';
   });
   return h + '</div>';
@@ -1415,7 +1416,7 @@ appEl.addEventListener('click', e => {
         if (state.checks[k]) delete state.checks[k]; else state.checks[k] = true;
         persist(); renderContent(); break;
       }
-      case 'zoom': openLightbox(t.getAttribute('data-src'), t.getAttribute('data-label')); break;
+      case 'zoom': openLightbox(t.getAttribute('data-src'), t.getAttribute('data-label'), t.getAttribute('data-wm')); break;
       case 'set-theme': state.settings.theme = t.getAttribute('data-val'); persistSettings(); applySettings(); render(); break;
       case 'set-density': state.settings.density = t.getAttribute('data-val'); persistSettings(); applySettings(); render(); break;
       case 'set-layout': state.settings.layout = t.getAttribute('data-val'); persistSettings(); render(); break;
@@ -1488,7 +1489,7 @@ window.addEventListener('keydown', e => {
    LIGHTBOX
    ============================================================ */
 let lb = null;
-function openLightbox(src, label) {
+function openLightbox(src, label, wmZone) {
   closeLightbox();
   const z = { scale: 1, x: 0, y: 0, dragging: false, sx: 0, sy: 0, lastTap: 0, pointers: new Map(), pinchDist: 0, downX: 0, downY: 0, downOnImg: false, moved: 0 };
   const el = document.createElement('div');
@@ -1498,11 +1499,11 @@ function openLightbox(src, label) {
     + '<button class="lb-btn" data-z="in">' + icon('plus', 20) + '</button>'
     + '<button class="lb-btn" data-z="reset">' + icon('reset', 20) + '</button>'
     + '<button class="lb-btn" data-z="close">' + icon('x', 20) + '</button></div>'
-    + '<div class="lb-stage"><img src="' + esc(src) + '" alt="' + esc(label) + '" draggable="false"/></div>'
+    + '<div class="lb-stage">' + (wmZone ? '<div class="lb-zoom-target lb-wm">' + wireMapInnerHTML(wmZone, false) + '</div>' : '<img class="lb-zoom-target" src="' + esc(src) + '" alt="' + esc(label) + '" draggable="false"/>') + '</div>'
     + '<div class="lb-hint">Scroll / pinch / +− to zoom · drag to pan · double-tap to reset · Esc to close</div>';
   document.body.appendChild(el);
   const stage = el.querySelector('.lb-stage');
-  const img = el.querySelector('img');
+  const img = el.querySelector('.lb-zoom-target');
   const apply = () => { img.style.transform = 'translate(' + z.x + 'px,' + z.y + 'px) scale(' + z.scale + ')'; };
   const reset = () => { z.scale = 1; z.x = 0; z.y = 0; apply(); };
   const zoom = f => { z.scale = Math.max(1, Math.min(6, z.scale * f)); if (z.scale === 1) { z.x = 0; z.y = 0; } apply(); };

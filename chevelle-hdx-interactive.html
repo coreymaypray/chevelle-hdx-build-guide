@@ -374,6 +374,9 @@ a { color:var(--accent); text-decoration:none; }
 .lb-bar .lb-btn { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; color:#fff; background:rgba(255,255,255,.1); }
 .lb-bar .lb-btn:hover { background:rgba(255,255,255,.2); }
 .lb-bar .lb-btn svg { width:20px; height:20px; }
+.lb-wm { position:relative; max-width:92vw; max-height:82vh; }
+.lb-wm .wm-wrap { max-width:none; border:none; }
+.lb-wm .wm-wrap img { max-height:82vh; width:auto; max-width:92vw; }
 .lb-stage { flex:1; overflow:hidden; display:grid; place-items:center; cursor:grab; touch-action:none; }
 .lb-stage.grabbing { cursor:grabbing; }
 .lb-stage img { max-width:94%; max-height:100%; object-fit:contain; user-select:none; -webkit-user-drag:none; transition:transform .05s linear; will-change:transform; }
@@ -459,6 +462,7 @@ body.barney-on .barney .b-x { transform:rotate(90deg); }
 .wm-route.on { stroke-width:4.5; opacity:1; }
 .wm-route.dim { opacity:.14; }
 .wm-route.done { opacity:.92; }
+.wm-route.dim.done { opacity:.2; }
 .wm-halo { stroke:#14161a; stroke-width:5; vector-effect:non-scaling-stroke; opacity:.55; }
 .wm-halo.dim { opacity:.1; }
 .wm-hitpath { stroke:transparent; stroke-width:26; vector-effect:non-scaling-stroke; pointer-events:stroke; cursor:pointer; }
@@ -468,10 +472,10 @@ body.barney-on .barney .b-x { transform:rotate(90deg); }
 .wm-pindot { fill:var(--accent); stroke:#fff; stroke-width:3; }
 .wm-pin.on .wm-pindot { fill:#fff; stroke:var(--accent); stroke-width:5; }
 .wm-pin.alldone .wm-pindot { fill:var(--good); }
-.wm-pinnum { fill:#fff; font:700 26px 'Geist Mono', monospace; text-anchor:middle; pointer-events:none; }
+.wm-pinnum { fill:#fff; font:700 26px 'Geist Mono', monospace; text-anchor:middle; pointer-events:none; paint-order:stroke; stroke:rgba(0,0,0,.55); stroke-width:3px; }
 .wm-pin.on .wm-pinnum { fill:var(--accent); }
-.wm-donedot { fill:var(--good); }
-.wm-donetick { stroke:#fff; stroke-width:3.5; vector-effect:non-scaling-stroke; }
+.wm-donedot { fill:var(--good); pointer-events:none; }
+.wm-donetick { stroke:#fff; stroke-width:3.5; vector-effect:non-scaling-stroke; pointer-events:none; }
 .wm-fallback { display:none; padding:14px 16px; font-size:13.5px; color:var(--text-3); }
 .wm-imgfail img, .wm-imgfail svg { display:none; }
 .wm-imgfail .wm-fallback { display:block; }
