@@ -553,7 +553,7 @@ const EXPENSE_CATS = ['Gauges', 'Wiring', 'Interior', 'Sound', 'Engine', 'Recomm
 const LS_KEY = 'chevelle_refined_v1';
 const SET_KEY = 'chevelle_refined_settings_v1';
 const ACCENTS = ['#ff6a2b', '#e23b3b', '#3f7bf0', '#1f9d57', '#caa53a'];
-const SETTING_DEFAULTS = { theme: 'dark', accent: '#ff6a2b', density: 'comfortable', layout: 'split', barneyDefault: false };
+const SETTING_DEFAULTS = { theme: 'dark', accent: '#ff6a2b', density: 'comfortable', layout: 'split', barneyDefault: false, wakeLock: true };
 
 function load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; } }
 
@@ -581,6 +581,20 @@ function persist() {
   }));
 }
 function persistSettings() { localStorage.setItem(SET_KEY, JSON.stringify(state.settings)); }
+
+/* Screen wake lock — garage iPads sleep mid-job otherwise (F23) */
+let wakeLockSentinel = null;
+function syncWakeLock() {
+  if (!('wakeLock' in navigator)) return;
+  if (state.settings.wakeLock === false) {
+    if (wakeLockSentinel) { wakeLockSentinel.release().catch(() => {}); wakeLockSentinel = null; }
+    return;
+  }
+  navigator.wakeLock.request('screen')
+    .then(s => { wakeLockSentinel = s; })
+    .catch(() => {}); /* denied (e.g. low battery) — not an error */
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncWakeLock(); });
 
 /* One-time migration: old numeric recom keys → stable string ids.
    Old items 9-11 ('Test all lights', 'Verify charging voltage', 'Shakedown drive')
@@ -1270,6 +1284,7 @@ function settingsHTML() {
     + '<div class="set-row"><span class="set-lbl">Density</span><div class="seg">' + radio('set-density', s.density, ['comfortable', 'compact']) + '</div></div>'
     + '<div class="set-row"><span class="set-lbl">Build layout</span><div class="seg">' + radio('set-layout', s.layout, ['split', 'stack']) + '</div></div>'
     + '<div class="set-row"><span class="set-lbl">Barney on by default</span><button class="barney-toggle' + (s.barneyDefault ? ' on' : '') + '" data-act="set-barneydefault" style="height:34px"><span class="bt-switch"></span></button></div>'
+    + '<div class="set-row"><span class="set-lbl">Keep screen awake</span><button class="barney-toggle' + (s.wakeLock !== false ? ' on' : '') + '" data-act="set-wakelock" style="height:34px"><span class="bt-switch"></span></button></div>'
     + '<div class="set-row" style="flex-direction:column;align-items:stretch;gap:10px"><span class="set-lbl">Backup — progress + settings</span>'
     + '<div style="display:flex;gap:8px"><button class="ghost-btn" style="flex:1" data-act="export-backup">' + icon('download', 15) + ' Export</button>'
     + '<button class="ghost-btn" style="flex:1" data-act="import-backup">' + icon('upload', 15) + ' Import</button></div>'
@@ -1434,6 +1449,7 @@ appEl.addEventListener('click', e => {
         state.settings.barneyDefault = !state.settings.barneyDefault;
         state.barneyMode = state.settings.barneyDefault;
         persistSettings(); persist(); applySettings(); render(); break;
+      case 'set-wakelock': state.settings.wakeLock = state.settings.wakeLock === false; persistSettings(); syncWakeLock(); render(); break;
       case 'export-backup': exportBackup(); break;
       case 'import-backup': importBackup(); break;
       case 'exp-add': {
@@ -1582,6 +1598,7 @@ if (state.settings.barneyDefault && persisted.barneyMode == null) state.barneyMo
 migrateRecom();
 buildSearchIndex();
 render();
+appEl.addEventListener('pointerdown', () => syncWakeLock(), { once: true });
 if (window.matchMedia) {
   try { window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => { if (state.settings.theme === 'auto') { applySettings(); render(); } }); } catch (e) {}
 }
