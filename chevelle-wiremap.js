@@ -62,4 +62,62 @@ window.WIRE_MAP = {
         path: [[460, 370], [657, 420], [913, 435], [1140, 395]] },
     ],
   },
+  /* Stock photo: 1970 Chevelle SS 454 bay, shot from the front looking at
+     the firewall — driver side is photo RIGHT (brake booster top right). */
+  'engine-bay': {
+    photo: { src: 'engine-bay-reference.jpg', w: 1280, h: 960 },
+    shotList: 'Your car: stand at the driver-side fender, frame the firewall + rear half of the intake, level with the carb, landscape. Drop the file in as engine-bay-reference.jpg, update w/h, re-anchor pins (ids stay — checks survive).',
+    pins: [
+      { id: 'oil-sender',  part: 'Oil Pressure Sender',       x: 895,  y: 540 },
+      { id: 'temp-sender', part: 'Coolant Temp Sender',       x: 605,  y: 528 },
+      { id: 'tach-source', part: 'Tach Signal Source',        x: 700,  y: 200 },
+      { id: 'alternator',  part: 'Alternator + Ground Strap', x: 440,  y: 620 },
+      { id: 'megafuse',    part: 'Megafuse / Main Power',     x: 90,   y: 750 },
+      { id: 'eb-bulkhead', part: 'Bulkhead Connector',        x: 875,  y: 250 },
+    ],
+    routes: [
+      { id: 'oil-lead',    label: 'Oil sender W/R/B + shield → Control Box', color: '#f5f5f5', halo: true, pin: 'oil-sender', circuit: 'oil',
+        path: [[895, 540], [905, 455], [890, 345], [875, 255]] },
+      { id: 'temp-lead',   label: 'Temp two-wire → Control Box SIG+GND',     color: '#1a7a4a', pin: 'temp-sender', circuit: 'temp',
+        path: [[605, 528], [655, 470], [745, 425], [830, 330], [872, 258]] },
+      { id: 'tach-lead',   label: 'Tach WHITE from HEI TACH terminal',        color: '#f5f5f5', halo: true, pin: 'tach-source', circuit: 'tach',
+        path: [[700, 195], [770, 172], [840, 200], [872, 240]] },
+      { id: 'charge-wire', label: 'Alternator charge wire (Bag Z)',           color: '#e5484d', pin: 'alternator', circuit: 'const12v',
+        path: [[440, 620], [330, 655], [215, 700], [115, 745]] },
+      { id: 'main-feed',   label: 'Megafuse main feed → fuse panel',          color: '#e5484d', pin: 'megafuse', circuit: 'const12v',
+        path: [[95, 735], [200, 480], [420, 200], [700, 120], [865, 225]] },
+    ],
+  },
+  /* Stock photo: museum cutaway of a GM Turbo Hydra-Matic — input shaft at
+     photo LEFT (front of trans), extension/tailhousing at photo RIGHT. */
+  'under-car': {
+    photo: { src: 'under-car-reference.jpg', w: 1600, h: 1070 },
+    shotList: 'Your car: on ramps/jack stands, shoot the trans tailshaft from the driver side showing the speedo-cable port. Replace under-car-reference.jpg, update w/h, re-anchor (ids stay).',
+    pins: [
+      { id: 'vss-port',     part: 'Speed Sensor Adapter', x: 1290, y: 440 },
+      { id: 'frame-ground', part: 'Frame/Body Ground',    x: 600,  y: 490 },
+    ],
+    routes: [
+      { id: 'vss-trio',    label: 'PURPLE sig / RED 5V / BLACK gnd → Control Box', color: '#a855f7', pin: 'vss-port', circuit: 'speed',
+        path: [[1290, 440], [1150, 330], [950, 280], [750, 260], [620, 255]] },
+      { id: 'frame-strap', label: 'Frame-to-body ground path', color: '#222222', halo: true, pin: 'frame-ground', circuit: 'gnd',
+        path: [[600, 490], [540, 580], [470, 665]] },
+    ],
+  },
+  /* Stock photo: fuel sender flange (5-screw ring + center terminal stud)
+     installed in a strapped metal tank; twisted pair exits bottom-left. */
+  'rear': {
+    photo: { src: 'rear-sender-reference.jpg', w: 1280, h: 960 },
+    shotList: 'Your car (PRIORITY — this stock photo is a generic sender, not an A-body): trunk open, shoot the tank/sender area, or under-rear showing tank + lines. Replace rear-sender-reference.jpg, update w/h, re-anchor (ids stay).',
+    pins: [
+      { id: 'tank-sender', part: 'Fuel Tank Sending Unit', x: 585, y: 285 },
+      { id: 'rear-ground', part: 'Rear Body Ground',       x: 130, y: 765 },
+    ],
+    routes: [
+      { id: 'tan-pair', label: 'TAN twisted pair → HDX FUEL INPUT (unfused)', color: '#d2b48c', halo: true, pin: 'tank-sender', circuit: 'fuel',
+        path: [[585, 295], [450, 420], [310, 560], [190, 690], [105, 820]] },
+      { id: 'rear-gnd', label: 'Rear ground → chassis', color: '#222222', halo: true, pin: 'rear-ground', circuit: 'gnd',
+        path: [[130, 765], [95, 850], [60, 930]] },
+    ],
+  },
 };

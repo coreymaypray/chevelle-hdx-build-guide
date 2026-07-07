@@ -317,7 +317,7 @@ const PARTS_MAP = [
         wiresIn: 'HDX Control Box BLACK (18 AWG, no splices)', wiresOut: 'Chassis → battery negative',
         note: 'Must read < 0.5 Ω to battery negative. Never share it with other accessories.' },
     ]},
-  { zone: 'Engine Bay', icon: 'engine',
+  { zone: 'Engine Bay', icon: 'engine', wm: 'engine-bay',
     media: { src: 'aaw-diagrams/aaw-bag-j-engine-diagram.png', label: 'Bag J — Engine bay diagram', diagram: true },
     parts: [
       { n: 'Oil Pressure Sender', pn: 'SEN-03-8', loc: 'Block oil-galley port, driver side, mid-height (where the factory sender was)', thread: '1/8" NPT',
@@ -337,7 +337,7 @@ const PARTS_MAP = [
       { n: 'Megafuse / Main Power', pn: 'AAW Bag Z (6 ga)', loc: 'Under hood, close to battery — reachable by 12 ft of 6 ga from the starter AND the fuse-panel main feed', thread: '—',
         wiresIn: 'Battery/starter post', wiresOut: 'Main feed to fuse panel via bulkhead', note: 'Protects the whole harness — mount before routing the main feed.' },
     ]},
-  { zone: 'Transmission & Under Car', icon: 'route',
+  { zone: 'Transmission & Under Car', icon: 'route', wm: 'under-car',
     parts: [
       { n: 'Speed Sensor Adapter', pn: 'Cable-drive (SEN-01-5 type)', loc: 'Transmission tailshaft — threads into the stock speedo-cable port', thread: 'Cable-port thread',
         wiresIn: '—', wiresOut: 'PURPLE sig / RED 5V / BLACK gnd (22 AWG) — Dakota sub-harness direct to Control Box',
@@ -345,7 +345,7 @@ const PARTS_MAP = [
       { n: 'Frame/Body Ground', pn: '—', loc: 'Frame-to-body bolt, driver side', thread: '—',
         wiresIn: 'Chassis return paths', wiresOut: 'Battery negative', note: 'Clean to bare metal during recommission; part of the < 0.5 Ω ground chain.' },
     ]},
-  { zone: 'Rear', icon: 'layers',
+  { zone: 'Rear', icon: 'layers', wm: 'rear',
     parts: [
       { n: 'Fuel Tank Sending Unit', pn: 'Factory, 0–90 Ω', loc: 'Inside the fuel tank, top access', thread: '—',
         wiresIn: '—', wiresOut: 'TAN signal — twisted pair with ground, DIRECT to HDX FUEL INPUT (unfused)',
