@@ -801,11 +801,18 @@ function homeHTML() {
 function substepHTML(phase, i, s) {
   const checked = !!state.checks[phase.id + ':' + i];
   const exp = !!state.ui.expanded[phase.id + ':' + i];
+  /* Steps WITH detail: text tap expands (reading is the safe default), check needs
+     a deliberate tap on the wide left column. Steps WITHOUT detail: whole row checks. */
+  const mainAct = s.detail
+    ? 'data-act="expand" data-pid="' + phase.id + '" data-idx="' + i + '"'
+    : 'data-act="check" data-pid="' + phase.id + '" data-idx="' + i + '"';
   return '<div class="substep' + (checked ? ' checked' : '') + (exp ? ' exp' : '') + '">'
-    + '<div class="ss-row" data-act="check" data-pid="' + phase.id + '" data-idx="' + i + '" style="cursor:pointer">'
-    + '<div class="ss-n mono">' + (i + 1) + '</div><div class="ss-check">' + icon('check', 15) + '</div>'
-    + '<div class="ss-main"><div class="ss-text">' + esc(s.text) + '</div>'
-    + (s.detail ? '<button class="ss-detailbtn" data-act="expand" data-pid="' + phase.id + '" data-idx="' + i + '">' + icon('chevron', 13) + ' ' + (exp ? 'Hide detail' : 'More detail') + '</button>' : '')
+    + '<div class="ss-row">'
+    + '<button class="ss-checkcol" data-act="check" data-pid="' + phase.id + '" data-idx="' + i + '" aria-pressed="' + checked + '" aria-label="Mark step ' + (i + 1) + (checked ? ' not done' : ' done') + '">'
+    + '<span class="ss-n mono">' + (i + 1) + '</span><span class="ss-check">' + icon('check', 17) + '</span></button>'
+    + '<div class="ss-main" ' + mainAct + ' style="cursor:pointer">'
+    + '<div class="ss-text">' + esc(s.text) + '</div>'
+    + (s.detail ? '<span class="ss-detailbtn">' + icon('chevron', 13) + ' ' + (exp ? 'Hide detail' : 'More detail') + '</span>' : '')
     + '</div></div>'
     + (s.detail ? '<div class="ss-detail">' + esc(s.detail) + '</div>' : '')
     + '</div>';
@@ -1193,9 +1200,11 @@ function recomHTML() {
     g.items.forEach((it, i) => {
       const checked = !!state.checks['recom:' + it.id];
       h += '<div class="substep' + (checked ? ' checked' : '') + '">'
-        + '<div class="ss-row" style="cursor:pointer" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '">'
-        + '<div class="ss-n mono">' + (i + 1) + '</div><div class="ss-check">' + icon('check', 15) + '</div>'
-        + '<div class="ss-main"><div class="ss-text">' + esc(it.text) + '</div></div></div></div>';
+        + '<div class="ss-row">'
+        + '<button class="ss-checkcol" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '" aria-pressed="' + checked + '">'
+        + '<span class="ss-n mono">' + (i + 1) + '</span><span class="ss-check">' + icon('check', 17) + '</span></button>'
+        + '<div class="ss-main" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '" style="cursor:pointer"><div class="ss-text">' + esc(it.text) + '</div></div>'
+        + '</div></div>';
     });
     h += '</div>';
     if (g.note) h += callout('note', g.note);
