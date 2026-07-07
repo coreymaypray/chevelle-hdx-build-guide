@@ -31,6 +31,7 @@ test('WIRE_MAP zones are structurally valid', () => {
     assert.match(zone, /^[a-z-]+$/, zone + ': kebab-case zone key');
     assert.ok(z.photo && z.photo.src && z.photo.w > 0 && z.photo.h > 0, zone + ': photo');
     assert.ok(fs.existsSync(path.join(ROOT, z.photo.src)), zone + ': photo file exists');
+    assert.ok(Array.isArray(z.pins) && Array.isArray(z.routes), zone + ': pins and routes arrays present');
     const pinIds = new Set();
     z.pins.forEach(p => {
       assert.match(p.id, /^[a-z0-9-]+$/, zone + ': pin id ' + p.id);
@@ -43,7 +44,9 @@ test('WIRE_MAP zones are structurally valid', () => {
       assert.match(r.id, /^[a-z0-9-]+$/, zone + ': route id ' + r.id);
       assert.ok(!routeIds.has(r.id), zone + ': duplicate route id ' + r.id); routeIds.add(r.id);
       assert.ok(pinIds.has(r.pin), zone + ':' + r.id + ': route.pin "' + r.pin + '" exists');
-      assert.ok(validCircuits.includes(r.circuit), zone + ':' + r.id + ': circuit "' + r.circuit + '" exists in CIRCUITS');
+      // circuit: null = no CIRCUITS entry (card renders from route label + note)
+      assert.ok(r.circuit === null || validCircuits.includes(r.circuit), zone + ':' + r.id + ': circuit "' + r.circuit + '" exists in CIRCUITS or is null');
+      if (r.circuit === null) assert.ok(typeof r.note === 'string' && r.note.length > 0, zone + ':' + r.id + ': null-circuit route needs a note');
       assert.ok(Array.isArray(r.path) && r.path.length >= 2, zone + ':' + r.id + ': >=2 waypoints');
       r.path.forEach(([x, y]) => assert.ok(x >= 0 && x <= z.photo.w && y >= 0 && y <= z.photo.h, zone + ':' + r.id + ': waypoint inside photo'));
       assert.match(r.color, /^#[0-9a-f]{3,6}$/i, zone + ':' + r.id + ': color');

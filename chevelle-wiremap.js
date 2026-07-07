@@ -4,8 +4,11 @@
    so routes stay anchored at any zoom ("to scale").
    Route ids are PERMANENT — completion checks persist under
    state.checks['wm:<zone>:<routeId>']; renaming a label is fine,
-   changing an id loses the user's checked state. When a photo is
-   replaced with Corey's own shot, keep ids, re-anchor coords only.
+   changing an id loses the user's checked state. The ZONE KEY is
+   likewise permanent (first segment of the check key). When a photo
+   is replaced with Corey's own shot, keep ids, re-anchor coords only.
+   circuit: null = route has no CIRCUITS entry (its card renders from
+   the route's own label + note instead).
    Physical wire colors (not theme colors):
    RED #e5484d · PINK #ff9ec6 · ORANGE #ff8c00 · TAN #d2b48c ·
    PURPLE #a855f7 · DK GREEN #1a7a4a · WHITE #f5f5f5 · BLACK #222 ·
@@ -50,7 +53,8 @@ window.WIRE_MAP = {
         path: [[1135, 385], [950, 400], [800, 395]] },
       { id: 'orange-dim',   label: 'ORANGE dimmer feed',              color: '#ff8c00', pin: 'headlight-sw', circuit: 'dimmer',
         path: [[360, 215], [430, 330], [600, 430], [900, 440], [1130, 390]] },
-      { id: 'display-cable', label: '8-pin display cable → cluster',  color: '#9aa3ad', pin: 'hdx-box', circuit: 'sw12v', dash: true,
+      { id: 'display-cable', label: '8-pin display cable → cluster',  color: '#9aa3ad', pin: 'hdx-box', circuit: null, dash: true,
+        note: 'Flat 8-pin ribbon, Control Box → cluster (~3 ft). Don’t fold or crease it — creased traces are the #1 display-cable failure. Route with slack, clips every 4-6", away from HEI/coil EMI.',
         path: [[1150, 400], [1080, 520], [960, 600], [880, 620]] },
       { id: 'tan-fuel',     label: 'TAN fuel sender twisted pair (from rear)', color: '#d2b48c', pin: 'hdx-box', circuit: 'fuel', halo: true,
         path: [[1420, 700], [1250, 560], [1180, 430], [1160, 400]] },
