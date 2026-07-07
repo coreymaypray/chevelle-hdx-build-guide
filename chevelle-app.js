@@ -1201,7 +1201,7 @@ function recomHTML() {
       const checked = !!state.checks['recom:' + it.id];
       h += '<div class="substep' + (checked ? ' checked' : '') + '">'
         + '<div class="ss-row">'
-        + '<button class="ss-checkcol" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '" aria-pressed="' + checked + '">'
+        + '<button class="ss-checkcol" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '" aria-pressed="' + checked + '" aria-label="Mark item ' + (i + 1) + (checked ? ' not done' : ' done') + '">'
         + '<span class="ss-n mono">' + (i + 1) + '</span><span class="ss-check">' + icon('check', 17) + '</span></button>'
         + '<div class="ss-main" data-act="check" data-pid="recom" data-idx="' + esc(it.id) + '" style="cursor:pointer"><div class="ss-text">' + esc(it.text) + '</div></div>'
         + '</div></div>';
