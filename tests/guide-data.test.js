@@ -72,3 +72,36 @@ test('FUEL fuse is not called HDX-critical (F42)', () => {
   assert.ok(fuelSlot, 'FUEL fuse entry exists');
   assert.doesNotMatch(fuelSlot[0], /HDX-critical|powers the HDX/i);
 });
+
+// Referential integrity: fuseByLabel() fails silently on a typo'd label, and amp
+// values are restated in prose ('CLOCK fuse 10A') and inline structured duplicates
+// (DASH_GAUGES volt). This test keeps every reference in agreement with FUSES.
+function parsedFuses() {
+  const src = APP_SRC();
+  const m = src.match(/const FUSES = \[[\s\S]*?\n\];/);
+  assert.ok(m, 'FUSES block found in chevelle-app.js');
+  return vm.runInNewContext(m[0] + '; FUSES');
+}
+
+test('fuse references resolve and quoted amps match the FUSES table (integrity)', () => {
+  const byLabel = Object.fromEntries(parsedFuses().map(f => [f.label, f]));
+  const src = APP_SRC();
+  let refs = 0;
+  for (const m of src.matchAll(/fuseByLabel\('([^']+)'\)/g)) {
+    refs++;
+    assert.ok(byLabel[m[1]], 'fuseByLabel ref resolves: ' + m[1]);
+  }
+  assert.ok(refs >= 4, 'found the fuseByLabel call sites');
+  let prose = 0;
+  for (const m of src.matchAll(/([A-Z][A-Z 0-9/]*?) fuse (\d+)A/g)) {
+    const f = byLabel[m[1].trim()];
+    if (!f) continue;
+    prose++;
+    assert.strictEqual(f.amps, Number(m[2]), 'prose amp for ' + m[1]);
+  }
+  assert.ok(prose >= 4, 'found the prose amp mentions');
+  for (const m of src.matchAll(/\{ label: '([A-Z 0-9/]+)', amps: (\d+) \}/g)) {
+    const f = byLabel[m[1]];
+    if (f) assert.strictEqual(f.amps, Number(m[2]), 'inline fuse amp for ' + m[1]);
+  }
+});
