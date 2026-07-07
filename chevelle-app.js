@@ -1461,8 +1461,9 @@ appEl.addEventListener('click', e => {
         if (ph != null) { state.activePhase = Number(ph); state.view = 'build'; }
         else state.view = v;
         state.ui.accordion = acc != null ? Number(acc) : null;
-        if (circ) state.ui.circuitSel = circ;
-        if (fu != null) state.ui.fuseSel = Number(fu);
+        /* clear the non-targeted selection so the scroll-to-hit can't land on a stale open card */
+        state.ui.circuitSel = circ || null;
+        state.ui.fuseSel = fu != null ? Number(fu) : null;
         if (da) state.ui.dashSel = da;
         persist(); render({ resetScroll: true });
         requestAnimationFrame(() => {
