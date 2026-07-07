@@ -43,7 +43,7 @@ Everything lives at repo root `C:/Users/corey/Projects/chevelle-hdx-build-guide`
 | `ATTRIBUTIONS.md` | Create | CC photo credits |
 | `docs/qa/wire-map-smoke.md` | Create | Manual QA checklist |
 
-Run all tests with: `node --test tests/` (from repo root). No package.json needed.
+Run all tests with: `node --test` (from repo root). No package.json needed.
 
 ---
 
@@ -100,12 +100,12 @@ test('substep counts per phase are locked (index-based check keys)', () => {
 
 - [ ] **Step 2: Run the tests — all pass, snapshot file created**
 
-Run: `cd C:/Users/corey/Projects/chevelle-hdx-build-guide && node --test tests/`
+Run: `cd C:/Users/corey/Projects/chevelle-hdx-build-guide && node --test`
 Expected: `# pass 3`, and `tests/substep-counts.snapshot.json` now exists.
 
 - [ ] **Step 3: Run again to confirm the snapshot comparison path passes**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: `# pass 3`.
 
 - [ ] **Step 4: Commit**
@@ -168,7 +168,7 @@ test('FUEL fuse is not called HDX-critical (F42)', () => {
 
 - [ ] **Step 2: Run tests to verify the new ones fail**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: FAIL — the three new tests fail against the current source (e.g. `GAUGES', amps: 10` still present).
 
 - [ ] **Step 3: Transcribe the real 18-position layout from the diagram**
@@ -211,7 +211,7 @@ Also update `circuitCardHTML()` (~lines 952 and 969) which renders `'#' + c.fuse
 
 - [ ] **Step 6: Syntax check + run tests**
 
-Run: `node --check chevelle-app.js && node --test tests/`
+Run: `node --check chevelle-app.js && node --test`
 Expected: `--check` silent; the Task 2 tests PASS. (The Task 1 tests still pass.)
 
 - [ ] **Step 7: Commit**
@@ -268,7 +268,7 @@ test('voltmeter has no signal wire claim (F41)', () => {
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: FAIL — all four new tests fail against current source.
 
 - [ ] **Step 3: Fix DASH_GAUGES (four entries)**
@@ -303,7 +303,7 @@ Note: `search-go` passes `data-fuse` from the search index (`fuse: f.slot`) into
 
 - [ ] **Step 6: Syntax check + run tests**
 
-Run: `node --check chevelle-app.js && node --test tests/`
+Run: `node --check chevelle-app.js && node --test`
 Expected: all tests PASS, including Task 2's (no slot-number regressions).
 
 - [ ] **Step 7: Commit**
@@ -349,7 +349,7 @@ test('Phase 5 temp sender text is corrected (F3/F40)', () => {
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `node --test tests/`
+Run: `node --test`
 Expected: FAIL — both new tests fail.
 
 - [ ] **Step 3: Apply the five text edits**
@@ -362,7 +362,7 @@ Expected: FAIL — both new tests fail.
 
 - [ ] **Step 4: Syntax check + run tests (including the substep-count lock)**
 
-Run: `node --check chevelle-data.js && node --test tests/`
+Run: `node --check chevelle-data.js && node --test`
 Expected: ALL tests pass — the snapshot test proves no substep was added/removed.
 
 - [ ] **Step 5: Commit**
@@ -594,7 +594,7 @@ In `chevelle-hdx-interactive.html` line 504, before the data script, insert:
 
 - [ ] **Step 5: Verify: syntax, tests**
 
-Run: `node --check chevelle-wiremap.js && node --test tests/`
+Run: `node --check chevelle-wiremap.js && node --test`
 Expected: all pass (visual coordinate verification happens in Task 7 Step 5 once the overlay renders).
 
 - [ ] **Step 6: Commit**
@@ -807,8 +807,8 @@ In `chevelle-hdx-interactive.html`, after the `.pm-photo img` rule (~line 453) a
 
 - [ ] **Step 6: Syntax check + visual verification (this is where coordinates get nudged)**
 
-Run: `node --check chevelle-app.js && node --test tests/`
-Then preview: Reference → Parts Map. (The "Zoom overlay" button becomes functional in Task 8 — ignore it for now.) Verify: photo renders with 8 numbered pins + 7 routes; tap pin 3 (HDX box) → its routes stay bright, others dim, page scrolls to the HDX Control Box card; tap a wire → circuit card appears under the photo with fuse label + amps from the corrected data; tap photo background → reset. Compare every pin against the actual photo content and nudge x/y values in `chevelle-wiremap.js` until each pin sits ON its part (fuse panel block, column tube, HDX box, heater box, etc.). Re-run `node --test tests/` after nudging (bounds checks).
+Run: `node --check chevelle-app.js && node --test`
+Then preview: Reference → Parts Map. (The "Zoom overlay" button becomes functional in Task 8 — ignore it for now.) Verify: photo renders with 8 numbered pins + 7 routes; tap pin 3 (HDX box) → its routes stay bright, others dim, page scrolls to the HDX Control Box card; tap a wire → circuit card appears under the photo with fuse label + amps from the corrected data; tap photo background → reset. Compare every pin against the actual photo content and nudge x/y values in `chevelle-wiremap.js` until each pin sits ON its part (fuse panel block, column tube, HDX box, heater box, etc.). Re-run `node --test` after nudging (bounds checks).
 
 - [ ] **Step 7: Commit**
 
@@ -970,7 +970,7 @@ Then bind the zones in `chevelle-app.js` `PARTS_MAP`: add `wm: 'engine-bay',` to
 
 - [ ] **Step 5: Verify: tests + visual pass on all four zones**
 
-Run: `node --check chevelle-wiremap.js && node --test tests/`
+Run: `node --check chevelle-wiremap.js && node --test`
 Expected: schema test validates all 4 zones (file-exists, bounds, cross-refs).
 Preview: Parts Map now shows four interactive photos; per zone check pins sit on the right features (nudge coordinates as needed); each zone shows its shot-list callout except behind-dash; zone heads show `0/n connected`.
 
@@ -1279,7 +1279,7 @@ And add the toast CSS in the HTML (next to the lightbox rules):
 
 - [ ] **Step 3: Verify**
 
-`node --check sw.js && node --check chevelle-app.js && node --test tests/`
+`node --check sw.js && node --check chevelle-app.js && node --test`
 Preview with DevTools → Application: new SW installs, old `chevelle-hdx-v9` cache is deleted, `chevelle-hdx-v10` contains the three new jpgs + chevelle-wiremap.js. Offline check: DevTools Network → Offline → reload → app loads, Parts Map shows ALL FOUR photos. Then edit any string in chevelle-data.js temporarily, reload twice online WITHOUT bumping CACHE → change appears (network-first proof); revert the temp edit.
 
 - [ ] **Step 4: Commit**
@@ -1343,7 +1343,7 @@ Add under the feature list (or intro paragraph) of `README.md`:
 - [ ] **Step 3: Full verification pass**
 
 1. Syntax-check every JS file (one file per invocation): `for f in chevelle-app.js chevelle-data.js chevelle-wiremap.js sw.js; do node --check "$f"; done`
-2. `node --test tests/` → all pass.
+2. `node --test` → all pass.
 3. Desktop preview: walk the entire QA checklist top to bottom (everything except the three iPad-only items).
 4. Screenshot the behind-dash overlay with a highlighted circuit for the final report.
 
