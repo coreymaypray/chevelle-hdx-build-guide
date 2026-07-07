@@ -1428,8 +1428,9 @@ function openLightbox(src, label) {
   stage.addEventListener('pointercancel', up);
   stage.addEventListener('click', () => {
     /* pointer capture retargets clicks to the stage — decide by gesture, not target:
-       close only on a genuine tap (<8px movement) that started on the backdrop */
-    if (z.moved < 8 && !z.downOnImg) closeLightbox();
+       close only on a genuine tap that started on the backdrop. 12px slop covers
+       gloved-finger roll (Safari's own tap threshold is ~10px) */
+    if (z.moved < 12 && !z.downOnImg) closeLightbox();
   });
   lb = el;
 }
