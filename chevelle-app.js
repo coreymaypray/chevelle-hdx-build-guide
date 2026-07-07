@@ -1300,9 +1300,9 @@ function viewHTML() {
    ============================================================ */
 const appEl = document.getElementById('app');
 
-function render() {
+function render(opts) {
   const sc = appEl.querySelector('.scroll');
-  const top = sc ? sc.scrollTop : 0;
+  const top = (opts && opts.resetScroll) ? 0 : (sc ? sc.scrollTop : 0);
   appEl.innerHTML = '<div class="app' + (state.collapsed ? ' rail-collapsed' : '') + '">'
     + railHTML() + '<div class="work">' + topbarHTML() + '<div class="scroll">' + viewHTML() + '</div></div>'
     + settingsHTML() + '</div>';
@@ -1358,14 +1358,14 @@ function importBackup() {
 /* ============================================================
    EVENT DELEGATION
    ============================================================ */
-function openPhase(id) { state.activePhase = id; state.view = 'build'; state.ui.accordion = null; persist(); render(); }
+function openPhase(id) { state.activePhase = id; state.view = 'build'; state.ui.accordion = null; persist(); render({ resetScroll: true }); }
 
 appEl.addEventListener('click', e => {
   const t = e.target.closest('[data-act]');
   if (t) {
     const act = t.getAttribute('data-act');
     switch (act) {
-      case 'view': state.view = t.getAttribute('data-view'); state.ui.accordion = null; persist(); render(); break;
+      case 'view': state.view = t.getAttribute('data-view'); state.ui.accordion = null; persist(); render({ resetScroll: true }); break;
       case 'phase': openPhase(Number(t.getAttribute('data-phase'))); break;
       case 'collapse': state.collapsed = !state.collapsed; persist(); render(); break;
       case 'theme': state.settings.theme = resolvedTheme() === 'dark' ? 'light' : 'dark'; persistSettings(); applySettings(); render(); break;
@@ -1464,7 +1464,12 @@ appEl.addEventListener('click', e => {
         if (circ) state.ui.circuitSel = circ;
         if (fu != null) state.ui.fuseSel = Number(fu);
         if (da) state.ui.dashSel = da;
-        persist(); render(); break;
+        persist(); render({ resetScroll: true });
+        requestAnimationFrame(() => {
+          const hit = appEl.querySelector('.circ-item.open, .fuse-slot.sel, .skill-card.open');
+          if (hit) hit.scrollIntoView({ block: 'center' });
+        });
+        break;
       }
     }
   }
