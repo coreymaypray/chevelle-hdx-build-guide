@@ -105,3 +105,32 @@ test('fuse references resolve and quoted amps match the FUSES table (integrity)'
     if (f) assert.strictEqual(f.amps, Number(m[2]), 'inline fuse amp for ' + m[1]);
   }
 });
+
+test('HDX senders route direct to Control Box, not AAW connectors F/G/H (F1/F7)', () => {
+  const src = APP_SRC();
+  assert.doesNotMatch(src, /AAW Connector H \(WHITE\)/);
+  assert.doesNotMatch(src, /AAW Connector G \(DK GREEN\)/);
+  assert.doesNotMatch(src, /WHITE 18 AWG — AAW Connector H/);
+  assert.doesNotMatch(src, /DARK GREEN signal 18 AWG — AAW Connector G/);
+  assert.doesNotMatch(src, /→ Conn [FGH]\b/);
+  assert.doesNotMatch(src, /→ AAW VSS connector/);
+  // The dedicated-sub-harness truth must be present in the traces
+  assert.match(src, /Dakota sender sub-harness/);
+});
+
+test('temp sender is two-wire to Control Box TEMP SIG+GND (F3)', () => {
+  const src = APP_SRC();
+  assert.doesNotMatch(src, /[Gg]rounds through the engine block/);
+  assert.doesNotMatch(src, /grounds through block/);
+  assert.match(src, /TEMP INPUT-SIG \+ TEMP INPUT-GND/);
+});
+
+test('turn-signal circuit cites TURN 10A by label (F13/F34)', () => {
+  const src = APP_SRC();
+  assert.doesNotMatch(src, /Fuse #5 TURN 15A/);
+  assert.doesNotMatch(src, /label:\s*'TURN',\s*amps:\s*15/);
+});
+
+test('voltmeter has no signal wire claim (F41)', () => {
+  assert.doesNotMatch(APP_SRC(), /voltmeter needs only its signal wire/);
+});
