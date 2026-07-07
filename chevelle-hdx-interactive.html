@@ -369,6 +369,11 @@ a { color:var(--accent); text-decoration:none; }
 .trace-arrow { color:var(--text-3); flex-shrink:0; }
 @media (max-width:1080px){ .dash-split { grid-template-columns:1fr; } }
 
+/* ===== UPDATE TOAST ===== */
+.sw-toast { position:fixed; left:50%; transform:translateX(-50%); bottom:calc(18px + env(safe-area-inset-bottom)); z-index:90;
+  background:var(--accent); color:var(--accent-ink); border:none; border-radius:999px; padding:12px 22px;
+  font:600 14px 'Geist', sans-serif; box-shadow:var(--shadow); cursor:pointer; }
+
 /* ===== LIGHTBOX ===== */
 .lightbox { position:fixed; inset:0; z-index:300; background:rgba(6,8,11,.93); backdrop-filter:blur(10px); display:flex; flex-direction:column; }
 .lb-bar { display:flex; align-items:center; gap:12px; padding:14px 20px; color:#fff; }

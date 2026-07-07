@@ -1608,6 +1608,24 @@ if (window.matchMedia) {
   try { window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => { if (state.settings.theme === 'auto') { applySettings(); render(); } }); } catch (e) {}
 }
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').then(r => console.log('SW registered:', r.scope)).catch(err => console.log('SW failed:', err));
+  navigator.serviceWorker.register('./sw.js').then(reg => {
+    console.log('SW registered:', reg.scope);
+    /* check for a new SW whenever the app comes back to the foreground */
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+    reg.addEventListener('updatefound', () => {
+      const nw = reg.installing;
+      if (!nw) return;
+      nw.addEventListener('statechange', () => {
+        if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+          if (document.getElementById('sw-toast')) return;
+          const t = document.createElement('button');
+          t.id = 'sw-toast'; t.className = 'sw-toast';
+          t.textContent = 'Update ready — tap to reload';
+          t.addEventListener('click', () => location.reload());
+          document.body.appendChild(t);
+        }
+      });
+    });
+  }).catch(err => console.log('SW failed:', err));
 }
 })();
