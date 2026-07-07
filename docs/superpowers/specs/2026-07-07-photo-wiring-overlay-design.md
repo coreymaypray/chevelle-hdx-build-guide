@@ -136,10 +136,10 @@ Everything else, notably: missing Bag L/Bag M phases (F5) and steering-column ra
 
 1. Confirm progress-key derivation; add a one-time migration if any Tier 1 edit would shift checked items (persistence guarantee)
 2. Tier 1 data corrections (+ regression pass over Build/Wiring/Parts/Dash/Engine views for consistency)
-2. Overlay: `chevelle-wiremap.js` schema + behind-dash zone → render component + interactions → lightbox integration
-3. Photo prep + remaining three zones + `ATTRIBUTIONS.md` + shot-list cards
-4. Tier 2 fixes
-5. SW precache update, `CACHE` → v10, QA checklist, commit(s)
+3. Overlay: `chevelle-wiremap.js` schema + behind-dash zone → render component + interactions + persistent connected-checks → lightbox integration
+4. Photo prep + remaining three zones + `ATTRIBUTIONS.md` + shot-list cards
+5. Tier 2 fixes
+6. SW precache update, `CACHE` → v10, QA checklist, commit(s)
 
 ### Memory/documentation corrections
 
