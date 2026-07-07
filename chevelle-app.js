@@ -1368,7 +1368,7 @@ window.addEventListener('keydown', e => {
 let lb = null;
 function openLightbox(src, label) {
   closeLightbox();
-  const z = { scale: 1, x: 0, y: 0, dragging: false, sx: 0, sy: 0, lastTap: 0, pointers: new Map(), pinchDist: 0 };
+  const z = { scale: 1, x: 0, y: 0, dragging: false, sx: 0, sy: 0, lastTap: 0, pointers: new Map(), pinchDist: 0, downX: 0, downY: 0, downOnImg: false, moved: 0 };
   const el = document.createElement('div');
   el.className = 'lightbox';
   el.innerHTML = '<div class="lb-bar"><div class="lb-title">' + esc(label) + '</div>'
@@ -1392,6 +1392,8 @@ function openLightbox(src, label) {
   stage.addEventListener('wheel', ev => { ev.preventDefault(); zoom(ev.deltaY < 0 ? 1.15 : 0.87); }, { passive: false });
   stage.addEventListener('pointerdown', ev => {
     stage.setPointerCapture(ev.pointerId);
+    z.downX = ev.clientX; z.downY = ev.clientY; z.moved = 0;
+    z.downOnImg = ev.target !== stage;
     z.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
     if (z.pointers.size === 2) {
       const p = [...z.pointers.values()];
@@ -1404,6 +1406,7 @@ function openLightbox(src, label) {
   });
   stage.addEventListener('pointermove', ev => {
     if (!z.pointers.has(ev.pointerId)) return;
+    z.moved = Math.max(z.moved, Math.hypot(ev.clientX - z.downX, ev.clientY - z.downY));
     z.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
     if (z.pointers.size === 2) {
       const p = [...z.pointers.values()]; const d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
@@ -1423,7 +1426,11 @@ function openLightbox(src, label) {
   };
   stage.addEventListener('pointerup', up);
   stage.addEventListener('pointercancel', up);
-  stage.addEventListener('click', ev => { if (ev.target === stage) closeLightbox(); });
+  stage.addEventListener('click', () => {
+    /* pointer capture retargets clicks to the stage — decide by gesture, not target:
+       close only on a genuine tap (<8px movement) that started on the backdrop */
+    if (z.moved < 8 && !z.downOnImg) closeLightbox();
+  });
   lb = el;
 }
 function closeLightbox() { if (lb) { lb.remove(); lb = null; } }
