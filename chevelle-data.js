@@ -190,7 +190,7 @@ const PHASES = [
         "text": "12V Ignition — PINK If using HEI or electronic ignition: route to the coil and trim to length. Install terminal C and connector G, then plug into the distributor cap BAT location."
       },
       {
-        "text": "Starter Solenoid R — YELLOW Assembly X — this is for points ignition with a ballast resistor. If using HEI: connect the YELLOW wire with terminal C and connector G to the distributor cap BAT location instead."
+        "text": "Starter Solenoid R — YELLOW Assembly X — POINTS IGNITION ONLY: connects solenoid R terminal to the coil side of the ballast resistor (full 12V crank bypass). ON HEI: this wire is NOT USED and the R terminal stays EMPTY — cap and label the YELLOW. The HEI BAT terminal is fed by the PINK 12V ignition wire (see previous step); the AAW ignition switch supplies full 12V in RUN and START, no ballast resistor anywhere."
       },
       {
         "text": "Coil / Tach — WHITEHDX BUILDS: The HDX uses its own dedicated tach signal wire connecting directly to the HDX Control Box TACH terminal (HEI TACH terminal OR coil negative; never positive). The AAW WHITE wire is redundant — cap and label.NEVER use solid-core spark plug wires with the HDX (MAN 650542H p.7) — EMI from solid-core wires destroys the tach signal. Use spiral-wound or carbon-core suppression wires only. Do not route the tach wire alongside any other sensor or input wires — keep it isolated to prevent EMI bleed (MAN 650542H p.7)."

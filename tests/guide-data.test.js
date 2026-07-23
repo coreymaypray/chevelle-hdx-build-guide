@@ -157,3 +157,20 @@ test('Phase 5 temp sender text is corrected in the data file (F3/F40)', () => {
   assert.doesNotMatch(src, /usually rear, near the thermostat housing/);
   assert.match(src, /front of the intake, passenger side/);
 });
+
+test('Power-Up checklist: pwr ids unique, view registered, YELLOW/HEI fix applied', () => {
+  const src = APP_SRC();
+  // Extract the PWRUP_GROUPS block first — RECOM_GROUPS shares the bat-/fuel- prefixes,
+  // so a whole-file id scan would pick up recommissioning ids too.
+  const block = src.match(/const PWRUP_GROUPS = \[[\s\S]*?\n\];/);
+  assert.ok(block, 'PWRUP_GROUPS block found in chevelle-app.js');
+  const ids = [...block[0].matchAll(/\{ id: '([a-z0-9-]+)'/g)].map(m => m[1]);
+  assert.ok(ids.length >= 50, 'found the PWRUP items (' + ids.length + ')');
+  assert.strictEqual(new Set(ids).size, ids.length, 'pwr ids unique');
+  ids.forEach(id => assert.match(id, /^(bat|str|alt|hei|hdx|gnd|chs|fuel|pre|seq)-/, 'group-prefixed id: ' + id));
+  assert.match(src, /case 'pwrup': return pwrupHTML\(\);/);
+  assert.match(src, /pid === 'recom' \|\| pid === 'pwr'/);
+  assert.doesNotMatch(DATA_SRC(), /connect the YELLOW wire with terminal C and connector G to the distributor cap BAT location/);
+  assert.match(DATA_SRC(), /ON HEI: this wire is NOT USED/);
+  assert.doesNotMatch(src, /PURPLE low \/ BROWN high \/ YELLOW park/);
+});

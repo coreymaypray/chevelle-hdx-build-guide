@@ -123,13 +123,14 @@ const NAV = [
   ]},
   { group: 'Track', items: [
     { id: 'recom', label: 'Recommission', icon: 'recom' },
+    { id: 'pwrup', label: 'Power-Up', icon: 'bolt' },
     { id: 'budget', label: 'Budget & Parts', icon: 'dollar' },
   ]},
 ];
 const VIEW_TITLES = {
   home: 'Overview', build: 'Build Steps', dash: 'Dash Layout', wiring: 'Wiring & Diagrams',
   parts: 'Parts Map', skills: 'Skills', glossary: 'Glossary', specs: 'Specs & Torque',
-  trouble: 'Troubleshooting', recom: 'Recommissioning', budget: 'Budget & Parts', engine: 'Engine Bay',
+  trouble: 'Troubleshooting', recom: 'Recommissioning', pwrup: 'Power-Up Checklist', budget: 'Budget & Parts', engine: 'Engine Bay',
 };
 
 /* ============================================================
@@ -280,7 +281,7 @@ const CIRCUITS = [
     warnings: [],
     notes: ['No flash (solid on)? Replace the 2-pin flasher can. One side dead? Check that side’s bulbs — a burned bulb changes resistance and stops the flash.'] },
   { id: 'wiper', name: 'Wiper Motor', swatch: '#8b6cc4',
-    hdxWire: '— (not an HDX circuit)', aawWire: 'PURPLE low / BROWN high / YELLOW park / LT BLUE washer', awg: '14–16 AWG',
+    hdxWire: '— (not an HDX circuit)', aawWire: 'BLACK low / LT BLUE high / DK BLUE washer / WHITE feed (per Bag J sheet)', awg: '14–16 AWG',
     fuse: fuseByLabel('WIPER'), hotWhen: 'Key ON', aawRef: 'Bag G → bulkhead → Bag J · motor on firewall, passenger side',
     route: ['Wiper switch', 'AAW dash harness', 'WIPER fuse 10A', 'Bulkhead', 'Bag J engine harness', 'Wiper motor (firewall, passenger side)'],
     warnings: ['Motor-load circuit — loose wiper connections melt connectors. Make every terminal tight.'],
@@ -329,7 +330,7 @@ const PARTS_MAP = [
       { n: 'Tach Signal Source', pn: '—', loc: 'HEI: TACH terminal on cap · Points: coil negative (–)', thread: '—',
         wiresIn: '—', wiresOut: 'WHITE 18 AWG — Dakota lead direct to Control Box TACH', note: 'Keep ≥6" from plug wires. Suppression wires only.' },
       { n: 'Wiper Motor', pn: '—', loc: 'Firewall, passenger side (4-wire motor)', thread: '—',
-        wiresIn: 'PURPLE low / BROWN high / YELLOW park / LT BLUE washer via Bag J', wiresOut: '—',
+        wiresIn: 'BLACK low / LT BLUE high / DK BLUE washer / WHITE feed via Bag J', wiresOut: '—',
         note: '10A circuit (WIPER fuse) — keep every connection tight or connectors melt.' },
       { n: 'Alternator + Ground Strap', pn: '—', loc: 'Alternator; strap from engine block to frame/firewall', thread: '—',
         wiresIn: 'Charge wire to battery via Bag Z', wiresOut: 'Engine→chassis ground path',
@@ -538,6 +539,104 @@ const RECOM_GROUPS = [
     { id: 'st-pedal',    text: 'Test brake pedal feel before moving the car' } ] },
 ];
 
+/* Power-Up pre-power checklist — final verification of every connection
+   point before the battery goes in, then the fuse-at-a-time power-up
+   sequence. Derived from verified research (AAW 510105/510476/500707
+   sheets + Dakota Digital MAN 650542H). Check keys: pwr:<id> — PERMANENT. */
+const PWRUP_GROUPS = [
+  { g: 'Battery & Main Power Path',
+    note: 'AAW Step 3: ALL FOUR grounds must exist before the battery goes in — battery→engine block, battery→frame, engine block→frame, body→frame.',
+    items: [
+    { id: 'bat-pos',      text: 'Battery + cable → starter solenoid BAT stud: terminal clean/bright, nut wrench-tight, cable clear of headers, boot over stud' },
+    { id: 'bat-neg',      text: 'Battery − cable → engine block: bare-metal contact, tight, no paint under lug' },
+    { id: 'bat-gndstrap', text: 'Engine-to-firewall/frame ground strap present, both ends bright metal, tight' },
+    { id: 'bat-megafuse', text: 'Megafuse assembly (Bag Z 510476) mounted close to battery source; bussbar jumper D on the starter/battery-feed side (the #1 Bag Z assembly error); notched cover on; all four M8 nuts + lock washers snug' },
+    { id: 'bat-6ga-str',  text: '6 ga RED starter stud → megafuse jumper side: ring terminals crimped + shrink tube, no loose strands' },
+    { id: 'bat-6ga-alt',  text: '6 ga RED alternator BAT stud → megafuse #1 stud: boot installed, nut tight (this fuse protects the charge wire)' },
+    { id: 'bat-10ga',     text: '10 ga RED main feed: megafuse #2 stud → bulkhead (driver side, under master cylinder) → fuse panel BAT bus: bulkhead bolted, dielectric grease on terminals + RTV on cavities. This one wire powers the whole panel.' },
+    { id: 'bat-panel',    text: 'Fuse panel 500707 seated in the stock bulkhead hole, both screws tight, flasher can bottom-right, no pinched wires' } ] },
+  { g: 'Starter & Solenoid',
+    note: 'Points ignition instead? YELLOW from R → ballast coil side, PINK → ballast feed side, ballast resistor required (not in kit).',
+    items: [
+    { id: 'str-bat-stud', text: 'Battery + cable AND 6 ga megafuse feed stacked flat on solenoid BAT stud, nut tight, boot on, cable off the block/headers' },
+    { id: 'str-s-purple', text: 'PURPLE from neutral-safety-switch out → solenoid S terminal: rubber sleeve + ring terminal installed, tight, loomed away from exhaust' },
+    { id: 'str-r-empty',  text: 'R terminal EMPTY on HEI — YELLOW assembly X capped + labeled (points-only ballast bypass)' } ] },
+  { g: 'Alternator (10SI/12SI)',
+    warn: 'The factory ammeter is NOT supported — the AAW charge path bypasses it by design (fire hazard). The HDX voltmeter replaces it.',
+    items: [
+    { id: 'alt-charge',  text: '6 ga RED charge wire on alternator BAT stud: boot on, nut tight' },
+    { id: 'alt-sense',   text: 'Small RED sense (assembly W): ring end on alternator BAT stud, other end in regulator plug cavity #2 (remove entirely for a 1-wire alternator)' },
+    { id: 'alt-exciter', text: 'BROWN exciter → regulator plug cavity #1, plug fully seated in the alternator side connector (remove for 1-wire)' },
+    { id: 'alt-ground',  text: 'Engine ground strap verified — it is the alternator’s return path; missing strap = low/erratic voltmeter + gauge jitter' } ] },
+  { g: 'HEI Distributor',
+    warn: 'NEVER connect the tach lead to coil (+) or the cap BAT terminal — TACH terminal only. (Points ignition: coil negative (−) instead.)',
+    items: [
+    { id: 'hei-pink',        text: 'PINK 12V ignition → HEI cap BAT terminal: connector seated on the cap spade, full 12V, NO ballast resistor anywhere in the run' },
+    { id: 'hei-tach',        text: 'HDX tach lead (WHITE 18 AWG) → HEI cap TACH terminal, direct to Control Box TACH: routed ≥6" from plug wires/coil, crosses at 90° only, not bundled with sender wires' },
+    { id: 'hei-aaw-white',   text: 'AAW WHITE "COIL-TACH" wire capped + labeled (HDX uses its own lead)' },
+    { id: 'hei-suppression', text: 'Suppression (spiral-wound) plug wires confirmed — solid-core destroys the tach signal' } ] },
+  { g: 'HDX Control Box',
+    note: 'The panel FUEL 15A fuse is the FACTORY fuel circuit — the HDX fuel sender signal is unfused by design.',
+    items: [
+    { id: 'hdx-red',     text: 'RED → 12VDC CONSTANT terminal, other end on the CLOCK fuse position (battery-hot, 10A — find by printed label; never fuse this 18 AWG pigtail above 10A)' },
+    { id: 'hdx-pink',    text: 'PINK → IGNITION PWR terminal, other end on the GAUGES position (ignition-hot, 5A): hot in ON/ACC only' },
+    { id: 'hdx-black',   text: 'BLACK → GROUND terminal to the dedicated bare-metal bolt + star washer: <0.5Ω to battery (−), no splices, shared with NOTHING' },
+    { id: 'hdx-orange',  text: 'ORANGE → DIM input from the 520001 dim-kit GREY (headlight-switch dash-lamp circuit). DIM ADJ terminals stay open — do not ground' },
+    { id: 'hdx-display', text: '8-pin display cable clicked into Control Box AND cluster, no folds/creases, slack loop; buzzer plugged into cluster back' },
+    { id: 'hdx-oil',     text: 'Oil SEN-03-8: WHITE→PRESSURE SIG, RED→PRESSURE PWR (5V from the box — power nothing else from it), BLACK→PRESSURE GND, bare shield→PRESSURE DRN — all four landed, tug-tested' },
+    { id: 'hdx-temp',    text: 'Temp SEN-04-5: BOTH wires → TEMP INPUT SIG + GND (polarity doesn’t matter); ground does NOT go through the block' },
+    { id: 'hdx-speed',   text: 'Speed sensor: signal→SPEED SIG, RED→SPEED PWR (5V), BLACK→SPEED GND; adapter fully seated in the TH400 tailshaft' },
+    { id: 'hdx-fuel',    text: 'Fuel: TAN twisted pair direct to FUEL INPUT SIG + GND, UNFUSED, twisted full length; FUEL PWR (reserved) stays open' },
+    { id: 'hdx-ind',     text: 'Indicator inputs: LT BLUE→LEFT(+), DK BLUE→RIGHT(+), LT GREEN→HIGH(+), TAN brake-warning→BRAKE(−) (ground-triggered — correct for it)' },
+    { id: 'hdx-caps',    text: 'Capped AAW wires labeled + insulated: Connector F DK GREEN/DK BLUE/TAN, Connector G PINK/GREY/BLACK, Connector H (don’t plug it on), AAW WHITE tach, dome/courtesy + glove-box' } ] },
+  { g: 'Ground Chain', items: [
+    { id: 'gnd-bat-engine',   text: 'Battery (−) → engine block: tight, bright' },
+    { id: 'gnd-engine-frame', text: 'Engine block → frame strap: present, both ends clean' },
+    { id: 'gnd-body-frame',   text: 'Body → frame and battery → frame grounds verified (AAW Step 3 items)' },
+    { id: 'gnd-hdx',          text: 'Dedicated HDX ground: measured <0.5Ω to battery (−) with a meter' },
+    { id: 'gnd-dash',         text: 'AAW dash BLACK grounds #9 and #26: TWO SEPARATE grounds — do NOT combine them; speedo ground #16 stays unused/capped with Connector H' },
+    { id: 'gnd-rear',         text: 'Rear body ground (Bag M): ring terminal on bare trunk-area metal — a bad one = dim tails AND wandering fuel gauge' },
+    { id: 'gnd-front',        text: 'Front grounds (Bag L) on the radiator core support: rings on bare metal AND continuity proven core support → battery (−) (the support sits on rubber mounts — prove the path, don’t assume)' },
+    { id: 'gnd-sender',       text: 'Fuel sender ground: flange/screws clean to tank, tank strap grounded, HDX FUEL-GND wire on a sender mounting screw' } ] },
+  { g: 'Chassis Circuits', items: [
+    { id: 'chs-headlight', text: 'Headlight switch: RED→BAT, ORANGE→park/tail in, BROWN→park out, YELLOW→dimmer feed, DK GREEN→instrument lamps, WHITE→courtesy gnd, BLACK→body gnd; 520001 GREY tap → HDX ORANGE' },
+    { id: 'chs-dimmer',    text: 'Floor dimmer: YELLOW power in / TAN low out / LT GREEN heavy high out / LT GREEN thin → HDX HIGH input — all 4 seated, connector locked' },
+    { id: 'chs-wiper',     text: 'Wiper motor (Bag J sheet): BLACK low / LT BLUE high / DK BLUE washer / WHITE feed doubled to washer pump — every terminal TIGHT (motor load — loose = melted connectors)' },
+    { id: 'chs-horn',      text: 'Horn relay seated in its dash connector: RED 12V / BLACK relay gnd (horn-button ground via column BLACK) / DK GREEN → both horns' },
+    { id: 'chs-flashers',  text: 'Turn flasher can seated at fuse panel bottom-right; hazard flasher can seated (position per the printed fuse-panel install sheet)' },
+    { id: 'chs-brake',     text: 'Brake switch at pedal: ORANGE 12V in (BRK/CTSY) / WHITE → column turn-signal switch — plug seated, pedal actuates' },
+    { id: 'chs-nss',       text: 'Console shifter TH400: NSS PURPLE in/out seated (cranks in P/N only — verify at first crank, later); backup PINK in / LT GREEN → backup lamps (light in R only)' },
+    { id: 'chs-kickdown',  text: 'T400 kickdown: PINK → gas-pedal switch → ORANGE through firewall grommet → trans solenoid' },
+    { id: 'chs-heater',    text: 'Heater: BROWN accessory → switch; YELLOW/LT BLUE/ORANGE resistor taps seated; Bag J ORANGE through bulkhead → blower (30A FAN circuit — tight)' },
+    { id: 'chs-rear',      text: 'Bag M rear: YELLOW LH stop/tail, DK GREEN RH stop/tail, BROWN park/markers/license, LT GREEN backup, TAN fuel sender — routed along door-sill cavity clear of seat-belt anchors, grommets seated' },
+    { id: 'chs-column',    text: 'Column turn-signal switch connector fully seated (7-wire + horn BLACK)' },
+    { id: 'chs-capped',    text: 'Dome/courtesy/glove-box wires: capped by design on this car — labeled, taped, not bare' } ] },
+  { g: 'Fuel Sender', items: [
+    { id: 'fuel-boot', text: 'TAN lead rubber boot seated on the tank sender stud, wire clear of exhaust/filler, up through the trunk-floor feed hole' },
+    { id: 'fuel-pair', text: 'Twisted pair stays twisted full length forward; ground wire on a sender mounting screw; factory 0–90Ω unit retained (reads backwards later → Invert setting, don’t rewire)' } ] },
+  { g: 'Pre-Power Tests (battery out, fuses out)',
+    warn: 'Do not proceed to power-up until every item above passes. A dead short found now costs five minutes; found after the battery is in, it costs a harness.',
+    items: [
+    { id: 'pre-fuses-out',  text: 'ALL ATC fuses OUT of the panel (bagged + labeled); megafuses may stay' },
+    { id: 'pre-main-short', text: 'Ohmmeter main feed → ground: NOT a dead short (open/high with fuses out; near-0Ω = short in the feed/bulkhead — stop and find it)' },
+    { id: 'pre-spot',       text: 'Spot-check CLOCK and GAUGES load sides → ground for dead shorts (some circuits read low-ish legitimately; 0Ω is the fail)' },
+    { id: 'pre-redpink',    text: 'HDX RED vs PINK not shorted together; neither shorted to ground at the box' },
+    { id: 'pre-grounds',    text: 'Ground-chain resistances: HDX BLACK→battery(−) <0.5Ω; core support→frame <0.5Ω; rear body ground→frame <0.5Ω' },
+    { id: 'pre-mech',       text: 'Every ring terminal torqued (starter/megafuse/alternator), crimps tug-tested, no bare ends, no wires on exhaust/moving parts, grommets seated, battery posts bright' },
+    { id: 'pre-senders',    text: 'SEN-03-8 + SEN-04-5 confirmed installed (NOT the old GM single-wire senders); tach lead ≥6" separation re-confirmed' } ] },
+  { g: 'Power-Up Sequence (fuses one at a time)',
+    warn: 'STOP — pull battery (−) immediately on: smoke or hot smell, any wire/connector warm with the circuit idle, a fuse that blows on insertion, draw that jumps with nothing on, power on a capped wire, or a dark STATUS LED with the CLOCK fuse in. Never up-size a fuse to get past a blow. Engine cranking is NOT part of this checklist — that is Recommission → First Start (oil-prime procedure) ONLY.',
+    items: [
+    { id: 'seq-battery', text: 'Battery in, fuses still OUT: connect (+) first, (−) last. Tiny tick at (−) touch is normal; a fat snap/arc = short on the main feed — disconnect, back to the tests' },
+    { id: 'seq-draw0',   text: 'Key-off draw with fuses out: ammeter (mA) in series at (−) reads ≈0 mA — anything more is a fault ahead of the panel' },
+    { id: 'seq-clock',   text: 'CLOCK 10A in FIRST (key off): Control Box STATUS LED short red flash every 4 seconds = constant power + standby confirmed. It proves the box’s battery side + ground with everything else dead' },
+    { id: 'seq-batbus',  text: 'Battery-bus fuses one at a time, key off, testing each: BRK/CTSY (pedal → brake lights), HAZARD (all 4 flash), PARK LT + DASH LTS (park lamps, dash dim knob), LIGHTER. Feel the panel/wires after each — nothing warms up' },
+    { id: 'seq-draw1',   text: 'Key-off draw again after battery-bus fuses: only tens of mA (HDX standby). Log the number' },
+    { id: 'seq-ign',     text: 'Ignition fuses one at a time, key ON then OFF between each: GAUGES 5A FIRST (the HDX moment — see next item), then FUEL, WIPER, FAN/AC-HEAT (blower speeds), TURN (both sides flash), IGN 1 if used; then RADIO/ACCY' },
+    { id: 'seq-hdx',     text: 'HDX first key-on: full needle sweep on all six gauges (~2–3s), TFTs show the Dakota logo then defaults, "PLEASE CALIBRATE SPEED"/"PLEASE CALIBRATE FUEL" prompts are NORMAL, voltmeter 12.4–12.8V, STATUS LED steady green flash. Set cylinders = 8 (ENGINE SETUP) now. Headlights on → backlights dim with the knob' },
+    { id: 'seq-draw2',   text: 'Final key-off draw with all fuses in: tens of mA (HDX standby + radio memory). Log it' } ] },
+];
+
 /* Planned-budget reference (static) */
 const BUDGET = [
   ['Gauges', 'Dakota Digital HDX-70C-CVL', 1395], ['Wiring', 'AAW Classic Update harness', 685],
@@ -657,9 +756,10 @@ function buildSearchIndex() {
   FUSES.forEach(f => add({ type: 'fuse', title: f.label + ' ' + f.amps + 'A', text: f.feed + ' ' + (f.hdx || '') + ' ' + f.detail, view: 'wiring', fuse: f.slot }));
   PARTS_MAP.forEach(z => z.parts.forEach(p => add({ type: 'part', title: p.n, text: [p.pn, p.loc, p.wiresIn, p.wiresOut, p.note].join(' '), view: 'parts' })));
   RECOM_GROUPS.forEach(g => g.items.forEach(it => add({ type: 'recom', title: it.text, text: g.g + ' (recommissioning)', view: 'recom' })));
+  PWRUP_GROUPS.forEach(g => g.items.forEach(it => add({ type: 'pwrup', title: it.text, text: g.g + ' (power-up)', view: 'pwrup' })));
   DASH_GAUGES.forEach(g => add({ type: 'gauge', title: g.n, text: [g.sender, g.wire, g.cal, g.note].join(' '), view: 'dash', dash: g.key }));
 }
-const TYPE_LABEL = { phase: 'Phase', step: 'Step', skill: 'Skill', gloss: 'Glossary', trouble: 'Trouble', circuit: 'Circuit', fuse: 'Fuse', part: 'Part', recom: 'Recom', gauge: 'Gauge' };
+const TYPE_LABEL = { phase: 'Phase', step: 'Step', skill: 'Skill', gloss: 'Glossary', trouble: 'Trouble', circuit: 'Circuit', fuse: 'Fuse', part: 'Part', recom: 'Recom', pwrup: 'Power-Up', gauge: 'Gauge' };
 
 function updateSearchPop() {
   const pop = document.getElementById('search-pop');
@@ -727,7 +827,7 @@ function topbarHTML() {
   const view = state.view;
   const crumb = view === 'build' ? 'Build'
     : (['dash', 'wiring', 'parts', 'engine', 'skills', 'glossary', 'specs', 'trouble'].indexOf(view) > -1 ? 'Reference'
-      : (['recom', 'budget'].indexOf(view) > -1 ? 'Track' : 'Build'));
+      : (['recom', 'pwrup', 'budget'].indexOf(view) > -1 ? 'Track' : 'Build'));
   const theme = resolvedTheme();
   return '<header class="topbar">'
     + '<button class="tb-collapse" data-act="collapse" title="Toggle sidebar">' + icon('panel', 20) + '</button>'
@@ -1233,6 +1333,30 @@ function recomHTML() {
   return h + '</div>';
 }
 
+function pwrupHTML() {
+  let total = 0, done = 0;
+  PWRUP_GROUPS.forEach(g => g.items.forEach(it => { total++; if (state.checks['pwr:' + it.id]) done++; }));
+  let h = '<div class="page"><p class="muted" style="margin-bottom:14px;max-width:62ch">Every wire is connected — this is the final verification before the battery goes in and fuses go in. Work top to bottom: check every connection point, run the pre-power tests, then follow the power-up sequence exactly. Engine cranking comes LATER (Recommission → First Start). <strong style="color:var(--text)">' + done + '/' + total + ' done.</strong></p>';
+  PWRUP_GROUPS.forEach(g => {
+    const gd = g.items.filter(it => state.checks['pwr:' + it.id]).length;
+    h += '<div class="zone-head" style="margin-top:22px">' + icon('bolt', 15) + ' ' + esc(g.g) + ' <span class="faint mono" style="font-weight:400;font-size:12px">· ' + gd + '/' + g.items.length + '</span></div>';
+    h += '<div class="substeps">';
+    g.items.forEach((it, i) => {
+      const checked = !!state.checks['pwr:' + it.id];
+      h += '<div class="substep' + (checked ? ' checked' : '') + '">'
+        + '<div class="ss-row">'
+        + '<button class="ss-checkcol" data-act="check" data-pid="pwr" data-idx="' + esc(it.id) + '" aria-pressed="' + checked + '" aria-label="Mark item ' + (i + 1) + (checked ? ' not done' : ' done') + '">'
+        + '<span class="ss-n mono">' + (i + 1) + '</span><span class="ss-check">' + icon('check', 17) + '</span></button>'
+        + '<div class="ss-main" data-act="check" data-pid="pwr" data-idx="' + esc(it.id) + '" style="cursor:pointer"><div class="ss-text">' + esc(it.text) + '</div></div>'
+        + '</div></div>';
+    });
+    h += '</div>';
+    if (g.note) h += callout('note', g.note);
+    if (g.warn) h += callout('warn', g.warn);
+  });
+  return h + '</div>';
+}
+
 function budgetHTML() {
   const planned = BUDGET.reduce((s, r) => s + r[2], 0);
   const spent = state.expenses.reduce((s, e) => s + e.cost, 0);
@@ -1311,6 +1435,7 @@ function viewHTML() {
     case 'specs': return specsHTML();
     case 'trouble': return troubleHTML();
     case 'recom': return recomHTML();
+    case 'pwrup': return pwrupHTML();
     case 'budget': return budgetHTML();
     default: return homeHTML();
   }
@@ -1395,7 +1520,7 @@ appEl.addEventListener('click', e => {
       case 'settings-close': state.settingsOpen = false; render(); break;
       case 'check': {
         const pid = t.getAttribute('data-pid'); const idx = t.getAttribute('data-idx');
-        const key = (pid === 'recom' ? 'recom' : Number(pid)) + ':' + idx;
+        const key = ((pid === 'recom' || pid === 'pwr') ? pid : Number(pid)) + ':' + idx;
         if (state.checks[key]) delete state.checks[key]; else state.checks[key] = true;
         persist(); render(); break;
       }
