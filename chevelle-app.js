@@ -280,7 +280,7 @@ const CIRCUITS = [
     route: ['Column turn-signal switch', 'AAW dash harness', 'TURN fuse 10A', 'Bag G split: LT BLUE left / DK BLUE right', 'Front + rear sockets'],
     warnings: [],
     notes: ['No flash (solid on)? Replace the 2-pin flasher can. One side dead? Check that side’s bulbs — a burned bulb changes resistance and stops the flash.'] },
-  { id: 'wiper', name: 'Wiper Motor', swatch: '#8b6cc4',
+  { id: 'wiper', name: 'Wiper Motor', swatch: '#8a93a0',
     hdxWire: '— (not an HDX circuit)', aawWire: 'BLACK low / LT BLUE high / DK BLUE washer / WHITE feed (per Bag J sheet)', awg: '14–16 AWG',
     fuse: fuseByLabel('WIPER'), hotWhen: 'Key ON', aawRef: 'Bag G → bulkhead → Bag J · motor on firewall, passenger side',
     route: ['Wiper switch', 'AAW dash harness', 'WIPER fuse 10A', 'Bulkhead', 'Bag J engine harness', 'Wiper motor (firewall, passenger side)'],
@@ -630,7 +630,7 @@ const PWRUP_GROUPS = [
     { id: 'seq-battery', text: 'Battery in, fuses still OUT: connect (+) first, (−) last. Tiny tick at (−) touch is normal; a fat snap/arc = short on the main feed — disconnect, back to the tests' },
     { id: 'seq-draw0',   text: 'Key-off draw with fuses out: ammeter (mA) in series at (−) reads ≈0 mA — anything more is a fault ahead of the panel' },
     { id: 'seq-clock',   text: 'CLOCK 10A in FIRST (key off): Control Box STATUS LED short red flash every 4 seconds = constant power + standby confirmed. It proves the box’s battery side + ground with everything else dead' },
-    { id: 'seq-batbus',  text: 'Battery-bus fuses one at a time, key off, testing each: BRK/CTSY (pedal → brake lights), HAZARD (all 4 flash), PARK LT + DASH LTS (park lamps, dash dim knob), LIGHTER. Feel the panel/wires after each — nothing warms up' },
+    { id: 'seq-batbus',  text: 'Battery-bus fuses one at a time, key off, testing each: BRK/CTSY (pedal → brake lights), HAZARD (all 4 flash), PARK LT + DASH LTS (park lamps, dash dim knob), LIGHTER. Feel the panel/wires after each — nothing warms up. NOTE: reconnect (−) directly for these load tests — a mA meter in series blows its own fuse under lamp loads; put the meter back only for the draw checks' },
     { id: 'seq-draw1',   text: 'Key-off draw again after battery-bus fuses: only tens of mA (HDX standby). Log the number' },
     { id: 'seq-ign',     text: 'Ignition fuses one at a time, key ON then OFF between each: GAUGES 5A FIRST (the HDX moment — see next item), then FUEL, WIPER, FAN/AC-HEAT (blower speeds), TURN (both sides flash), IGN 1 if used; then RADIO/ACCY' },
     { id: 'seq-hdx',     text: 'HDX first key-on: full needle sweep on all six gauges (~2–3s), TFTs show the Dakota logo then defaults, "PLEASE CALIBRATE SPEED"/"PLEASE CALIBRATE FUEL" prompts are NORMAL, voltmeter 12.4–12.8V, STATUS LED steady green flash. Set cylinders = 8 (ENGINE SETUP) now. Headlights on → backlights dim with the knob' },
@@ -1340,6 +1340,8 @@ function pwrupHTML() {
   PWRUP_GROUPS.forEach(g => {
     const gd = g.items.filter(it => state.checks['pwr:' + it.id]).length;
     h += '<div class="zone-head" style="margin-top:22px">' + icon('bolt', 15) + ' ' + esc(g.g) + ' <span class="faint mono" style="font-weight:400;font-size:12px">· ' + gd + '/' + g.items.length + '</span></div>';
+    /* safety-critical STOP text reads before the steps, not after */
+    if (g.warn) h += callout('warn', g.warn);
     h += '<div class="substeps">';
     g.items.forEach((it, i) => {
       const checked = !!state.checks['pwr:' + it.id];
@@ -1352,7 +1354,6 @@ function pwrupHTML() {
     });
     h += '</div>';
     if (g.note) h += callout('note', g.note);
-    if (g.warn) h += callout('warn', g.warn);
   });
   return h + '</div>';
 }
