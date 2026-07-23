@@ -596,10 +596,11 @@ const PWRUP_GROUPS = [
     { id: 'alt-ground',  text: 'Engine ground strap verified — it is the alternator’s return path; missing strap = low/erratic voltmeter + gauge jitter' } ] },
   { g: 'HEI Distributor',
     warn: 'NEVER connect the tach lead to coil (+) or the cap BAT terminal — TACH terminal only. (Points ignition: coil negative (−) instead.)',
+    note: 'Verified against Dakota Digital’s Quick Start diagram (MAN 650543): the cap’s TACH terminal runs ONE wire to the Control Box terminal marked TACH — it sits directly below TACH WARN and above IGNITION PWR on the terminal strip. The cap’s BAT connector is switched 12V (your PINK feed) and never goes to the HDX. HEI needs zero tach setup — the defaults (8-cyl, 12V HIGH) are already correct.',
     media: [{ src: 'aaw-diagrams/aaw-bag-j-engine-wiring.png', label: 'Bag J engine wiring' }],
     items: [
     { id: 'hei-pink',        text: 'PINK 12V ignition → HEI cap BAT terminal: connector seated on the cap spade, full 12V, NO ballast resistor anywhere in the run' },
-    { id: 'hei-tach',        text: 'HDX tach lead (WHITE 18 AWG) → HEI cap TACH terminal, direct to Control Box TACH: routed ≥6" from plug wires/coil, crosses at 90° only, not bundled with sender wires' },
+    { id: 'hei-tach',        text: 'HDX tach lead (WHITE 18 AWG) → HEI cap TACH terminal, direct to the Control Box terminal marked TACH (below TACH WARN, above IGNITION PWR): routed ≥6" from plug wires/coil, crosses at 90° only, not bundled with sender wires' },
     { id: 'hei-aaw-white',   text: 'AAW WHITE "COIL-TACH" wire capped + labeled (HDX uses its own lead)' },
     { id: 'hei-suppression', text: 'Suppression (spiral-wound) plug wires confirmed — solid-core destroys the tach signal' } ] },
   { g: 'HDX Control Box',
@@ -661,6 +662,7 @@ const PWRUP_GROUPS = [
     { id: 'pre-senders',    text: 'SEN-03-8 + SEN-04-5 confirmed installed (NOT the old GM single-wire senders); tach lead ≥6" separation re-confirmed' } ] },
   { g: 'Power-Up Sequence (fuses one at a time)',
     warn: 'STOP — pull battery (−) immediately on: smoke or hot smell, any wire/connector warm with the circuit idle, a fuse that blows on insertion, draw that jumps with nothing on, power on a capped wire, or a dark STATUS LED with the CLOCK fuse in. Never up-size a fuse to get past a blow. Engine cranking is NOT part of this checklist — that is Recommission → First Start (oil-prime procedure) ONLY.',
+    note: 'TIME-CRITICAL (Dakota Quick Start MAN 650543): the ODOMETER PRESET — setting the cluster to your car’s actual mileage — is only available within the FIRST 100 MILES of driving. Do it right after speed calibration. Fuel menu pick for the factory 1972 sender: "GM 0-90". A battery disconnect never loses settings, only the clock.',
     media: [{ src: 'aaw-diagrams/aaw-fuse-panel-layout.png', label: 'Fuse panel layout' }],
     items: [
     { id: 'seq-battery', text: 'Battery in, fuses still OUT: connect (+) first, (−) last. Tiny tick at (−) touch is normal; a fat snap/arc = short on the main feed — disconnect, back to the tests' },
