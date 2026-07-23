@@ -174,3 +174,18 @@ test('Power-Up checklist: pwr ids unique, view registered, YELLOW/HEI fix applie
   assert.match(DATA_SRC(), /ON HEI: this wire is NOT USED/);
   assert.doesNotMatch(src, /PURPLE low \/ BROWN high \/ YELLOW park/);
 });
+
+test('Power-Up visual aids: wire chips + group media reference real assets', () => {
+  const src = APP_SRC();
+  assert.match(src, /function colorizeWires/);
+  assert.match(src, /wire-chip/);
+  // DK GREEN must be listed before GREEN (alternation order = match priority)
+  const wc = src.match(/const WIRE_COLORS = \[[\s\S]*?\n\];/);
+  assert.ok(wc, 'WIRE_COLORS found');
+  assert.ok(wc[0].indexOf("'DK GREEN'") < wc[0].indexOf("['GREEN'"), 'DK GREEN before GREEN');
+  // every media src in PWRUP_GROUPS exists on disk
+  const block = src.match(/const PWRUP_GROUPS = \[[\s\S]*?\n\];/)[0];
+  const srcs = [...block.matchAll(/src: '([^']+)'/g)].map(m => m[1]);
+  assert.ok(srcs.length >= 10, 'group media present (' + srcs.length + ')');
+  srcs.forEach(s => assert.ok(fs.existsSync(path.join(ROOT, s)), 'media exists: ' + s));
+});

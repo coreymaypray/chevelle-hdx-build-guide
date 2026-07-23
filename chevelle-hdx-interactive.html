@@ -331,6 +331,7 @@ a { color:var(--accent); text-decoration:none; }
 .diagram-thumb .dt-zoom { position:absolute; top:8px; right:8px; width:28px; height:28px; border-radius:7px; background:var(--glass); backdrop-filter:blur(6px); display:grid; place-items:center; }
 .diagram-thumb .dt-zoom svg { width:15px; height:15px; }
 .diagram-thumb .dt-cap { padding:10px 12px; font-size:13px; font-weight:550; }
+.pwr-thumb { max-width:180px; }
 
 /* ===== REFERENCE / CARDS GRID ===== */
 .ref-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; }
@@ -441,6 +442,12 @@ body.barney-on .barney .b-x { transform:rotate(90deg); }
 .circ-item.open { border-color:var(--accent-line); }
 .circ-head { display:flex; align-items:center; gap:12px; width:100%; padding:13px 16px; text-align:left; }
 .circ-swatch { width:18px; height:18px; border-radius:5px; flex-shrink:0; box-shadow:inset 0 1px 2px rgba(0,0,0,.35); border:1px solid var(--line-strong); }
+
+/* wire-color chips — inline in Power-Up item/callout text (see colorizeWires()) */
+.wire-chip { display:inline-flex; align-items:center; gap:4px; padding:1px 7px 1px 4px; border-radius:8px;
+  background:var(--surface-2); border:1px solid var(--line); font-family:'Geist Mono', monospace;
+  font-size:0.85em; font-weight:600; white-space:nowrap; vertical-align:baseline; }
+.wire-chip i { width:10px; height:10px; border-radius:3px; flex-shrink:0; border:1px solid rgba(255,255,255,.25); }
 .circ-name { flex:1; font-size:14.5px; font-weight:600; }
 .circ-item .sk-x { color:var(--text-3); transition:transform .2s; }
 .circ-item.open .sk-x { transform:rotate(90deg); }

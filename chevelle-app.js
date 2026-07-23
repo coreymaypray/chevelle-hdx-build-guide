@@ -18,6 +18,24 @@ function esc(s) {
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
+/* physical wire colors — chips rendered inline in Power-Up text */
+const WIRE_COLORS = [
+  ['DK GREEN', '#1a7a4a'], ['LT GREEN', '#6fd287'], ['DK BLUE', '#2b5fd9'], ['LT BLUE', '#7cc4ff'],
+  ['ORANGE', '#ff8c00'], ['PURPLE', '#a855f7'], ['YELLOW', '#f2d24b'], ['BROWN', '#8b5a2b'],
+  ['BLACK', '#2b2f36'], ['WHITE', '#f5f5f5'], ['GREEN', '#1a7a4a'], ['PINK', '#ff9ec6'],
+  ['GRAY', '#9aa3ad'], ['GREY', '#9aa3ad'], ['TAN', '#d2b48c'], ['RED', '#e5484d'],
+];
+/* run on ALREADY-ESCAPED text; single-pass alternation (longest-name-first order
+   in WIRE_COLORS wins ties, e.g. DK GREEN over GREEN) so a matched name's own
+   text is never re-scanned by a later alternative — sequential replaces would
+   double-wrap "DK GREEN" via the standalone "GREEN" pattern. */
+const WIRE_RE = new RegExp('\\b(' + WIRE_COLORS.map(c => c[0]).join('|') + ')\\b', 'g');
+const WIRE_HEX = Object.fromEntries(WIRE_COLORS);
+function colorizeWires(escapedText) {
+  return escapedText.replace(WIRE_RE, m =>
+    '<span class="wire-chip"><i style="background:' + WIRE_HEX[m] + '"></i>' + m + '</span>');
+}
+
 /* ---------- icon set ---------- */
 const ICON = {
   home:    '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',
@@ -85,6 +103,11 @@ function pill(iconName, text) {
 }
 function callout(type, text) {
   return '<div class="callout ' + type + '">' + icon(type === 'warn' ? 'alert' : 'info', 18) + '<div>' + esc(text) + '</div></div>';
+}
+/* callout() escapes internally — calloutRaw() takes pre-escaped/pre-colorized HTML
+   (used by pwrupHTML() so wire-color chips render inside note/warn callouts). */
+function calloutRaw(type, html) {
+  return '<div class="callout ' + type + '">' + icon(type === 'warn' ? 'alert' : 'info', 18) + '<div>' + html + '</div></div>';
 }
 function barneyChip(topic, text, open) {
   return '<div class="barney' + (open ? ' open' : '') + '" data-act="barney">'
@@ -546,6 +569,7 @@ const RECOM_GROUPS = [
 const PWRUP_GROUPS = [
   { g: 'Battery & Main Power Path',
     note: 'AAW Step 3: ALL FOUR grounds must exist before the battery goes in — battery→engine block, battery→frame, engine block→frame, body→frame.',
+    media: [{ src: 'engine-bay-reference.jpg', label: 'Engine bay' }, { src: 'aaw-diagrams/aaw-fuse-panel-install.png', label: 'Fuse panel install' }],
     items: [
     { id: 'bat-pos',      text: 'Battery + cable → starter solenoid BAT stud: terminal clean/bright, nut wrench-tight, cable clear of headers, boot over stud' },
     { id: 'bat-neg',      text: 'Battery − cable → engine block: bare-metal contact, tight, no paint under lug' },
@@ -557,12 +581,14 @@ const PWRUP_GROUPS = [
     { id: 'bat-panel',    text: 'Fuse panel 500707 seated in the stock bulkhead hole, both screws tight, flasher can bottom-right, no pinched wires' } ] },
   { g: 'Starter & Solenoid',
     note: 'Points ignition instead? YELLOW from R → ballast coil side, PINK → ballast feed side, ballast resistor required (not in kit).',
+    media: [{ src: 'aaw-diagrams/aaw-bag-j-engine-wiring.png', label: 'Bag J engine wiring' }],
     items: [
     { id: 'str-bat-stud', text: 'Battery + cable AND 6 ga megafuse feed stacked flat on solenoid BAT stud, nut tight, boot on, cable off the block/headers' },
     { id: 'str-s-purple', text: 'PURPLE from neutral-safety-switch out → solenoid S terminal: rubber sleeve + ring terminal installed, tight, loomed away from exhaust' },
     { id: 'str-r-empty',  text: 'R terminal EMPTY on HEI — YELLOW assembly X capped + labeled (points-only ballast bypass)' } ] },
   { g: 'Alternator (10SI/12SI)',
     warn: 'The factory ammeter is NOT supported — the AAW charge path bypasses it by design (fire hazard). The HDX voltmeter replaces it.',
+    media: [{ src: 'engine-bay-reference.jpg', label: 'Engine bay' }, { src: 'aaw-diagrams/aaw-bag-j-engine-diagram.png', label: 'Bag J diagram' }],
     items: [
     { id: 'alt-charge',  text: '6 ga RED charge wire on alternator BAT stud: boot on, nut tight' },
     { id: 'alt-sense',   text: 'Small RED sense (assembly W): ring end on alternator BAT stud, other end in regulator plug cavity #2 (remove entirely for a 1-wire alternator)' },
@@ -570,6 +596,7 @@ const PWRUP_GROUPS = [
     { id: 'alt-ground',  text: 'Engine ground strap verified — it is the alternator’s return path; missing strap = low/erratic voltmeter + gauge jitter' } ] },
   { g: 'HEI Distributor',
     warn: 'NEVER connect the tach lead to coil (+) or the cap BAT terminal — TACH terminal only. (Points ignition: coil negative (−) instead.)',
+    media: [{ src: 'aaw-diagrams/aaw-bag-j-engine-wiring.png', label: 'Bag J engine wiring' }],
     items: [
     { id: 'hei-pink',        text: 'PINK 12V ignition → HEI cap BAT terminal: connector seated on the cap spade, full 12V, NO ballast resistor anywhere in the run' },
     { id: 'hei-tach',        text: 'HDX tach lead (WHITE 18 AWG) → HEI cap TACH terminal, direct to Control Box TACH: routed ≥6" from plug wires/coil, crosses at 90° only, not bundled with sender wires' },
@@ -577,6 +604,7 @@ const PWRUP_GROUPS = [
     { id: 'hei-suppression', text: 'Suppression (spiral-wound) plug wires confirmed — solid-core destroys the tach signal' } ] },
   { g: 'HDX Control Box',
     note: 'The panel FUEL 15A fuse is the FACTORY fuel circuit — the HDX fuel sender signal is unfused by design.',
+    media: [{ src: 'dash-reference.jpg', label: 'Behind the dash' }],
     items: [
     { id: 'hdx-red',     text: 'RED → 12VDC CONSTANT terminal, other end on the CLOCK fuse position (battery-hot, 10A — find by printed label; never fuse this 18 AWG pigtail above 10A)' },
     { id: 'hdx-pink',    text: 'PINK → IGNITION PWR terminal, other end on the GAUGES position (ignition-hot, 5A): hot in ON/ACC only' },
@@ -589,7 +617,9 @@ const PWRUP_GROUPS = [
     { id: 'hdx-fuel',    text: 'Fuel: TAN twisted pair direct to FUEL INPUT SIG + GND, UNFUSED, twisted full length; FUEL PWR (reserved) stays open' },
     { id: 'hdx-ind',     text: 'Indicator inputs: LT BLUE→LEFT(+), DK BLUE→RIGHT(+), LT GREEN→HIGH(+), TAN brake-warning→BRAKE(−) (ground-triggered — correct for it)' },
     { id: 'hdx-caps',    text: 'Capped AAW wires labeled + insulated: Connector F DK GREEN/DK BLUE/TAN, Connector G PINK/GREY/BLACK, Connector H (don’t plug it on), AAW WHITE tach, dome/courtesy + glove-box' } ] },
-  { g: 'Ground Chain', items: [
+  { g: 'Ground Chain',
+    media: [{ src: 'aaw-diagrams/aaw-schematic-1971-72.png', label: 'Full schematic' }],
+    items: [
     { id: 'gnd-bat-engine',   text: 'Battery (−) → engine block: tight, bright' },
     { id: 'gnd-engine-frame', text: 'Engine block → frame strap: present, both ends clean' },
     { id: 'gnd-body-frame',   text: 'Body → frame and battery → frame grounds verified (AAW Step 3 items)' },
@@ -598,7 +628,9 @@ const PWRUP_GROUPS = [
     { id: 'gnd-rear',         text: 'Rear body ground (Bag M): ring terminal on bare trunk-area metal — a bad one = dim tails AND wandering fuel gauge' },
     { id: 'gnd-front',        text: 'Front grounds (Bag L) on the radiator core support: rings on bare metal AND continuity proven core support → battery (−) (the support sits on rubber mounts — prove the path, don’t assume)' },
     { id: 'gnd-sender',       text: 'Fuel sender ground: flange/screws clean to tank, tank strap grounded, HDX FUEL-GND wire on a sender mounting screw' } ] },
-  { g: 'Chassis Circuits', items: [
+  { g: 'Chassis Circuits',
+    media: [{ src: 'aaw-diagrams/aaw-fuse-panel-layout.png', label: 'Fuse panel layout' }, { src: 'aaw-diagrams/aaw-bag-m-rear-body.png', label: 'Bag M rear body' }],
+    items: [
     { id: 'chs-headlight', text: 'Headlight switch: RED→BAT, ORANGE→park/tail in, BROWN→park out, YELLOW→dimmer feed, DK GREEN→instrument lamps, WHITE→courtesy gnd, BLACK→body gnd; 520001 GREY tap → HDX ORANGE' },
     { id: 'chs-dimmer',    text: 'Floor dimmer: YELLOW power in / TAN low out / LT GREEN heavy high out / LT GREEN thin → HDX HIGH input — all 4 seated, connector locked' },
     { id: 'chs-wiper',     text: 'Wiper motor (Bag J sheet): BLACK low / LT BLUE high / DK BLUE washer / WHITE feed doubled to washer pump — every terminal TIGHT (motor load — loose = melted connectors)' },
@@ -611,11 +643,14 @@ const PWRUP_GROUPS = [
     { id: 'chs-rear',      text: 'Bag M rear: YELLOW LH stop/tail, DK GREEN RH stop/tail, BROWN park/markers/license, LT GREEN backup, TAN fuel sender — routed along door-sill cavity clear of seat-belt anchors, grommets seated' },
     { id: 'chs-column',    text: 'Column turn-signal switch connector fully seated (7-wire + horn BLACK)' },
     { id: 'chs-capped',    text: 'Dome/courtesy/glove-box wires: capped by design on this car — labeled, taped, not bare' } ] },
-  { g: 'Fuel Sender', items: [
+  { g: 'Fuel Sender',
+    media: [{ src: 'rear-sender-reference.jpg', label: 'Sender in tank' }, { src: 'aaw-diagrams/aaw-bag-m-rear-body.png', label: 'Bag M rear body' }],
+    items: [
     { id: 'fuel-boot', text: 'TAN lead rubber boot seated on the tank sender stud, wire clear of exhaust/filler, up through the trunk-floor feed hole' },
     { id: 'fuel-pair', text: 'Twisted pair stays twisted full length forward; ground wire on a sender mounting screw; factory 0–90Ω unit retained (reads backwards later → Invert setting, don’t rewire)' } ] },
   { g: 'Pre-Power Tests (battery out, fuses out)',
     warn: 'Do not proceed to power-up until every item above passes. A dead short found now costs five minutes; found after the battery is in, it costs a harness.',
+    media: [{ src: 'aaw-diagrams/aaw-fuse-panel-layout.png', label: 'Fuse panel layout' }],
     items: [
     { id: 'pre-fuses-out',  text: 'ALL ATC fuses OUT of the panel (bagged + labeled); megafuses may stay' },
     { id: 'pre-main-short', text: 'Ohmmeter main feed → ground: NOT a dead short (open/high with fuses out; near-0Ω = short in the feed/bulkhead — stop and find it)' },
@@ -626,6 +661,7 @@ const PWRUP_GROUPS = [
     { id: 'pre-senders',    text: 'SEN-03-8 + SEN-04-5 confirmed installed (NOT the old GM single-wire senders); tach lead ≥6" separation re-confirmed' } ] },
   { g: 'Power-Up Sequence (fuses one at a time)',
     warn: 'STOP — pull battery (−) immediately on: smoke or hot smell, any wire/connector warm with the circuit idle, a fuse that blows on insertion, draw that jumps with nothing on, power on a capped wire, or a dark STATUS LED with the CLOCK fuse in. Never up-size a fuse to get past a blow. Engine cranking is NOT part of this checklist — that is Recommission → First Start (oil-prime procedure) ONLY.',
+    media: [{ src: 'aaw-diagrams/aaw-fuse-panel-layout.png', label: 'Fuse panel layout' }],
     items: [
     { id: 'seq-battery', text: 'Battery in, fuses still OUT: connect (+) first, (−) last. Tiny tick at (−) touch is normal; a fat snap/arc = short on the main feed — disconnect, back to the tests' },
     { id: 'seq-draw0',   text: 'Key-off draw with fuses out: ammeter (mA) in series at (−) reads ≈0 mA — anything more is a fault ahead of the panel' },
@@ -1341,7 +1377,16 @@ function pwrupHTML() {
     const gd = g.items.filter(it => state.checks['pwr:' + it.id]).length;
     h += '<div class="zone-head" style="margin-top:22px">' + icon('bolt', 15) + ' ' + esc(g.g) + ' <span class="faint mono" style="font-weight:400;font-size:12px">· ' + gd + '/' + g.items.length + '</span></div>';
     /* safety-critical STOP text reads before the steps, not after */
-    if (g.warn) h += callout('warn', g.warn);
+    if (g.warn) h += calloutRaw('warn', colorizeWires(esc(g.warn)));
+    if (g.media) {
+      h += '<div class="diagram-strip" style="margin-bottom:10px">';
+      g.media.forEach(m => {
+        h += '<button class="diagram-thumb pwr-thumb" data-act="zoom" data-src="' + esc(m.src) + '" data-label="' + esc(m.label) + '">'
+          + '<div class="dt-img"><img src="' + esc(m.src) + '" alt="' + esc(m.label) + '" loading="lazy"/><span class="dt-zoom">' + icon('zoom', 15) + '</span></div>'
+          + '<div class="dt-cap">' + esc(m.label) + '</div></button>';
+      });
+      h += '</div>';
+    }
     h += '<div class="substeps">';
     g.items.forEach((it, i) => {
       const checked = !!state.checks['pwr:' + it.id];
@@ -1349,11 +1394,11 @@ function pwrupHTML() {
         + '<div class="ss-row">'
         + '<button class="ss-checkcol" data-act="check" data-pid="pwr" data-idx="' + esc(it.id) + '" aria-pressed="' + checked + '" aria-label="Mark item ' + (i + 1) + (checked ? ' not done' : ' done') + '">'
         + '<span class="ss-n mono">' + (i + 1) + '</span><span class="ss-check">' + icon('check', 17) + '</span></button>'
-        + '<div class="ss-main" data-act="check" data-pid="pwr" data-idx="' + esc(it.id) + '" style="cursor:pointer"><div class="ss-text">' + esc(it.text) + '</div></div>'
+        + '<div class="ss-main" data-act="check" data-pid="pwr" data-idx="' + esc(it.id) + '" style="cursor:pointer"><div class="ss-text">' + colorizeWires(esc(it.text)) + '</div></div>'
         + '</div></div>';
     });
     h += '</div>';
-    if (g.note) h += callout('note', g.note);
+    if (g.note) h += calloutRaw('note', colorizeWires(esc(g.note)));
   });
   return h + '</div>';
 }
