@@ -1109,7 +1109,13 @@ function engineHTML() {
       + '<div class="mono" style="font-size:12.5px;color:var(--accent);margin-bottom:5px">' + esc(p.wire) + '</div>'
       + '<div class="gd">' + esc(p.note) + '</div></div>';
   });
-  return '<div class="page"><p class="muted" style="margin-bottom:16px;max-width:62ch">Big-Block 396/454 sender and signal locations. Tap the diagram to zoom; cards below give thread size, wiring, and the install gotcha.</p>'
+  return '<div class="page"><p class="muted" style="margin-bottom:16px;max-width:62ch">Big-Block 396/454 sender and signal locations. Tap a numbered pin on the photo to see its wiring and mark it verified; cards below give thread size, wiring, and the install gotcha.</p>'
+    /* same interactive overlay as Parts Map — pins, verify checks, wire routes */
+    + '<div class="block-label">' + icon('pin', 14) + ' Engine bay — tap a pin</div>'
+    + wireMapInnerHTML('engine-bay', true)
+    + '<button class="ghost-btn" style="height:34px;margin:8px 0 2px" data-act="zoom" data-wm="engine-bay" data-src="" data-label="Engine bay — wiring overlay">' + icon('zoom', 15) + ' Zoom overlay</button>'
+    + wmDetailHTML('engine-bay')
+    + '<div class="block-label" style="margin-top:22px">' + icon('route', 14) + ' Bag J diagram</div>'
     + '<button class="diagram-thumb" style="display:block;width:100%;margin-bottom:22px" data-act="zoom" data-src="aaw-diagrams/aaw-bag-j-engine-diagram.png" data-label="Bag J — Engine bay diagram">'
     + '<div class="dt-img" style="aspect-ratio:16/8"><img src="aaw-diagrams/aaw-bag-j-engine-diagram.png" alt="Engine bay diagram"/><span class="dt-zoom">' + icon('zoom', 15) + '</span></div>'
     + '<div class="dt-cap">Bag J — Engine bay wiring & sender locations</div></button>'
