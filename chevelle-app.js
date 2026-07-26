@@ -637,7 +637,7 @@ const PWRUP_GROUPS = [
     { id: 'chs-wiper',     text: 'Wiper motor (Bag J sheet): BLACK low / LT BLUE high / DK BLUE washer / WHITE feed doubled to washer pump — every terminal TIGHT (motor load — loose = melted connectors)' },
     { id: 'chs-horn',      text: 'Horn relay seated in its dash connector: RED 12V / BLACK relay gnd (horn-button ground via column BLACK) / DK GREEN → both horns' },
     { id: 'chs-flashers',  text: 'Turn flasher can seated at fuse panel bottom-right; hazard flasher can seated (position per the printed fuse-panel install sheet)' },
-    { id: 'chs-brake',     text: 'Brake switch at pedal: ORANGE 12V in (BRK/CTSY) / WHITE → column turn-signal switch — plug seated, pedal actuates' },
+    { id: 'chs-brake',     text: 'Brake switch at pedal: ORANGE 12V in (BRK/CTSY) / WHITE → column turn-signal switch — plug seated, pedal actuates. Missing? Every ’72 shipped with one — mechanical, clips into the pedal-support bracket above the pedal arm; check teardown boxes or buy a 71-72 stop-lamp switch before driving. (The single-wire switch on the frame distribution block is the brake WARNING circuit, not this.)' },
     { id: 'chs-nss',       text: 'Console shifter TH400: NSS PURPLE in/out seated (cranks in P/N only — verify at first crank, later); backup PINK in / LT GREEN → backup lamps (light in R only)' },
     { id: 'chs-kickdown',  text: 'T400 kickdown: PINK → gas-pedal switch → ORANGE through firewall grommet → trans solenoid' },
     { id: 'chs-heater',    text: 'Heater: BROWN accessory → switch; YELLOW/LT BLUE/ORANGE resistor taps seated; Bag J ORANGE through bulkhead → blower (30A FAN circuit — tight)' },
