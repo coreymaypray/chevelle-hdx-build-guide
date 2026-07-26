@@ -190,13 +190,14 @@ test('Power-Up visual aids: wire chips + group media reference real assets', () 
   srcs.forEach(s => assert.ok(fs.existsSync(path.join(ROOT, s)), 'media exists: ' + s));
 });
 
-test('sheet pin → checklist sync: every mapped id exists in PWRUP_GROUPS', () => {
+test('pin → checklist sync (sheet + photo zones): every mapped id exists in PWRUP_GROUPS', () => {
   const wm = read('chevelle-wiremap.js');
   const pwrBlock = APP_SRC().match(/const PWRUP_GROUPS = \[[\s\S]*?\n\];/)[0];
   const pwrIds = new Set([...pwrBlock.matchAll(/\{ id: '([a-z0-9-]+)'/g)].map(m => m[1]));
   const mapped = [...wm.matchAll(/checks: \[([^\]]+)\]/g)]
     .flatMap(m => [...m[1].matchAll(/'([a-z0-9-]+)'/g)].map(x => x[1]));
-  assert.ok(mapped.length >= 17, 'found the pin check mappings (' + mapped.length + ')');
+  // 17 on the aaw-sheet + 14 across the four photo zones
+  assert.ok(mapped.length >= 31, 'found the pin check mappings (' + mapped.length + ')');
   mapped.forEach(id => assert.ok(pwrIds.has(id), 'mapped id exists in PWRUP: ' + id));
 });
 
