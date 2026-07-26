@@ -1642,6 +1642,19 @@ appEl.addEventListener('click', e => {
       case 'wm-done': {
         const k = t.getAttribute('data-key');
         if (state.checks[k]) delete state.checks[k]; else state.checks[k] = true;
+        /* verifying a sheet pin also checks its mapped checklist item(s) below.
+           One-way: unverifying never unchecks. Shared items (both grounds, both
+           heater pins, both shifter pins) wait until every mapped pin is verified. */
+        const km = k.match(/^wm:([a-z-]+):([a-z0-9-]+)$/);
+        if (state.checks[k] && km) {
+          const wz = (window.WIRE_MAP || {})[km[1]];
+          const wp = wz && wz.pins.find(p => p.id === km[2]);
+          ((wp && wp.checks) || []).forEach(cid => {
+            const all = wz.pins.filter(p => p.checks && p.checks.indexOf(cid) > -1)
+              .every(p => state.checks['wm:' + km[1] + ':' + p.id]);
+            if (all) state.checks['pwr:' + cid] = true;
+          });
+        }
         persist(); renderContent(); break;
       }
       case 'zoom': openLightbox(t.getAttribute('data-src'), t.getAttribute('data-label'), t.getAttribute('data-wm')); break;
