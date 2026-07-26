@@ -846,7 +846,13 @@ function railHTML() {
   NAV.forEach(grp => {
     nav += '<div><div class="rail-group-label">' + grp.group + '</div>';
     grp.items.forEach(it => {
-      const meta = it.id === 'build' ? '<span class="nv-meta">' + completePhases + '/' + PHASES.length + '</span>' : '';
+      let meta = '';
+      if (it.id === 'build') meta = '<span class="nv-meta">' + completePhases + '/' + PHASES.length + '</span>';
+      else if (it.id === 'pwrup') {
+        let pt = 0, pd = 0;
+        PWRUP_GROUPS.forEach(g => g.items.forEach(x => { pt++; if (state.checks['pwr:' + x.id]) pd++; }));
+        meta = '<span class="nv-meta' + (pd === pt && pt > 0 ? ' dot-done' : '') + '">' + pd + '/' + pt + '</span>';
+      }
       nav += '<button class="nav-item' + (state.view === it.id ? ' active' : '') + '" data-act="view" data-view="' + it.id + '" title="' + esc(it.label) + '">'
         + icon(it.icon, 20) + '<span class="lbl">' + esc(it.label) + '</span>' + meta + '</button>';
     });
@@ -1655,7 +1661,7 @@ appEl.addEventListener('click', e => {
             if (all) state.checks['pwr:' + cid] = true;
           });
         }
-        persist(); renderContent(); break;
+        persist(); render(); break; /* full render — the rail Power-Up counter must refresh too */
       }
       case 'zoom': openLightbox(t.getAttribute('data-src'), t.getAttribute('data-label'), t.getAttribute('data-wm')); break;
       case 'set-theme': state.settings.theme = t.getAttribute('data-val'); persistSettings(); applySettings(); render(); break;
