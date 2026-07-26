@@ -175,7 +175,7 @@ window.WIRE_MAP = {
       { id: 'aaw-20', part: 'RH Courtesy Lamp',               x: 2350, y: 508, verdict: 'cap',
         info: 'No interior courtesy lamps on this build — cap and label.' },
       { id: 'aaw-21', part: 'Heater Resistor',                x: 2427, y: 150, verdict: 'connect',
-        info: 'Blower resistor plug (YELLOW/LT BLUE/ORANGE taps) — gives low/medium fan speeds. Heater dead-ends without it.' },
+        info: 'Blower resistor plug (YELLOW/LT BLUE/ORANGE speed taps from the heater switch) — gives low/medium fan speeds; output continues to the blower via Bag J ORANGE through the bulkhead. The resistor mounts ON the heater box in the airflow (non-A/C: cabin-side distribution case under the dash, passenger side — two screws, spade terminals). Only HIGH works later = resistor burned out. Rides the FAN 30A fuse — seat the plug fully.' },
       { id: 'aaw-22', part: 'Glove Box',                      x: 2265, y: 133, verdict: 'cap',
         info: 'No glove-box lamp on this build — cap and label.' },
       { id: 'aaw-23', part: 'Heater Lamp',                    x: 2176, y: 508, verdict: 'connect',
