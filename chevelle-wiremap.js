@@ -157,7 +157,7 @@ window.WIRE_MAP = {
       { id: 'aaw-11', part: 'Radio',                          x: 1722, y: 100, verdict: 'connect',
         info: 'TAN accessory feed / GRAY lamp / YELLOW constant (memory). Wire whenever — not power-up critical.' },
       { id: 'aaw-12', part: 'Turbo 400 Kickdown Feed',        x: 1457, y: 545, verdict: 'connect',
-        info: 'PINK ignition → gas-pedal kickdown switch → ORANGE through firewall grommet → trans solenoid.' },
+        info: 'PINK ignition → gas-pedal kickdown switch → ORANGE through firewall grommet → TH400 passing-gear solenoid (single spade on the trans case). No TH400 (TH350 kicks down by cable/vacuum, no connector on the case)? CAP both ends. Even with a TH400 it is optional — normal shifting is hydraulic; you only lose the floor-it forced downshift until connected.' },
       { id: 'aaw-13', part: 'Neutral Safety Switch',          x: 1930, y: 112, verdict: 'connect',
         info: 'Console shifter NSS: PURPLE in / PURPLE out → starter solenoid S. No NSS = no crank. Cranks in P/N only.' },
       { id: 'aaw-14', part: 'Back Up Switch',                 x: 1996, y: 106, verdict: 'connect',
