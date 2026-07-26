@@ -43,6 +43,8 @@ test('WIRE_MAP zones are structurally valid', () => {
     });
     const routeIds = new Set();
     z.routes.forEach(r => {
+      // pins and routes share the wm:<zone>:<id> check keyspace — ids must not collide
+      assert.ok(!pinIds.has(r.id), zone + ': route id collides with a pin id: ' + r.id);
       assert.match(r.id, /^[a-z0-9-]+$/, zone + ': route id ' + r.id);
       assert.ok(!routeIds.has(r.id), zone + ': duplicate route id ' + r.id); routeIds.add(r.id);
       assert.ok(pinIds.has(r.pin), zone + ':' + r.id + ': route.pin "' + r.pin + '" exists');

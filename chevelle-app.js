@@ -1177,7 +1177,12 @@ function wmRouteDone(zone, id) { return !!state.checks['wm:' + zone + ':' + id];
 function wmZoneCounts(zone) {
   const z = (window.WIRE_MAP || {})[zone];
   if (!z) return { done: 0, total: 0 };
-  return { done: z.routes.filter(r => wmRouteDone(zone, r.id)).length, total: z.routes.length };
+  /* verdict pins (the AAW sheet map) carry their own checks alongside routes */
+  const vp = z.pins.filter(p => p.verdict);
+  return {
+    done: z.routes.filter(r => wmRouteDone(zone, r.id)).length + vp.filter(p => wmRouteDone(zone, p.id)).length,
+    total: z.routes.length + vp.length
+  };
 }
 /* markup for photo+svg — shared by Parts Map view and (next task) the lightbox.
    interactive=false emits no data-act attributes (display-only). */
@@ -1209,12 +1214,16 @@ function wireMapInnerHTML(zone, interactive) {
   z.pins.forEach((p, i) => {
     const routes = z.routes.filter(r => r.pin === p.id);
     const allDone = routes.length > 0 && routes.every(r => wmRouteDone(zone, r.id));
+    const pinDone = !!p.verdict && wmRouteDone(zone, p.id);
     const active = selPin === p.id;
-    svg += '<g class="wm-pin' + (active ? ' on' : '') + (sel && !active ? ' dim' : '') + (allDone ? ' alldone' : '') + (p.verdict ? ' v-' + p.verdict : '') + '"'
+    svg += '<g class="wm-pin' + (active ? ' on' : '') + (sel && !active ? ' dim' : '') + (allDone ? ' alldone' : '') + (p.verdict ? ' v-' + p.verdict : '') + (pinDone ? ' pdone' : '') + '"'
       + (interactive ? ' data-act="wm-pin" data-zone="' + zone + '" data-id="' + p.id + '"' : '') + '>'
       + '<circle cx="' + p.x + '" cy="' + p.y + '" r="52" class="wm-pinhit"/>'
       + '<circle cx="' + p.x + '" cy="' + p.y + '" r="26" class="wm-pindot"/>'
-      + '<text x="' + p.x + '" y="' + (p.y + 9) + '" class="wm-pinnum">' + (i + 1) + '</text></g>';
+      + '<text x="' + p.x + '" y="' + (p.y + 9) + '" class="wm-pinnum">' + (i + 1) + '</text>'
+      + (pinDone ? '<circle cx="' + (p.x + 21) + '" cy="' + (p.y - 21) + '" r="13" class="wm-pincheckdot"/>'
+        + '<path d="M' + (p.x + 15) + ',' + (p.y - 21) + ' l4,5 l8,-10" class="wm-donetick" fill="none"/>' : '')
+      + '</g>';
   });
   return '<div class="wm-wrap"><img src="' + esc(z.photo.src) + '" alt="' + esc(zone) + ' wiring photo"'
     + ' onerror="this.closest(\'.wm-wrap\').classList.add(\'wm-imgfail\')"/>'
@@ -1226,11 +1235,12 @@ function wmDetailHTML(zone) {
   const z = (window.WIRE_MAP || {})[zone];
   const sel = state.ui.wm && state.ui.wm.zone === zone ? state.ui.wm : null;
   if (!z || !sel) return '<div class="faint" style="font-size:13px;padding:8px 2px">Tap a numbered pin to light up its wires, or tap a wire for its circuit card. Tap the photo background to reset.</div>';
-  const doneBtn = (rid) => {
+  const doneBtn = (rid, verb) => {
+    verb = verb || 'connected';
     const k = 'wm:' + zone + ':' + rid;
     const on = !!state.checks[k];
     return '<button class="ghost-btn wm-donebtn' + (on ? ' on' : '') + '" data-act="wm-done" data-key="' + k + '">'
-      + icon('check', 15) + ' ' + (on ? 'Connected ✓' : 'Mark connected') + '</button>';
+      + icon('check', 15) + ' ' + (on ? verb.charAt(0).toUpperCase() + verb.slice(1) + ' ✓' : 'Mark ' + verb) + '</button>';
   };
   if (sel.type === 'route') {
     const r = z.routes.find(x => x.id === sel.id);
@@ -1258,6 +1268,7 @@ function wmDetailHTML(zone) {
     const vc = p.verdict === 'connect' ? 'var(--good)' : p.verdict === 'harvest' ? '#a855f7' : '#7a8290';
     if (p.verdict) h += '<div style="margin-top:6px"><span class="stage-tag" style="background:color-mix(in oklab, ' + vc + ' 16%, transparent);color:' + vc + '"><span class="sdot" style="background:' + vc + '"></span>' + esc(p.verdict.toUpperCase()) + '</span></div>';
     h += '<div class="gd" style="margin-top:6px">' + colorizeWires(esc(p.info)) + '</div>';
+    if (p.verdict) h += '<div style="margin-top:10px">' + doneBtn(p.id, 'verified') + '</div>';
   } else {
     h += '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part' + (hasCard ? ' — full details in the card below.' : '.') + '</div>';
   }
@@ -1383,7 +1394,9 @@ function pwrupHTML() {
   PWRUP_GROUPS.forEach(g => g.items.forEach(it => { total++; if (state.checks['pwr:' + it.id]) done++; }));
   let h = '<div class="page"><p class="muted" style="margin-bottom:14px;max-width:62ch">Every wire is connected — this is the final verification before the battery goes in and fuses go in. Work top to bottom: check every connection point, run the pre-power tests, then follow the power-up sequence exactly. Engine cranking comes LATER (Recommission → First Start). <strong style="color:var(--text)">' + done + '/' + total + ' done.</strong></p>';
   /* interactive connect/cap map on the AAW install sheet — one pin per numbered callout */
-  h += '<div class="block-label">' + icon('pin', 14) + ' The install sheet, mapped — tap a numbered pin: green = connect, grey = cap, purple = harvest</div>'
+  const smc = wmZoneCounts('aaw-sheet');
+  h += '<div class="block-label">' + icon('pin', 14) + ' The install sheet, mapped — tap a numbered pin: green = connect, grey = cap, purple = harvest'
+    + (smc.total ? ' <span class="mono" style="color:var(--accent)">· ' + smc.done + '/' + smc.total + ' verified</span>' : '') + '</div>'
     + wireMapInnerHTML('aaw-sheet', true)
     + '<button class="ghost-btn" style="height:34px;margin:8px 0 2px" data-act="zoom" data-wm="aaw-sheet" data-src="" data-label="AAW install sheet — connect/cap map">' + icon('zoom', 15) + ' Zoom overlay</button>'
     + wmDetailHTML('aaw-sheet');
