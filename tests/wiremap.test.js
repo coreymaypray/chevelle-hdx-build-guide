@@ -38,6 +38,8 @@ test('WIRE_MAP zones are structurally valid', () => {
       assert.ok(!pinIds.has(p.id), zone + ': duplicate pin id ' + p.id); pinIds.add(p.id);
       assert.ok(p.part && typeof p.part === 'string', zone + ':' + p.id + ': part name');
       assert.ok(p.x >= 0 && p.x <= z.photo.w && p.y >= 0 && p.y <= z.photo.h, zone + ':' + p.id + ': pin inside photo');
+      if (p.verdict !== undefined) assert.ok(['connect', 'cap', 'harvest'].includes(p.verdict), zone + ':' + p.id + ': valid verdict');
+      if (p.verdict !== undefined) assert.ok(typeof p.info === 'string' && p.info.length > 0, zone + ':' + p.id + ': verdict pins need info');
     });
     const routeIds = new Set();
     z.routes.forEach(r => {

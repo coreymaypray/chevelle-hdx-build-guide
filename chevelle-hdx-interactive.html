@@ -483,6 +483,10 @@ body.barney-on .barney .b-x { transform:rotate(90deg); }
 .wm-pin.dim { opacity:.35; }
 .wm-pinhit { fill:transparent; }
 .wm-pindot { fill:var(--accent); stroke:#fff; stroke-width:3; }
+/* verdict pins (aaw-sheet) — before .on so the selected state still wins */
+.wm-pin.v-connect .wm-pindot { fill:var(--good); }
+.wm-pin.v-cap .wm-pindot { fill:#7a8290; }
+.wm-pin.v-harvest .wm-pindot { fill:#a855f7; }
 .wm-pin.on .wm-pindot { fill:#fff; stroke:var(--accent); stroke-width:5; }
 .wm-pin.alldone .wm-pindot { fill:var(--good); }
 .wm-pinnum { fill:#fff; font:700 26px 'Geist Mono', monospace; text-anchor:middle; pointer-events:none; paint-order:stroke; stroke:rgba(0,0,0,.55); stroke-width:3px; }

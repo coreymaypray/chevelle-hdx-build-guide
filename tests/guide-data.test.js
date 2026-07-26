@@ -189,3 +189,16 @@ test('Power-Up visual aids: wire chips + group media reference real assets', () 
   assert.ok(srcs.length >= 10, 'group media present (' + srcs.length + ')');
   srcs.forEach(s => assert.ok(fs.existsSync(path.join(ROOT, s)), 'media exists: ' + s));
 });
+
+test('AAW sheet overlay: 26 verdict pins in order', () => {
+  const src = read('chevelle-wiremap.js');
+  const zone = src.match(/'aaw-sheet': \{[\s\S]*?\n  \},/);
+  assert.ok(zone, 'aaw-sheet zone found');
+  const pins = [...zone[0].matchAll(/id: 'aaw-(\d+)'/g)].map(m => Number(m[1]));
+  assert.strictEqual(pins.length, 26);
+  assert.deepStrictEqual(pins, Array.from({ length: 26 }, (_, i) => i + 1), 'ordered 1..26');
+  assert.strictEqual((zone[0].match(/verdict: 'cap'/g) || []).length, 5, 'five cap pins (3,16,20,22,25)');
+  assert.strictEqual((zone[0].match(/verdict: 'harvest'/g) || []).length, 1, 'one harvest pin (5)');
+  // the sheet overlay is wired into the Power-Up view
+  assert.match(APP_SRC(), /wireMapInnerHTML\('aaw-sheet', true\)/);
+});

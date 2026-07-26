@@ -1210,7 +1210,7 @@ function wireMapInnerHTML(zone, interactive) {
     const routes = z.routes.filter(r => r.pin === p.id);
     const allDone = routes.length > 0 && routes.every(r => wmRouteDone(zone, r.id));
     const active = selPin === p.id;
-    svg += '<g class="wm-pin' + (active ? ' on' : '') + (sel && !active ? ' dim' : '') + (allDone ? ' alldone' : '') + '"'
+    svg += '<g class="wm-pin' + (active ? ' on' : '') + (sel && !active ? ' dim' : '') + (allDone ? ' alldone' : '') + (p.verdict ? ' v-' + p.verdict : '') + '"'
       + (interactive ? ' data-act="wm-pin" data-zone="' + zone + '" data-id="' + p.id + '"' : '') + '>'
       + '<circle cx="' + p.x + '" cy="' + p.y + '" r="52" class="wm-pinhit"/>'
       + '<circle cx="' + p.x + '" cy="' + p.y + '" r="26" class="wm-pindot"/>'
@@ -1252,8 +1252,15 @@ function wmDetailHTML(zone) {
   if (!p) return '';
   const routes = z.routes.filter(r => r.pin === p.id);
   const hasCard = PARTS_MAP.some(zz => zz.parts.some(pp => pp.n === p.part));
-  let h = '<div class="fuse-detail card pad"><strong style="font-size:16px">' + esc(p.part) + '</strong>'
-    + '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part' + (hasCard ? ' — full details in the card below.' : '.') + '</div>';
+  let h = '<div class="fuse-detail card pad"><strong style="font-size:16px">' + esc(p.part) + '</strong>';
+  if (p.info) {
+    /* verdict pins (aaw-sheet): pill + info text instead of the wire count */
+    const vc = p.verdict === 'connect' ? 'var(--good)' : p.verdict === 'harvest' ? '#a855f7' : '#7a8290';
+    if (p.verdict) h += '<div style="margin-top:6px"><span class="stage-tag" style="background:color-mix(in oklab, ' + vc + ' 16%, transparent);color:' + vc + '"><span class="sdot" style="background:' + vc + '"></span>' + esc(p.verdict.toUpperCase()) + '</span></div>';
+    h += '<div class="gd" style="margin-top:6px">' + colorizeWires(esc(p.info)) + '</div>';
+  } else {
+    h += '<div class="faint" style="font-size:13px;margin:4px 0 10px">' + routes.length + ' wire' + (routes.length === 1 ? '' : 's') + ' at this part' + (hasCard ? ' — full details in the card below.' : '.') + '</div>';
+  }
   routes.forEach(r => {
     h += '<div style="display:flex;align-items:center;gap:8px;margin:6px 0"><span class="circ-swatch" style="background:' + esc(r.color) + '"></span>'
       + '<span style="flex:1;font-size:13.5px">' + esc(r.label) + '</span>' + doneBtn(r.id) + '</div>';
@@ -1375,6 +1382,11 @@ function pwrupHTML() {
   let total = 0, done = 0;
   PWRUP_GROUPS.forEach(g => g.items.forEach(it => { total++; if (state.checks['pwr:' + it.id]) done++; }));
   let h = '<div class="page"><p class="muted" style="margin-bottom:14px;max-width:62ch">Every wire is connected — this is the final verification before the battery goes in and fuses go in. Work top to bottom: check every connection point, run the pre-power tests, then follow the power-up sequence exactly. Engine cranking comes LATER (Recommission → First Start). <strong style="color:var(--text)">' + done + '/' + total + ' done.</strong></p>';
+  /* interactive connect/cap map on the AAW install sheet — one pin per numbered callout */
+  h += '<div class="block-label">' + icon('pin', 14) + ' The install sheet, mapped — tap a numbered pin: green = connect, grey = cap, purple = harvest</div>'
+    + wireMapInnerHTML('aaw-sheet', true)
+    + '<button class="ghost-btn" style="height:34px;margin:8px 0 2px" data-act="zoom" data-wm="aaw-sheet" data-src="" data-label="AAW install sheet — connect/cap map">' + icon('zoom', 15) + ' Zoom overlay</button>'
+    + wmDetailHTML('aaw-sheet');
   PWRUP_GROUPS.forEach(g => {
     const gd = g.items.filter(it => state.checks['pwr:' + it.id]).length;
     h += '<div class="zone-head" style="margin-top:22px">' + icon('bolt', 15) + ' ' + esc(g.g) + ' <span class="faint mono" style="font-weight:400;font-size:12px">· ' + gd + '/' + g.items.length + '</span></div>';
